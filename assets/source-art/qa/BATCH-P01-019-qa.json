@@ -1,0 +1,93 @@
+{
+  "batchId": "BATCH-P01-019",
+  "checkedAt": "2026-07-18T08:46:29.735956Z",
+  "userVisualApproval": "Pending",
+  "summary": {
+    "visualDirection": "Review Required",
+    "webPreviewApproved": 0,
+    "reframeRequired": 0,
+    "upscalePending": 10
+  },
+  "items": [
+    {
+      "characterId": "CHR-OMI-246",
+      "outputFile": "p01/CHR-OMI-246_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DIG-296",
+      "outputFile": "p01/CHR-DIG-296_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-GOV-027",
+      "outputFile": "p01/CHR-GOV-027_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-ACA-067",
+      "outputFile": "p01/CHR-ACA-067_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DEV-112",
+      "outputFile": "p01/CHR-DEV-112_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MFG-152",
+      "outputFile": "p01/CHR-MFG-152_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MAR-202",
+      "outputFile": "p01/CHR-MAR-202_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-OMI-247",
+      "outputFile": "p01/CHR-OMI-247_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DIG-297",
+      "outputFile": "p01/CHR-DIG-297_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-GOV-028",
+      "outputFile": "p01/CHR-GOV-028_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "batchId": "BATCH-P01-001",
+  "checkedAt": "2026-07-14T16:19:34.8008637Z",
+  "userVisualApproval": true,
+  "summary": {
+    "visualDirection": "Approved by user",
+    "webPreviewApproved": 9,
+    "reframeRequired": 0,
+    "upscalePending": 10,
+    "engineeringRegenerateRequired": 0
+  },
+  "items": [
+    {
+      "characterId": "CHR-GOV-001",
+      "outputFile": "CHR-GOV-001_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    },
+    {
+      "characterId": "CHR-ACA-041",
+      "outputFile": "CHR-ACA-041_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    },
+    {
+      "characterId": "CHR-DEV-086",
+      "outputFile": "CHR-DEV-086_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    },
+    {
+      "characterId": "CHR-MFG-126",
+      "outputFile": "CHR-MFG-126_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Approved",
+      "engineeringIssues": [
+        "Background wind-turbine rotor has an incorrect or ambiguous blade count.",
+        "Background blade geometry is not structurally reliable."
+      ],
+      "requiredCorrection": "Generate v002 with exactly three blades per complete rotor, 120-degree spacing and smooth structurally plausible blade geometry. Preserve the approved character design."
+    },
+    {
+      "characterId": "CHR-MAR-176",
+      "outputFile": "CHR-MAR-176_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    },
+    {
+      "characterId": "CHR-OMI-221",
+      "outputFile": "CHR-OMI-221_L1_P01_v001.png",
+      "dimensions": "887x1774",
+      "aspectStatus": "Fail",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Approved",
+      "engineeringIssues": [
+        "Foreground/background wind-turbine blade geometry is distorted or physically implausible.",
+        "Existing image also fails the required 2:3 aspect ratio."
+      ],
+      "requiredCorrection": "Generate v002 in 2:3 with exactly three blades per complete rotor, 120-degree spacing and smooth structurally plausible blade geometry. Preserve the approved character design and PPE."
+    },
+    {
+      "characterId": "CHR-DIG-271",
+      "outputFile": "CHR-DIG-271_L1_P01_v001.png",
+      "dimensions": "864x1821",
+      "aspectStatus": "Fail",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "correctionFile": "p01/CHR-DIG-271_L1_P01_v002.png",
+      "correctionDimensions": "1024x1536",
+      "activeVersion": "v002",
+      "activeAspectStatus": "Pass",
+      "engineeringQaStatus": "Review Pending"
+    },
+    {
+      "characterId": "CHR-GOV-002",
+      "outputFile": "CHR-GOV-002_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    },
+    {
+      "characterId": "CHR-ACA-042",
+      "outputFile": "CHR-ACA-042_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    },
+    {
+      "characterId": "CHR-DEV-087",
+      "outputFile": "CHR-DEV-087_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Web Preview Approved"
+    }
+  ]
+}

@@ -1,0 +1,542 @@
+[
+  {
+    "id": "TRK001",
+    "faction": "GOV",
+    "roleZh": "能源資料分析師",
+    "roleEn": "Energy Data Analyst",
+    "toolsZh": "資料終端與政策儀表板",
+    "toolsEn": "data terminal and policy dashboard",
+    "personality": "冷靜、精確、重視證據"
+  },
+  {
+    "id": "TRK002",
+    "faction": "GOV",
+    "roleZh": "再生能源政策專員",
+    "roleEn": "Renewable Energy Policy Officer",
+    "toolsZh": "法規卷宗與能源沙盤",
+    "toolsEn": "regulatory dossier and energy planning table",
+    "personality": "穩健、善於協調、重視公共利益"
+  },
+  {
+    "id": "TRK003",
+    "faction": "GOV",
+    "roleZh": "海域規劃官",
+    "roleEn": "Marine Spatial Planner",
+    "toolsZh": "海圖投影與測量筆",
+    "toolsEn": "holographic sea chart and survey stylus",
+    "personality": "宏觀、審慎、擅長權衡"
+  },
+  {
+    "id": "TRK004",
+    "faction": "GOV",
+    "roleZh": "法規審查官",
+    "roleEn": "Regulatory Review Officer",
+    "toolsZh": "合規檢核板與數位印章",
+    "toolsEn": "compliance tablet and digital seal",
+    "personality": "嚴謹、公正、重視程序"
+  },
+  {
+    "id": "TRK005",
+    "faction": "GOV",
+    "roleZh": "環境影響評估師",
+    "roleEn": "Environmental Impact Assessor",
+    "toolsZh": "生態監測器與鳥類雷達",
+    "toolsEn": "ecology monitor and avian radar",
+    "personality": "敏銳、同理、尊重自然"
+  },
+  {
+    "id": "TRK006",
+    "faction": "GOV",
+    "roleZh": "國產化供應鏈專員",
+    "roleEn": "Local Supply Chain Officer",
+    "toolsZh": "供應鏈網絡圖與標籤槍",
+    "toolsEn": "supply network map and tagging tool",
+    "personality": "務實、敏捷、善於談判"
+  },
+  {
+    "id": "TRK007",
+    "faction": "GOV",
+    "roleZh": "港務協調官",
+    "roleEn": "Port Coordination Officer",
+    "toolsZh": "港區無線電與泊位圖",
+    "toolsEn": "port radio and berth plan",
+    "personality": "果斷、善溝通、重視時程"
+  },
+  {
+    "id": "TRK008",
+    "faction": "GOV",
+    "roleZh": "電網規劃師",
+    "roleEn": "Grid Planning Strategist",
+    "toolsZh": "電網拓樸圖與潮流分析器",
+    "toolsEn": "grid topology map and load-flow analyzer",
+    "personality": "前瞻、精密、系統思考"
+  },
+  {
+    "id": "TRK009",
+    "faction": "ACA",
+    "roleZh": "風能研究員",
+    "roleEn": "Wind Energy Researcher",
+    "toolsZh": "風洞模型與量測探頭",
+    "toolsEn": "wind-tunnel model and measurement probe",
+    "personality": "好奇、專注、樂於驗證"
+  },
+  {
+    "id": "TRK010",
+    "faction": "ACA",
+    "roleZh": "海洋工程研究員",
+    "roleEn": "Ocean Engineering Researcher",
+    "toolsZh": "波浪水槽模型與水壓感測器",
+    "toolsEn": "wave basin model and pressure sensor",
+    "personality": "沉著、務實、耐心"
+  },
+  {
+    "id": "TRK011",
+    "faction": "ACA",
+    "roleZh": "結構分析研究員",
+    "roleEn": "Structural Analysis Researcher",
+    "toolsZh": "有限元素模型與應變規",
+    "toolsEn": "finite-element model and strain gauge",
+    "personality": "縝密、理性、重視安全裕度"
+  },
+  {
+    "id": "TRK012",
+    "faction": "ACA",
+    "roleZh": "CFD模擬研究員",
+    "roleEn": "CFD Simulation Researcher",
+    "toolsZh": "流場投影與運算工作站",
+    "toolsEn": "flow-field projection and compute workstation",
+    "personality": "抽象思考、精準、喜歡挑戰"
+  },
+  {
+    "id": "TRK013",
+    "faction": "ACA",
+    "roleZh": "控制系統研究員",
+    "roleEn": "Control Systems Researcher",
+    "toolsZh": "控制方塊圖與即時控制器",
+    "toolsEn": "control block diagram and real-time controller",
+    "personality": "有條理、冷靜、善於除錯"
+  },
+  {
+    "id": "TRK014",
+    "faction": "ACA",
+    "roleZh": "SCADA資料科學家",
+    "roleEn": "SCADA Data Scientist",
+    "toolsZh": "時序圖與異常偵測介面",
+    "toolsEn": "time-series display and anomaly detection interface",
+    "personality": "洞察、耐心、資料導向"
+  },
+  {
+    "id": "TRK015",
+    "faction": "ACA",
+    "roleZh": "振動診斷研究員",
+    "roleEn": "Vibration Diagnostics Researcher",
+    "toolsZh": "頻譜分析儀與加速規",
+    "toolsEn": "spectrum analyzer and accelerometer",
+    "personality": "敏銳、專注、重視微小訊號"
+  },
+  {
+    "id": "TRK016",
+    "faction": "ACA",
+    "roleZh": "數位孿生研究員",
+    "roleEn": "Digital Twin Researcher",
+    "toolsZh": "風機數位分身投影",
+    "toolsEn": "wind turbine digital-twin projection",
+    "personality": "創新、整合、系統化"
+  },
+  {
+    "id": "TRK017",
+    "faction": "ACA",
+    "roleZh": "電力電子研究員",
+    "roleEn": "Power Electronics Researcher",
+    "toolsZh": "變流器模組與示波器",
+    "toolsEn": "converter module and oscilloscope",
+    "personality": "精準、謹慎、反應快速"
+  },
+  {
+    "id": "TRK018",
+    "faction": "DEV",
+    "roleZh": "風場開發專員",
+    "roleEn": "Wind Farm Development Specialist",
+    "toolsZh": "風場配置圖與利害關係人地圖",
+    "toolsEn": "wind farm layout and stakeholder map",
+    "personality": "外向、策略、擅長整合"
+  },
+  {
+    "id": "TRK019",
+    "faction": "DEV",
+    "roleZh": "專案控制工程師",
+    "roleEn": "Project Controls Engineer",
+    "toolsZh": "甘特圖與風險儀表板",
+    "toolsEn": "Gantt chart and risk dashboard",
+    "personality": "守時、務實、條理分明"
+  },
+  {
+    "id": "TRK020",
+    "faction": "DEV",
+    "roleZh": "合約工程師",
+    "roleEn": "Contract Engineer",
+    "toolsZh": "合約矩陣與談判筆記",
+    "toolsEn": "contract matrix and negotiation notes",
+    "personality": "審慎、敏銳、善於溝通"
+  },
+  {
+    "id": "TRK021",
+    "faction": "DEV",
+    "roleZh": "採購工程師",
+    "roleEn": "Procurement Engineer",
+    "toolsZh": "規格清單與供應商評分板",
+    "toolsEn": "specification list and supplier scorecard",
+    "personality": "務實、精算、重視品質"
+  },
+  {
+    "id": "TRK022",
+    "faction": "DEV",
+    "roleZh": "財務分析師",
+    "roleEn": "Project Finance Analyst",
+    "toolsZh": "財務模型與風險曲線",
+    "toolsEn": "financial model and risk curve",
+    "personality": "冷靜、前瞻、數字敏感"
+  },
+  {
+    "id": "TRK023",
+    "faction": "DEV",
+    "roleZh": "HSE管理師",
+    "roleEn": "HSE Manager",
+    "toolsZh": "安全觀察卡與許可證",
+    "toolsEn": "safety observation card and work permit",
+    "personality": "警覺、負責、關懷團隊"
+  },
+  {
+    "id": "TRK024",
+    "faction": "DEV",
+    "roleZh": "品質保證工程師",
+    "roleEn": "Quality Assurance Engineer",
+    "toolsZh": "檢驗計畫與量測工具",
+    "toolsEn": "inspection plan and metrology tools",
+    "personality": "嚴謹、穩定、追求一致"
+  },
+  {
+    "id": "TRK025",
+    "faction": "DEV",
+    "roleZh": "許可證協調員",
+    "roleEn": "Permitting Coordinator",
+    "toolsZh": "申請文件與核准流程板",
+    "toolsEn": "permit dossier and approval workflow",
+    "personality": "耐心、細心、善於追蹤"
+  },
+  {
+    "id": "TRK026",
+    "faction": "MFG",
+    "roleZh": "葉片製造工程師",
+    "roleEn": "Blade Manufacturing Engineer",
+    "toolsZh": "複材層疊樣板與超音波探頭",
+    "toolsEn": "composite layup sample and ultrasonic probe",
+    "personality": "細膩、創新、品質導向"
+  },
+  {
+    "id": "TRK027",
+    "faction": "MFG",
+    "roleZh": "塔架製造工程師",
+    "roleEn": "Tower Manufacturing Engineer",
+    "toolsZh": "焊道量規與塔節模型",
+    "toolsEn": "weld gauge and tower-section model",
+    "personality": "穩健、嚴謹、重視結構"
+  },
+  {
+    "id": "TRK028",
+    "faction": "MFG",
+    "roleZh": "單樁基礎工程師",
+    "roleEn": "Monopile Foundation Engineer",
+    "toolsZh": "單樁模型與沉樁紀錄器",
+    "toolsEn": "monopile model and piling recorder",
+    "personality": "果斷、耐壓、善於現場判斷"
+  },
+  {
+    "id": "TRK029",
+    "faction": "MFG",
+    "roleZh": "Jacket基礎工程師",
+    "roleEn": "Jacket Foundation Engineer",
+    "toolsZh": "桁架節點模型與焊接圖",
+    "toolsEn": "jacket node model and welding drawing",
+    "personality": "立體思考、細心、重視連接"
+  },
+  {
+    "id": "TRK030",
+    "faction": "MFG",
+    "roleZh": "機艙整合工程師",
+    "roleEn": "Nacelle Integration Engineer",
+    "toolsZh": "機艙配置圖與扭力工具",
+    "toolsEn": "nacelle layout and torque tooling",
+    "personality": "整合、務實、擅長協作"
+  },
+  {
+    "id": "TRK031",
+    "faction": "MFG",
+    "roleZh": "齒輪箱工程師",
+    "roleEn": "Gearbox Engineer",
+    "toolsZh": "齒輪副模型與內視鏡",
+    "toolsEn": "gear-pair model and borescope",
+    "personality": "專注、耐心、重視磨耗跡象"
+  },
+  {
+    "id": "TRK032",
+    "faction": "MFG",
+    "roleZh": "發電機工程師",
+    "roleEn": "Generator Engineer",
+    "toolsZh": "繞組模型與絕緣測試器",
+    "toolsEn": "winding model and insulation tester",
+    "personality": "精準、穩定、電磁直覺"
+  },
+  {
+    "id": "TRK033",
+    "faction": "MFG",
+    "roleZh": "Pitch系統工程師",
+    "roleEn": "Pitch Systems Engineer",
+    "toolsZh": "變槳驅動器與液壓模組",
+    "toolsEn": "pitch drive and hydraulic module",
+    "personality": "反應快速、重視冗餘、務實"
+  },
+  {
+    "id": "TRK034",
+    "faction": "MFG",
+    "roleZh": "Yaw系統工程師",
+    "roleEn": "Yaw Systems Engineer",
+    "toolsZh": "偏航齒圈與方位感測器",
+    "toolsEn": "yaw ring and azimuth sensor",
+    "personality": "沉著、空間敏銳、重視對準"
+  },
+  {
+    "id": "TRK035",
+    "faction": "MFG",
+    "roleZh": "變壓器工程師",
+    "roleEn": "Transformer Engineer",
+    "toolsZh": "線圈剖面與油中氣體分析器",
+    "toolsEn": "winding cutaway and dissolved-gas analyzer",
+    "personality": "謹慎、沉穩、風險意識高"
+  },
+  {
+    "id": "TRK036",
+    "faction": "MAR",
+    "roleZh": "重吊船甲板工程師",
+    "roleEn": "Heavy-Lift Deck Engineer",
+    "toolsZh": "吊裝索具與載荷計畫",
+    "toolsEn": "lifting rigging and load plan",
+    "personality": "果斷、團隊導向、重視手勢溝通"
+  },
+  {
+    "id": "TRK037",
+    "faction": "MAR",
+    "roleZh": "DP動態定位操作員",
+    "roleEn": "Dynamic Positioning Operator",
+    "toolsZh": "DP控制台與定位雷達",
+    "toolsEn": "DP console and positioning radar",
+    "personality": "冷靜、專注、反應快速"
+  },
+  {
+    "id": "TRK038",
+    "faction": "MAR",
+    "roleZh": "打樁工程師",
+    "roleEn": "Piling Engineer",
+    "toolsZh": "沉樁錘控制器與貫入曲線",
+    "toolsEn": "pile-hammer controller and penetration curve",
+    "personality": "堅毅、節奏感強、重視噪音控制"
+  },
+  {
+    "id": "TRK039",
+    "faction": "MAR",
+    "roleZh": "海纜敷設工程師",
+    "roleEn": "Subsea Cable Installation Engineer",
+    "toolsZh": "海纜路由圖與張力監測器",
+    "toolsEn": "subsea cable route and tension monitor",
+    "personality": "細心、耐心、重視曲率半徑"
+  },
+  {
+    "id": "TRK040",
+    "faction": "MAR",
+    "roleZh": "ROV操作員",
+    "roleEn": "ROV Operator",
+    "toolsZh": "遙控載具操縱台與機械手",
+    "toolsEn": "ROV console and manipulator controls",
+    "personality": "手眼協調、沉著、善於觀察"
+  },
+  {
+    "id": "TRK041",
+    "faction": "MAR",
+    "roleZh": "商業潛水技師",
+    "roleEn": "Commercial Diving Technician",
+    "toolsZh": "潛水頭盔與水下工具",
+    "toolsEn": "commercial diving helmet and underwater tools",
+    "personality": "勇敢、紀律、重視夥伴"
+  },
+  {
+    "id": "TRK042",
+    "faction": "MAR",
+    "roleZh": "Jack-up監工",
+    "roleEn": "Jack-up Supervisor",
+    "toolsZh": "升降平台控制板與海床圖",
+    "toolsEn": "jack-up control panel and seabed chart",
+    "personality": "權威、穩定、風險敏銳"
+  },
+  {
+    "id": "TRK043",
+    "faction": "MAR",
+    "roleZh": "海上變電站安裝工程師",
+    "roleEn": "Offshore Substation Installation Engineer",
+    "toolsZh": "模組吊裝圖與高壓單線圖",
+    "toolsEn": "module lift drawing and HV single-line diagram",
+    "personality": "整合、嚴謹、善於跨域協作"
+  },
+  {
+    "id": "TRK044",
+    "faction": "MAR",
+    "roleZh": "CTV船長",
+    "roleEn": "CTV Captain",
+    "toolsZh": "船橋操控台與靠泊視線",
+    "toolsEn": "bridge controls and boat-landing approach view",
+    "personality": "沉著、果斷、熟悉海況"
+  },
+  {
+    "id": "TRK045",
+    "faction": "OMI",
+    "roleZh": "風機機械維修技師",
+    "roleEn": "Wind Turbine Mechanical Technician",
+    "toolsZh": "扭力扳手與齒輪箱內視鏡",
+    "toolsEn": "torque wrench and gearbox borescope",
+    "personality": "務實、耐力強、重視程序"
+  },
+  {
+    "id": "TRK046",
+    "faction": "OMI",
+    "roleZh": "風機電氣維修技師",
+    "roleEn": "Wind Turbine Electrical Technician",
+    "toolsZh": "絕緣表與鎖掛牌工具",
+    "toolsEn": "insulation meter and lockout-tagout kit",
+    "personality": "謹慎、冷靜、重視隔離"
+  },
+  {
+    "id": "TRK047",
+    "faction": "OMI",
+    "roleZh": "液壓系統技師",
+    "roleEn": "Hydraulic Systems Technician",
+    "toolsZh": "壓力測試組與液壓管件",
+    "toolsEn": "pressure test kit and hydraulic fittings",
+    "personality": "敏銳、整潔、善於找漏"
+  },
+  {
+    "id": "TRK048",
+    "faction": "OMI",
+    "roleZh": "葉片繩索維修師",
+    "roleEn": "Blade Rope-Access Repairer",
+    "toolsZh": "繩索系統與複材修補工具",
+    "toolsEn": "rope-access system and composite repair tools",
+    "personality": "勇敢、精細、耐心"
+  },
+  {
+    "id": "TRK049",
+    "faction": "OMI",
+    "roleZh": "高壓電工程師",
+    "roleEn": "High-Voltage Engineer",
+    "toolsZh": "高壓檢測棒與弧光防護裝備",
+    "toolsEn": "HV detector and arc-flash PPE",
+    "personality": "沉著、紀律、風險意識高"
+  },
+  {
+    "id": "TRK050",
+    "faction": "OMI",
+    "roleZh": "GIS維護工程師",
+    "roleEn": "GIS Maintenance Engineer",
+    "toolsZh": "局部放電感測器與氣體監測器",
+    "toolsEn": "partial-discharge sensor and gas monitor",
+    "personality": "精準、整潔、重視密封"
+  },
+  {
+    "id": "TRK051",
+    "faction": "OMI",
+    "roleZh": "齒輪箱診斷專家",
+    "roleEn": "Gearbox Diagnostics Specialist",
+    "toolsZh": "油液樣本與階次頻譜",
+    "toolsEn": "oil sample and order spectrum",
+    "personality": "洞察、耐心、經驗豐富"
+  },
+  {
+    "id": "TRK052",
+    "faction": "OMI",
+    "roleZh": "軸承分析師",
+    "roleEn": "Bearing Analyst",
+    "toolsZh": "包絡頻譜與熱像儀",
+    "toolsEn": "envelope spectrum and thermal camera",
+    "personality": "敏銳、理性、重視趨勢"
+  },
+  {
+    "id": "TRK053",
+    "faction": "OMI",
+    "roleZh": "無人機巡檢員",
+    "roleEn": "Drone Inspection Pilot",
+    "toolsZh": "工業無人機與任務平板",
+    "toolsEn": "industrial drone and mission tablet",
+    "personality": "專注、靈活、空間感強"
+  },
+  {
+    "id": "TRK054",
+    "faction": "OMI",
+    "roleZh": "熱像檢測員",
+    "roleEn": "Thermography Inspector",
+    "toolsZh": "熱像儀與溫差圖",
+    "toolsEn": "thermal camera and temperature-delta map",
+    "personality": "沉著、敏銳、重視基準"
+  },
+  {
+    "id": "TRK055",
+    "faction": "DIG",
+    "roleZh": "SCADA工程師",
+    "roleEn": "SCADA Engineer",
+    "toolsZh": "告警介面與時序資料流",
+    "toolsEn": "alarm interface and time-series data stream",
+    "personality": "系統化、冷靜、善於追因"
+  },
+  {
+    "id": "TRK056",
+    "faction": "DIG",
+    "roleZh": "PLC工程師",
+    "roleEn": "PLC Engineer",
+    "toolsZh": "梯形圖與工業控制器",
+    "toolsEn": "ladder logic and industrial controller",
+    "personality": "精準、務實、善於除錯"
+  },
+  {
+    "id": "TRK057",
+    "faction": "DIG",
+    "roleZh": "CMS工程師",
+    "roleEn": "Condition Monitoring Engineer",
+    "toolsZh": "頻譜瀑布圖與CMS機櫃",
+    "toolsEn": "spectral waterfall and CMS cabinet",
+    "personality": "敏銳、耐心、訊號導向"
+  },
+  {
+    "id": "TRK058",
+    "faction": "DIG",
+    "roleZh": "通訊網路工程師",
+    "roleEn": "Industrial Network Engineer",
+    "toolsZh": "光纖測試器與網路拓樸",
+    "toolsEn": "fiber tester and network topology",
+    "personality": "快速、條理、重視冗餘"
+  },
+  {
+    "id": "TRK059",
+    "faction": "DIG",
+    "roleZh": "AI可靠度工程師",
+    "roleEn": "AI Reliability Engineer",
+    "toolsZh": "預測模型與健康指標介面",
+    "toolsEn": "predictive model and health-index interface",
+    "personality": "創新、審慎、重視可解釋性"
+  },
+  {
+    "id": "TRK060",
+    "faction": "DIG",
+    "roleZh": "資安工程師",
+    "roleEn": "OT Cybersecurity Engineer",
+    "toolsZh": "零信任網路圖與安全金鑰",
+    "toolsEn": "zero-trust network map and security key",
+    "personality": "警覺、紀律、攻防思考"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "code": "GOV",
+    "zh": "政策與治理",
+    "en": "Policy & Governance",
+    "color": "#355C7D",
+    "accent": "#D9E7F3",
+    "theme": "navy, ivory, muted gold"
+  },
+  {
+    "code": "ACA",
+    "zh": "學術與研究",
+    "en": "Academia & Research",
+    "color": "#4B6587",
+    "accent": "#DCE6F1",
+    "theme": "deep teal, silver, pale cyan"
+  },
+  {
+    "code": "DEV",
+    "zh": "開發與專案",
+    "en": "Development & Project",
+    "color": "#6C5B7B",
+    "accent": "#E7DFF0",
+    "theme": "plum, slate, warm white"
+  },
+  {
+    "code": "MFG",
+    "zh": "製造與供應鏈",
+    "en": "Manufacturing & Supply",
+    "color": "#7A5A00",
+    "accent": "#F4E7BD",
+    "theme": "industrial amber, graphite, steel"
+  },
+  {
+    "code": "MAR",
+    "zh": "海事與施工",
+    "en": "Marine & Construction",
+    "color": "#176B87",
+    "accent": "#D8EDF3",
+    "theme": "ocean blue, safety yellow, steel gray"
+  },
+  {
+    "code": "OMI",
+    "zh": "運維與檢測",
+    "en": "O&M & Inspection",
+    "color": "#2A6F62",
+    "accent": "#D9EEE8",
+    "theme": "safety orange, deep teal, white"
+  },
+  {
+    "code": "DIG",
+    "zh": "電網與數位",
+    "en": "Grid & Digital",
+    "color": "#4A55A2",
+    "accent": "#E1E4F5",
+    "theme": "electric blue, violet, dark graphite"
+  }
+]

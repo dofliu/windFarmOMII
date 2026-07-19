@@ -1,0 +1,1817 @@
+{
+  "schemaVersion": 1,
+  "model": "OWM_CHALLENGE_DETERMINISTIC_AUTOPLAY",
+  "gatesPassed": true,
+  "summary": {
+    "auditedBosses": 100,
+    "completedBosses": 100,
+    "averageScore": 75
+  },
+  "hardOutlierBossIds": [
+    "BOSS075",
+    "BOSS079",
+    "BOSS080"
+  ],
+  "items": [
+    {
+      "bossId": "BOSS001",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS002",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS003",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS004",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS005",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "WEA",
+      "success": true,
+      "pressure": "critical",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS006",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS007",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS008",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS009",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "WEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS010",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "WEA",
+      "success": true,
+      "pressure": "critical",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS011",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "COR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS012",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "COR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS013",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "COR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS014",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "COR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 75,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS015",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "COR",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 67,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS016",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "BLD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS017",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "BLD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS018",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "BLD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS019",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "BLD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 73,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS020",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "BLD",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 64,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS021",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS022",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS023",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS024",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS025",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "DRV",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS026",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS027",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS028",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS029",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "DRV",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS030",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "DRV",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS031",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS032",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS033",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS034",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 73,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS035",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "ELE",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 63,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS036",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS037",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS038",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS039",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS040",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "CTL",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS041",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS042",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS043",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS044",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "CTL",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS045",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "CTL",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS046",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "HYD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS047",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "HYD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS048",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "HYD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS049",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "HYD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 74,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS050",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "HYD",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 65,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS051",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS052",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS053",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS054",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 73,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS055",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "ELE",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 63,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS056",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS057",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS058",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS059",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "ELE",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 73,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS060",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "ELE",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 63,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS061",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "CAB",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS062",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "CAB",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS063",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "CAB",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS064",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "CAB",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 74,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS065",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "CAB",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 67,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS066",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "COM",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS067",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "COM",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS068",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "COM",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS069",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "COM",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 74,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS070",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "COM",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 65,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS071",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "DIG",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS072",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "DIG",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS073",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "DIG",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS074",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "DIG",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 6,
+      "score": 66,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS075",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-ACA-050",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "DIG",
+      "success": true,
+      "pressure": "critical",
+      "round": 8,
+      "score": 55,
+      "grade": "D",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS076",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "GRD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 3,
+      "score": 78,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS077",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "GRD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 3,
+      "score": 77,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS078",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "GRD",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 3,
+      "score": 77,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS079",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "GRD",
+      "success": true,
+      "pressure": "critical",
+      "round": 10,
+      "score": 54,
+      "grade": "D",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS080",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "GRD",
+      "success": true,
+      "pressure": "tight",
+      "round": 8,
+      "score": 58,
+      "grade": "D",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS081",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS082",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS083",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS084",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS085",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "SEA",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS086",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS087",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS088",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS089",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "SEA",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 76,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS090",
+      "recommendedTeamIds": [
+        "CHR-MAR-200",
+        "CHR-MAR-220",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "SEA",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 68,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS091",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "OPS",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS092",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "OPS",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS093",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "OPS",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS094",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "OPS",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 75,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS095",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "OPS",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 67,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 8,
+      "candidateCompletionRate": 33
+    },
+    {
+      "bossId": "BOSS096",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S1",
+      "class": "STR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS097",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S2",
+      "class": "STR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 79,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS098",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S3",
+      "class": "STR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 2,
+      "score": 80,
+      "grade": "A",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 24,
+      "candidateCompletionRate": 100
+    },
+    {
+      "bossId": "BOSS099",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S4",
+      "class": "STR",
+      "success": true,
+      "pressure": "comfortable",
+      "round": 4,
+      "score": 75,
+      "grade": "B",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    },
+    {
+      "bossId": "BOSS100",
+      "recommendedTeamIds": [
+        "CHR-ACA-045",
+        "CHR-MFG-165",
+        "CHR-OMI-270"
+      ],
+      "severity": "S5",
+      "class": "STR",
+      "success": true,
+      "pressure": "tight",
+      "round": 6,
+      "score": 67,
+      "grade": "C",
+      "candidateTeamsEvaluated": 24,
+      "successfulCandidateTeams": 16,
+      "candidateCompletionRate": 67
+    }
+  ]
+}

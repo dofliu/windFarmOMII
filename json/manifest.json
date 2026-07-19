@@ -1,0 +1,46 @@
+{
+  "project": "Offshore Wind Masters (OWM)",
+  "version": "1.0.0",
+  "generatedAt": "2026-07-16",
+  "language": "Traditional Chinese / English",
+  "counts": {
+    "factions": 7,
+    "careerTracks": 60,
+    "characters": 300,
+    "skills": 500,
+    "characterSkillLinks": 1200,
+    "equipment": 200,
+    "bosses": 100,
+    "scenes": 150,
+    "missions": 15,
+    "turbines": 6,
+    "codexEntries": 15,
+    "vessels": 3,
+    "prompts": 3000
+  },
+  "invariants": [
+    "All playable characters are original fictional occupational archetypes.",
+    "No real name, institution, company logo, or recognizable real-person likeness appears in public assets.",
+    "Character source artwork contains no card frame, text, number, rarity mark, fatigue meter, health bar, skill icon, or UI.",
+    "Fatigue and skills are data-driven and rendered by a separate runtime overlay layer.",
+    "Approved art uses descriptive cinematic semi-realistic anime aesthetics without naming or imitating a living artist."
+  ],
+  "files": [
+    "OWM_Data_Master_v1.0.xlsx",
+    "json/factions.json",
+    "json/tracks.json",
+    "json/characters.json",
+    "json/skills.json",
+    "json/character_skills.json",
+    "json/equipment.json",
+    "json/bosses.json",
+    "json/bossChallengeAudit.json",
+    "json/scenes.json",
+    "json/sceneAssets.json",
+    "json/missions.json",
+    "json/turbines.json",
+    "json/codex.json",
+    "json/vessels.json",
+    "json/prompts.json"
+  ]
+}

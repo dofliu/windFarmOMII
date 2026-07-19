@@ -1,0 +1,8402 @@
+[
+  {
+    "characterId": "CHR-GOV-001",
+    "skillId": "SK0001",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-001",
+    "skillId": "SK0002",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-001",
+    "skillId": "SK0005",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-001",
+    "skillId": "SK0007",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-002",
+    "skillId": "SK0001",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-002",
+    "skillId": "SK0003",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-002",
+    "skillId": "SK0005",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-002",
+    "skillId": "SK0007",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-003",
+    "skillId": "SK0001",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-003",
+    "skillId": "SK0004",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-003",
+    "skillId": "SK0006",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-003",
+    "skillId": "SK0007",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-004",
+    "skillId": "SK0001",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-004",
+    "skillId": "SK0002",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-004",
+    "skillId": "SK0006",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-004",
+    "skillId": "SK0008",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-005",
+    "skillId": "SK0001",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-005",
+    "skillId": "SK0003",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-005",
+    "skillId": "SK0007",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-005",
+    "skillId": "SK0008",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-006",
+    "skillId": "SK0009",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-006",
+    "skillId": "SK0010",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-006",
+    "skillId": "SK0013",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-006",
+    "skillId": "SK0015",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-007",
+    "skillId": "SK0009",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-007",
+    "skillId": "SK0011",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-007",
+    "skillId": "SK0013",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-007",
+    "skillId": "SK0015",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-008",
+    "skillId": "SK0009",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-008",
+    "skillId": "SK0012",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-008",
+    "skillId": "SK0014",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-008",
+    "skillId": "SK0015",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-009",
+    "skillId": "SK0009",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-009",
+    "skillId": "SK0010",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-009",
+    "skillId": "SK0014",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-009",
+    "skillId": "SK0016",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-010",
+    "skillId": "SK0009",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-010",
+    "skillId": "SK0011",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-010",
+    "skillId": "SK0015",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-010",
+    "skillId": "SK0016",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-011",
+    "skillId": "SK0017",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-011",
+    "skillId": "SK0018",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-011",
+    "skillId": "SK0021",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-011",
+    "skillId": "SK0023",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-012",
+    "skillId": "SK0017",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-012",
+    "skillId": "SK0019",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-012",
+    "skillId": "SK0021",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-012",
+    "skillId": "SK0023",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-013",
+    "skillId": "SK0017",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-013",
+    "skillId": "SK0020",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-013",
+    "skillId": "SK0022",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-013",
+    "skillId": "SK0023",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-014",
+    "skillId": "SK0017",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-014",
+    "skillId": "SK0018",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-014",
+    "skillId": "SK0022",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-014",
+    "skillId": "SK0024",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-015",
+    "skillId": "SK0017",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-015",
+    "skillId": "SK0019",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-015",
+    "skillId": "SK0023",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-015",
+    "skillId": "SK0024",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-016",
+    "skillId": "SK0025",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-016",
+    "skillId": "SK0026",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-016",
+    "skillId": "SK0029",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-016",
+    "skillId": "SK0031",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-017",
+    "skillId": "SK0025",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-017",
+    "skillId": "SK0027",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-017",
+    "skillId": "SK0029",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-017",
+    "skillId": "SK0031",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-018",
+    "skillId": "SK0025",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-018",
+    "skillId": "SK0028",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-018",
+    "skillId": "SK0030",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-018",
+    "skillId": "SK0031",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-019",
+    "skillId": "SK0025",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-019",
+    "skillId": "SK0026",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-019",
+    "skillId": "SK0030",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-019",
+    "skillId": "SK0032",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-020",
+    "skillId": "SK0025",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-020",
+    "skillId": "SK0027",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-020",
+    "skillId": "SK0031",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-020",
+    "skillId": "SK0032",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-021",
+    "skillId": "SK0033",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-021",
+    "skillId": "SK0034",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-021",
+    "skillId": "SK0037",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-021",
+    "skillId": "SK0039",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-022",
+    "skillId": "SK0033",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-022",
+    "skillId": "SK0035",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-022",
+    "skillId": "SK0037",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-022",
+    "skillId": "SK0039",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-023",
+    "skillId": "SK0033",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-023",
+    "skillId": "SK0036",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-023",
+    "skillId": "SK0038",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-023",
+    "skillId": "SK0039",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-024",
+    "skillId": "SK0033",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-024",
+    "skillId": "SK0034",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-024",
+    "skillId": "SK0038",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-024",
+    "skillId": "SK0040",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-025",
+    "skillId": "SK0033",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-025",
+    "skillId": "SK0035",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-025",
+    "skillId": "SK0039",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-025",
+    "skillId": "SK0040",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-026",
+    "skillId": "SK0041",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-026",
+    "skillId": "SK0042",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-026",
+    "skillId": "SK0045",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-026",
+    "skillId": "SK0047",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-027",
+    "skillId": "SK0041",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-027",
+    "skillId": "SK0043",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-027",
+    "skillId": "SK0045",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-027",
+    "skillId": "SK0047",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-028",
+    "skillId": "SK0041",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-028",
+    "skillId": "SK0044",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-028",
+    "skillId": "SK0046",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-028",
+    "skillId": "SK0047",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-029",
+    "skillId": "SK0041",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-029",
+    "skillId": "SK0042",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-029",
+    "skillId": "SK0046",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-029",
+    "skillId": "SK0048",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-030",
+    "skillId": "SK0041",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-030",
+    "skillId": "SK0043",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-030",
+    "skillId": "SK0047",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-030",
+    "skillId": "SK0048",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-031",
+    "skillId": "SK0049",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-031",
+    "skillId": "SK0050",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-031",
+    "skillId": "SK0053",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-031",
+    "skillId": "SK0055",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-032",
+    "skillId": "SK0049",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-032",
+    "skillId": "SK0051",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-032",
+    "skillId": "SK0053",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-032",
+    "skillId": "SK0055",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-033",
+    "skillId": "SK0049",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-033",
+    "skillId": "SK0052",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-033",
+    "skillId": "SK0054",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-033",
+    "skillId": "SK0055",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-034",
+    "skillId": "SK0049",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-034",
+    "skillId": "SK0050",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-034",
+    "skillId": "SK0054",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-034",
+    "skillId": "SK0056",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-035",
+    "skillId": "SK0049",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-035",
+    "skillId": "SK0051",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-035",
+    "skillId": "SK0055",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-035",
+    "skillId": "SK0056",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-036",
+    "skillId": "SK0057",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-036",
+    "skillId": "SK0058",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-036",
+    "skillId": "SK0061",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-036",
+    "skillId": "SK0063",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-037",
+    "skillId": "SK0057",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-037",
+    "skillId": "SK0059",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-037",
+    "skillId": "SK0061",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-037",
+    "skillId": "SK0063",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-038",
+    "skillId": "SK0057",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-038",
+    "skillId": "SK0060",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-038",
+    "skillId": "SK0062",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-038",
+    "skillId": "SK0063",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-039",
+    "skillId": "SK0057",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-039",
+    "skillId": "SK0058",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-039",
+    "skillId": "SK0062",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-039",
+    "skillId": "SK0064",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-GOV-040",
+    "skillId": "SK0057",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-GOV-040",
+    "skillId": "SK0059",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-GOV-040",
+    "skillId": "SK0063",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-GOV-040",
+    "skillId": "SK0064",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-041",
+    "skillId": "SK0065",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-041",
+    "skillId": "SK0066",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-041",
+    "skillId": "SK0069",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-041",
+    "skillId": "SK0071",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-042",
+    "skillId": "SK0065",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-042",
+    "skillId": "SK0067",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-042",
+    "skillId": "SK0069",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-042",
+    "skillId": "SK0071",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-043",
+    "skillId": "SK0065",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-043",
+    "skillId": "SK0068",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-043",
+    "skillId": "SK0070",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-043",
+    "skillId": "SK0071",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-044",
+    "skillId": "SK0065",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-044",
+    "skillId": "SK0066",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-044",
+    "skillId": "SK0070",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-044",
+    "skillId": "SK0072",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-045",
+    "skillId": "SK0065",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-045",
+    "skillId": "SK0067",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-045",
+    "skillId": "SK0071",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-045",
+    "skillId": "SK0072",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-046",
+    "skillId": "SK0073",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-046",
+    "skillId": "SK0074",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-046",
+    "skillId": "SK0077",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-046",
+    "skillId": "SK0079",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-047",
+    "skillId": "SK0073",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-047",
+    "skillId": "SK0075",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-047",
+    "skillId": "SK0077",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-047",
+    "skillId": "SK0079",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-048",
+    "skillId": "SK0073",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-048",
+    "skillId": "SK0076",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-048",
+    "skillId": "SK0078",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-048",
+    "skillId": "SK0079",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-049",
+    "skillId": "SK0073",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-049",
+    "skillId": "SK0074",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-049",
+    "skillId": "SK0078",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-049",
+    "skillId": "SK0080",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-050",
+    "skillId": "SK0073",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-050",
+    "skillId": "SK0075",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-050",
+    "skillId": "SK0079",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-050",
+    "skillId": "SK0080",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-051",
+    "skillId": "SK0081",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-051",
+    "skillId": "SK0082",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-051",
+    "skillId": "SK0085",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-051",
+    "skillId": "SK0087",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-052",
+    "skillId": "SK0081",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-052",
+    "skillId": "SK0083",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-052",
+    "skillId": "SK0085",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-052",
+    "skillId": "SK0087",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-053",
+    "skillId": "SK0081",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-053",
+    "skillId": "SK0084",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-053",
+    "skillId": "SK0086",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-053",
+    "skillId": "SK0087",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-054",
+    "skillId": "SK0081",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-054",
+    "skillId": "SK0082",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-054",
+    "skillId": "SK0086",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-054",
+    "skillId": "SK0088",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-055",
+    "skillId": "SK0081",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-055",
+    "skillId": "SK0083",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-055",
+    "skillId": "SK0087",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-055",
+    "skillId": "SK0088",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-056",
+    "skillId": "SK0089",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-056",
+    "skillId": "SK0090",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-056",
+    "skillId": "SK0093",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-056",
+    "skillId": "SK0095",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-057",
+    "skillId": "SK0089",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-057",
+    "skillId": "SK0091",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-057",
+    "skillId": "SK0093",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-057",
+    "skillId": "SK0095",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-058",
+    "skillId": "SK0089",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-058",
+    "skillId": "SK0092",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-058",
+    "skillId": "SK0094",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-058",
+    "skillId": "SK0095",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-059",
+    "skillId": "SK0089",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-059",
+    "skillId": "SK0090",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-059",
+    "skillId": "SK0094",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-059",
+    "skillId": "SK0096",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-060",
+    "skillId": "SK0089",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-060",
+    "skillId": "SK0091",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-060",
+    "skillId": "SK0095",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-060",
+    "skillId": "SK0096",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-061",
+    "skillId": "SK0097",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-061",
+    "skillId": "SK0098",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-061",
+    "skillId": "SK0101",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-061",
+    "skillId": "SK0103",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-062",
+    "skillId": "SK0097",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-062",
+    "skillId": "SK0099",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-062",
+    "skillId": "SK0101",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-062",
+    "skillId": "SK0103",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-063",
+    "skillId": "SK0097",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-063",
+    "skillId": "SK0100",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-063",
+    "skillId": "SK0102",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-063",
+    "skillId": "SK0103",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-064",
+    "skillId": "SK0097",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-064",
+    "skillId": "SK0098",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-064",
+    "skillId": "SK0102",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-064",
+    "skillId": "SK0104",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-065",
+    "skillId": "SK0097",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-065",
+    "skillId": "SK0099",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-065",
+    "skillId": "SK0103",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-065",
+    "skillId": "SK0104",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-066",
+    "skillId": "SK0105",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-066",
+    "skillId": "SK0106",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-066",
+    "skillId": "SK0109",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-066",
+    "skillId": "SK0111",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-067",
+    "skillId": "SK0105",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-067",
+    "skillId": "SK0107",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-067",
+    "skillId": "SK0109",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-067",
+    "skillId": "SK0111",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-068",
+    "skillId": "SK0105",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-068",
+    "skillId": "SK0108",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-068",
+    "skillId": "SK0110",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-068",
+    "skillId": "SK0111",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-069",
+    "skillId": "SK0105",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-069",
+    "skillId": "SK0106",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-069",
+    "skillId": "SK0110",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-069",
+    "skillId": "SK0112",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-070",
+    "skillId": "SK0105",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-070",
+    "skillId": "SK0107",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-070",
+    "skillId": "SK0111",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-070",
+    "skillId": "SK0112",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-071",
+    "skillId": "SK0113",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-071",
+    "skillId": "SK0114",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-071",
+    "skillId": "SK0117",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-071",
+    "skillId": "SK0119",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-072",
+    "skillId": "SK0113",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-072",
+    "skillId": "SK0115",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-072",
+    "skillId": "SK0117",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-072",
+    "skillId": "SK0119",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-073",
+    "skillId": "SK0113",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-073",
+    "skillId": "SK0116",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-073",
+    "skillId": "SK0118",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-073",
+    "skillId": "SK0119",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-074",
+    "skillId": "SK0113",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-074",
+    "skillId": "SK0114",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-074",
+    "skillId": "SK0118",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-074",
+    "skillId": "SK0120",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-075",
+    "skillId": "SK0113",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-075",
+    "skillId": "SK0115",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-075",
+    "skillId": "SK0119",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-075",
+    "skillId": "SK0120",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-076",
+    "skillId": "SK0121",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-076",
+    "skillId": "SK0122",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-076",
+    "skillId": "SK0125",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-076",
+    "skillId": "SK0127",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-077",
+    "skillId": "SK0121",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-077",
+    "skillId": "SK0123",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-077",
+    "skillId": "SK0125",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-077",
+    "skillId": "SK0127",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-078",
+    "skillId": "SK0121",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-078",
+    "skillId": "SK0124",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-078",
+    "skillId": "SK0126",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-078",
+    "skillId": "SK0127",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-079",
+    "skillId": "SK0121",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-079",
+    "skillId": "SK0122",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-079",
+    "skillId": "SK0126",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-079",
+    "skillId": "SK0128",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-080",
+    "skillId": "SK0121",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-080",
+    "skillId": "SK0123",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-080",
+    "skillId": "SK0127",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-080",
+    "skillId": "SK0128",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-081",
+    "skillId": "SK0129",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-081",
+    "skillId": "SK0130",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-081",
+    "skillId": "SK0133",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-081",
+    "skillId": "SK0135",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-082",
+    "skillId": "SK0129",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-082",
+    "skillId": "SK0131",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-082",
+    "skillId": "SK0133",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-082",
+    "skillId": "SK0135",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-083",
+    "skillId": "SK0129",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-083",
+    "skillId": "SK0132",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-083",
+    "skillId": "SK0134",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-083",
+    "skillId": "SK0135",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-084",
+    "skillId": "SK0129",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-084",
+    "skillId": "SK0130",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-084",
+    "skillId": "SK0134",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-084",
+    "skillId": "SK0136",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-ACA-085",
+    "skillId": "SK0129",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-ACA-085",
+    "skillId": "SK0131",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-ACA-085",
+    "skillId": "SK0135",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-ACA-085",
+    "skillId": "SK0136",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-086",
+    "skillId": "SK0137",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-086",
+    "skillId": "SK0138",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-086",
+    "skillId": "SK0141",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-086",
+    "skillId": "SK0143",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-087",
+    "skillId": "SK0137",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-087",
+    "skillId": "SK0139",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-087",
+    "skillId": "SK0141",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-087",
+    "skillId": "SK0143",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-088",
+    "skillId": "SK0137",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-088",
+    "skillId": "SK0140",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-088",
+    "skillId": "SK0142",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-088",
+    "skillId": "SK0143",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-089",
+    "skillId": "SK0137",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-089",
+    "skillId": "SK0138",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-089",
+    "skillId": "SK0142",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-089",
+    "skillId": "SK0144",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-090",
+    "skillId": "SK0137",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-090",
+    "skillId": "SK0139",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-090",
+    "skillId": "SK0143",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-090",
+    "skillId": "SK0144",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-091",
+    "skillId": "SK0145",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-091",
+    "skillId": "SK0146",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-091",
+    "skillId": "SK0149",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-091",
+    "skillId": "SK0151",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-092",
+    "skillId": "SK0145",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-092",
+    "skillId": "SK0147",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-092",
+    "skillId": "SK0149",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-092",
+    "skillId": "SK0151",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-093",
+    "skillId": "SK0145",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-093",
+    "skillId": "SK0148",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-093",
+    "skillId": "SK0150",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-093",
+    "skillId": "SK0151",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-094",
+    "skillId": "SK0145",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-094",
+    "skillId": "SK0146",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-094",
+    "skillId": "SK0150",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-094",
+    "skillId": "SK0152",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-095",
+    "skillId": "SK0145",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-095",
+    "skillId": "SK0147",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-095",
+    "skillId": "SK0151",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-095",
+    "skillId": "SK0152",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-096",
+    "skillId": "SK0153",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-096",
+    "skillId": "SK0154",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-096",
+    "skillId": "SK0157",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-096",
+    "skillId": "SK0159",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-097",
+    "skillId": "SK0153",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-097",
+    "skillId": "SK0155",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-097",
+    "skillId": "SK0157",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-097",
+    "skillId": "SK0159",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-098",
+    "skillId": "SK0153",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-098",
+    "skillId": "SK0156",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-098",
+    "skillId": "SK0158",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-098",
+    "skillId": "SK0159",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-099",
+    "skillId": "SK0153",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-099",
+    "skillId": "SK0154",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-099",
+    "skillId": "SK0158",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-099",
+    "skillId": "SK0160",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-100",
+    "skillId": "SK0153",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-100",
+    "skillId": "SK0155",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-100",
+    "skillId": "SK0159",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-100",
+    "skillId": "SK0160",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-101",
+    "skillId": "SK0161",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-101",
+    "skillId": "SK0162",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-101",
+    "skillId": "SK0165",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-101",
+    "skillId": "SK0167",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-102",
+    "skillId": "SK0161",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-102",
+    "skillId": "SK0163",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-102",
+    "skillId": "SK0165",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-102",
+    "skillId": "SK0167",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-103",
+    "skillId": "SK0161",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-103",
+    "skillId": "SK0164",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-103",
+    "skillId": "SK0166",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-103",
+    "skillId": "SK0167",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-104",
+    "skillId": "SK0161",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-104",
+    "skillId": "SK0162",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-104",
+    "skillId": "SK0166",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-104",
+    "skillId": "SK0168",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-105",
+    "skillId": "SK0161",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-105",
+    "skillId": "SK0163",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-105",
+    "skillId": "SK0167",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-105",
+    "skillId": "SK0168",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-106",
+    "skillId": "SK0169",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-106",
+    "skillId": "SK0170",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-106",
+    "skillId": "SK0173",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-106",
+    "skillId": "SK0175",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-107",
+    "skillId": "SK0169",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-107",
+    "skillId": "SK0171",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-107",
+    "skillId": "SK0173",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-107",
+    "skillId": "SK0175",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-108",
+    "skillId": "SK0169",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-108",
+    "skillId": "SK0172",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-108",
+    "skillId": "SK0174",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-108",
+    "skillId": "SK0175",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-109",
+    "skillId": "SK0169",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-109",
+    "skillId": "SK0170",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-109",
+    "skillId": "SK0174",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-109",
+    "skillId": "SK0176",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-110",
+    "skillId": "SK0169",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-110",
+    "skillId": "SK0171",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-110",
+    "skillId": "SK0175",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-110",
+    "skillId": "SK0176",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-111",
+    "skillId": "SK0177",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-111",
+    "skillId": "SK0178",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-111",
+    "skillId": "SK0181",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-111",
+    "skillId": "SK0183",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-112",
+    "skillId": "SK0177",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-112",
+    "skillId": "SK0179",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-112",
+    "skillId": "SK0181",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-112",
+    "skillId": "SK0183",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-113",
+    "skillId": "SK0177",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-113",
+    "skillId": "SK0180",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-113",
+    "skillId": "SK0182",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-113",
+    "skillId": "SK0183",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-114",
+    "skillId": "SK0177",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-114",
+    "skillId": "SK0178",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-114",
+    "skillId": "SK0182",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-114",
+    "skillId": "SK0184",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-115",
+    "skillId": "SK0177",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-115",
+    "skillId": "SK0179",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-115",
+    "skillId": "SK0183",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-115",
+    "skillId": "SK0184",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-116",
+    "skillId": "SK0185",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-116",
+    "skillId": "SK0186",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-116",
+    "skillId": "SK0189",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-116",
+    "skillId": "SK0191",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-117",
+    "skillId": "SK0185",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-117",
+    "skillId": "SK0187",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-117",
+    "skillId": "SK0189",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-117",
+    "skillId": "SK0191",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-118",
+    "skillId": "SK0185",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-118",
+    "skillId": "SK0188",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-118",
+    "skillId": "SK0190",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-118",
+    "skillId": "SK0191",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-119",
+    "skillId": "SK0185",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-119",
+    "skillId": "SK0186",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-119",
+    "skillId": "SK0190",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-119",
+    "skillId": "SK0192",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-120",
+    "skillId": "SK0185",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-120",
+    "skillId": "SK0187",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-120",
+    "skillId": "SK0191",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-120",
+    "skillId": "SK0192",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-121",
+    "skillId": "SK0193",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-121",
+    "skillId": "SK0194",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-121",
+    "skillId": "SK0197",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-121",
+    "skillId": "SK0199",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-122",
+    "skillId": "SK0193",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-122",
+    "skillId": "SK0195",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-122",
+    "skillId": "SK0197",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-122",
+    "skillId": "SK0199",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-123",
+    "skillId": "SK0193",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-123",
+    "skillId": "SK0196",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-123",
+    "skillId": "SK0198",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-123",
+    "skillId": "SK0199",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-124",
+    "skillId": "SK0193",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-124",
+    "skillId": "SK0194",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-124",
+    "skillId": "SK0198",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-124",
+    "skillId": "SK0200",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DEV-125",
+    "skillId": "SK0193",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DEV-125",
+    "skillId": "SK0195",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DEV-125",
+    "skillId": "SK0199",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DEV-125",
+    "skillId": "SK0200",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-126",
+    "skillId": "SK0201",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-126",
+    "skillId": "SK0202",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-126",
+    "skillId": "SK0205",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-126",
+    "skillId": "SK0207",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-127",
+    "skillId": "SK0201",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-127",
+    "skillId": "SK0203",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-127",
+    "skillId": "SK0205",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-127",
+    "skillId": "SK0207",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-128",
+    "skillId": "SK0201",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-128",
+    "skillId": "SK0204",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-128",
+    "skillId": "SK0206",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-128",
+    "skillId": "SK0207",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-129",
+    "skillId": "SK0201",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-129",
+    "skillId": "SK0202",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-129",
+    "skillId": "SK0206",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-129",
+    "skillId": "SK0208",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-130",
+    "skillId": "SK0201",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-130",
+    "skillId": "SK0203",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-130",
+    "skillId": "SK0207",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-130",
+    "skillId": "SK0208",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-131",
+    "skillId": "SK0209",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-131",
+    "skillId": "SK0210",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-131",
+    "skillId": "SK0213",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-131",
+    "skillId": "SK0215",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-132",
+    "skillId": "SK0209",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-132",
+    "skillId": "SK0211",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-132",
+    "skillId": "SK0213",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-132",
+    "skillId": "SK0215",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-133",
+    "skillId": "SK0209",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-133",
+    "skillId": "SK0212",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-133",
+    "skillId": "SK0214",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-133",
+    "skillId": "SK0215",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-134",
+    "skillId": "SK0209",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-134",
+    "skillId": "SK0210",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-134",
+    "skillId": "SK0214",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-134",
+    "skillId": "SK0216",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-135",
+    "skillId": "SK0209",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-135",
+    "skillId": "SK0211",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-135",
+    "skillId": "SK0215",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-135",
+    "skillId": "SK0216",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-136",
+    "skillId": "SK0217",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-136",
+    "skillId": "SK0218",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-136",
+    "skillId": "SK0221",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-136",
+    "skillId": "SK0223",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-137",
+    "skillId": "SK0217",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-137",
+    "skillId": "SK0219",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-137",
+    "skillId": "SK0221",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-137",
+    "skillId": "SK0223",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-138",
+    "skillId": "SK0217",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-138",
+    "skillId": "SK0220",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-138",
+    "skillId": "SK0222",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-138",
+    "skillId": "SK0223",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-139",
+    "skillId": "SK0217",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-139",
+    "skillId": "SK0218",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-139",
+    "skillId": "SK0222",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-139",
+    "skillId": "SK0224",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-140",
+    "skillId": "SK0217",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-140",
+    "skillId": "SK0219",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-140",
+    "skillId": "SK0223",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-140",
+    "skillId": "SK0224",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-141",
+    "skillId": "SK0225",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-141",
+    "skillId": "SK0226",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-141",
+    "skillId": "SK0229",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-141",
+    "skillId": "SK0231",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-142",
+    "skillId": "SK0225",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-142",
+    "skillId": "SK0227",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-142",
+    "skillId": "SK0229",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-142",
+    "skillId": "SK0231",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-143",
+    "skillId": "SK0225",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-143",
+    "skillId": "SK0228",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-143",
+    "skillId": "SK0230",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-143",
+    "skillId": "SK0231",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-144",
+    "skillId": "SK0225",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-144",
+    "skillId": "SK0226",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-144",
+    "skillId": "SK0230",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-144",
+    "skillId": "SK0232",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-145",
+    "skillId": "SK0225",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-145",
+    "skillId": "SK0227",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-145",
+    "skillId": "SK0231",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-145",
+    "skillId": "SK0232",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-146",
+    "skillId": "SK0233",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-146",
+    "skillId": "SK0234",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-146",
+    "skillId": "SK0237",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-146",
+    "skillId": "SK0239",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-147",
+    "skillId": "SK0233",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-147",
+    "skillId": "SK0235",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-147",
+    "skillId": "SK0237",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-147",
+    "skillId": "SK0239",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-148",
+    "skillId": "SK0233",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-148",
+    "skillId": "SK0236",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-148",
+    "skillId": "SK0238",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-148",
+    "skillId": "SK0239",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-149",
+    "skillId": "SK0233",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-149",
+    "skillId": "SK0234",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-149",
+    "skillId": "SK0238",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-149",
+    "skillId": "SK0240",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-150",
+    "skillId": "SK0233",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-150",
+    "skillId": "SK0235",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-150",
+    "skillId": "SK0239",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-150",
+    "skillId": "SK0240",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-151",
+    "skillId": "SK0241",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-151",
+    "skillId": "SK0242",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-151",
+    "skillId": "SK0245",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-151",
+    "skillId": "SK0247",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-152",
+    "skillId": "SK0241",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-152",
+    "skillId": "SK0243",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-152",
+    "skillId": "SK0245",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-152",
+    "skillId": "SK0247",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-153",
+    "skillId": "SK0241",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-153",
+    "skillId": "SK0244",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-153",
+    "skillId": "SK0246",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-153",
+    "skillId": "SK0247",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-154",
+    "skillId": "SK0241",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-154",
+    "skillId": "SK0242",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-154",
+    "skillId": "SK0246",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-154",
+    "skillId": "SK0248",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-155",
+    "skillId": "SK0241",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-155",
+    "skillId": "SK0243",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-155",
+    "skillId": "SK0247",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-155",
+    "skillId": "SK0248",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-156",
+    "skillId": "SK0249",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-156",
+    "skillId": "SK0250",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-156",
+    "skillId": "SK0253",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-156",
+    "skillId": "SK0255",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-157",
+    "skillId": "SK0249",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-157",
+    "skillId": "SK0251",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-157",
+    "skillId": "SK0253",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-157",
+    "skillId": "SK0255",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-158",
+    "skillId": "SK0249",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-158",
+    "skillId": "SK0252",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-158",
+    "skillId": "SK0254",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-158",
+    "skillId": "SK0255",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-159",
+    "skillId": "SK0249",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-159",
+    "skillId": "SK0250",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-159",
+    "skillId": "SK0254",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-159",
+    "skillId": "SK0256",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-160",
+    "skillId": "SK0249",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-160",
+    "skillId": "SK0251",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-160",
+    "skillId": "SK0255",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-160",
+    "skillId": "SK0256",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-161",
+    "skillId": "SK0257",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-161",
+    "skillId": "SK0258",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-161",
+    "skillId": "SK0261",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-161",
+    "skillId": "SK0263",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-162",
+    "skillId": "SK0257",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-162",
+    "skillId": "SK0259",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-162",
+    "skillId": "SK0261",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-162",
+    "skillId": "SK0263",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-163",
+    "skillId": "SK0257",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-163",
+    "skillId": "SK0260",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-163",
+    "skillId": "SK0262",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-163",
+    "skillId": "SK0263",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-164",
+    "skillId": "SK0257",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-164",
+    "skillId": "SK0258",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-164",
+    "skillId": "SK0262",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-164",
+    "skillId": "SK0264",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-165",
+    "skillId": "SK0257",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-165",
+    "skillId": "SK0259",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-165",
+    "skillId": "SK0263",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-165",
+    "skillId": "SK0264",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-166",
+    "skillId": "SK0265",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-166",
+    "skillId": "SK0266",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-166",
+    "skillId": "SK0269",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-166",
+    "skillId": "SK0271",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-167",
+    "skillId": "SK0265",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-167",
+    "skillId": "SK0267",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-167",
+    "skillId": "SK0269",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-167",
+    "skillId": "SK0271",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-168",
+    "skillId": "SK0265",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-168",
+    "skillId": "SK0268",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-168",
+    "skillId": "SK0270",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-168",
+    "skillId": "SK0271",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-169",
+    "skillId": "SK0265",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-169",
+    "skillId": "SK0266",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-169",
+    "skillId": "SK0270",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-169",
+    "skillId": "SK0272",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-170",
+    "skillId": "SK0265",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-170",
+    "skillId": "SK0267",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-170",
+    "skillId": "SK0271",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-170",
+    "skillId": "SK0272",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-171",
+    "skillId": "SK0273",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-171",
+    "skillId": "SK0274",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-171",
+    "skillId": "SK0277",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-171",
+    "skillId": "SK0279",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-172",
+    "skillId": "SK0273",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-172",
+    "skillId": "SK0275",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-172",
+    "skillId": "SK0277",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-172",
+    "skillId": "SK0279",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-173",
+    "skillId": "SK0273",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-173",
+    "skillId": "SK0276",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-173",
+    "skillId": "SK0278",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-173",
+    "skillId": "SK0279",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-174",
+    "skillId": "SK0273",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-174",
+    "skillId": "SK0274",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-174",
+    "skillId": "SK0278",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-174",
+    "skillId": "SK0280",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MFG-175",
+    "skillId": "SK0273",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MFG-175",
+    "skillId": "SK0275",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MFG-175",
+    "skillId": "SK0279",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MFG-175",
+    "skillId": "SK0280",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-176",
+    "skillId": "SK0281",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-176",
+    "skillId": "SK0282",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-176",
+    "skillId": "SK0285",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-176",
+    "skillId": "SK0287",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-177",
+    "skillId": "SK0281",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-177",
+    "skillId": "SK0283",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-177",
+    "skillId": "SK0285",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-177",
+    "skillId": "SK0287",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-178",
+    "skillId": "SK0281",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-178",
+    "skillId": "SK0284",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-178",
+    "skillId": "SK0286",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-178",
+    "skillId": "SK0287",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-179",
+    "skillId": "SK0281",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-179",
+    "skillId": "SK0282",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-179",
+    "skillId": "SK0286",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-179",
+    "skillId": "SK0288",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-180",
+    "skillId": "SK0281",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-180",
+    "skillId": "SK0283",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-180",
+    "skillId": "SK0287",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-180",
+    "skillId": "SK0288",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-181",
+    "skillId": "SK0289",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-181",
+    "skillId": "SK0290",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-181",
+    "skillId": "SK0293",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-181",
+    "skillId": "SK0295",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-182",
+    "skillId": "SK0289",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-182",
+    "skillId": "SK0291",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-182",
+    "skillId": "SK0293",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-182",
+    "skillId": "SK0295",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-183",
+    "skillId": "SK0289",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-183",
+    "skillId": "SK0292",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-183",
+    "skillId": "SK0294",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-183",
+    "skillId": "SK0295",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-184",
+    "skillId": "SK0289",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-184",
+    "skillId": "SK0290",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-184",
+    "skillId": "SK0294",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-184",
+    "skillId": "SK0296",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-185",
+    "skillId": "SK0289",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-185",
+    "skillId": "SK0291",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-185",
+    "skillId": "SK0295",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-185",
+    "skillId": "SK0296",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-186",
+    "skillId": "SK0297",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-186",
+    "skillId": "SK0298",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-186",
+    "skillId": "SK0301",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-186",
+    "skillId": "SK0303",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-187",
+    "skillId": "SK0297",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-187",
+    "skillId": "SK0299",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-187",
+    "skillId": "SK0301",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-187",
+    "skillId": "SK0303",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-188",
+    "skillId": "SK0297",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-188",
+    "skillId": "SK0300",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-188",
+    "skillId": "SK0302",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-188",
+    "skillId": "SK0303",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-189",
+    "skillId": "SK0297",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-189",
+    "skillId": "SK0298",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-189",
+    "skillId": "SK0302",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-189",
+    "skillId": "SK0304",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-190",
+    "skillId": "SK0297",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-190",
+    "skillId": "SK0299",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-190",
+    "skillId": "SK0303",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-190",
+    "skillId": "SK0304",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-191",
+    "skillId": "SK0305",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-191",
+    "skillId": "SK0306",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-191",
+    "skillId": "SK0309",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-191",
+    "skillId": "SK0311",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-192",
+    "skillId": "SK0305",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-192",
+    "skillId": "SK0307",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-192",
+    "skillId": "SK0309",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-192",
+    "skillId": "SK0311",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-193",
+    "skillId": "SK0305",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-193",
+    "skillId": "SK0308",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-193",
+    "skillId": "SK0310",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-193",
+    "skillId": "SK0311",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-194",
+    "skillId": "SK0305",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-194",
+    "skillId": "SK0306",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-194",
+    "skillId": "SK0310",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-194",
+    "skillId": "SK0312",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-195",
+    "skillId": "SK0305",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-195",
+    "skillId": "SK0307",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-195",
+    "skillId": "SK0311",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-195",
+    "skillId": "SK0312",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-196",
+    "skillId": "SK0313",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-196",
+    "skillId": "SK0314",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-196",
+    "skillId": "SK0317",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-196",
+    "skillId": "SK0319",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-197",
+    "skillId": "SK0313",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-197",
+    "skillId": "SK0315",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-197",
+    "skillId": "SK0317",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-197",
+    "skillId": "SK0319",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-198",
+    "skillId": "SK0313",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-198",
+    "skillId": "SK0316",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-198",
+    "skillId": "SK0318",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-198",
+    "skillId": "SK0319",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-199",
+    "skillId": "SK0313",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-199",
+    "skillId": "SK0314",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-199",
+    "skillId": "SK0318",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-199",
+    "skillId": "SK0320",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-200",
+    "skillId": "SK0313",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-200",
+    "skillId": "SK0315",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-200",
+    "skillId": "SK0319",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-200",
+    "skillId": "SK0320",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-201",
+    "skillId": "SK0321",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-201",
+    "skillId": "SK0322",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-201",
+    "skillId": "SK0325",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-201",
+    "skillId": "SK0327",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-202",
+    "skillId": "SK0321",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-202",
+    "skillId": "SK0323",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-202",
+    "skillId": "SK0325",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-202",
+    "skillId": "SK0327",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-203",
+    "skillId": "SK0321",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-203",
+    "skillId": "SK0324",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-203",
+    "skillId": "SK0326",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-203",
+    "skillId": "SK0327",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-204",
+    "skillId": "SK0321",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-204",
+    "skillId": "SK0322",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-204",
+    "skillId": "SK0326",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-204",
+    "skillId": "SK0328",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-205",
+    "skillId": "SK0321",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-205",
+    "skillId": "SK0323",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-205",
+    "skillId": "SK0327",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-205",
+    "skillId": "SK0328",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-206",
+    "skillId": "SK0329",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-206",
+    "skillId": "SK0330",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-206",
+    "skillId": "SK0333",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-206",
+    "skillId": "SK0335",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-207",
+    "skillId": "SK0329",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-207",
+    "skillId": "SK0331",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-207",
+    "skillId": "SK0333",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-207",
+    "skillId": "SK0335",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-208",
+    "skillId": "SK0329",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-208",
+    "skillId": "SK0332",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-208",
+    "skillId": "SK0334",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-208",
+    "skillId": "SK0335",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-209",
+    "skillId": "SK0329",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-209",
+    "skillId": "SK0330",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-209",
+    "skillId": "SK0334",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-209",
+    "skillId": "SK0336",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-210",
+    "skillId": "SK0329",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-210",
+    "skillId": "SK0331",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-210",
+    "skillId": "SK0335",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-210",
+    "skillId": "SK0336",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-211",
+    "skillId": "SK0337",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-211",
+    "skillId": "SK0338",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-211",
+    "skillId": "SK0341",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-211",
+    "skillId": "SK0343",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-212",
+    "skillId": "SK0337",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-212",
+    "skillId": "SK0339",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-212",
+    "skillId": "SK0341",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-212",
+    "skillId": "SK0343",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-213",
+    "skillId": "SK0337",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-213",
+    "skillId": "SK0340",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-213",
+    "skillId": "SK0342",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-213",
+    "skillId": "SK0343",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-214",
+    "skillId": "SK0337",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-214",
+    "skillId": "SK0338",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-214",
+    "skillId": "SK0342",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-214",
+    "skillId": "SK0344",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-215",
+    "skillId": "SK0337",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-215",
+    "skillId": "SK0339",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-215",
+    "skillId": "SK0343",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-215",
+    "skillId": "SK0344",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-216",
+    "skillId": "SK0345",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-216",
+    "skillId": "SK0346",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-216",
+    "skillId": "SK0349",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-216",
+    "skillId": "SK0351",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-217",
+    "skillId": "SK0345",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-217",
+    "skillId": "SK0347",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-217",
+    "skillId": "SK0349",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-217",
+    "skillId": "SK0351",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-218",
+    "skillId": "SK0345",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-218",
+    "skillId": "SK0348",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-218",
+    "skillId": "SK0350",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-218",
+    "skillId": "SK0351",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-219",
+    "skillId": "SK0345",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-219",
+    "skillId": "SK0346",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-219",
+    "skillId": "SK0350",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-219",
+    "skillId": "SK0352",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-MAR-220",
+    "skillId": "SK0345",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-MAR-220",
+    "skillId": "SK0347",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-MAR-220",
+    "skillId": "SK0351",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-MAR-220",
+    "skillId": "SK0352",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-221",
+    "skillId": "SK0353",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-221",
+    "skillId": "SK0354",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-221",
+    "skillId": "SK0357",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-221",
+    "skillId": "SK0359",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-222",
+    "skillId": "SK0353",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-222",
+    "skillId": "SK0355",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-222",
+    "skillId": "SK0357",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-222",
+    "skillId": "SK0359",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-223",
+    "skillId": "SK0353",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-223",
+    "skillId": "SK0356",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-223",
+    "skillId": "SK0358",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-223",
+    "skillId": "SK0359",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-224",
+    "skillId": "SK0353",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-224",
+    "skillId": "SK0354",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-224",
+    "skillId": "SK0358",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-224",
+    "skillId": "SK0360",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-225",
+    "skillId": "SK0353",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-225",
+    "skillId": "SK0355",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-225",
+    "skillId": "SK0359",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-225",
+    "skillId": "SK0360",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-226",
+    "skillId": "SK0361",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-226",
+    "skillId": "SK0362",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-226",
+    "skillId": "SK0365",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-226",
+    "skillId": "SK0367",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-227",
+    "skillId": "SK0361",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-227",
+    "skillId": "SK0363",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-227",
+    "skillId": "SK0365",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-227",
+    "skillId": "SK0367",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-228",
+    "skillId": "SK0361",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-228",
+    "skillId": "SK0364",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-228",
+    "skillId": "SK0366",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-228",
+    "skillId": "SK0367",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-229",
+    "skillId": "SK0361",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-229",
+    "skillId": "SK0362",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-229",
+    "skillId": "SK0366",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-229",
+    "skillId": "SK0368",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-230",
+    "skillId": "SK0361",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-230",
+    "skillId": "SK0363",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-230",
+    "skillId": "SK0367",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-230",
+    "skillId": "SK0368",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-231",
+    "skillId": "SK0369",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-231",
+    "skillId": "SK0370",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-231",
+    "skillId": "SK0373",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-231",
+    "skillId": "SK0375",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-232",
+    "skillId": "SK0369",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-232",
+    "skillId": "SK0371",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-232",
+    "skillId": "SK0373",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-232",
+    "skillId": "SK0375",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-233",
+    "skillId": "SK0369",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-233",
+    "skillId": "SK0372",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-233",
+    "skillId": "SK0374",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-233",
+    "skillId": "SK0375",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-234",
+    "skillId": "SK0369",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-234",
+    "skillId": "SK0370",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-234",
+    "skillId": "SK0374",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-234",
+    "skillId": "SK0376",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-235",
+    "skillId": "SK0369",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-235",
+    "skillId": "SK0371",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-235",
+    "skillId": "SK0375",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-235",
+    "skillId": "SK0376",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-236",
+    "skillId": "SK0377",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-236",
+    "skillId": "SK0378",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-236",
+    "skillId": "SK0381",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-236",
+    "skillId": "SK0383",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-237",
+    "skillId": "SK0377",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-237",
+    "skillId": "SK0379",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-237",
+    "skillId": "SK0381",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-237",
+    "skillId": "SK0383",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-238",
+    "skillId": "SK0377",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-238",
+    "skillId": "SK0380",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-238",
+    "skillId": "SK0382",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-238",
+    "skillId": "SK0383",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-239",
+    "skillId": "SK0377",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-239",
+    "skillId": "SK0378",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-239",
+    "skillId": "SK0382",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-239",
+    "skillId": "SK0384",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-240",
+    "skillId": "SK0377",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-240",
+    "skillId": "SK0379",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-240",
+    "skillId": "SK0383",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-240",
+    "skillId": "SK0384",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-241",
+    "skillId": "SK0385",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-241",
+    "skillId": "SK0386",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-241",
+    "skillId": "SK0389",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-241",
+    "skillId": "SK0391",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-242",
+    "skillId": "SK0385",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-242",
+    "skillId": "SK0387",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-242",
+    "skillId": "SK0389",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-242",
+    "skillId": "SK0391",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-243",
+    "skillId": "SK0385",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-243",
+    "skillId": "SK0388",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-243",
+    "skillId": "SK0390",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-243",
+    "skillId": "SK0391",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-244",
+    "skillId": "SK0385",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-244",
+    "skillId": "SK0386",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-244",
+    "skillId": "SK0390",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-244",
+    "skillId": "SK0392",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-245",
+    "skillId": "SK0385",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-245",
+    "skillId": "SK0387",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-245",
+    "skillId": "SK0391",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-245",
+    "skillId": "SK0392",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-246",
+    "skillId": "SK0393",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-246",
+    "skillId": "SK0394",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-246",
+    "skillId": "SK0397",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-246",
+    "skillId": "SK0399",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-247",
+    "skillId": "SK0393",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-247",
+    "skillId": "SK0395",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-247",
+    "skillId": "SK0397",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-247",
+    "skillId": "SK0399",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-248",
+    "skillId": "SK0393",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-248",
+    "skillId": "SK0396",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-248",
+    "skillId": "SK0398",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-248",
+    "skillId": "SK0399",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-249",
+    "skillId": "SK0393",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-249",
+    "skillId": "SK0394",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-249",
+    "skillId": "SK0398",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-249",
+    "skillId": "SK0400",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-250",
+    "skillId": "SK0393",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-250",
+    "skillId": "SK0395",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-250",
+    "skillId": "SK0399",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-250",
+    "skillId": "SK0400",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-251",
+    "skillId": "SK0401",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-251",
+    "skillId": "SK0402",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-251",
+    "skillId": "SK0405",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-251",
+    "skillId": "SK0407",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-252",
+    "skillId": "SK0401",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-252",
+    "skillId": "SK0403",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-252",
+    "skillId": "SK0405",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-252",
+    "skillId": "SK0407",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-253",
+    "skillId": "SK0401",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-253",
+    "skillId": "SK0404",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-253",
+    "skillId": "SK0406",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-253",
+    "skillId": "SK0407",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-254",
+    "skillId": "SK0401",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-254",
+    "skillId": "SK0402",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-254",
+    "skillId": "SK0406",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-254",
+    "skillId": "SK0408",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-255",
+    "skillId": "SK0401",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-255",
+    "skillId": "SK0403",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-255",
+    "skillId": "SK0407",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-255",
+    "skillId": "SK0408",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-256",
+    "skillId": "SK0409",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-256",
+    "skillId": "SK0410",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-256",
+    "skillId": "SK0413",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-256",
+    "skillId": "SK0415",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-257",
+    "skillId": "SK0409",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-257",
+    "skillId": "SK0411",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-257",
+    "skillId": "SK0413",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-257",
+    "skillId": "SK0415",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-258",
+    "skillId": "SK0409",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-258",
+    "skillId": "SK0412",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-258",
+    "skillId": "SK0414",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-258",
+    "skillId": "SK0415",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-259",
+    "skillId": "SK0409",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-259",
+    "skillId": "SK0410",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-259",
+    "skillId": "SK0414",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-259",
+    "skillId": "SK0416",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-260",
+    "skillId": "SK0409",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-260",
+    "skillId": "SK0411",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-260",
+    "skillId": "SK0415",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-260",
+    "skillId": "SK0416",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-261",
+    "skillId": "SK0417",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-261",
+    "skillId": "SK0418",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-261",
+    "skillId": "SK0421",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-261",
+    "skillId": "SK0423",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-262",
+    "skillId": "SK0417",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-262",
+    "skillId": "SK0419",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-262",
+    "skillId": "SK0421",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-262",
+    "skillId": "SK0423",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-263",
+    "skillId": "SK0417",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-263",
+    "skillId": "SK0420",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-263",
+    "skillId": "SK0422",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-263",
+    "skillId": "SK0423",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-264",
+    "skillId": "SK0417",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-264",
+    "skillId": "SK0418",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-264",
+    "skillId": "SK0422",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-264",
+    "skillId": "SK0424",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-265",
+    "skillId": "SK0417",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-265",
+    "skillId": "SK0419",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-265",
+    "skillId": "SK0423",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-265",
+    "skillId": "SK0424",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-266",
+    "skillId": "SK0425",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-266",
+    "skillId": "SK0426",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-266",
+    "skillId": "SK0429",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-266",
+    "skillId": "SK0431",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-267",
+    "skillId": "SK0425",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-267",
+    "skillId": "SK0427",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-267",
+    "skillId": "SK0429",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-267",
+    "skillId": "SK0431",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-268",
+    "skillId": "SK0425",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-268",
+    "skillId": "SK0428",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-268",
+    "skillId": "SK0430",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-268",
+    "skillId": "SK0431",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-269",
+    "skillId": "SK0425",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-269",
+    "skillId": "SK0426",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-269",
+    "skillId": "SK0430",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-269",
+    "skillId": "SK0432",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-OMI-270",
+    "skillId": "SK0425",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-OMI-270",
+    "skillId": "SK0427",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-OMI-270",
+    "skillId": "SK0431",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-OMI-270",
+    "skillId": "SK0432",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-271",
+    "skillId": "SK0433",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-271",
+    "skillId": "SK0434",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-271",
+    "skillId": "SK0437",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-271",
+    "skillId": "SK0439",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-272",
+    "skillId": "SK0433",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-272",
+    "skillId": "SK0435",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-272",
+    "skillId": "SK0437",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-272",
+    "skillId": "SK0439",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-273",
+    "skillId": "SK0433",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-273",
+    "skillId": "SK0436",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-273",
+    "skillId": "SK0438",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-273",
+    "skillId": "SK0439",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-274",
+    "skillId": "SK0433",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-274",
+    "skillId": "SK0434",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-274",
+    "skillId": "SK0438",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-274",
+    "skillId": "SK0440",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-275",
+    "skillId": "SK0433",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-275",
+    "skillId": "SK0435",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-275",
+    "skillId": "SK0439",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-275",
+    "skillId": "SK0440",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-276",
+    "skillId": "SK0441",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-276",
+    "skillId": "SK0442",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-276",
+    "skillId": "SK0445",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-276",
+    "skillId": "SK0447",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-277",
+    "skillId": "SK0441",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-277",
+    "skillId": "SK0443",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-277",
+    "skillId": "SK0445",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-277",
+    "skillId": "SK0447",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-278",
+    "skillId": "SK0441",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-278",
+    "skillId": "SK0444",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-278",
+    "skillId": "SK0446",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-278",
+    "skillId": "SK0447",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-279",
+    "skillId": "SK0441",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-279",
+    "skillId": "SK0442",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-279",
+    "skillId": "SK0446",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-279",
+    "skillId": "SK0448",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-280",
+    "skillId": "SK0441",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-280",
+    "skillId": "SK0443",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-280",
+    "skillId": "SK0447",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-280",
+    "skillId": "SK0448",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-281",
+    "skillId": "SK0449",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-281",
+    "skillId": "SK0450",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-281",
+    "skillId": "SK0453",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-281",
+    "skillId": "SK0455",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-282",
+    "skillId": "SK0449",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-282",
+    "skillId": "SK0451",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-282",
+    "skillId": "SK0453",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-282",
+    "skillId": "SK0455",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-283",
+    "skillId": "SK0449",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-283",
+    "skillId": "SK0452",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-283",
+    "skillId": "SK0454",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-283",
+    "skillId": "SK0455",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-284",
+    "skillId": "SK0449",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-284",
+    "skillId": "SK0450",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-284",
+    "skillId": "SK0454",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-284",
+    "skillId": "SK0456",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-285",
+    "skillId": "SK0449",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-285",
+    "skillId": "SK0451",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-285",
+    "skillId": "SK0455",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-285",
+    "skillId": "SK0456",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-286",
+    "skillId": "SK0457",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-286",
+    "skillId": "SK0458",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-286",
+    "skillId": "SK0461",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-286",
+    "skillId": "SK0463",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-287",
+    "skillId": "SK0457",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-287",
+    "skillId": "SK0459",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-287",
+    "skillId": "SK0461",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-287",
+    "skillId": "SK0463",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-288",
+    "skillId": "SK0457",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-288",
+    "skillId": "SK0460",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-288",
+    "skillId": "SK0462",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-288",
+    "skillId": "SK0463",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-289",
+    "skillId": "SK0457",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-289",
+    "skillId": "SK0458",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-289",
+    "skillId": "SK0462",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-289",
+    "skillId": "SK0464",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-290",
+    "skillId": "SK0457",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-290",
+    "skillId": "SK0459",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-290",
+    "skillId": "SK0463",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-290",
+    "skillId": "SK0464",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-291",
+    "skillId": "SK0465",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-291",
+    "skillId": "SK0466",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-291",
+    "skillId": "SK0469",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-291",
+    "skillId": "SK0471",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-292",
+    "skillId": "SK0465",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-292",
+    "skillId": "SK0467",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-292",
+    "skillId": "SK0469",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-292",
+    "skillId": "SK0471",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-293",
+    "skillId": "SK0465",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-293",
+    "skillId": "SK0468",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-293",
+    "skillId": "SK0470",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-293",
+    "skillId": "SK0471",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-294",
+    "skillId": "SK0465",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-294",
+    "skillId": "SK0466",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-294",
+    "skillId": "SK0470",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-294",
+    "skillId": "SK0472",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-295",
+    "skillId": "SK0465",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-295",
+    "skillId": "SK0467",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-295",
+    "skillId": "SK0471",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-295",
+    "skillId": "SK0472",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-296",
+    "skillId": "SK0473",
+    "slot": "Passive",
+    "unlockLevel": 1,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-296",
+    "skillId": "SK0474",
+    "slot": "Skill1",
+    "unlockLevel": 1,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-296",
+    "skillId": "SK0477",
+    "slot": "Skill2",
+    "unlockLevel": 1,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-296",
+    "skillId": "SK0479",
+    "slot": "Ultimate",
+    "unlockLevel": 1,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-297",
+    "skillId": "SK0473",
+    "slot": "Passive",
+    "unlockLevel": 2,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-297",
+    "skillId": "SK0475",
+    "slot": "Skill1",
+    "unlockLevel": 2,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-297",
+    "skillId": "SK0477",
+    "slot": "Skill2",
+    "unlockLevel": 2,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-297",
+    "skillId": "SK0479",
+    "slot": "Ultimate",
+    "unlockLevel": 2,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-298",
+    "skillId": "SK0473",
+    "slot": "Passive",
+    "unlockLevel": 3,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-298",
+    "skillId": "SK0476",
+    "slot": "Skill1",
+    "unlockLevel": 3,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-298",
+    "skillId": "SK0478",
+    "slot": "Skill2",
+    "unlockLevel": 3,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-298",
+    "skillId": "SK0479",
+    "slot": "Ultimate",
+    "unlockLevel": 3,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-299",
+    "skillId": "SK0473",
+    "slot": "Passive",
+    "unlockLevel": 4,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-299",
+    "skillId": "SK0474",
+    "slot": "Skill1",
+    "unlockLevel": 4,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-299",
+    "skillId": "SK0478",
+    "slot": "Skill2",
+    "unlockLevel": 4,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-299",
+    "skillId": "SK0480",
+    "slot": "Ultimate",
+    "unlockLevel": 4,
+    "displayOrder": 4
+  },
+  {
+    "characterId": "CHR-DIG-300",
+    "skillId": "SK0473",
+    "slot": "Passive",
+    "unlockLevel": 5,
+    "displayOrder": 1
+  },
+  {
+    "characterId": "CHR-DIG-300",
+    "skillId": "SK0475",
+    "slot": "Skill1",
+    "unlockLevel": 5,
+    "displayOrder": 2
+  },
+  {
+    "characterId": "CHR-DIG-300",
+    "skillId": "SK0479",
+    "slot": "Skill2",
+    "unlockLevel": 5,
+    "displayOrder": 3
+  },
+  {
+    "characterId": "CHR-DIG-300",
+    "skillId": "SK0480",
+    "slot": "Ultimate",
+    "unlockLevel": 5,
+    "displayOrder": 4
+  }
+]

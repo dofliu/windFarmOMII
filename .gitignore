@@ -1,0 +1,9 @@
+.codex_qa/
+.agents/
+.codex/
+node_modules/
+dist/
+coverage/
+public/data/
+tmp/
+*.log

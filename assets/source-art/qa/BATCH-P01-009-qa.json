@@ -1,0 +1,93 @@
+﻿{
+    "batchId":  "BATCH-P01-009",
+    "checkedAt":  "2026-07-16T06:23:29.1390231Z",
+    "userVisualApproval":  false,
+    "summary":  {
+                    "visualDirection":  "Review Required",
+                    "webPreviewApproved":  0,
+                    "reframeRequired":  0,
+                    "upscalePending":  10
+                },
+    "items":  [
+                  {
+                      "characterId":  "CHR-MFG-137",
+                      "outputFile":  "p01/CHR-MFG-137_L2_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-MAR-187",
+                      "outputFile":  "p01/CHR-MAR-187_L2_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-OMI-232",
+                      "outputFile":  "p01/CHR-OMI-232_L2_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-DIG-282",
+                      "outputFile":  "p01/CHR-DIG-282_L2_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-GOV-013",
+                      "outputFile":  "p01/CHR-GOV-013_L3_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-ACA-053",
+                      "outputFile":  "p01/CHR-ACA-053_L3_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-DEV-098",
+                      "outputFile":  "p01/CHR-DEV-098_L3_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-MFG-138",
+                      "outputFile":  "p01/CHR-MFG-138_L3_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-MAR-188",
+                      "outputFile":  "p01/CHR-MAR-188_L3_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  },
+                  {
+                      "characterId":  "CHR-OMI-233",
+                      "outputFile":  "p01/CHR-OMI-233_L3_P01_v001.png",
+                      "dimensions":  "1024x1536",
+                      "aspectStatus":  "Pass",
+                      "productionResolutionStatus":  "Upscale Pending",
+                      "qaStatus":  "Visual Review Required"
+                  }
+              ]
+}

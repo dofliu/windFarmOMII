@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0",
+  "batchId": "BATCH-P01-016",
+  "promptRevision": "OWM-P01-R6-WORKFORCE-DIVERSITY-ANTI-WAIFU",
+  "generatedAt": "2026-07-19",
+  "purpose": "Three-image R6 visual-diversity sample before generating the full Batch016 set.",
+  "status": "Sample Review Required",
+  "importPolicy": "Do not import into active Source Art index until visual review is accepted.",
+  "summary": {
+    "sampleCount": 3,
+    "candidateAspectPassed": 3,
+    "candidateAspectFailed": 0,
+    "supersededAspectFailed": 1,
+    "coverage": {
+      "masculine": 1,
+      "androgynous": 1,
+      "feminine": 1
+    }
+  },
+  "contactSheet": "BATCH-P01-016-r6-sample-contact-sheet.png",
+  "items": [
+    {
+      "slot": 1,
+      "characterId": "CHR-GOV-023",
+      "casting": "masculine late-40s veteran supervisor",
+      "candidateFile": "CHR-GOV-023_L3_P01_R6_sample_v002.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "supersededFiles": [
+        {
+          "file": "CHR-GOV-023_L3_P01_R6_sample.png",
+          "dimensions": "864x1821",
+          "aspectStatus": "Fail",
+          "reason": "Ultra-tall canvas; not valid P01 2:3 source art."
+        }
+      ],
+      "visualReviewStatus": "Review Required",
+      "notes": "R6 casting produced a clearly masculine adult worker rather than the previous repeated cute heroine pattern."
+    },
+    {
+      "slot": 3,
+      "characterId": "CHR-DEV-108",
+      "casting": "androgynous mid-20s specialist",
+      "candidateFile": "CHR-DEV-108_L3_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required",
+      "notes": "R6 casting produced an androgynous worker, but manual review should confirm it does not collapse into a default feminine anime face."
+    },
+    {
+      "slot": 8,
+      "characterId": "CHR-OMI-242",
+      "casting": "feminine late-40s marine coordinator",
+      "candidateFile": "CHR-OMI-242_L2_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required",
+      "notes": "R6 casting produced a mature feminine professional with a distinct body type, face shape, and task pose."
+    }
+  ],
+  "guardrails": [
+    "These are QA samples only; active Source Art remains 200/300.",
+    "No public Source Art index entry should reference these sample files before user visual approval.",
+    "Full Batch016 generation should proceed only if the three-sample contact sheet is accepted."
+  ]
+}

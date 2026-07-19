@@ -1,0 +1,56 @@
+[
+  {
+    "id": "WTG-OWM-001",
+    "nameZh": "晨曦一號",
+    "nameEn": "Dawn One",
+    "zone": "A-01",
+    "ratedPowerMw": 12,
+    "initialReliability": 88,
+    "initialOpenFaults": 1
+  },
+  {
+    "id": "WTG-OWM-002",
+    "nameZh": "晨曦二號",
+    "nameEn": "Dawn Two",
+    "zone": "A-02",
+    "ratedPowerMw": 12,
+    "initialReliability": 82,
+    "initialOpenFaults": 1
+  },
+  {
+    "id": "WTG-OWM-003",
+    "nameZh": "海隼一號",
+    "nameEn": "Sea Falcon One",
+    "zone": "B-01",
+    "ratedPowerMw": 15,
+    "initialReliability": 94,
+    "initialOpenFaults": 0
+  },
+  {
+    "id": "WTG-OWM-004",
+    "nameZh": "海隼二號",
+    "nameEn": "Sea Falcon Two",
+    "zone": "B-02",
+    "ratedPowerMw": 15,
+    "initialReliability": 76,
+    "initialOpenFaults": 2
+  },
+  {
+    "id": "WTG-OWM-005",
+    "nameZh": "遠潮一號",
+    "nameEn": "Far Tide One",
+    "zone": "C-01",
+    "ratedPowerMw": 15,
+    "initialReliability": 91,
+    "initialOpenFaults": 0
+  },
+  {
+    "id": "WTG-OWM-006",
+    "nameZh": "遠潮二號",
+    "nameEn": "Far Tide Two",
+    "zone": "C-02",
+    "ratedPowerMw": 15,
+    "initialReliability": 69,
+    "initialOpenFaults": 2
+  }
+]

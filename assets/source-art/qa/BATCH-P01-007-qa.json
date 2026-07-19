@@ -1,0 +1,99 @@
+{
+  "batchId": "BATCH-P01-007",
+  "checkedAt": "2026-07-15T14:07:13.6967727Z",
+  "userVisualApproval": false,
+  "summary": {
+    "visualDirection": "Review Required",
+    "webPreviewApproved": 0,
+    "reframeRequired": 0,
+    "upscalePending": 10,
+    "correctionQaPending": 1,
+    "visualRegenerateRequired": 0
+  },
+  "items": [
+    {
+      "characterId": "CHR-MAR-184",
+      "outputFile": "p01/CHR-MAR-184_L4_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-OMI-229",
+      "outputFile": "p01/CHR-OMI-229_L4_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DIG-279",
+      "outputFile": "p01/CHR-DIG-279_L4_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-GOV-010",
+      "outputFile": "p01/CHR-GOV-010_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-ACA-050",
+      "outputFile": "p01/CHR-ACA-050_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DEV-095",
+      "outputFile": "p01/CHR-DEV-095_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MFG-135",
+      "outputFile": "p01/CHR-MFG-135_L5_P01_v002.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "correctionFile": "p01/CHR-MFG-135_L5_P01_v002.png",
+      "correctionDimensions": "1024x1536",
+      "activeVersion": "v002",
+      "activeAspectStatus": "Pass"
+    },
+    {
+      "characterId": "CHR-MAR-185",
+      "outputFile": "p01/CHR-MAR-185_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-OMI-230",
+      "outputFile": "p01/CHR-OMI-230_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DIG-280",
+      "outputFile": "p01/CHR-DIG-280_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    }
+  ]
+}

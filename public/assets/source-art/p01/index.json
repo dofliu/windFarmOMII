@@ -1,0 +1,1478 @@
+{
+  "schemaVersion": "1.0",
+  "promptRevision": "OWM-P01-R7-CASTING-VARIETY-ANTI-CLONE",
+  "generatedAt": "2026-07-18T18:22:38.399Z",
+  "total": 210,
+  "items": {
+    "CHR-GOV-001": {
+      "characterId": "CHR-GOV-001",
+      "version": "v001",
+      "file": "CHR-GOV-001_L1_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-002": {
+      "characterId": "CHR-GOV-002",
+      "version": "v001",
+      "file": "CHR-GOV-002_L2_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-003": {
+      "characterId": "CHR-GOV-003",
+      "version": "v001",
+      "file": "CHR-GOV-003_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-004": {
+      "characterId": "CHR-GOV-004",
+      "version": "v001",
+      "file": "CHR-GOV-004_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-005": {
+      "characterId": "CHR-GOV-005",
+      "version": "v001",
+      "file": "CHR-GOV-005_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-006": {
+      "characterId": "CHR-GOV-006",
+      "version": "v001",
+      "file": "CHR-GOV-006_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-007": {
+      "characterId": "CHR-GOV-007",
+      "version": "v001",
+      "file": "CHR-GOV-007_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-008": {
+      "characterId": "CHR-GOV-008",
+      "version": "v001",
+      "file": "CHR-GOV-008_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-009": {
+      "characterId": "CHR-GOV-009",
+      "version": "v002",
+      "file": "CHR-GOV-009_L4_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-010": {
+      "characterId": "CHR-GOV-010",
+      "version": "v001",
+      "file": "CHR-GOV-010_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-011": {
+      "characterId": "CHR-GOV-011",
+      "version": "v001",
+      "file": "CHR-GOV-011_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-012": {
+      "characterId": "CHR-GOV-012",
+      "version": "v001",
+      "file": "CHR-GOV-012_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-013": {
+      "characterId": "CHR-GOV-013",
+      "version": "v001",
+      "file": "CHR-GOV-013_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-014": {
+      "characterId": "CHR-GOV-014",
+      "version": "v001",
+      "file": "CHR-GOV-014_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-015": {
+      "characterId": "CHR-GOV-015",
+      "version": "v001",
+      "file": "CHR-GOV-015_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-016": {
+      "characterId": "CHR-GOV-016",
+      "version": "v001",
+      "file": "CHR-GOV-016_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-017": {
+      "characterId": "CHR-GOV-017",
+      "version": "v001",
+      "file": "CHR-GOV-017_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-018": {
+      "characterId": "CHR-GOV-018",
+      "version": "v001",
+      "file": "CHR-GOV-018_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-019": {
+      "characterId": "CHR-GOV-019",
+      "version": "v001",
+      "file": "CHR-GOV-019_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-020": {
+      "characterId": "CHR-GOV-020",
+      "version": "v001",
+      "file": "CHR-GOV-020_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-GOV-021": {
+      "characterId": "CHR-GOV-021",
+      "version": "v001",
+      "file": "CHR-GOV-021_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-022": {
+      "characterId": "CHR-GOV-022",
+      "version": "v001",
+      "file": "CHR-GOV-022_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-023": {
+      "characterId": "CHR-GOV-023",
+      "version": "v001",
+      "file": "CHR-GOV-023_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-024": {
+      "characterId": "CHR-GOV-024",
+      "version": "v001",
+      "file": "CHR-GOV-024_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-025": {
+      "characterId": "CHR-GOV-025",
+      "version": "v001",
+      "file": "CHR-GOV-025_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-026": {
+      "characterId": "CHR-GOV-026",
+      "version": "v001",
+      "file": "CHR-GOV-026_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-027": {
+      "characterId": "CHR-GOV-027",
+      "version": "v001",
+      "file": "CHR-GOV-027_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-028": {
+      "characterId": "CHR-GOV-028",
+      "version": "v001",
+      "file": "CHR-GOV-028_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-029": {
+      "characterId": "CHR-GOV-029",
+      "version": "v001",
+      "file": "CHR-GOV-029_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-030": {
+      "characterId": "CHR-GOV-030",
+      "version": "v001",
+      "file": "CHR-GOV-030_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-041": {
+      "characterId": "CHR-ACA-041",
+      "version": "v001",
+      "file": "CHR-ACA-041_L1_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-042": {
+      "characterId": "CHR-ACA-042",
+      "version": "v001",
+      "file": "CHR-ACA-042_L2_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-043": {
+      "characterId": "CHR-ACA-043",
+      "version": "v001",
+      "file": "CHR-ACA-043_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-044": {
+      "characterId": "CHR-ACA-044",
+      "version": "v001",
+      "file": "CHR-ACA-044_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-045": {
+      "characterId": "CHR-ACA-045",
+      "version": "v001",
+      "file": "CHR-ACA-045_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-046": {
+      "characterId": "CHR-ACA-046",
+      "version": "v002",
+      "file": "CHR-ACA-046_L1_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-047": {
+      "characterId": "CHR-ACA-047",
+      "version": "v001",
+      "file": "CHR-ACA-047_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-048": {
+      "characterId": "CHR-ACA-048",
+      "version": "v001",
+      "file": "CHR-ACA-048_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-049": {
+      "characterId": "CHR-ACA-049",
+      "version": "v001",
+      "file": "CHR-ACA-049_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-050": {
+      "characterId": "CHR-ACA-050",
+      "version": "v001",
+      "file": "CHR-ACA-050_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-051": {
+      "characterId": "CHR-ACA-051",
+      "version": "v001",
+      "file": "CHR-ACA-051_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-052": {
+      "characterId": "CHR-ACA-052",
+      "version": "v001",
+      "file": "CHR-ACA-052_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-053": {
+      "characterId": "CHR-ACA-053",
+      "version": "v001",
+      "file": "CHR-ACA-053_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-054": {
+      "characterId": "CHR-ACA-054",
+      "version": "v001",
+      "file": "CHR-ACA-054_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-055": {
+      "characterId": "CHR-ACA-055",
+      "version": "v001",
+      "file": "CHR-ACA-055_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-056": {
+      "characterId": "CHR-ACA-056",
+      "version": "v001",
+      "file": "CHR-ACA-056_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-057": {
+      "characterId": "CHR-ACA-057",
+      "version": "v001",
+      "file": "CHR-ACA-057_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-058": {
+      "characterId": "CHR-ACA-058",
+      "version": "v001",
+      "file": "CHR-ACA-058_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-059": {
+      "characterId": "CHR-ACA-059",
+      "version": "v001",
+      "file": "CHR-ACA-059_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-060": {
+      "characterId": "CHR-ACA-060",
+      "version": "v001",
+      "file": "CHR-ACA-060_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-ACA-061": {
+      "characterId": "CHR-ACA-061",
+      "version": "v001",
+      "file": "CHR-ACA-061_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-062": {
+      "characterId": "CHR-ACA-062",
+      "version": "v001",
+      "file": "CHR-ACA-062_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-063": {
+      "characterId": "CHR-ACA-063",
+      "version": "v001",
+      "file": "CHR-ACA-063_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-064": {
+      "characterId": "CHR-ACA-064",
+      "version": "v001",
+      "file": "CHR-ACA-064_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-065": {
+      "characterId": "CHR-ACA-065",
+      "version": "v001",
+      "file": "CHR-ACA-065_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-066": {
+      "characterId": "CHR-ACA-066",
+      "version": "v001",
+      "file": "CHR-ACA-066_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-067": {
+      "characterId": "CHR-ACA-067",
+      "version": "v001",
+      "file": "CHR-ACA-067_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-068": {
+      "characterId": "CHR-ACA-068",
+      "version": "v001",
+      "file": "CHR-ACA-068_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-069": {
+      "characterId": "CHR-ACA-069",
+      "version": "v001",
+      "file": "CHR-ACA-069_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-070": {
+      "characterId": "CHR-ACA-070",
+      "version": "v001",
+      "file": "CHR-ACA-070_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-086": {
+      "characterId": "CHR-DEV-086",
+      "version": "v001",
+      "file": "CHR-DEV-086_L1_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-087": {
+      "characterId": "CHR-DEV-087",
+      "version": "v001",
+      "file": "CHR-DEV-087_L2_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-088": {
+      "characterId": "CHR-DEV-088",
+      "version": "v001",
+      "file": "CHR-DEV-088_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-089": {
+      "characterId": "CHR-DEV-089",
+      "version": "v001",
+      "file": "CHR-DEV-089_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-090": {
+      "characterId": "CHR-DEV-090",
+      "version": "v002",
+      "file": "CHR-DEV-090_L5_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-091": {
+      "characterId": "CHR-DEV-091",
+      "version": "v001",
+      "file": "CHR-DEV-091_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-092": {
+      "characterId": "CHR-DEV-092",
+      "version": "v001",
+      "file": "CHR-DEV-092_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-093": {
+      "characterId": "CHR-DEV-093",
+      "version": "v001",
+      "file": "CHR-DEV-093_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-094": {
+      "characterId": "CHR-DEV-094",
+      "version": "v001",
+      "file": "CHR-DEV-094_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-095": {
+      "characterId": "CHR-DEV-095",
+      "version": "v001",
+      "file": "CHR-DEV-095_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-096": {
+      "characterId": "CHR-DEV-096",
+      "version": "v001",
+      "file": "CHR-DEV-096_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-097": {
+      "characterId": "CHR-DEV-097",
+      "version": "v001",
+      "file": "CHR-DEV-097_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-098": {
+      "characterId": "CHR-DEV-098",
+      "version": "v001",
+      "file": "CHR-DEV-098_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-099": {
+      "characterId": "CHR-DEV-099",
+      "version": "v001",
+      "file": "CHR-DEV-099_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-100": {
+      "characterId": "CHR-DEV-100",
+      "version": "v001",
+      "file": "CHR-DEV-100_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-101": {
+      "characterId": "CHR-DEV-101",
+      "version": "v001",
+      "file": "CHR-DEV-101_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-102": {
+      "characterId": "CHR-DEV-102",
+      "version": "v001",
+      "file": "CHR-DEV-102_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-103": {
+      "characterId": "CHR-DEV-103",
+      "version": "v001",
+      "file": "CHR-DEV-103_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-104": {
+      "characterId": "CHR-DEV-104",
+      "version": "v001",
+      "file": "CHR-DEV-104_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-105": {
+      "characterId": "CHR-DEV-105",
+      "version": "v001",
+      "file": "CHR-DEV-105_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-DEV-106": {
+      "characterId": "CHR-DEV-106",
+      "version": "v001",
+      "file": "CHR-DEV-106_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-107": {
+      "characterId": "CHR-DEV-107",
+      "version": "v001",
+      "file": "CHR-DEV-107_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-108": {
+      "characterId": "CHR-DEV-108",
+      "version": "v001",
+      "file": "CHR-DEV-108_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-109": {
+      "characterId": "CHR-DEV-109",
+      "version": "v001",
+      "file": "CHR-DEV-109_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-110": {
+      "characterId": "CHR-DEV-110",
+      "version": "v001",
+      "file": "CHR-DEV-110_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-111": {
+      "characterId": "CHR-DEV-111",
+      "version": "v001",
+      "file": "CHR-DEV-111_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-112": {
+      "characterId": "CHR-DEV-112",
+      "version": "v001",
+      "file": "CHR-DEV-112_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-113": {
+      "characterId": "CHR-DEV-113",
+      "version": "v001",
+      "file": "CHR-DEV-113_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-114": {
+      "characterId": "CHR-DEV-114",
+      "version": "v001",
+      "file": "CHR-DEV-114_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-115": {
+      "characterId": "CHR-DEV-115",
+      "version": "v001",
+      "file": "CHR-DEV-115_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-126": {
+      "characterId": "CHR-MFG-126",
+      "version": "v002",
+      "file": "CHR-MFG-126_L1_P01_v002.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Approved"
+    },
+    "CHR-MFG-127": {
+      "characterId": "CHR-MFG-127",
+      "version": "v001",
+      "file": "CHR-MFG-127_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-128": {
+      "characterId": "CHR-MFG-128",
+      "version": "v001",
+      "file": "CHR-MFG-128_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-129": {
+      "characterId": "CHR-MFG-129",
+      "version": "v001",
+      "file": "CHR-MFG-129_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-130": {
+      "characterId": "CHR-MFG-130",
+      "version": "v001",
+      "file": "CHR-MFG-130_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-131": {
+      "characterId": "CHR-MFG-131",
+      "version": "v002",
+      "file": "CHR-MFG-131_L1_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-132": {
+      "characterId": "CHR-MFG-132",
+      "version": "v001",
+      "file": "CHR-MFG-132_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-133": {
+      "characterId": "CHR-MFG-133",
+      "version": "v002",
+      "file": "CHR-MFG-133_L3_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-134": {
+      "characterId": "CHR-MFG-134",
+      "version": "v001",
+      "file": "CHR-MFG-134_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-135": {
+      "characterId": "CHR-MFG-135",
+      "version": "v002",
+      "file": "CHR-MFG-135_L5_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-136": {
+      "characterId": "CHR-MFG-136",
+      "version": "v001",
+      "file": "CHR-MFG-136_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-137": {
+      "characterId": "CHR-MFG-137",
+      "version": "v001",
+      "file": "CHR-MFG-137_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-138": {
+      "characterId": "CHR-MFG-138",
+      "version": "v001",
+      "file": "CHR-MFG-138_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-139": {
+      "characterId": "CHR-MFG-139",
+      "version": "v001",
+      "file": "CHR-MFG-139_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-140": {
+      "characterId": "CHR-MFG-140",
+      "version": "v001",
+      "file": "CHR-MFG-140_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-141": {
+      "characterId": "CHR-MFG-141",
+      "version": "v001",
+      "file": "CHR-MFG-141_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-142": {
+      "characterId": "CHR-MFG-142",
+      "version": "v001",
+      "file": "CHR-MFG-142_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-143": {
+      "characterId": "CHR-MFG-143",
+      "version": "v001",
+      "file": "CHR-MFG-143_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-144": {
+      "characterId": "CHR-MFG-144",
+      "version": "v001",
+      "file": "CHR-MFG-144_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-145": {
+      "characterId": "CHR-MFG-145",
+      "version": "v001",
+      "file": "CHR-MFG-145_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-MFG-146": {
+      "characterId": "CHR-MFG-146",
+      "version": "v001",
+      "file": "CHR-MFG-146_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-147": {
+      "characterId": "CHR-MFG-147",
+      "version": "v001",
+      "file": "CHR-MFG-147_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-148": {
+      "characterId": "CHR-MFG-148",
+      "version": "v001",
+      "file": "CHR-MFG-148_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-149": {
+      "characterId": "CHR-MFG-149",
+      "version": "v001",
+      "file": "CHR-MFG-149_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-150": {
+      "characterId": "CHR-MFG-150",
+      "version": "v001",
+      "file": "CHR-MFG-150_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-151": {
+      "characterId": "CHR-MFG-151",
+      "version": "v001",
+      "file": "CHR-MFG-151_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-152": {
+      "characterId": "CHR-MFG-152",
+      "version": "v001",
+      "file": "CHR-MFG-152_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-153": {
+      "characterId": "CHR-MFG-153",
+      "version": "v001",
+      "file": "CHR-MFG-153_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-154": {
+      "characterId": "CHR-MFG-154",
+      "version": "v001",
+      "file": "CHR-MFG-154_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-155": {
+      "characterId": "CHR-MFG-155",
+      "version": "v001",
+      "file": "CHR-MFG-155_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-176": {
+      "characterId": "CHR-MAR-176",
+      "version": "v001",
+      "file": "CHR-MAR-176_L1_P01_v001.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-177": {
+      "characterId": "CHR-MAR-177",
+      "version": "v002",
+      "file": "CHR-MAR-177_L2_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-178": {
+      "characterId": "CHR-MAR-178",
+      "version": "v001",
+      "file": "CHR-MAR-178_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-179": {
+      "characterId": "CHR-MAR-179",
+      "version": "v001",
+      "file": "CHR-MAR-179_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-180": {
+      "characterId": "CHR-MAR-180",
+      "version": "v001",
+      "file": "CHR-MAR-180_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-181": {
+      "characterId": "CHR-MAR-181",
+      "version": "v001",
+      "file": "CHR-MAR-181_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-182": {
+      "characterId": "CHR-MAR-182",
+      "version": "v001",
+      "file": "CHR-MAR-182_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-183": {
+      "characterId": "CHR-MAR-183",
+      "version": "v001",
+      "file": "CHR-MAR-183_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-184": {
+      "characterId": "CHR-MAR-184",
+      "version": "v001",
+      "file": "CHR-MAR-184_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-185": {
+      "characterId": "CHR-MAR-185",
+      "version": "v001",
+      "file": "CHR-MAR-185_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-186": {
+      "characterId": "CHR-MAR-186",
+      "version": "v001",
+      "file": "CHR-MAR-186_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-187": {
+      "characterId": "CHR-MAR-187",
+      "version": "v001",
+      "file": "CHR-MAR-187_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-188": {
+      "characterId": "CHR-MAR-188",
+      "version": "v001",
+      "file": "CHR-MAR-188_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-189": {
+      "characterId": "CHR-MAR-189",
+      "version": "v001",
+      "file": "CHR-MAR-189_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-190": {
+      "characterId": "CHR-MAR-190",
+      "version": "v001",
+      "file": "CHR-MAR-190_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-191": {
+      "characterId": "CHR-MAR-191",
+      "version": "v001",
+      "file": "CHR-MAR-191_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-192": {
+      "characterId": "CHR-MAR-192",
+      "version": "v001",
+      "file": "CHR-MAR-192_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-193": {
+      "characterId": "CHR-MAR-193",
+      "version": "v001",
+      "file": "CHR-MAR-193_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-194": {
+      "characterId": "CHR-MAR-194",
+      "version": "v001",
+      "file": "CHR-MAR-194_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-MAR-195": {
+      "characterId": "CHR-MAR-195",
+      "version": "v001",
+      "file": "CHR-MAR-195_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-MAR-196": {
+      "characterId": "CHR-MAR-196",
+      "version": "v002",
+      "file": "CHR-MAR-196_L1_P01_v002.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-197": {
+      "characterId": "CHR-MAR-197",
+      "version": "v001",
+      "file": "CHR-MAR-197_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-198": {
+      "characterId": "CHR-MAR-198",
+      "version": "v001",
+      "file": "CHR-MAR-198_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-199": {
+      "characterId": "CHR-MAR-199",
+      "version": "v001",
+      "file": "CHR-MAR-199_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-200": {
+      "characterId": "CHR-MAR-200",
+      "version": "v001",
+      "file": "CHR-MAR-200_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-201": {
+      "characterId": "CHR-MAR-201",
+      "version": "v001",
+      "file": "CHR-MAR-201_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-202": {
+      "characterId": "CHR-MAR-202",
+      "version": "v001",
+      "file": "CHR-MAR-202_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-203": {
+      "characterId": "CHR-MAR-203",
+      "version": "v001",
+      "file": "CHR-MAR-203_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-204": {
+      "characterId": "CHR-MAR-204",
+      "version": "v001",
+      "file": "CHR-MAR-204_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-205": {
+      "characterId": "CHR-MAR-205",
+      "version": "v001",
+      "file": "CHR-MAR-205_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-221": {
+      "characterId": "CHR-OMI-221",
+      "version": "v002",
+      "file": "CHR-OMI-221_L1_P01_v002.png",
+      "qaStatus": "Web Preview Approved",
+      "engineeringQaStatus": "Approved"
+    },
+    "CHR-OMI-222": {
+      "characterId": "CHR-OMI-222",
+      "version": "v001",
+      "file": "CHR-OMI-222_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-223": {
+      "characterId": "CHR-OMI-223",
+      "version": "v001",
+      "file": "CHR-OMI-223_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-224": {
+      "characterId": "CHR-OMI-224",
+      "version": "v001",
+      "file": "CHR-OMI-224_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-225": {
+      "characterId": "CHR-OMI-225",
+      "version": "v001",
+      "file": "CHR-OMI-225_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-226": {
+      "characterId": "CHR-OMI-226",
+      "version": "v001",
+      "file": "CHR-OMI-226_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-227": {
+      "characterId": "CHR-OMI-227",
+      "version": "v001",
+      "file": "CHR-OMI-227_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-228": {
+      "characterId": "CHR-OMI-228",
+      "version": "v001",
+      "file": "CHR-OMI-228_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-229": {
+      "characterId": "CHR-OMI-229",
+      "version": "v001",
+      "file": "CHR-OMI-229_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-230": {
+      "characterId": "CHR-OMI-230",
+      "version": "v001",
+      "file": "CHR-OMI-230_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-231": {
+      "characterId": "CHR-OMI-231",
+      "version": "v001",
+      "file": "CHR-OMI-231_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-232": {
+      "characterId": "CHR-OMI-232",
+      "version": "v001",
+      "file": "CHR-OMI-232_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-233": {
+      "characterId": "CHR-OMI-233",
+      "version": "v001",
+      "file": "CHR-OMI-233_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-234": {
+      "characterId": "CHR-OMI-234",
+      "version": "v001",
+      "file": "CHR-OMI-234_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-235": {
+      "characterId": "CHR-OMI-235",
+      "version": "v001",
+      "file": "CHR-OMI-235_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-236": {
+      "characterId": "CHR-OMI-236",
+      "version": "v001",
+      "file": "CHR-OMI-236_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-237": {
+      "characterId": "CHR-OMI-237",
+      "version": "v001",
+      "file": "CHR-OMI-237_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-238": {
+      "characterId": "CHR-OMI-238",
+      "version": "v001",
+      "file": "CHR-OMI-238_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-239": {
+      "characterId": "CHR-OMI-239",
+      "version": "v001",
+      "file": "CHR-OMI-239_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-OMI-240": {
+      "characterId": "CHR-OMI-240",
+      "version": "v001",
+      "file": "CHR-OMI-240_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-OMI-241": {
+      "characterId": "CHR-OMI-241",
+      "version": "v001",
+      "file": "CHR-OMI-241_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-242": {
+      "characterId": "CHR-OMI-242",
+      "version": "v001",
+      "file": "CHR-OMI-242_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-243": {
+      "characterId": "CHR-OMI-243",
+      "version": "v001",
+      "file": "CHR-OMI-243_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-244": {
+      "characterId": "CHR-OMI-244",
+      "version": "v001",
+      "file": "CHR-OMI-244_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-245": {
+      "characterId": "CHR-OMI-245",
+      "version": "v001",
+      "file": "CHR-OMI-245_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-246": {
+      "characterId": "CHR-OMI-246",
+      "version": "v001",
+      "file": "CHR-OMI-246_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-247": {
+      "characterId": "CHR-OMI-247",
+      "version": "v001",
+      "file": "CHR-OMI-247_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-248": {
+      "characterId": "CHR-OMI-248",
+      "version": "v001",
+      "file": "CHR-OMI-248_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-249": {
+      "characterId": "CHR-OMI-249",
+      "version": "v001",
+      "file": "CHR-OMI-249_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-250": {
+      "characterId": "CHR-OMI-250",
+      "version": "v001",
+      "file": "CHR-OMI-250_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-271": {
+      "characterId": "CHR-DIG-271",
+      "version": "v002",
+      "file": "CHR-DIG-271_L1_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Review Pending"
+    },
+    "CHR-DIG-272": {
+      "characterId": "CHR-DIG-272",
+      "version": "v002",
+      "file": "CHR-DIG-272_L2_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-273": {
+      "characterId": "CHR-DIG-273",
+      "version": "v001",
+      "file": "CHR-DIG-273_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-274": {
+      "characterId": "CHR-DIG-274",
+      "version": "v001",
+      "file": "CHR-DIG-274_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-275": {
+      "characterId": "CHR-DIG-275",
+      "version": "v001",
+      "file": "CHR-DIG-275_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-276": {
+      "characterId": "CHR-DIG-276",
+      "version": "v001",
+      "file": "CHR-DIG-276_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-277": {
+      "characterId": "CHR-DIG-277",
+      "version": "v001",
+      "file": "CHR-DIG-277_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-278": {
+      "characterId": "CHR-DIG-278",
+      "version": "v002",
+      "file": "CHR-DIG-278_L3_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-279": {
+      "characterId": "CHR-DIG-279",
+      "version": "v001",
+      "file": "CHR-DIG-279_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-280": {
+      "characterId": "CHR-DIG-280",
+      "version": "v001",
+      "file": "CHR-DIG-280_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-281": {
+      "characterId": "CHR-DIG-281",
+      "version": "v001",
+      "file": "CHR-DIG-281_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-282": {
+      "characterId": "CHR-DIG-282",
+      "version": "v001",
+      "file": "CHR-DIG-282_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-283": {
+      "characterId": "CHR-DIG-283",
+      "version": "v001",
+      "file": "CHR-DIG-283_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-284": {
+      "characterId": "CHR-DIG-284",
+      "version": "v001",
+      "file": "CHR-DIG-284_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-285": {
+      "characterId": "CHR-DIG-285",
+      "version": "v001",
+      "file": "CHR-DIG-285_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-286": {
+      "characterId": "CHR-DIG-286",
+      "version": "v001",
+      "file": "CHR-DIG-286_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-287": {
+      "characterId": "CHR-DIG-287",
+      "version": "v001",
+      "file": "CHR-DIG-287_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-288": {
+      "characterId": "CHR-DIG-288",
+      "version": "v001",
+      "file": "CHR-DIG-288_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-289": {
+      "characterId": "CHR-DIG-289",
+      "version": "v001",
+      "file": "CHR-DIG-289_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-DIG-290": {
+      "characterId": "CHR-DIG-290",
+      "version": "v001",
+      "file": "CHR-DIG-290_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Precheck Passed"
+    },
+    "CHR-DIG-291": {
+      "characterId": "CHR-DIG-291",
+      "version": "v001",
+      "file": "CHR-DIG-291_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-292": {
+      "characterId": "CHR-DIG-292",
+      "version": "v001",
+      "file": "CHR-DIG-292_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-293": {
+      "characterId": "CHR-DIG-293",
+      "version": "v001",
+      "file": "CHR-DIG-293_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-294": {
+      "characterId": "CHR-DIG-294",
+      "version": "v001",
+      "file": "CHR-DIG-294_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-295": {
+      "characterId": "CHR-DIG-295",
+      "version": "v001",
+      "file": "CHR-DIG-295_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-296": {
+      "characterId": "CHR-DIG-296",
+      "version": "v001",
+      "file": "CHR-DIG-296_L1_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-297": {
+      "characterId": "CHR-DIG-297",
+      "version": "v001",
+      "file": "CHR-DIG-297_L2_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-298": {
+      "characterId": "CHR-DIG-298",
+      "version": "v001",
+      "file": "CHR-DIG-298_L3_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-299": {
+      "characterId": "CHR-DIG-299",
+      "version": "v001",
+      "file": "CHR-DIG-299_L4_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DIG-300": {
+      "characterId": "CHR-DIG-300",
+      "version": "v001",
+      "file": "CHR-DIG-300_L5_P01_v001.png",
+      "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    }
+  }
+}

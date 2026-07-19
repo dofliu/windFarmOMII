@@ -1,0 +1,132 @@
+{
+  "schemaVersion": "1.0",
+  "batchId": "BATCH-P01-016",
+  "promptRevision": "OWM-P01-R6-WORKFORCE-DIVERSITY-ANTI-WAIFU",
+  "generatedAt": "2026-07-19",
+  "purpose": "Full 10-image R6 visual-diversity QA sample set before importing Batch016 into the active Source Art index.",
+  "status": "Full Batch Sample Review Required",
+  "importPolicy": "Do not import into active Source Art index until the full contact sheet is visually accepted.",
+  "summary": {
+    "sampleCount": 10,
+    "candidateAspectPassed": 10,
+    "candidateAspectFailed": 0,
+    "supersededAspectFailed": 1,
+    "coverage": {
+      "masculine": 4,
+      "androgynous": 2,
+      "feminine": 4
+    },
+    "diversityChecks": {
+      "uniqueAgeImpressions": 10,
+      "uniqueFaceShapes": 10,
+      "uniquePoseSilhouettes": 10,
+      "uniqueCameraAngles": 10
+    }
+  },
+  "contactSheet": "BATCH-P01-016-r6-full-contact-sheet.png",
+  "items": [
+    {
+      "slot": 1,
+      "characterId": "CHR-GOV-023",
+      "casting": "masculine late-40s veteran supervisor",
+      "candidateFile": "CHR-GOV-023_L3_P01_R6_sample_v002.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required",
+      "supersededFiles": [
+        {
+          "file": "CHR-GOV-023_L3_P01_R6_sample.png",
+          "dimensions": "864x1821",
+          "aspectStatus": "Fail",
+          "reason": "Ultra-tall canvas; not valid P01 2:3 source art."
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "characterId": "CHR-ACA-063",
+      "casting": "feminine early-30s field engineer",
+      "candidateFile": "CHR-ACA-063_L3_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 3,
+      "characterId": "CHR-DEV-108",
+      "casting": "androgynous mid-20s specialist",
+      "candidateFile": "CHR-DEV-108_L3_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 4,
+      "characterId": "CHR-MFG-147",
+      "casting": "masculine mid-50s operations mentor",
+      "candidateFile": "CHR-MFG-147_L2_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 5,
+      "characterId": "CHR-MFG-148",
+      "casting": "feminine late-30s commissioning lead",
+      "candidateFile": "CHR-MFG-148_L3_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 6,
+      "characterId": "CHR-MAR-197",
+      "casting": "androgynous early-40s reliability analyst",
+      "candidateFile": "CHR-MAR-197_L2_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 7,
+      "characterId": "CHR-MAR-198",
+      "casting": "masculine early-60s senior inspector",
+      "candidateFile": "CHR-MAR-198_L3_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 8,
+      "characterId": "CHR-OMI-242",
+      "casting": "feminine late-40s marine coordinator",
+      "candidateFile": "CHR-OMI-242_L2_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 9,
+      "characterId": "CHR-OMI-243",
+      "casting": "masculine late-20s data technician",
+      "candidateFile": "CHR-OMI-243_L3_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    },
+    {
+      "slot": 10,
+      "characterId": "CHR-DIG-292",
+      "casting": "feminine mid-30s turbine mechanic",
+      "candidateFile": "CHR-DIG-292_L2_P01_R6_sample.png",
+      "candidateDimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "visualReviewStatus": "Review Required"
+    }
+  ],
+  "visualNotes": [
+    "R6 direction materially reduces the previous all-female same-face pattern.",
+    "Manual review should still inspect turbine geometry, hand/tool fidelity, and whether slot 3 androgynous remains sufficiently non-feminine.",
+    "Sample files are QA artifacts only; active Source Art remains 200/300 until an explicit import step is performed."
+  ]
+}

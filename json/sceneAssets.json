@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "fallback": {
+    "sourceSceneId": "SCN002",
+    "file": "/assets/environment/offshore-field-feed_ai_v004.png",
+    "version": "v004",
+    "qaStatus": "ENGINEERING_QA_PASSED",
+    "labelZh": "共用寫實海上風場即時畫面",
+    "labelEn": "Shared realistic offshore field feed"
+  },
+  "items": {
+    "SCN001": {
+      "sceneId": "SCN001",
+      "file": "/assets/environment/offshore-field-feed_scn001_dawn_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN002": {
+      "sceneId": "SCN002",
+      "file": "/assets/environment/offshore-field-feed_ai_v004.png",
+      "version": "v004",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN003": {
+      "sceneId": "SCN003",
+      "file": "/assets/environment/offshore-field-feed_ai_v004.png",
+      "version": "v004",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN004": {
+      "sceneId": "SCN004",
+      "file": "/assets/environment/offshore-field-feed_scn004_dusk_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN005": {
+      "sceneId": "SCN005",
+      "file": "/assets/environment/offshore-field-feed_scn005_night_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN007": {
+      "sceneId": "SCN007",
+      "file": "/assets/environment/offshore-field-feed_scn007_monopile_clear_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN008": {
+      "sceneId": "SCN008",
+      "file": "/assets/environment/offshore-field-feed_scn008_monopile_rain_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN009": {
+      "sceneId": "SCN009",
+      "file": "/assets/environment/offshore-field-feed_scn009_monopile_dusk_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN010": {
+      "sceneId": "SCN010",
+      "file": "/assets/environment/offshore-field-feed_scn010_monopile_night_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN011": {
+      "sceneId": "SCN011",
+      "file": "/assets/environment/offshore-field-feed_scn011_jacket_dawn_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN012": {
+      "sceneId": "SCN012",
+      "file": "/assets/environment/offshore-field-feed_scn012_jacket_clear_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN013": {
+      "sceneId": "SCN013",
+      "file": "/assets/environment/offshore-field-feed_scn013_jacket_rain_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN014": {
+      "sceneId": "SCN014",
+      "file": "/assets/environment/offshore-field-feed_scn014_jacket_dusk_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN015": {
+      "sceneId": "SCN015",
+      "file": "/assets/environment/offshore-field-feed_scn015_jacket_night_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN016": {
+      "sceneId": "SCN016",
+      "file": "/assets/environment/offshore-field-feed_scn016_floating_dawn_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN023": {
+      "sceneId": "SCN023",
+      "file": "/assets/environment/offshore-field-feed_scn023_substation_rain_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN024": {
+      "sceneId": "SCN024",
+      "file": "/assets/environment/offshore-field-feed_scn024_substation_dusk_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN025": {
+      "sceneId": "SCN025",
+      "file": "/assets/environment/offshore-field-feed_scn025_substation_night_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN026": {
+      "sceneId": "SCN026",
+      "file": "/assets/environment/offshore-field-feed_scn026_port_dawn_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN042": {
+      "sceneId": "SCN042",
+      "file": "/assets/environment/offshore-field-feed_scn042_jackup_clear_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN043": {
+      "sceneId": "SCN043",
+      "file": "/assets/environment/offshore-field-feed_scn043_jackup_rain_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN044": {
+      "sceneId": "SCN044",
+      "file": "/assets/environment/offshore-field-feed_scn044_jackup_dusk_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN045": {
+      "sceneId": "SCN045",
+      "file": "/assets/environment/offshore-field-feed_scn045_jackup_night_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN046": {
+      "sceneId": "SCN046",
+      "file": "/assets/environment/offshore-field-feed_scn046_heavylift_dawn_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN082": {
+      "sceneId": "SCN082",
+      "file": "/assets/environment/offshore-field-feed_scn082_lab_clear_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN083": {
+      "sceneId": "SCN083",
+      "file": "/assets/environment/offshore-field-feed_scn083_lab_rain_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN084": {
+      "sceneId": "SCN084",
+      "file": "/assets/environment/offshore-field-feed_scn084_lab_dusk_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN085": {
+      "sceneId": "SCN085",
+      "file": "/assets/environment/offshore-field-feed_scn085_lab_night_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    },
+    "SCN086": {
+      "sceneId": "SCN086",
+      "file": "/assets/environment/offshore-field-feed_scn086_switchgear_dawn_v001.png",
+      "version": "v001",
+      "qaStatus": "ENGINEERING_QA_PASSED"
+    }
+  }
+}

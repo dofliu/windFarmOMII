@@ -1,0 +1,28 @@
+{
+  "reviewedAt": "2026-07-15",
+  "reviewSource": "User engineering review",
+  "items": [
+    {
+      "characterId": "CHR-MFG-126",
+      "engineeringQaStatus": "Approved",
+      "approvedVersion": "v002",
+      "resolutionStatus": "Resolved by R3 v002 and approved by user on 2026-07-15",
+      "engineeringIssues": [
+        "Background wind-turbine rotor has an incorrect or ambiguous blade count.",
+        "Background blade geometry is not structurally reliable."
+      ],
+      "requiredCorrection": "Generate v002 with exactly three blades per complete rotor, 120-degree spacing and smooth structurally plausible blade geometry. Preserve the approved character design."
+    },
+    {
+      "characterId": "CHR-OMI-221",
+      "engineeringQaStatus": "Approved",
+      "approvedVersion": "v002",
+      "resolutionStatus": "Resolved by R3 v002 and approved by user on 2026-07-15",
+      "engineeringIssues": [
+        "Foreground/background wind-turbine blade geometry is distorted or physically implausible.",
+        "Existing image also fails the required 2:3 aspect ratio."
+      ],
+      "requiredCorrection": "Generate v002 in 2:3 with exactly three blades per complete rotor, 120-degree spacing and smooth structurally plausible blade geometry. Preserve the approved character design and PPE."
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "batchId": "BATCH-P01-002",
+  "checkedAt": "2026-07-15T04:19:39.6573535Z",
+  "userVisualApproval": false,
+  "summary": {
+    "visualDirection": "Review Required",
+    "webPreviewApproved": 0,
+    "reframeRequired": 0,
+    "upscalePending": 10,
+    "visualRegenerateRequired": 0,
+    "correctionQaPending": 2
+  },
+  "items": [
+    {
+      "characterId": "CHR-MFG-127",
+      "outputFile": "CHR-MFG-127_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MAR-177",
+      "outputFile": "CHR-MAR-177_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "visualQaStatus": "Correction QA Pending",
+      "visualIssues": [
+        "Unexpected additional background workers appear at the lower-left edge.",
+        "The P01 source-art contract requires exactly one character."
+      ],
+      "requiredCorrection": "Create a non-destructive v002 that removes all background people while preserving the approved main character, PPE, tools, rigging, vessel geometry, lighting, 2:3 framing and correct three-bladed turbine.",
+      "correctionFile": "p01/CHR-MAR-177_L2_P01_v002.png",
+      "correctionDimensions": "1024x1536",
+      "activeVersion": "v002",
+      "activeAspectStatus": "Pass"
+    },
+    {
+      "characterId": "CHR-OMI-222",
+      "outputFile": "CHR-OMI-222_L2_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DIG-272",
+      "outputFile": "CHR-DIG-272_L2_P01_v001.png",
+      "dimensions": "887x1774",
+      "aspectStatus": "Fail",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "correctionFile": "p01/CHR-DIG-272_L2_P01_v002.png",
+      "correctionDimensions": "1024x1536",
+      "activeVersion": "v002",
+      "activeAspectStatus": "Pass"
+    },
+    {
+      "characterId": "CHR-GOV-003",
+      "outputFile": "CHR-GOV-003_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-ACA-043",
+      "outputFile": "CHR-ACA-043_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DEV-088",
+      "outputFile": "CHR-DEV-088_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MFG-128",
+      "outputFile": "CHR-MFG-128_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MAR-178",
+      "outputFile": "CHR-MAR-178_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-OMI-223",
+      "outputFile": "CHR-OMI-223_L3_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    }
+  ]
+}

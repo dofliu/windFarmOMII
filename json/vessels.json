@@ -1,0 +1,38 @@
+[
+  {
+    "id": "VES001",
+    "class": "CTV",
+    "nameZh": "近岸人員運輸船",
+    "nameEn": "Nearshore Crew Transfer Vessel",
+    "weatherProtection": 2,
+    "safetyProtection": 1,
+    "fatigueRelief": 1,
+    "deploymentCost": 6,
+    "descriptionZh": "適合短天候窗口與近岸快速出勤；數值為遊戲平衡參數。",
+    "descriptionEn": "Fast nearshore deployment for short weather windows; values are gameplay abstractions."
+  },
+  {
+    "id": "VES002",
+    "class": "SOV",
+    "nameZh": "海上運維支援船",
+    "nameEn": "Service Operation Vessel",
+    "weatherProtection": 5,
+    "safetyProtection": 3,
+    "fatigueRelief": 3,
+    "deploymentCost": 12,
+    "descriptionZh": "提供較完整的住宿、轉運與長時間作業支援；數值為遊戲平衡參數。",
+    "descriptionEn": "Supports accommodation, transfer and extended operations; values are gameplay abstractions."
+  },
+  {
+    "id": "VES003",
+    "class": "USV",
+    "nameZh": "無人水面巡檢船",
+    "nameEn": "Uncrewed Surface Inspection Vessel",
+    "weatherProtection": 3,
+    "safetyProtection": 4,
+    "fatigueRelief": 0,
+    "deploymentCost": 8,
+    "descriptionZh": "降低前期巡檢人員暴露，但無法提供船上休息；數值為遊戲平衡參數。",
+    "descriptionEn": "Reduces inspection exposure but provides no onboard rest; values are gameplay abstractions."
+  }
+]

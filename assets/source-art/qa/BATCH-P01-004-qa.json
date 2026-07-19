@@ -1,0 +1,113 @@
+{
+  "batchId": "BATCH-P01-004",
+  "checkedAt": "2026-07-15T10:24:48.2667036Z",
+  "userVisualApproval": false,
+  "summary": {
+    "visualDirection": "Review Required",
+    "webPreviewApproved": 0,
+    "reframeRequired": 0,
+    "upscalePending": 10,
+    "visualRegenerateRequired": 0,
+    "correctionQaPending": 3
+  },
+  "items": [
+    {
+      "characterId": "CHR-DEV-090",
+      "outputFile": "p01/CHR-DEV-090_L5_P01_v002.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "visualQaStatus": "Correction QA Pending",
+      "visualIssues": [
+        "An unintended small background person appears near the planning table.",
+        "The scene contains more turbines than the controlled single-turbine composition requested by R3."
+      ],
+      "requiredCorrection": "Create a non-destructive v002 with exactly one adult woman and no background people, using exactly one complete unobstructed offshore turbine with three straight tapered blades spaced 120 degrees apart. Preserve the role, plum PPE, planning tools, 2:3 framing and 12 percent safe zone."
+    },
+    {
+      "characterId": "CHR-MFG-130",
+      "outputFile": "p01/CHR-MFG-130_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MAR-180",
+      "outputFile": "p01/CHR-MAR-180_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-OMI-225",
+      "outputFile": "p01/CHR-OMI-225_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-DIG-275",
+      "outputFile": "p01/CHR-DIG-275_L5_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-GOV-006",
+      "outputFile": "p01/CHR-GOV-006_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-ACA-046",
+      "outputFile": "p01/CHR-ACA-046_L1_P01_v002.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "visualQaStatus": "Correction QA Pending",
+      "visualIssues": [
+        "Several blurred wind turbines appear outside the wave-basin laboratory despite the rotor-free scene constraint.",
+        "Distant low-detail rotors create unnecessary blade-count and geometry risk."
+      ],
+      "requiredCorrection": "Create a non-destructive v002 inside an enclosed wave-basin laboratory with no visible wind turbines, rotors, hubs or blades. Preserve the adult female researcher, teal PPE, monopile model, pressure sensor, 2:3 framing and 12 percent safe zone."
+    },
+    {
+      "characterId": "CHR-DEV-091",
+      "outputFile": "p01/CHR-DEV-091_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    },
+    {
+      "characterId": "CHR-MFG-131",
+      "outputFile": "p01/CHR-MFG-131_L1_P01_v002.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Correction QA Pending",
+      "visualQaStatus": "Correction QA Pending",
+      "visualIssues": [
+        "The hand-held object is an implausible star-shaped tool rather than a recognizable weld gauge.",
+        "The role-specific inspection tool fails the manufacturing engineering plausibility check."
+      ],
+      "requiredCorrection": "Create a non-destructive v002 with a recognizable compact bridge-cam weld gauge held naturally and one clean tower-section sample. Preserve the adult female engineer, amber PPE, fabrication hall, coherent tower cylinder, 2:3 framing and 12 percent safe zone; show no turbine rotor or blades."
+    },
+    {
+      "characterId": "CHR-MAR-181",
+      "outputFile": "p01/CHR-MAR-181_L1_P01_v001.png",
+      "dimensions": "1024x1536",
+      "aspectStatus": "Pass",
+      "productionResolutionStatus": "Upscale Pending",
+      "qaStatus": "Visual Review Required"
+    }
+  ]
+}

@@ -1,0 +1,602 @@
+[
+  {
+    "id": "MSN-TUT-001",
+    "chapter": 1,
+    "order": 1,
+    "titleZh": "溫升訊號：主軸承過熱",
+    "titleEn": "Thermal Signal: Main Bearing Overheat",
+    "briefingZh": "SCADA 顯示軸承溫度持續偏離基線。先建立證據鏈，再決定是否隔離與更換備品。",
+    "briefingEn": "SCADA shows bearing temperature drifting from baseline. Build the evidence chain before isolation and replacement.",
+    "bossId": "BOSS026",
+    "sceneId": "SCN003",
+    "turbineId": "WTG-OWM-001",
+    "recommendedFactionCodes": ["OMI", "MFG", "DIG"],
+    "recommendedEquipmentId": "EQ0051",
+    "recommendedSpareId": "EQ0126",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": null,
+    "rewardXp": 120,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-N01", "siteNameZh": "晨潮示範區 A-03", "siteNameEn": "Dawn Tide Demonstration Sector A-03",
+      "weatherZh": "短時陣雨、能見度中等", "weatherEn": "Brief showers with moderate visibility", "seaState": 2,
+      "workPermitCode": "PTW-MECH-LOTO", "workPermitZh": "機械作業與鎖定掛牌許可", "workPermitEn": "Mechanical work and LOTO permit",
+      "minimumMasteryLevel": 1, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "防割手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Cut-resistant gloves"],
+      "accessRequirementZh": "SOV walk-to-work 或 CTV boat landing；轉運前確認靠泊窗口", "accessRequirementEn": "SOV walk-to-work or CTV boat landing; verify the transfer window before access",
+      "allowedVesselClasses": ["SOV", "CTV"], "initialWeatherWindow": 100, "mobilizationCost": 2, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "WEATHER_ESCALATION", "intensity": 0.75 },
+      { "round": 4, "eventCode": "SECONDARY_FAULT", "intensity": 0.85 },
+      { "round": 7, "eventCode": "SPARE_DELAY", "intensity": 1.0 }
+    ],
+    "learningObjectivesZh": ["比較單點警報與趨勢證據", "確認隔離前的風險", "依故障模式準備備品"],
+    "learningObjectivesEn": ["Compare a single alarm with trend evidence", "Confirm risk before isolation", "Prepare spares for the failure mode"],
+    "diagnosisOptions": [
+      { "id": "D1-A", "labelZh": "僅依單一溫度警報立即更換軸承", "labelEn": "Replace the bearing from one temperature alarm", "correct": false, "feedbackZh": "單點警報不足以排除感測器偏移或負載影響，安全 -8。", "feedbackEn": "One alarm cannot exclude sensor drift or load effects. Safety -8." },
+      { "id": "D1-B", "labelZh": "交叉比對溫度趨勢、振動與負載後確認異常", "labelEn": "Cross-check temperature trend, vibration and load", "correct": true, "feedbackZh": "證據鏈完整，Evidence +15。", "feedbackEn": "Evidence chain confirmed. Evidence +15." },
+      { "id": "D1-C", "labelZh": "等待故障停機後再進行檢查", "labelEn": "Wait for a forced outage before inspection", "correct": false, "feedbackZh": "延後處置擴大風險，安全 -8。", "feedbackEn": "Delayed action increases exposure. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-TUT-002",
+    "chapter": 1,
+    "order": 2,
+    "titleZh": "壓力異常：變槳系統失效",
+    "titleEn": "Pressure Loss: Pitch System Failure",
+    "briefingZh": "變槳回路壓力反覆下降。團隊必須確認液壓能量隔離，再更換蓄壓器並驗證復歸。",
+    "briefingEn": "Pitch circuit pressure repeatedly drops. Isolate hydraulic energy before accumulator replacement and restoration.",
+    "bossId": "BOSS036",
+    "sceneId": "SCN042",
+    "turbineId": "WTG-OWM-002",
+    "recommendedFactionCodes": ["OMI", "MFG", "DEV"],
+    "recommendedEquipmentId": "EQ0026",
+    "recommendedSpareId": "EQ0136",
+    "recommendedVesselId": "VES001",
+    "unlockRequires": "MSN-TUT-001",
+    "rewardXp": 150,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-N02", "siteNameZh": "晨潮示範區 B-01", "siteNameEn": "Dawn Tide Demonstration Sector B-01",
+      "weatherZh": "晴朗、間歇側風", "weatherEn": "Clear with intermittent crosswind", "seaState": 2,
+      "workPermitCode": "PTW-HYD-LOTO", "workPermitZh": "液壓儲能與雙重隔離許可", "workPermitEn": "Hydraulic stored-energy and dual-isolation permit",
+      "minimumMasteryLevel": 1, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "液壓防護手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Hydraulic protective gloves"],
+      "accessRequirementZh": "CTV boat landing 或 SOV walk-to-work；進場前完成零能量確認", "accessRequirementEn": "CTV boat landing or SOV walk-to-work; confirm zero energy before entry",
+      "allowedVesselClasses": ["CTV", "SOV"], "initialWeatherWindow": 100, "mobilizationCost": 1, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "FALSE_ALARM", "intensity": 0.75 },
+      { "round": 4, "eventCode": "COMMS_OUTAGE", "intensity": 0.85 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.0 }
+    ],
+    "learningObjectivesZh": ["辨識液壓儲能風險", "執行 LOTO 隔離", "以功能測試確認復歸"],
+    "learningObjectivesEn": ["Recognize stored hydraulic energy", "Apply LOTO isolation", "Verify restoration with a functional test"],
+    "diagnosisOptions": [
+      { "id": "D2-A", "labelZh": "先洩壓、確認零能量，再檢查蓄壓器", "labelEn": "Depressurize and verify zero energy first", "correct": true, "feedbackZh": "隔離順序正確，Evidence +15。", "feedbackEn": "Correct isolation sequence. Evidence +15." },
+      { "id": "D2-B", "labelZh": "保持系統加壓以便快速拆換", "labelEn": "Keep the circuit pressurized for faster replacement", "correct": false, "feedbackZh": "暴露於儲能危害，安全 -8。", "feedbackEn": "Stored-energy exposure created. Safety -8." },
+      { "id": "D2-C", "labelZh": "只重置控制器，不檢查液壓回路", "labelEn": "Reset the controller without hydraulic checks", "correct": false, "feedbackZh": "未處理根因，安全 -8。", "feedbackEn": "Root cause remains unaddressed. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-TUT-003",
+    "chapter": 1,
+    "order": 3,
+    "titleZh": "絕緣趨勢：發電機劣化",
+    "titleEn": "Insulation Trend: Generator Degradation",
+    "briefingZh": "發電機絕緣指標逐步惡化。完成停電、驗電與測試紀錄後，才能更換冷卻泵並復歸。",
+    "briefingEn": "Generator insulation indicators are degrading. De-energize, prove dead and record tests before cooling-pump replacement.",
+    "bossId": "BOSS031",
+    "sceneId": "SCN082",
+    "turbineId": "WTG-OWM-003",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0151",
+    "recommendedSpareId": "EQ0146",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-TUT-002",
+    "rewardXp": 180,
+    "rewardEquipmentTier": "L2",
+    "operationProfile": {
+      "siteCode": "OWM-N03", "siteNameZh": "晨潮示範區 C-02", "siteNameEn": "Dawn Tide Demonstration Sector C-02",
+      "weatherZh": "穩定乾燥窗口、低浪", "weatherEn": "Stable dry window with low swell", "seaState": 2,
+      "workPermitCode": "PTW-HV-LOTO", "workPermitZh": "高壓停電、驗電與接地許可", "workPermitEn": "High-voltage isolation, prove-dead and grounding permit",
+      "minimumMasteryLevel": 1, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "弧光防護服", "絕緣手套"], "requiredPpeEn": ["Offshore lifejacket", "Arc-rated clothing", "Insulating gloves"],
+      "accessRequirementZh": "SOV walk-to-work；驗電與臨時接地完成後開放機艙", "accessRequirementEn": "SOV walk-to-work; open nacelle access only after prove-dead and temporary grounding",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 100, "mobilizationCost": 2, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "FALSE_ALARM", "intensity": 0.75 },
+      { "round": 4, "eventCode": "COMMS_OUTAGE", "intensity": 0.85 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.0 }
+    ],
+    "learningObjectivesZh": ["先停電再驗電", "保存絕緣測試證據", "復歸前確認冷卻功能"],
+    "learningObjectivesEn": ["De-energize before proving dead", "Preserve insulation-test evidence", "Verify cooling before restoration"],
+    "diagnosisOptions": [
+      { "id": "D3-A", "labelZh": "完成停電、驗電與接地後進行絕緣測試", "labelEn": "De-energize, prove dead, ground, then test", "correct": true, "feedbackZh": "電氣安全與證據程序正確，Evidence +15。", "feedbackEn": "Electrical safety and evidence procedure confirmed. Evidence +15." },
+      { "id": "D3-B", "labelZh": "在線拆除冷卻泵以縮短停機", "labelEn": "Remove the cooling pump while energized", "correct": false, "feedbackZh": "違反電氣隔離原則，安全 -8。", "feedbackEn": "Electrical isolation principle violated. Safety -8." },
+      { "id": "D3-C", "labelZh": "只清除 SCADA 告警並恢復運轉", "labelEn": "Clear the SCADA alarm and restore", "correct": false, "feedbackZh": "證據不足且未處理劣化，安全 -8。", "feedbackEn": "Evidence is insufficient and degradation remains. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-ADV-004",
+    "chapter": 2,
+    "order": 4,
+    "titleZh": "油液證據：齒輪箱故障",
+    "titleEn": "Oil Evidence: Gearbox Failure",
+    "briefingZh": "振動邊帶與油液顆粒同步上升。先排除感測器與負載因素，再安排濾芯與齒輪箱檢查。",
+    "briefingEn": "Vibration sidebands and oil particles rise together. Exclude sensor and load effects before gearbox intervention.",
+    "bossId": "BOSS022",
+    "sceneId": "SCN023",
+    "turbineId": "WTG-OWM-001",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0052",
+    "recommendedSpareId": "EQ0132",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-TUT-003",
+    "rewardXp": 220,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-B01", "siteNameZh": "藍脊運維區 A-07", "siteNameEn": "Blue Ridge O&M Sector A-07",
+      "weatherZh": "間歇降雨、長週期湧浪", "weatherEn": "Intermittent rain with long-period swell", "seaState": 3,
+      "workPermitCode": "PTW-MECH-LOTO", "workPermitZh": "機械作業與鎖定掛牌許可", "workPermitEn": "Mechanical work and LOTO permit",
+      "minimumMasteryLevel": 1, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "耐油防護手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Oil-resistant gloves"],
+      "accessRequirementZh": "SOV walk-to-work；油液取樣與機艙動線分流", "accessRequirementEn": "SOV walk-to-work; separate oil-sampling and nacelle work routes",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 98, "mobilizationCost": 3, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "FALSE_ALARM", "intensity": 0.9 },
+      { "round": 4, "eventCode": "SECONDARY_FAULT", "intensity": 1.0 },
+      { "round": 7, "eventCode": "SPARE_DELAY", "intensity": 1.15 }
+    ],
+    "learningObjectivesZh": ["整合振動與油液證據", "避免只依單一頻譜下結論", "規劃齒輪箱檢查窗口"],
+    "learningObjectivesEn": ["Integrate vibration and oil evidence", "Avoid single-spectrum conclusions", "Plan a gearbox inspection window"],
+    "diagnosisOptions": [
+      { "id": "D4-A", "labelZh": "比對振動邊帶、油液顆粒與負載工況", "labelEn": "Correlate sidebands, oil particles and load", "correct": true, "feedbackZh": "多源證據相互支持，Evidence +15。", "feedbackEn": "Multi-source evidence is consistent. Evidence +15." },
+      { "id": "D4-B", "labelZh": "只看單一峰值便判定齒輪斷裂", "labelEn": "Declare a broken gear from one peak", "correct": false, "feedbackZh": "證據不足，可能造成不必要停機，安全 -8。", "feedbackEn": "Evidence is insufficient and may cause unnecessary outage. Safety -8." },
+      { "id": "D4-C", "labelZh": "忽略油液結果並提高告警門檻", "labelEn": "Ignore oil results and raise alarm limits", "correct": false, "feedbackZh": "掩蓋劣化趨勢，安全 -8。", "feedbackEn": "Degradation is masked. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-ADV-005",
+    "chapter": 2,
+    "order": 5,
+    "titleZh": "儲能風險：變槳系統進階",
+    "titleEn": "Stored Energy: Advanced Pitch Failure",
+    "briefingZh": "第二套變槳回路出現間歇性壓降。必須以壓力保持測試定位洩漏，再執行雙重隔離。",
+    "briefingEn": "A second pitch circuit shows intermittent pressure loss. Locate leakage with a pressure-hold test before dual isolation.",
+    "bossId": "BOSS037",
+    "sceneId": "SCN043",
+    "turbineId": "WTG-OWM-004",
+    "recommendedFactionCodes": ["OMI", "MFG", "DEV"],
+    "recommendedEquipmentId": "EQ0027",
+    "recommendedSpareId": "EQ0137",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-ADV-004",
+    "rewardXp": 260,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-B02", "siteNameZh": "藍脊運維區 B-04", "siteNameEn": "Blue Ridge O&M Sector B-04",
+      "weatherZh": "陣雨、風向快速偏移", "weatherEn": "Showers with rapidly veering wind", "seaState": 3,
+      "workPermitCode": "PTW-HYD-LOTO", "workPermitZh": "液壓儲能與雙重隔離許可", "workPermitEn": "Hydraulic stored-energy and dual-isolation permit",
+      "minimumMasteryLevel": 1, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "液壓防護手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Hydraulic protective gloves"],
+      "accessRequirementZh": "SOV walk-to-work；液壓壓力歸零後才可進入輪轂", "accessRequirementEn": "SOV walk-to-work; hub entry only after hydraulic pressure reaches zero",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 98, "mobilizationCost": 3, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "SPARE_DELAY", "intensity": 0.9 },
+      { "round": 4, "eventCode": "SECONDARY_FAULT", "intensity": 1.0 },
+      { "round": 7, "eventCode": "WEATHER_ESCALATION", "intensity": 1.15 }
+    ],
+    "learningObjectivesZh": ["定位間歇性壓降", "驗證雙重隔離", "比較修復前後壓力保持曲線"],
+    "learningObjectivesEn": ["Locate intermittent pressure loss", "Verify dual isolation", "Compare pressure-hold curves before and after repair"],
+    "diagnosisOptions": [
+      { "id": "D5-A", "labelZh": "完成壓力保持測試並驗證雙重隔離", "labelEn": "Run a pressure-hold test and verify dual isolation", "correct": true, "feedbackZh": "故障定位與隔離證據完整，Evidence +15。", "feedbackEn": "Fault localization and isolation evidence confirmed. Evidence +15." },
+      { "id": "D5-B", "labelZh": "直接調高液壓壓力補償洩漏", "labelEn": "Raise hydraulic pressure to offset leakage", "correct": false, "feedbackZh": "提高儲能與洩漏風險，安全 -8。", "feedbackEn": "Stored-energy and leakage risk increased. Safety -8." },
+      { "id": "D5-C", "labelZh": "停用壓力告警後繼續運轉", "labelEn": "Disable the pressure alarm and continue", "correct": false, "feedbackZh": "失去保護功能，安全 -8。", "feedbackEn": "A protection function is lost. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-ADV-006",
+    "chapter": 2,
+    "order": 6,
+    "titleZh": "局部放電：發電機進階",
+    "titleEn": "Partial Discharge: Advanced Generator Fault",
+    "briefingZh": "絕緣趨勢伴隨局部放電指標惡化。團隊需完成停電驗證、比對歷史基線並確認冷卻回路。",
+    "briefingEn": "Insulation trends worsen with partial-discharge indicators. Prove dead, compare baselines and verify the cooling circuit.",
+    "bossId": "BOSS032",
+    "sceneId": "SCN083",
+    "turbineId": "WTG-OWM-002",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0152",
+    "recommendedSpareId": "EQ0147",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-ADV-005",
+    "rewardXp": 300,
+    "rewardEquipmentTier": "L3",
+    "operationProfile": {
+      "siteCode": "OWM-B03", "siteNameZh": "藍脊運維區 C-05", "siteNameEn": "Blue Ridge O&M Sector C-05",
+      "weatherZh": "潮濕窗口、零星降雨", "weatherEn": "Humid window with isolated rain", "seaState": 3,
+      "workPermitCode": "PTW-HV-LOTO", "workPermitZh": "高壓停電、驗電與接地許可", "workPermitEn": "High-voltage isolation, prove-dead and grounding permit",
+      "minimumMasteryLevel": 1, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "弧光防護服", "絕緣手套"], "requiredPpeEn": ["Offshore lifejacket", "Arc-rated clothing", "Insulating gloves"],
+      "accessRequirementZh": "SOV walk-to-work；高壓區與測試區採雙區管制", "accessRequirementEn": "SOV walk-to-work; separate high-voltage and test zones",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 98, "mobilizationCost": 3, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "FALSE_ALARM", "intensity": 0.9 },
+      { "round": 4, "eventCode": "COMMS_OUTAGE", "intensity": 1.0 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.15 }
+    ],
+    "learningObjectivesZh": ["區分雜訊與局部放電趨勢", "完成電氣安全驗證", "建立修復後基線"],
+    "learningObjectivesEn": ["Separate noise from partial-discharge trends", "Complete electrical safety verification", "Establish a post-repair baseline"],
+    "diagnosisOptions": [
+      { "id": "D6-A", "labelZh": "比對相位解析放電圖、歷史基線與負載", "labelEn": "Compare PRPD, historical baseline and load", "correct": true, "feedbackZh": "局部放電證據鏈成立，Evidence +15。", "feedbackEn": "Partial-discharge evidence chain established. Evidence +15." },
+      { "id": "D6-B", "labelZh": "只依瞬時脈衝立即拆解發電機", "labelEn": "Disassemble from one transient pulse", "correct": false, "feedbackZh": "可能把雜訊誤判為故障，安全 -8。", "feedbackEn": "Noise may be misclassified as a fault. Safety -8." },
+      { "id": "D6-C", "labelZh": "清除紀錄避免影響可用率指標", "labelEn": "Delete records to protect availability metrics", "correct": false, "feedbackZh": "破壞證據鏈與追溯性，安全 -8。", "feedbackEn": "Evidence traceability is lost. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-ELT-007",
+    "chapter": 3,
+    "order": 7,
+    "titleZh": "多源診斷：嚴重軸承過熱",
+    "titleEn": "Multi-source Diagnosis: Severe Bearing Overheat",
+    "briefingZh": "主軸承溫升、振動包絡與潤滑指標同時偏離。團隊需先確認量測可信度，再規劃停機檢查與備品更換。",
+    "briefingEn": "Bearing temperature, vibration envelope and lubrication indicators deviate together. Validate measurement quality before outage inspection and replacement.",
+    "bossId": "BOSS028",
+    "sceneId": "SCN024",
+    "turbineId": "WTG-OWM-005",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0053",
+    "recommendedSpareId": "EQ0128",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-ADV-006",
+    "rewardXp": 340,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-E01", "siteNameZh": "遠潮東列 A-11", "siteNameEn": "Far Tide East Array A-11",
+      "weatherZh": "黃昏側風、湧浪增強", "weatherEn": "Dusk crosswind with building swell", "seaState": 3,
+      "workPermitCode": "PTW-MECH-LOTO", "workPermitZh": "機械作業與鎖定掛牌許可", "workPermitEn": "Mechanical work and LOTO permit",
+      "minimumMasteryLevel": 2, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "耐熱防割手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Heat and cut-resistant gloves"],
+      "accessRequirementZh": "SOV walk-to-work；持續監測 gangway motion envelope", "accessRequirementEn": "SOV walk-to-work; continuously monitor the gangway motion envelope",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 96, "mobilizationCost": 4, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "WEATHER_ESCALATION", "intensity": 1.0 },
+      { "round": 4, "eventCode": "SECONDARY_FAULT", "intensity": 1.15 },
+      { "round": 7, "eventCode": "SPARE_DELAY", "intensity": 1.3 }
+    ],
+    "learningObjectivesZh": ["驗證多源量測一致性", "區分熱負載與軸承劣化", "建立更換後驗證基線"],
+    "learningObjectivesEn": ["Validate multi-source measurement consistency", "Separate thermal load from bearing degradation", "Establish a post-replacement baseline"],
+    "diagnosisOptions": [
+      { "id": "D7-A", "labelZh": "校驗感測鏈並同步比對溫度、包絡頻譜與潤滑狀態", "labelEn": "Validate sensing and correlate temperature, envelope spectrum and lubrication", "correct": true, "feedbackZh": "多源資料與量測品質均已確認，Evidence +15。", "feedbackEn": "Multi-source data and measurement quality confirmed. Evidence +15." },
+      { "id": "D7-B", "labelZh": "只提高溫度告警門檻以延長運轉", "labelEn": "Raise the temperature alarm limit to extend operation", "correct": false, "feedbackZh": "告警門檻變更掩蓋劣化，安全 -8。", "feedbackEn": "The alarm change masks degradation. Safety -8." },
+      { "id": "D7-C", "labelZh": "未校驗感測器便直接拆換主軸承", "labelEn": "Replace the bearing before validating the sensors", "correct": false, "feedbackZh": "尚未排除量測誤差，安全 -8。", "feedbackEn": "Measurement error has not been excluded. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-ELT-008",
+    "chapter": 3,
+    "order": 8,
+    "titleZh": "控制偏差：嚴重偏航失效",
+    "titleEn": "Control Deviation: Severe Yaw Failure",
+    "briefingZh": "機艙偏航誤差持續擴大並伴隨煞車溫升。團隊需檢查控制命令、回授與機械阻力，再決定修復順序。",
+    "briefingEn": "Nacelle yaw error grows with brake temperature. Check commands, feedback and mechanical resistance before choosing a repair sequence.",
+    "bossId": "BOSS043",
+    "sceneId": "SCN044",
+    "turbineId": "WTG-OWM-003",
+    "recommendedFactionCodes": ["OMI", "MFG", "DEV"],
+    "recommendedEquipmentId": "EQ0028",
+    "recommendedSpareId": "EQ0143",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-ELT-007",
+    "rewardXp": 380,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-E02", "siteNameZh": "遠潮東列 B-09", "siteNameEn": "Far Tide East Array B-09",
+      "weatherZh": "黃昏陣風、甲板濕滑", "weatherEn": "Dusk gusts with wet deck conditions", "seaState": 3,
+      "workPermitCode": "PTW-HYD-LOTO", "workPermitZh": "液壓儲能與雙重隔離許可", "workPermitEn": "Hydraulic stored-energy and dual-isolation permit",
+      "minimumMasteryLevel": 2, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "液壓防護手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Hydraulic protective gloves"],
+      "accessRequirementZh": "SOV walk-to-work；甲板與輪轂路線分別執行防滑檢查", "accessRequirementEn": "SOV walk-to-work; inspect anti-slip controls on deck and hub routes",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 96, "mobilizationCost": 4, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "COMMS_OUTAGE", "intensity": 1.0 },
+      { "round": 4, "eventCode": "FALSE_ALARM", "intensity": 1.15 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.3 }
+    ],
+    "learningObjectivesZh": ["比對偏航命令與位置回授", "辨識控制與機械故障邊界", "驗證煞車間隙與扭矩"],
+    "learningObjectivesEn": ["Compare yaw commands with position feedback", "Separate control and mechanical faults", "Verify brake clearance and torque"],
+    "diagnosisOptions": [
+      { "id": "D8-A", "labelZh": "同步檢查命令、編碼器回授、馬達電流與煞車間隙", "labelEn": "Check commands, encoder feedback, motor current and brake clearance", "correct": true, "feedbackZh": "控制與機械證據鏈可交叉定位，Evidence +15。", "feedbackEn": "Control and mechanical evidence can localize the fault. Evidence +15." },
+      { "id": "D8-B", "labelZh": "停用偏航誤差保護並持續運轉", "labelEn": "Disable yaw-error protection and continue operating", "correct": false, "feedbackZh": "失去偏航保護並增加結構負載，安全 -8。", "feedbackEn": "Yaw protection is lost and structural load increases. Safety -8." },
+      { "id": "D8-C", "labelZh": "只更換煞車片而不讀取控制回授", "labelEn": "Replace brake pads without reviewing control feedback", "correct": false, "feedbackZh": "未釐清控制器或回授異常，安全 -8。", "feedbackEn": "Controller and feedback faults remain unresolved. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-ELT-009",
+    "chapter": 3,
+    "order": 9,
+    "titleZh": "停電驗證：嚴重絕緣劣化",
+    "titleEn": "De-energization Proof: Severe Insulation Failure",
+    "briefingZh": "發電機絕緣電阻、局部放電與冷卻效率同時惡化。完成停電驗電、接地與基線比對後，才能執行修復。",
+    "briefingEn": "Insulation resistance, partial discharge and cooling efficiency degrade together. Prove dead, ground and compare baselines before repair.",
+    "bossId": "BOSS033",
+    "sceneId": "SCN084",
+    "turbineId": "WTG-OWM-006",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0153",
+    "recommendedSpareId": "EQ0148",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-ELT-008",
+    "rewardXp": 420,
+    "rewardEquipmentTier": "L4",
+    "operationProfile": {
+      "siteCode": "OWM-E03", "siteNameZh": "遠潮東列 C-12", "siteNameEn": "Far Tide East Array C-12",
+      "weatherZh": "低光、潮濕與間歇陣風", "weatherEn": "Low light, humidity and intermittent gusts", "seaState": 3,
+      "workPermitCode": "PTW-HV-LOTO", "workPermitZh": "高壓停電、驗電與接地許可", "workPermitEn": "High-voltage isolation, prove-dead and grounding permit",
+      "minimumMasteryLevel": 2, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "弧光防護服", "絕緣手套"], "requiredPpeEn": ["Offshore lifejacket", "Arc-rated clothing", "Insulating gloves"],
+      "accessRequirementZh": "SOV walk-to-work；測試設備與接地點採雙人覆核", "accessRequirementEn": "SOV walk-to-work; two-person verification for test equipment and grounding points",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 96, "mobilizationCost": 4, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "FALSE_ALARM", "intensity": 1.0 },
+      { "round": 4, "eventCode": "SECONDARY_FAULT", "intensity": 1.15 },
+      { "round": 7, "eventCode": "COMMS_OUTAGE", "intensity": 1.3 }
+    ],
+    "learningObjectivesZh": ["完成停電驗電與接地", "整合絕緣與局部放電證據", "驗證冷卻回路修復成效"],
+    "learningObjectivesEn": ["Prove dead and apply grounding", "Integrate insulation and partial-discharge evidence", "Verify cooling-circuit restoration"],
+    "diagnosisOptions": [
+      { "id": "D9-A", "labelZh": "完成 LOTO、驗電、接地後再比對絕緣與局部放電基線", "labelEn": "Apply LOTO, prove dead and ground before comparing insulation and PD baselines", "correct": true, "feedbackZh": "電氣安全與診斷順序完整，Evidence +15。", "feedbackEn": "Electrical safety and diagnostic sequence confirmed. Evidence +15." },
+      { "id": "D9-B", "labelZh": "帶電量測內部端子以縮短停機", "labelEn": "Probe internal terminals while energized to shorten outage", "correct": false, "feedbackZh": "暴露於高壓電氣危害，安全 -8。", "feedbackEn": "High-voltage exposure created. Safety -8." },
+      { "id": "D9-C", "labelZh": "更換冷卻泵後略過絕緣復測", "labelEn": "Skip insulation retest after replacing the cooling pump", "correct": false, "feedbackZh": "缺少復歸證據，安全 -8。", "feedbackEn": "Restoration evidence is missing. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-MST-010",
+    "chapter": 4,
+    "order": 10,
+    "titleZh": "危急升級：軸承過熱",
+    "titleEn": "Critical Escalation: Bearing Overheat",
+    "briefingZh": "主軸承溫度與振動快速升高，天候窗口與備品到場時間同時惡化。團隊必須先控制失效擴展風險，再建立停機與更換方案。",
+    "briefingEn": "Main-bearing temperature and vibration rise rapidly while the weather window and spare arrival worsen. Control propagation risk before planning the outage and replacement.",
+    "bossId": "BOSS029",
+    "sceneId": "SCN025",
+    "turbineId": "WTG-OWM-001",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0054",
+    "recommendedSpareId": "EQ0129",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-ELT-009",
+    "rewardXp": 470,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-D01", "siteNameZh": "暮嶼外海區 A-14", "siteNameEn": "Dusk Isle Offshore Sector A-14",
+      "weatherZh": "夜間強側風、浪高上升", "weatherEn": "Strong night crosswind with rising seas", "seaState": 4,
+      "workPermitCode": "PTW-MECH-LOTO", "workPermitZh": "夜間機械作業與鎖定掛牌許可", "workPermitEn": "Night mechanical work and LOTO permit",
+      "minimumMasteryLevel": 3, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "高可視反光裝備"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "High-visibility reflective gear"],
+      "accessRequirementZh": "SOV walk-to-work；夜間轉運需照明與雙人通訊監看", "accessRequirementEn": "SOV walk-to-work; night transfer requires lighting and two-person communication watch",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 96, "mobilizationCost": 6, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "WEATHER_ESCALATION", "intensity": 1.15 },
+      { "round": 4, "eventCode": "SPARE_DELAY", "intensity": 1.35 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.55 }
+    ],
+    "learningObjectivesZh": ["判斷危急軸承事件的停機時點", "整合天候與備品延誤風險", "規劃受控更換與復歸驗證"],
+    "learningObjectivesEn": ["Determine outage timing for a critical bearing event", "Integrate weather and spare-delay risk", "Plan controlled replacement and restoration verification"],
+    "diagnosisOptions": [
+      { "id": "D10-A", "labelZh": "確認量測可信度、立即降低風險並依天候與備品狀態安排停機", "labelEn": "Validate measurements, reduce risk immediately and schedule outage around weather and spares", "correct": true, "feedbackZh": "危急風險、證據與後勤條件已整合，Evidence +15。", "feedbackEn": "Critical risk, evidence and logistics are integrated. Evidence +15." },
+      { "id": "D10-B", "labelZh": "提高告警門檻並等待下一次定期保養", "labelEn": "Raise alarm limits and wait for the next scheduled service", "correct": false, "feedbackZh": "危急劣化可能持續擴展，安全 -8。", "feedbackEn": "Critical degradation may continue to propagate. Safety -8." },
+      { "id": "D10-C", "labelZh": "未確認吊運與天候條件便立即拆解", "labelEn": "Begin disassembly before confirming lift and weather conditions", "correct": false, "feedbackZh": "海事與吊運風險尚未受控，安全 -8。", "feedbackEn": "Marine and lifting risks remain uncontrolled. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-MST-011",
+    "chapter": 4,
+    "order": 11,
+    "titleZh": "危急升級：偏航失效",
+    "titleEn": "Critical Escalation: Yaw Failure",
+    "briefingZh": "偏航系統在高負載下失去穩定回授，並出現通訊中斷與次生告警。團隊需建立安全狀態、驗證現場量測並重建控制證據鏈。",
+    "briefingEn": "The yaw system loses stable feedback under high load with communication loss and secondary alarms. Establish a safe state, verify field measurements and rebuild the control evidence chain.",
+    "bossId": "BOSS044",
+    "sceneId": "SCN045",
+    "turbineId": "WTG-OWM-004",
+    "recommendedFactionCodes": ["OMI", "MFG", "DEV"],
+    "recommendedEquipmentId": "EQ0029",
+    "recommendedSpareId": "EQ0144",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-MST-010",
+    "rewardXp": 520,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-D02", "siteNameZh": "暮嶼外海區 B-16", "siteNameEn": "Dusk Isle Offshore Sector B-16",
+      "weatherZh": "夜間陣風、甲板週期運動", "weatherEn": "Night gusts with cyclic deck motion", "seaState": 4,
+      "workPermitCode": "PTW-HYD-LOTO", "workPermitZh": "夜間液壓儲能與雙重隔離許可", "workPermitEn": "Night hydraulic stored-energy and dual-isolation permit",
+      "minimumMasteryLevel": 3, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "液壓防護手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Hydraulic protective gloves"],
+      "accessRequirementZh": "SOV walk-to-work；gangway 與輪轂入口採單向人流", "accessRequirementEn": "SOV walk-to-work; one-way personnel flow at gangway and hub entrance",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 96, "mobilizationCost": 6, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "COMMS_OUTAGE", "intensity": 1.15 },
+      { "round": 4, "eventCode": "FALSE_ALARM", "intensity": 1.35 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.55 }
+    ],
+    "learningObjectivesZh": ["在通訊中斷時維持安全狀態", "區分真實故障與錯誤告警", "完成偏航控制鏈復歸測試"],
+    "learningObjectivesEn": ["Maintain a safe state during communication loss", "Separate real faults from false alarms", "Complete yaw control-chain restoration tests"],
+    "diagnosisOptions": [
+      { "id": "D11-A", "labelZh": "保持停止狀態，以獨立量測核對命令、回授、電流與煞車間隙", "labelEn": "Maintain stopped state and independently verify commands, feedback, current and brake clearance", "correct": true, "feedbackZh": "安全狀態與控制證據鏈均已建立，Evidence +15。", "feedbackEn": "A safe state and control evidence chain are established. Evidence +15." },
+      { "id": "D11-B", "labelZh": "通訊恢復前反覆遠端啟動偏航測試", "labelEn": "Repeatedly start remote yaw tests before communications recover", "correct": false, "feedbackZh": "無法確認人員位置與停止能力，安全 -8。", "feedbackEn": "Personnel location and stop capability cannot be confirmed. Safety -8." },
+      { "id": "D11-C", "labelZh": "直接更換控制器並忽略機械阻力證據", "labelEn": "Replace the controller and ignore evidence of mechanical resistance", "correct": false, "feedbackZh": "控制與機械故障邊界仍未釐清，安全 -8。", "feedbackEn": "The control-mechanical fault boundary remains unresolved. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-MST-012",
+    "chapter": 4,
+    "order": 12,
+    "titleZh": "危急升級：絕緣劣化",
+    "titleEn": "Critical Escalation: Insulation Degradation",
+    "briefingZh": "發電機絕緣與局部放電指標進入危急區間，冷卻回路亦失去效率。團隊需完成高壓安全隔離、修復與可追溯的復電審查。",
+    "briefingEn": "Generator insulation and partial-discharge indicators enter a critical range while cooling efficiency is lost. Complete high-voltage isolation, repair and a traceable energization review.",
+    "bossId": "BOSS034",
+    "sceneId": "SCN085",
+    "turbineId": "WTG-OWM-005",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0154",
+    "recommendedSpareId": "EQ0149",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-MST-011",
+    "rewardXp": 580,
+    "rewardEquipmentTier": "L5",
+    "operationProfile": {
+      "siteCode": "OWM-D03", "siteNameZh": "暮嶼外海區 C-15", "siteNameEn": "Dusk Isle Offshore Sector C-15",
+      "weatherZh": "夜間低雲、鹽霧與強風", "weatherEn": "Night low cloud, salt mist and strong wind", "seaState": 4,
+      "workPermitCode": "PTW-HV-LOTO", "workPermitZh": "夜間高壓停電、驗電與接地許可", "workPermitEn": "Night high-voltage isolation, prove-dead and grounding permit",
+      "minimumMasteryLevel": 3, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "弧光防護服", "絕緣手套"], "requiredPpeEn": ["Offshore lifejacket", "Arc-rated clothing", "Insulating gloves"],
+      "accessRequirementZh": "SOV walk-to-work；夜間高壓區需雙人進出與接地覆核", "accessRequirementEn": "SOV walk-to-work; two-person high-voltage access and grounding verification at night",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 96, "mobilizationCost": 6, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "SECONDARY_FAULT", "intensity": 1.15 },
+      { "round": 4, "eventCode": "FALSE_ALARM", "intensity": 1.35 },
+      { "round": 7, "eventCode": "COMMS_OUTAGE", "intensity": 1.55 }
+    ],
+    "learningObjectivesZh": ["執行危急電氣事件的隔離程序", "整合絕緣、局部放電與冷卻證據", "完成可追溯的復電條件審查"],
+    "learningObjectivesEn": ["Execute isolation for a critical electrical event", "Integrate insulation, PD and cooling evidence", "Complete a traceable energization-readiness review"],
+    "diagnosisOptions": [
+      { "id": "D12-A", "labelZh": "完成 LOTO、驗電與接地，修復後核對量測、保護設定及復電清單", "labelEn": "Apply LOTO, prove dead and ground, then verify measurements, protection settings and the energization checklist", "correct": true, "feedbackZh": "危急電氣作業與復歸證據完整，Evidence +15。", "feedbackEn": "Critical electrical work and restoration evidence are complete. Evidence +15." },
+      { "id": "D12-B", "labelZh": "只更換冷卻泵並立即復電測試", "labelEn": "Replace only the cooling pump and energize immediately", "correct": false, "feedbackZh": "絕緣與保護狀態尚未確認，安全 -8。", "feedbackEn": "Insulation and protection status remain unverified. Safety -8." },
+      { "id": "D12-C", "labelZh": "為縮短停機而省略接地與復電審查", "labelEn": "Skip grounding and energization review to shorten outage", "correct": false, "feedbackZh": "高壓安全程序不完整，安全 -8。", "feedbackEn": "The high-voltage safety process is incomplete. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-FNL-013",
+    "chapter": 5,
+    "order": 13,
+    "titleZh": "災厄應變：軸承熱失控",
+    "titleEn": "Catastrophic Response: Bearing Thermal Runaway",
+    "briefingZh": "主軸承溫升、振動與潤滑劣化同時跨越停機邊界，且天候、備品與次生故障快速惡化。團隊必須建立事件指揮、控制熱失控並完成可稽核的更換與復歸。",
+    "briefingEn": "Bearing temperature, vibration and lubrication cross the shutdown boundary while weather, spares and secondary faults deteriorate. Establish incident command, arrest thermal runaway and complete an auditable replacement and restoration.",
+    "bossId": "BOSS030",
+    "sceneId": "SCN026",
+    "turbineId": "WTG-OWM-002",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0054",
+    "recommendedSpareId": "EQ0129",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-MST-012",
+    "rewardXp": 650,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-F01", "siteNameZh": "環海終局演練區 A-18", "siteNameEn": "Ringsea Final Exercise Zone A-18",
+      "weatherZh": "對流雨帶接近、海況快速惡化", "weatherEn": "Approaching squall line with rapidly deteriorating seas", "seaState": 5,
+      "workPermitCode": "PTW-CRIT-MECH", "workPermitZh": "危急機械處置與緊急撤離許可", "workPermitEn": "Critical mechanical response and emergency egress permit",
+      "minimumMasteryLevel": 4, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "高可視反光裝備"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "High-visibility reflective gear"],
+      "accessRequirementZh": "SOV walk-to-work；設定撤離觸發點並保持 gangway 待命", "accessRequirementEn": "SOV walk-to-work; define egress triggers and keep the gangway on standby",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 94, "mobilizationCost": 8, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "WEATHER_ESCALATION", "intensity": 1.35 },
+      { "round": 4, "eventCode": "SECONDARY_FAULT", "intensity": 1.6 },
+      { "round": 7, "eventCode": "SPARE_DELAY", "intensity": 1.85 }
+    ],
+    "learningObjectivesZh": ["建立災厄事件的指揮與停機邊界", "在多重壓力下維持量測證據可信度", "完成軸承更換後的受控復歸"],
+    "learningObjectivesEn": ["Establish incident command and shutdown boundaries", "Maintain evidence quality under concurrent pressures", "Complete controlled restoration after bearing replacement"],
+    "diagnosisOptions": [
+      { "id": "D13-A", "labelZh": "宣布受控停機，交叉驗證熱、振動與潤滑證據，並依天候與備品狀態執行更換", "labelEn": "Declare a controlled shutdown, cross-check thermal, vibration and lubrication evidence, then replace around weather and spare readiness", "correct": true, "feedbackZh": "事件指揮、停機邊界與證據鏈一致，Evidence +15。", "feedbackEn": "Incident command, shutdown boundary and evidence chain are aligned. Evidence +15." },
+      { "id": "D13-B", "labelZh": "提高溫度與振動告警門檻以維持發電", "labelEn": "Raise temperature and vibration alarm limits to maintain generation", "correct": false, "feedbackZh": "熱失控與失效擴展風險被掩蓋，安全 -8。", "feedbackEn": "Thermal runaway and propagation risk are masked. Safety -8." },
+      { "id": "D13-C", "labelZh": "在天候與吊運計畫未核准前拆卸主軸承", "labelEn": "Remove the main bearing before weather and lifting plans are approved", "correct": false, "feedbackZh": "吊運、海事與設備穩定條件不足，安全 -8。", "feedbackEn": "Lifting, marine and equipment-stability conditions are inadequate. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-FNL-014",
+    "chapter": 5,
+    "order": 14,
+    "titleZh": "災厄應變：偏航聯鎖失效",
+    "titleEn": "Catastrophic Response: Yaw Interlock Failure",
+    "briefingZh": "偏航命令、位置回授與煞車狀態互相矛盾，通訊與保護聯鎖亦不穩定。團隊需先建立機組安全姿態，再分離控制、機械與結構載荷問題。",
+    "briefingEn": "Yaw commands, position feedback and brake state conflict while communications and protective interlocks are unstable. Establish a safe turbine posture before separating control, mechanical and structural-load faults.",
+    "bossId": "BOSS045",
+    "sceneId": "SCN046",
+    "turbineId": "WTG-OWM-006",
+    "recommendedFactionCodes": ["OMI", "MFG", "DEV"],
+    "recommendedEquipmentId": "EQ0029",
+    "recommendedSpareId": "EQ0144",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-FNL-013",
+    "rewardXp": 720,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-F02", "siteNameZh": "環海終局演練區 B-20", "siteNameEn": "Ringsea Final Exercise Zone B-20",
+      "weatherZh": "陣風增強、重吊甲板週期運動", "weatherEn": "Strengthening gusts with heavy-lift deck motion", "seaState": 5,
+      "workPermitCode": "PTW-CRIT-HYD", "workPermitZh": "危急液壓隔離與聯鎖復歸許可", "workPermitEn": "Critical hydraulic isolation and interlock restoration permit",
+      "minimumMasteryLevel": 4, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "全身式防墜系統", "液壓防護手套"], "requiredPpeEn": ["Offshore lifejacket", "Full-body fall arrest", "Hydraulic protective gloves"],
+      "accessRequirementZh": "SOV walk-to-work；重吊甲板與輪轂聯鎖採雙重通訊確認", "accessRequirementEn": "SOV walk-to-work; dual communication confirmation between heavy-lift deck and hub interlocks",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 94, "mobilizationCost": 8, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "COMMS_OUTAGE", "intensity": 1.4 },
+      { "round": 4, "eventCode": "FALSE_ALARM", "intensity": 1.65 },
+      { "round": 7, "eventCode": "SECONDARY_FAULT", "intensity": 1.9 }
+    ],
+    "learningObjectivesZh": ["失去通訊時建立偏航安全姿態", "驗證聯鎖與獨立停止能力", "整合控制證據與結構載荷邊界"],
+    "learningObjectivesEn": ["Establish a safe yaw posture during communication loss", "Verify interlocks and independent stopping capability", "Integrate control evidence with structural-load boundaries"],
+    "diagnosisOptions": [
+      { "id": "D14-A", "labelZh": "維持停止與人員淨空，以獨立量測核對聯鎖、命令、回授、煞車與結構載荷", "labelEn": "Maintain stop and personnel clearance while independently verifying interlocks, commands, feedback, brakes and structural loads", "correct": true, "feedbackZh": "控制、機械與結構邊界已在安全狀態下釐清，Evidence +15。", "feedbackEn": "Control, mechanical and structural boundaries are resolved in a safe state. Evidence +15." },
+      { "id": "D14-B", "labelZh": "繞過聯鎖並反覆遠端驅動偏航以尋找異音", "labelEn": "Bypass interlocks and repeatedly drive yaw remotely to locate noise", "correct": false, "feedbackZh": "人員位置、停止能力與載荷均不可控，安全 -8。", "feedbackEn": "Personnel location, stopping capability and loads are uncontrolled. Safety -8." },
+      { "id": "D14-C", "labelZh": "只依單一錯誤告警更換控制器", "labelEn": "Replace the controller from a single contradictory alarm", "correct": false, "feedbackZh": "未排除通訊、回授與機械阻力問題，安全 -8。", "feedbackEn": "Communications, feedback and mechanical resistance remain unexcluded. Safety -8." }
+    ]
+  },
+  {
+    "id": "MSN-FNL-015",
+    "chapter": 5,
+    "order": 15,
+    "titleZh": "最終復歸：絕緣危機",
+    "titleEn": "Final Restoration: Insulation Crisis",
+    "briefingZh": "發電機絕緣、局部放電、冷卻與保護設定同時進入災厄狀態。這是最終復歸審查：團隊必須完成隔離、修復、獨立驗證、復電授權與受控試運轉。",
+    "briefingEn": "Generator insulation, partial discharge, cooling and protection settings enter a catastrophic state together. This final restoration review requires isolation, repair, independent verification, energization authority and controlled commissioning.",
+    "bossId": "BOSS035",
+    "sceneId": "SCN086",
+    "turbineId": "WTG-OWM-003",
+    "recommendedFactionCodes": ["OMI", "MFG", "ACA"],
+    "recommendedEquipmentId": "EQ0154",
+    "recommendedSpareId": "EQ0149",
+    "recommendedVesselId": "VES002",
+    "unlockRequires": "MSN-FNL-014",
+    "rewardXp": 800,
+    "rewardEquipmentTier": null,
+    "operationProfile": {
+      "siteCode": "OWM-F03", "siteNameZh": "環海終局演練區 C-21", "siteNameEn": "Ringsea Final Exercise Zone C-21",
+      "weatherZh": "雷雨前緣、低雲與強陣風", "weatherEn": "Thunderstorm boundary with low cloud and strong gusts", "seaState": 5,
+      "workPermitCode": "PTW-CRIT-HV", "workPermitZh": "危急高壓隔離、接地與緊急撤離許可", "workPermitEn": "Critical high-voltage isolation, grounding and emergency egress permit",
+      "minimumMasteryLevel": 4, "minimumQualifiedMembers": 2,
+      "requiredPpeZh": ["海上救生衣", "弧光防護服", "絕緣手套"], "requiredPpeEn": ["Offshore lifejacket", "Arc-rated clothing", "Insulating gloves"],
+      "accessRequirementZh": "SOV walk-to-work；高壓區維持雙人監看並設定撤離時限", "accessRequirementEn": "SOV walk-to-work; maintain two-person high-voltage watch and a timed egress trigger",
+      "allowedVesselClasses": ["SOV"], "initialWeatherWindow": 94, "mobilizationCost": 8, "gameplayAbstraction": true
+    },
+    "branchEventDeck": [
+      { "round": 1, "eventCode": "SECONDARY_FAULT", "intensity": 1.45 },
+      { "round": 4, "eventCode": "WEATHER_ESCALATION", "intensity": 1.7 },
+      { "round": 7, "eventCode": "COMMS_OUTAGE", "intensity": 2.0 }
+    ],
+    "learningObjectivesZh": ["整合災厄電氣故障的安全隔離與診斷", "建立獨立復電審查與授權證據", "以受控試運轉完成 Campaign 最終復歸"],
+    "learningObjectivesEn": ["Integrate safe isolation and diagnosis for a catastrophic electrical fault", "Build independent energization-review and authorization evidence", "Complete the Campaign through controlled commissioning"],
+    "diagnosisOptions": [
+      { "id": "D15-A", "labelZh": "完成 LOTO、驗電與接地，獨立複核絕緣、局部放電、冷卻、保護設定及復電授權後受控試運轉", "labelEn": "Apply LOTO, prove dead and ground, independently verify insulation, PD, cooling, protection settings and energization authority, then commission under control", "correct": true, "feedbackZh": "最終安全、技術與授權證據鏈完整，Evidence +15。", "feedbackEn": "The final safety, technical and authorization evidence chain is complete. Evidence +15." },
+      { "id": "D15-B", "labelZh": "修復冷卻回路後直接復電，以運轉結果取代絕緣檢測", "labelEn": "Energize after cooling repair and use operation to replace insulation testing", "correct": false, "feedbackZh": "高壓故障狀態與保護設定仍未確認，安全 -8。", "feedbackEn": "High-voltage fault condition and protection settings remain unverified. Safety -8." },
+      { "id": "D15-C", "labelZh": "由單一人員同時執行檢測、核准與復電", "labelEn": "Let one person perform testing, authorization and energization", "correct": false, "feedbackZh": "缺少獨立審查與授權分工，安全 -8。", "feedbackEn": "Independent review and authorization separation are missing. Safety -8." }
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.1",
+  "batchId": "BATCH-P01-022",
+  "promptRevision": "OWM-P01-R7-CASTING-VARIETY-ANTI-CLONE",
+  "purpose": "Three representative R7 Source Art samples before full-batch generation/import",
+  "activeImportStatus": "Not Imported",
+  "summary": {
+    "sampleFiles": 4,
+    "currentCandidateCount": 3,
+    "currentAspectPass": 3,
+    "rejectedEvidenceCount": 1,
+    "genderPresentation": {
+      "androgynous": 1,
+      "feminine": 1,
+      "masculine": 1
+    },
+    "visualReviewStatus": "Required"
+  },
+  "items": [
+    {
+      "characterId": "CHR-GOV-031",
+      "sampleVersion": "v001",
+      "genderPresentation": "masculine",
+      "ageImpression": "early-60s senior inspector",
+      "professionEn": "Port Coordination Officer",
+      "sampleFile": "CHR-GOV-031_L1_P01_v001_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Not Imported"
+    },
+    {
+      "characterId": "CHR-ACA-071",
+      "sampleVersion": "v001",
+      "genderPresentation": "androgynous",
+      "ageImpression": "late-20s data technician",
+      "professionEn": "Vibration Diagnostics Researcher",
+      "sampleFile": "CHR-ACA-071_L1_P01_v001_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Not Imported"
+    },
+    {
+      "characterId": "CHR-GOV-032",
+      "sampleVersion": "v001",
+      "genderPresentation": "feminine",
+      "ageImpression": "late-40s marine coordinator",
+      "professionEn": "Port Coordination Officer",
+      "sampleFile": "CHR-GOV-032_L2_P01_v001_sample.png",
+      "width": 864,
+      "height": 1821,
+      "aspect": 0.4745,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Fail",
+      "qaStatus": "Regenerate Required",
+      "activeImportStatus": "Not Imported"
+    },
+    {
+      "characterId": "CHR-GOV-032",
+      "sampleVersion": "v002",
+      "genderPresentation": "feminine",
+      "ageImpression": "late-40s marine coordinator",
+      "professionEn": "Port Coordination Officer",
+      "sampleFile": "CHR-GOV-032_L2_P01_v002_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Not Imported"
+    }
+  ],
+  "guardrails": [
+    "Do not import these samples into public active Source Art index until visual review passes.",
+    "R7 samples should visibly vary age, face architecture, body build, pose/action, camera angle, and tool interaction before outfit/background.",
+    "Reject samples that collapse into same pretty heroine, glamour pose, outfit/background-only variation, or invalid 2:3 framing."
+  ]
+}
