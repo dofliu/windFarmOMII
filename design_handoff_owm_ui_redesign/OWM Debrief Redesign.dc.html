@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    html, body, #root { height: 100%; margin: 0; }
+    body { background: radial-gradient(circle at 55% 0%, #123745 0, #071820 46%, #041017 100%); overflow: hidden; }
+    * { box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(141,184,196,.28); }
+  </style>
+</helmet>
+
+<div style="{{ ui.root }}">
+  <div style="{{ ui.topbar }}">
+    <div style="{{ ui.brandBlock }}">
+      <span style="{{ ui.brandMark }}">OWM</span>
+      <div style="min-width:0;">
+        <div style="{{ ui.eyebrow }}">DOF LAB · STRATEGY SIMULATION</div>
+        <h1 style="{{ ui.brandTitle }}">Offshore Wind Masters</h1>
+      </div>
+    </div>
+    <div style="{{ ui.langWrap }}"><button style="{{ ui.langBtn }}">EN</button></div>
+    <div style="{{ ui.modeNav }}">
+      <button style="{{ ui.modeBtnActive }}">戰役</button>
+      <button style="{{ ui.modeBtn }}">Boss 挑戰</button>
+      <button style="{{ ui.modeBtn }}">沙盒</button>
+      <button style="{{ ui.modeBtn }}">收藏</button>
+      <button style="{{ ui.modeBtn }}">知識庫</button>
+      <button style="{{ ui.modeBtnGuide }}">重播教學</button>
+    </div>
+    <div style="{{ ui.dataStrip }}">
+      <sc-for list="{{ statChips }}" as="chip" hint-placeholder-count="6">
+        <div style="{{ ui.dataChip }}"><strong style="{{ ui.dataChipVal }}">{{ chip.value }}</strong><span style="{{ ui.dataChipLabel }}">{{ chip.label }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="{{ ui.summaryBar }}">
+    <div style="{{ ui.gradeBox }}"><strong style="{{ ui.gradeNum }}">A</strong><span style="{{ ui.gradeScore }}">86</span></div>
+    <div style="min-width:0;">
+      <div style="{{ ui.summaryEyebrow }}">MISSION RESULT REVIEW</div>
+      <b style="{{ ui.summaryTitle }}">戰役結算摘要 · 溫升訊號・主軸承過熱</b>
+      <small style="{{ ui.summarySub }}">所有數值皆為 gameplay abstraction。</small>
+    </div>
+  </div>
+
+  <div style="{{ ui.mainTabs }}">
+    <button style="{{ tabs.review }}" onClick="{{ setReview }}">結算摘要</button>
+    <button style="{{ tabs.score }}" onClick="{{ setScore }}">分數</button>
+    <button style="{{ tabs.log }}" onClick="{{ setLog }}">Log</button>
+  </div>
+
+  <div style="{{ ui.body }}">
+    <sc-if value="{{ showReview }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.reviewGrid }}">
+
+        <div style="{{ ui.compareCard }}">
+          <span style="{{ ui.compareCell }}"><small style="{{ ui.compareLabel }}">本次</small><b style="{{ ui.compareVal }}">A · 86</b></span>
+          <span style="{{ ui.compareCell }}"><small style="{{ ui.compareLabel }}">任務前 BEST</small><b style="{{ ui.compareVal }}">NONE</b></span>
+          <span style="{{ ui.compareCell }}"><small style="{{ ui.compareLabel }}">任務後 BEST</small><b style="{{ ui.compareVal }}">A · 86</b></span>
+          <strong style="{{ ui.compareStatus }}">首次 BEST</strong>
+        </div>
+
+        <div style="{{ ui.rewardCard }}"><b style="{{ ui.rewardXp }}">+120 XP</b><span style="{{ ui.rewardText }}">解鎖：壓力異常・變槳系統失效</span></div>
+        <div style="{{ ui.rewardCard }}"><b style="{{ ui.rewardMnt }}">+6 MNT</b><span style="{{ ui.rewardText }}">EQ 100→92 (-8) · SP 100→95 (-5)</span></div>
+        <div style="{{ ui.rewardCard }}"><b style="{{ ui.rewardRst }}">+3 RST</b><span style="{{ ui.rewardText }}">潮風見習・ROV操作員 12→4 · 浪脈執行者・ROV操作員 18→9</span></div>
+        <div style="{{ ui.rewardCard }}"><b style="{{ ui.rewardFleet }}">WTG-001 · NOMINAL</b><span style="{{ ui.rewardText }}">Reliability 88→91 (+3) · Backlog 1→0</span></div>
+        <div style="{{ ui.rewardCard }}"><b style="{{ ui.rewardCodex }}">KNOWLEDGE CODEX ◆</b><span style="{{ ui.rewardText }}">主軸承趨勢與多源證據</span></div>
+
+        <div style="{{ ui.continueRow }}">
+          <div style="{{ ui.continueSummary }}"><span style="{{ ui.continueLabel }}">下一步</span><b style="{{ ui.continueNext }}">02 · MSN-TUT-002 · 壓力異常・變槳系統失效</b></div>
+          <button style="{{ ui.continueBtnPrimary }}">下一個任務</button>
+          <button style="{{ ui.continueBtn }}">返回 Route</button>
+          <button style="{{ ui.continueBtn }}">重玩本任務</button>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showScore }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.scoreGrid }}">
+        <sc-for list="{{ scoreMetrics }}" as="m" hint-placeholder-count="6">
+          <div style="{{ ui.scoreCell }}"><span style="{{ ui.scoreLabel }}">{{ m.label }}</span><strong style="{{ ui.scoreVal }}">{{ m.value }}</strong></div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showLog }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.panel }}">
+      <sc-for list="{{ logEntries }}" as="entry" hint-placeholder-count="4">
+        <p style="{{ ui.logLine }}"><span style="{{ ui.logLineId }}">{{ entry.id }}</span>{{ entry.text }}</p>
+      </sc-for>
+    </div>
+    </sc-if>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SANS = "'Inter','Noto Sans TC',system-ui,sans-serif";
+const MONO = "'Consolas','SFMono-Regular',monospace";
+const LINE = "rgba(141,184,196,.22)";
+const CYAN = "#42dbc8";
+const GOLD = "#f2c66f";
+const MUTED = "#88aab3";
+const BRIGHT = "#f0fbfc";
+
+const SCORE_METRICS = [
+  { label: "完成度", value: 92 }, { label: "安全", value: 88 }, { label: "證據", value: 90 },
+  { label: "時間", value: 78 }, { label: "疲勞", value: 84 }, { label: "成本", value: 82 },
+];
+
+const LOG_ENTRIES = [
+  { id: "01", text: "任務 MSN-TUT-001 已部署・場景 SCN003・整備 5/5・天候 100・動員 +2・風場 NOMINAL" },
+  { id: "02", text: "偵測階段完成・證據 +15・安全維持 100" },
+  { id: "03", text: "隔離與更換完成・軸承備品消耗 1・成本 +2→+2" },
+  { id: "04", text: "任務結算・評級 A・86 分・XP +120・MNT +6・RST +3" },
+];
+
+const STAT_CHIPS = [
+  { value: "300", label: "角色" }, { value: "500", label: "技能" }, { value: "100", label: "Boss" },
+  { value: "20", label: "XP" }, { value: "60", label: "MNT" }, { value: "9", label: "RST" },
+];
+
+class Component extends DCLogic {
+  state = { tab: "review", isMobile: false };
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1080px)");
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.onMq();
+    if (this.mq.addEventListener) this.mq.addEventListener("change", this.onMq); else this.mq.addListener(this.onMq);
+  }
+  componentWillUnmount() {
+    if (!this.mq) return;
+    if (this.mq.removeEventListener) this.mq.removeEventListener("change", this.onMq); else this.mq.removeListener(this.onMq);
+  }
+
+  renderVals() {
+    const { tab, isMobile } = this.state;
+    const tabBtn = (active) => ({
+      minHeight: isMobile ? "42px" : "38px", padding: isMobile ? "9px 12px" : "8px 14px",
+      fontSize: "13px", fontWeight: 800, fontFamily: SANS, cursor: "pointer",
+      border: `1px solid ${active ? CYAN : LINE}`,
+      background: active ? "color-mix(in srgb, " + CYAN + " 18%, #071a24)" : "rgba(4,17,24,.55)",
+      color: active ? BRIGHT : "#8ba8ae", whiteSpace: "nowrap",
+    });
+
+    const ui = {
+      root: { height: "100dvh", width: "100%", overflow: "hidden", display: "flex", flexDirection: "column", padding: isMobile ? "10px 12px" : "18px 26px", fontFamily: SANS, color: "#e8f5f6" },
+      topbar: { display: "flex", flexWrap: isMobile ? "wrap" : "nowrap", alignItems: "center", gap: isMobile ? "8px" : "22px", paddingBottom: isMobile ? "8px" : "12px", borderBottom: `1px solid ${LINE}`, marginBottom: isMobile ? "8px" : "14px" },
+      brandBlock: { display: "flex", alignItems: "baseline", gap: "12px", minWidth: 0, flex: isMobile ? "1 1 auto" : "0 1 260px", overflow: "hidden" },
+      brandMark: { color: "#06141c", background: CYAN, fontWeight: 900, padding: "5px 8px", fontSize: "14px", flex: "none" },
+      eyebrow: { fontSize: isMobile ? "9px" : "11px", letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      brandTitle: { fontSize: isMobile ? "16px" : "20px", margin: "2px 0 0", color: BRIGHT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      langWrap: { order: isMobile ? 1 : 3, marginLeft: isMobile ? "auto" : "0", flex: "none" },
+      langBtn: { height: isMobile ? "34px" : "40px", minWidth: "50px", padding: "0 10px", fontSize: "13px", fontWeight: 700, border: "1px solid #2e6570", background: "transparent", color: "#cbe5e9", cursor: "pointer" },
+      modeNav: { display: "flex", gap: "6px", order: isMobile ? 2 : 1, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", flexWrap: "nowrap", flexShrink: 0 },
+      modeBtn: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap", border: `1px solid ${LINE}`, color: "#7fa0a8", background: "#071a24", cursor: "pointer" },
+      modeBtnActive: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 800, whiteSpace: "nowrap", border: "1px solid #42b9ab", color: "#eaffff", background: "rgba(66,219,200,.14)", cursor: "pointer" },
+      modeBtnGuide: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap", border: "1px solid rgba(181,151,239,.4)", color: "#c6aff0", background: "rgba(170,143,234,.08)", cursor: "pointer" },
+      dataStrip: { display: "flex", border: `1px solid ${LINE}`, background: "rgba(5,18,25,.55)", order: isMobile ? 3 : 2, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", marginLeft: isMobile ? "0" : "auto", flexShrink: 0 },
+      dataChip: { minWidth: isMobile ? "62px" : "84px", padding: isMobile ? "7px 9px" : "8px 14px", textAlign: "center", borderRight: `1px solid ${LINE}` },
+      dataChipVal: { display: "block", fontSize: isMobile ? "14px" : "17px", fontWeight: 800, color: BRIGHT, fontFamily: MONO },
+      dataChipLabel: { display: "block", fontSize: isMobile ? "9px" : "10px", color: MUTED, letterSpacing: ".05em" },
+
+      summaryBar: { flex: "none", display: "flex", gap: "14px", alignItems: "center", marginBottom: isMobile ? "10px" : "14px" },
+      gradeBox: { display: "grid", placeItems: "center", minWidth: isMobile ? "64px" : "80px", height: isMobile ? "64px" : "80px", border: `1px solid ${GOLD}55`, background: "rgba(242,198,111,.08)", flex: "none" },
+      gradeNum: { fontSize: isMobile ? "30px" : "38px", color: GOLD, lineHeight: 1 },
+      gradeScore: { fontSize: "13px", color: "#d9e8ea" },
+      summaryEyebrow: { fontSize: "11px", letterSpacing: ".14em", color: "#7197a1", fontWeight: 800 },
+      summaryTitle: { display: "block", margin: "4px 0", fontSize: isMobile ? "16px" : "19px", color: BRIGHT },
+      summarySub: { fontSize: "12px", color: MUTED },
+
+      mainTabs: { flex: "none", display: "flex", gap: "6px", marginBottom: isMobile ? "8px" : "12px" },
+      body: { flex: "1", minHeight: 0, overflow: "hidden", display: "flex" },
+      panel: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden", background: "linear-gradient(145deg, rgba(13,40,51,.92), rgba(6,24,33,.94))", border: `1px solid ${LINE}`, boxShadow: "0 15px 50px rgba(0,0,0,.18)", padding: isMobile ? "14px" : "18px" },
+
+      reviewGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px,1fr))", gap: "10px" },
+      compareCard: { gridColumn: "1 / -1", display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3,1fr) auto", gap: "10px", alignItems: "center", padding: "12px", border: `1px solid ${GOLD}44`, borderLeft: `3px solid ${GOLD}`, background: "rgba(242,198,111,.06)" },
+      compareCell: { minWidth: 0 },
+      compareLabel: { display: "block", fontSize: "10px", color: "#a88649", fontWeight: 800, letterSpacing: ".05em" },
+      compareVal: { display: "block", marginTop: "4px", fontSize: "17px", color: BRIGHT, fontFamily: MONO },
+      compareStatus: { color: GOLD, fontSize: "13px", fontWeight: 800, whiteSpace: "nowrap" },
+
+      rewardCard: { padding: "12px", border: `1px solid ${CYAN}33`, background: "rgba(66,219,200,.05)", display: "flex", flexDirection: "column", gap: "6px" },
+      rewardXp: { color: GOLD, fontSize: "19px" }, rewardMnt: { color: GOLD, fontSize: "19px" },
+      rewardRst: { color: "#cbb6f5", fontSize: "19px" }, rewardFleet: { color: CYAN, fontSize: "17px" },
+      rewardCodex: { color: "#c5a9ff", fontSize: "16px" },
+      rewardText: { fontSize: "13px", color: "#a7d7d1", lineHeight: 1.4 },
+
+      continueRow: { gridColumn: "1 / -1", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr 1fr 1fr", gap: "8px", padding: "12px", border: `1px solid ${LINE}`, background: "rgba(255,255,255,.02)" },
+      continueSummary: { display: "flex", flexDirection: "column", gap: "4px", justifyContent: "center" },
+      continueLabel: { fontSize: "10px", color: "#6f929b", fontWeight: 800, letterSpacing: ".08em" },
+      continueNext: { fontSize: "14px", color: BRIGHT },
+      continueBtnPrimary: { minHeight: "44px", border: `1px solid ${GOLD}66`, background: "rgba(242,198,111,.1)", color: GOLD, fontWeight: 800, fontSize: "13px", cursor: "pointer" },
+      continueBtn: { minHeight: "44px", border: `1px solid ${LINE}`, background: "rgba(255,255,255,.03)", color: "#d8e8e9", fontWeight: 700, fontSize: "13px", cursor: "pointer" },
+
+      scoreGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(110px,1fr))", gap: "10px" },
+      scoreCell: { textAlign: "center", padding: "16px 8px", border: `1px solid ${LINE}`, background: "rgba(4,17,24,.5)" },
+      scoreLabel: { display: "block", fontSize: "12px", color: "#7197a1" },
+      scoreVal: { display: "block", marginTop: "8px", fontSize: "26px", color: BRIGHT, fontFamily: MONO },
+
+      logLine: { margin: "0 0 12px", fontSize: "14px", color: "#b9d3d8", lineHeight: 1.5 },
+      logLineId: { color: "#4e747e", marginRight: "10px", fontFamily: MONO, fontWeight: 700 },
+    };
+
+    return {
+      ui, isMobile, statChips: STAT_CHIPS, scoreMetrics: SCORE_METRICS, logEntries: LOG_ENTRIES,
+      tabs: { review: tabBtn(tab === "review"), score: tabBtn(tab === "score"), log: tabBtn(tab === "log") },
+      showReview: tab === "review", showScore: tab === "score", showLog: tab === "log",
+      setReview: () => this.setState({ tab: "review" }),
+      setScore: () => this.setState({ tab: "score" }),
+      setLog: () => this.setState({ tab: "log" }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

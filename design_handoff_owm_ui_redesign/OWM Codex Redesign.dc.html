@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    html, body, #root { height: 100%; margin: 0; }
+    body { background: radial-gradient(circle at 55% 0%, #123745 0, #071820 46%, #041017 100%); overflow: hidden; }
+    * { box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(141,184,196,.28); }
+  </style>
+</helmet>
+
+<div style="{{ ui.root }}">
+  <div style="{{ ui.topbar }}">
+    <div style="{{ ui.brandBlock }}">
+      <span style="{{ ui.brandMark }}">OWM</span>
+      <div style="min-width:0;">
+        <div style="{{ ui.eyebrow }}">DOF LAB · STRATEGY SIMULATION</div>
+        <h1 style="{{ ui.brandTitle }}">Offshore Wind Masters</h1>
+      </div>
+    </div>
+    <div style="{{ ui.langWrap }}"><button style="{{ ui.langBtn }}">EN</button></div>
+    <div style="{{ ui.modeNav }}">
+      <button style="{{ ui.modeBtn }}">戰役</button>
+      <button style="{{ ui.modeBtn }}">Boss 挑戰</button>
+      <button style="{{ ui.modeBtn }}">沙盒</button>
+      <button style="{{ ui.modeBtn }}">收藏</button>
+      <button style="{{ ui.modeBtnActive }}">知識庫</button>
+      <button style="{{ ui.modeBtnGuide }}">重播教學</button>
+    </div>
+    <div style="{{ ui.dataStrip }}">
+      <sc-for list="{{ statChips }}" as="chip" hint-placeholder-count="6">
+        <div style="{{ ui.dataChip }}"><strong style="{{ ui.dataChipVal }}">{{ chip.value }}</strong><span style="{{ ui.dataChipLabel }}">{{ chip.label }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="{{ ui.heading }}">
+    <div style="min-width:0;">
+      <div style="{{ ui.headingEyebrow }}">KNOWLEDGE CODEX</div>
+      <h2 style="{{ ui.headingTitle }}">離岸風電知識庫</h2>
+    </div>
+    <div style="{{ ui.headingBadge }}"><strong style="{{ ui.headingBadgeNum }}">3 / 5</strong><span style="{{ ui.headingBadgeLabel }}">知識條目已解鎖</span></div>
+  </div>
+
+  <div style="{{ ui.filterRow }}">
+    <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="6">
+      <button style="{{ cat.style }}" onClick="{{ cat.onClick }}">{{ cat.label }}</button>
+    </sc-for>
+  </div>
+
+  <div style="{{ ui.body }}">
+    <div style="{{ ui.cardGrid }}">
+      <sc-for list="{{ visibleEntries }}" as="e" hint-placeholder-count="4">
+        <article style="{{ e.cardStyle }}">
+          <div style="{{ ui.cardHead }}"><span style="{{ ui.cardHeadId }}">{{ e.id }} · {{ e.categoryLabel }}</span><b style="{{ e.markStyle }}">{{ e.mark }}</b></div>
+          <sc-if value="{{ e.unlocked }}" hint-placeholder-val="{{ true }}">
+            <h3 style="{{ ui.cardTitle }}">{{ e.title }}</h3>
+            <p style="{{ ui.cardSummary }}">{{ e.summary }}</p>
+            <div style="{{ ui.keyPoints }}">
+              <sc-for list="{{ e.keyPoints }}" as="kp" hint-placeholder-count="3">
+                <div style="{{ ui.keyPointItem }}">◇ {{ kp }}</div>
+              </sc-for>
+            </div>
+            <div style="{{ ui.safetyBox }}"><b style="{{ ui.safetyLabel }}">安全邊界</b><span style="{{ ui.safetyText }}">{{ e.safetyNote }}</span></div>
+          </sc-if>
+          <sc-if value="{{ e.locked }}" hint-placeholder-val="{{ false }}">
+            <h3 style="{{ ui.cardTitleLocked }}">知識條目尚未解鎖</h3>
+            <div style="{{ ui.lockBox }}"><span style="{{ ui.lockTag }}">LOCKED</span><p style="{{ ui.lockText }}">完成任務後解鎖：<b>{{ e.unlockMissionTitle }}</b></p></div>
+          </sc-if>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SANS = "'Inter','Noto Sans TC',system-ui,sans-serif";
+const MONO = "'Consolas','SFMono-Regular',monospace";
+const LINE = "rgba(141,184,196,.22)";
+const CYAN = "#42dbc8";
+const GOLD = "#f2c66f";
+const MUTED = "#88aab3";
+const BRIGHT = "#f0fbfc";
+
+const ENTRIES = [
+  { id: "KDX-001", category: "CONDITION_MONITORING", categoryLabel: "狀態監測", unlocked: true, title: "主軸承趨勢與多源證據", summary: "單一溫度告警不足以確認主軸承故障；應同步檢查負載、振動、潤滑與感測鏈品質。", keyPoints: ["先確認感測器與時間同步可信", "以趨勢、頻譜與潤滑狀態交叉驗證", "修復後建立新的健康基線"], safetyNote: "任何近接或拆檢作業均須先依場站程序隔離能源。" },
+  { id: "KDX-002", category: "HYDRAULICS", categoryLabel: "液壓系統", unlocked: true, title: "液壓蓄能與殘壓控制", summary: "液壓系統停機後仍可能保有蓄能器與管路殘壓，診斷前需隔離、洩壓並確認零能量狀態。", keyPoints: ["辨識蓄能器、止回閥與夾壓點", "以壓力保持測試定位內漏", "復歸後確認壓力與動作時間"], safetyNote: "未完成洩壓與零能量確認前，不得鬆開接頭。" },
+  { id: "KDX-003", category: "ELECTRICAL_SAFETY", categoryLabel: "電氣安全", unlocked: true, title: "停電、驗電與接地", summary: "電氣維修的安全順序包含能源隔離、LOTO、使用適當驗電器確認無電，並依程序接地。", keyPoints: ["辨識所有可能回送電源", "驗電器使用前後均確認功能", "復電前核對工具、人員與保護設定"], safetyNote: "高壓電氣作業僅限具授權資格人員執行。" },
+  { id: "KDX-004", category: "DRIVETRAIN", categoryLabel: "傳動鏈", unlocked: false, unlockMissionTitle: "多源訊號・齒輪箱診斷" },
+  { id: "KDX-005", category: "CONTROL_SYSTEMS", categoryLabel: "控制系統", unlocked: false, unlockMissionTitle: "偏移・偏航控制偏差" },
+];
+
+const CATEGORY_LIST = [
+  ["ALL", "全部"], ["CONDITION_MONITORING", "狀態監測"], ["HYDRAULICS", "液壓系統"],
+  ["ELECTRICAL_SAFETY", "電氣安全"], ["DRIVETRAIN", "傳動鏈"], ["CONTROL_SYSTEMS", "控制系統"],
+];
+
+const STAT_CHIPS = [
+  { value: "300", label: "角色" }, { value: "500", label: "技能" }, { value: "100", label: "Boss" },
+  { value: "20", label: "XP" }, { value: "60", label: "MNT" }, { value: "9", label: "RST" },
+];
+
+class Component extends DCLogic {
+  state = { category: "ALL", isMobile: false };
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1080px)");
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.onMq();
+    if (this.mq.addEventListener) this.mq.addEventListener("change", this.onMq); else this.mq.addListener(this.onMq);
+  }
+  componentWillUnmount() {
+    if (!this.mq) return;
+    if (this.mq.removeEventListener) this.mq.removeEventListener("change", this.onMq); else this.mq.removeListener(this.onMq);
+  }
+
+  renderVals() {
+    const { category, isMobile } = this.state;
+
+    const ui = {
+      root: { height: "100dvh", width: "100%", overflow: "hidden", display: "flex", flexDirection: "column", padding: isMobile ? "10px 12px" : "18px 26px", fontFamily: SANS, color: "#e8f5f6" },
+      topbar: { display: "flex", flexWrap: isMobile ? "wrap" : "nowrap", alignItems: "center", gap: isMobile ? "8px" : "22px", paddingBottom: isMobile ? "8px" : "12px", borderBottom: `1px solid ${LINE}`, marginBottom: isMobile ? "8px" : "14px" },
+      brandBlock: { display: "flex", alignItems: "baseline", gap: "12px", minWidth: 0, flex: isMobile ? "1 1 auto" : "0 1 260px", overflow: "hidden" },
+      brandMark: { color: "#06141c", background: CYAN, fontWeight: 900, padding: "5px 8px", fontSize: "14px", flex: "none" },
+      eyebrow: { fontSize: isMobile ? "9px" : "11px", letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      brandTitle: { fontSize: isMobile ? "16px" : "20px", margin: "2px 0 0", color: BRIGHT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      langWrap: { order: isMobile ? 1 : 3, marginLeft: isMobile ? "auto" : "0", flex: "none" },
+      langBtn: { height: isMobile ? "34px" : "40px", minWidth: "50px", padding: "0 10px", fontSize: "13px", fontWeight: 700, border: "1px solid #2e6570", background: "transparent", color: "#cbe5e9", cursor: "pointer" },
+      modeNav: { display: "flex", gap: "6px", order: isMobile ? 2 : 1, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", flexWrap: "nowrap", flexShrink: 0 },
+      modeBtn: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap", border: `1px solid ${LINE}`, color: "#7fa0a8", background: "#071a24", cursor: "pointer" },
+      modeBtnActive: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 800, whiteSpace: "nowrap", border: "1px solid #42b9ab", color: "#eaffff", background: "rgba(66,219,200,.14)", cursor: "pointer" },
+      modeBtnGuide: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap", border: "1px solid rgba(181,151,239,.4)", color: "#c6aff0", background: "rgba(170,143,234,.08)", cursor: "pointer" },
+      dataStrip: { display: "flex", border: `1px solid ${LINE}`, background: "rgba(5,18,25,.55)", order: isMobile ? 3 : 2, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", marginLeft: isMobile ? "0" : "auto", flexShrink: 0 },
+      dataChip: { minWidth: isMobile ? "62px" : "84px", padding: isMobile ? "7px 9px" : "8px 14px", textAlign: "center", borderRight: `1px solid ${LINE}` },
+      dataChipVal: { display: "block", fontSize: isMobile ? "14px" : "17px", fontWeight: 800, color: BRIGHT, fontFamily: MONO },
+      dataChipLabel: { display: "block", fontSize: isMobile ? "9px" : "10px", color: MUTED, letterSpacing: ".05em" },
+
+      heading: { flex: "none", display: "flex", justifyContent: "space-between", alignItems: "flex-end", gap: "12px", marginBottom: isMobile ? "8px" : "10px", flexWrap: "wrap" },
+      headingEyebrow: { fontSize: "11px", letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800 },
+      headingTitle: { margin: "4px 0 2px", fontSize: isMobile ? "20px" : "24px", color: BRIGHT },
+      headingBadge: { textAlign: "center", padding: "8px 16px", border: `1px solid ${LINE}`, flex: "none" },
+      headingBadgeNum: { display: "block", fontSize: "20px", color: GOLD, fontFamily: MONO },
+      headingBadgeLabel: { fontSize: "10px", color: MUTED },
+
+      filterRow: { flex: "none", display: "flex", gap: "6px", marginBottom: isMobile ? "8px" : "12px", overflowX: "auto", overflowY: "hidden" },
+      body: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden" },
+      cardGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "12px" },
+      cardHead: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" },
+      cardHeadId: { fontSize: "12px", color: "#7197a1", fontWeight: 800, fontFamily: MONO },
+      cardTitle: { margin: "0 0 8px", fontSize: "17px", color: BRIGHT },
+      cardTitleLocked: { margin: "0 0 8px", fontSize: "16px", color: "#617d85" },
+      cardSummary: { margin: "0 0 10px", fontSize: "14px", color: "#a9c7cc", lineHeight: 1.55 },
+      keyPoints: { display: "grid", gap: "4px", marginBottom: "10px" },
+      keyPointItem: { fontSize: "13px", color: "#8fb3ba" },
+      safetyBox: { padding: "8px 10px", borderLeft: `2px solid ${CYAN}`, background: "rgba(66,219,200,.06)" },
+      safetyLabel: { display: "block", fontSize: "11px", color: CYAN, fontWeight: 800, marginBottom: "3px" },
+      safetyText: { fontSize: "12px", color: "#a7d7d1" },
+      lockBox: { padding: "10px", border: "1px dashed rgba(141,184,196,.3)" },
+      lockTag: { color: "#5f7981", fontSize: "11px", fontWeight: 800, letterSpacing: ".08em" },
+      lockText: { margin: "6px 0 0", fontSize: "13px", color: "#8ba8ae" },
+    };
+
+    const categories = CATEGORY_LIST.map(([code, label]) => ({
+      label, code,
+      style: {
+        minHeight: "38px", padding: "0 14px", fontSize: "13px", fontWeight: category === code ? 800 : 700,
+        border: `1px solid ${category === code ? CYAN : LINE}`, background: category === code ? "rgba(66,219,200,.12)" : "#071a24",
+        color: category === code ? BRIGHT : "#8ba8ae", cursor: "pointer", whiteSpace: "nowrap",
+      },
+      onClick: () => this.setState({ category: code }),
+    }));
+
+    const visibleEntries = ENTRIES.filter((e) => category === "ALL" || e.category === category).map((e) => ({
+      ...e, locked: !e.unlocked, mark: e.unlocked ? "◆" : "◇",
+      markStyle: { color: e.unlocked ? CYAN : "#4c6870", fontSize: "16px" },
+      cardStyle: { padding: "14px", border: `1px solid ${e.unlocked ? LINE : "rgba(141,184,196,.14)"}`, background: e.unlocked ? "rgba(5,18,25,.55)" : "rgba(4,17,24,.35)" },
+    }));
+
+    return { ui, isMobile, statChips: STAT_CHIPS, categories, visibleEntries };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    html, body, #root { height: 100%; margin: 0; }
+    body { background: radial-gradient(circle at 55% 0%, #123745 0, #071820 46%, #041017 100%); overflow: hidden; }
+    * { box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(141,184,196,.28); }
+  </style>
+</helmet>
+
+<div style="{{ ui.root }}">
+  <div style="{{ ui.topbar }}">
+    <div style="{{ ui.brandBlock }}">
+      <span style="{{ ui.brandMark }}">OWM</span>
+      <div style="min-width:0;">
+        <div style="{{ ui.eyebrow }}">DOF LAB · STRATEGY SIMULATION</div>
+        <h1 style="{{ ui.brandTitle }}">Offshore Wind Masters</h1>
+      </div>
+    </div>
+    <div style="{{ ui.langWrap }}"><button style="{{ ui.langBtn }}">EN</button></div>
+    <div style="{{ ui.modeNav }}">
+      <button style="{{ ui.modeBtnActive }}">戰役</button>
+      <button style="{{ ui.modeBtn }}">Boss 挑戰</button>
+      <button style="{{ ui.modeBtn }}">沙盒</button>
+      <button style="{{ ui.modeBtn }}">收藏</button>
+      <button style="{{ ui.modeBtn }}">知識庫</button>
+      <button style="{{ ui.modeBtnGuide }}">重播教學</button>
+    </div>
+    <div style="{{ ui.dataStrip }}">
+      <sc-for list="{{ statChips }}" as="chip" hint-placeholder-count="6">
+        <div style="{{ ui.dataChip }}"><strong style="{{ ui.dataChipVal }}">{{ chip.value }}</strong><span style="{{ ui.dataChipLabel }}">{{ chip.label }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="{{ ui.heading }}">
+    <div style="{{ ui.headingEyebrow }}">DEPLOYMENT · CAMPAIGN</div>
+    <h2 style="{{ ui.headingTitle }}">出勤 · 任務航線</h2>
+    <p style="{{ ui.headingLead }}">選擇任務、確認整備狀態並編組小隊，即可出勤。</p>
+  </div>
+
+  <div style="{{ ui.mainTabs }}">
+    <button style="{{ tabs.route }}" onClick="{{ setTabRoute }}">任務航線</button>
+    <button style="{{ tabs.readiness }}" onClick="{{ setTabReadiness }}">作業許可</button>
+    <button style="{{ tabs.crew }}" onClick="{{ setTabCrew }}">Crew</button>
+    <button style="{{ tabs.loadout }}" onClick="{{ setTabLoadout }}">裝備</button>
+    <button style="{{ tabs.forecast }}" onClick="{{ setTabForecast }}">出勤預測</button>
+  </div>
+
+  <div style="{{ ui.body }}">
+
+    <sc-if value="{{ showRoute }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.subTabRow }}">
+        <button style="{{ tabs.fleet }}" onClick="{{ setRouteFleet }}">風場</button>
+        <button style="{{ tabs.missions }}" onClick="{{ setRouteMissions }}">任務</button>
+        <button style="{{ tabs.briefing }}" onClick="{{ setRouteBriefing }}">簡報</button>
+        <span style="{{ ui.progressTag }}">戰役進度 1 / 15</span>
+      </div>
+
+      <div style="{{ ui.tabBody }}">
+        <sc-if value="{{ showFleet }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ ui.fleetGrid }}">
+            <sc-for list="{{ turbines }}" as="t" hint-placeholder-count="6">
+              <div style="{{ t.cardStyle }}">
+                <div style="{{ ui.fleetCardTop }}"><b style="{{ ui.fleetCardId }}">{{ t.id }}</b><span style="{{ t.statusStyle }}">{{ t.statusLabel }}</span></div>
+                <div style="{{ ui.fleetCardName }}">{{ t.name }} · {{ t.zone }}</div>
+                <div style="{{ ui.fleetCardMetrics }}">
+                  <span><small style="{{ ui.fleetMetricLabel }}">RELIABILITY</small><b style="{{ ui.fleetMetricVal }}">{{ t.reliability }}%</b></span>
+                  <span><small style="{{ ui.fleetMetricLabel }}">BACKLOG</small><b style="{{ ui.fleetMetricVal }}">{{ t.faults }}</b></span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showMissions }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.chaptersGrid }}">
+            <sc-for list="{{ chapters }}" as="ch" hint-placeholder-count="5">
+              <div style="{{ ui.chapterCol }}">
+                <div style="{{ ui.chapterHead }}">CH.{{ ch.num }}</div>
+                <sc-for list="{{ ch.missions }}" as="m" hint-placeholder-count="3">
+                  <div style="{{ m.style }}">
+                    <span style="{{ ui.missionOrder }}">{{ m.order }}</span>
+                    <div style="min-width:0;"><b style="{{ ui.missionTitle }}">{{ m.title }}</b><small style="{{ ui.missionState }}">{{ m.stateLabel }}</small></div>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showBriefing }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.briefingCard }}">
+            <span style="{{ ui.severityTag }}">S1</span>
+            <b style="{{ ui.briefingBossName }}">徵兆・軸承過熱</b>
+            <p style="{{ ui.briefingText }}">SCADA 顯示軸承溫度持續偏離基線。先建立證據鏈，再決定是否隔離與更換備品。</p>
+            <div style="{{ ui.objectiveList }}">
+              <div style="{{ ui.objectiveItem }}">◇ 比較單點警報與趨勢證據</div>
+              <div style="{{ ui.objectiveItem }}">◇ 確認隔離前的風險</div>
+              <div style="{{ ui.objectiveItem }}">◇ 依故障模式準備備品</div>
+            </div>
+          </div>
+          <div style="{{ ui.eventDeckGrid }}">
+            <sc-for list="{{ eventDeck }}" as="ev" hint-placeholder-count="3">
+              <div style="{{ ui.eventChip }}"><span style="{{ ui.eventChipCode }}">{{ ev.icon }} {{ ev.code }}</span><b style="{{ ui.eventChipLabel }}">{{ ev.label }}</b><small style="{{ ui.eventChipMult }}">{{ ev.mult }}</small></div>
+            </sc-for>
+          </div>
+          <div style="{{ ui.readinessChips }}">
+            <sc-for list="{{ readinessChips }}" as="rc" hint-placeholder-count="5">
+              <div style="{{ rc.style }}"><span style="{{ ui.readinessChipLabel }}">{{ rc.label }}</span><small style="{{ ui.readinessChipVal }}">{{ rc.value }}</small></div>
+            </sc-for>
+            <button style="{{ ui.deployBtn }}">立即出勤 · DEPLOY</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showReadiness }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.readinessHead }}">
+        <div><span style="{{ ui.panelEyebrow }}">OPERATION READINESS</span><b style="{{ ui.readinessSite }}">晨潮示範區 A-03 · OWM-N01</b></div>
+        <strong style="{{ ui.readinessScore }}">5 / 5 · READY</strong>
+      </div>
+      <div style="{{ ui.profileMetrics }}">
+        <span><small style="{{ ui.metricLabel }}">預報</small><b style="{{ ui.metricValue }}">短時陣雨・能見度中等</b></span>
+        <span><small style="{{ ui.metricLabel }}">SEA STATE</small><b style="{{ ui.metricValue }}">2</b></span>
+        <span><small style="{{ ui.metricLabel }}">初始天候</small><b style="{{ ui.metricValue }}">100%</b></span>
+        <span><small style="{{ ui.metricLabel }}">動員成本</small><b style="{{ ui.metricValue }}">+2</b></span>
+      </div>
+      <div style="{{ ui.checklist }}">
+        <sc-for list="{{ checklist }}" as="c" hint-placeholder-count="5">
+          <div style="{{ ui.checkRow }}"><span style="{{ ui.checkIcon }}">✓</span><div style="min-width:0;"><b style="{{ ui.checkTitle }}">{{ c.title }}</b><small style="{{ ui.checkDetail }}">{{ c.detail }}</small></div></div>
+        </sc-for>
+      </div>
+      <p style="{{ ui.disclaimer }}">Gameplay abstraction — 非現場作業限制或工作授權。</p>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showCrew }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.rosterFilters }}">
+        <input style="{{ ui.rosterSearch }}" placeholder="搜尋 ID／姓名／職種">
+        <select style="{{ ui.rosterSelect }}"><option>FACTION · ALL</option></select>
+        <select style="{{ ui.rosterSelect }}"><option>READINESS · ALL</option></select>
+      </div>
+      <div style="{{ ui.rosterList }}">
+        <sc-for list="{{ roster }}" as="r" hint-placeholder-count="6">
+          <div style="{{ r.rowStyle }}">
+            <span style="{{ r.badgeStyle }}">{{ r.factionCode }}</span>
+            <div style="min-width:0;"><b style="{{ ui.rosterName }}">{{ r.name }}</b><small style="{{ ui.rosterMeta }}">{{ r.role }} · {{ r.level }}</small></div>
+            <span style="{{ ui.rosterReadiness }}">{{ r.readiness }}</span>
+            <button style="{{ r.selectStyle }}">{{ r.selectLabel }}</button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showLoadout }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.loadoutGrid }}">
+        <div style="{{ ui.loadoutCard }}"><span style="{{ ui.loadoutLabel }}">任務裝備</span><b style="{{ ui.loadoutName }}">初級・三軸加速規 · EQ0051</b><small style="{{ ui.loadoutDetail }}">Power +3 · Fatigue -1</small></div>
+        <div style="{{ ui.loadoutCard }}"><span style="{{ ui.loadoutLabel }}">任務備品</span><b style="{{ ui.loadoutName }}">初級・主軸承備品 · EQ0126</b></div>
+        <div style="{{ ui.loadoutCard }}"><span style="{{ ui.loadoutLabel }}">作業船舶</span><b style="{{ ui.loadoutName }}">海上運維支援船 · VES002 · SOV</b><small style="{{ ui.loadoutDetail }}">天候防護 5 · 安全防護 3 · 疲勞舒緩 3</small></div>
+      </div>
+      <div style="{{ ui.inventorySummary }}">
+        <span><small style="{{ ui.metricLabel }}">MAINTENANCE</small><b style="{{ ui.metricValue }}">54 MNT</b></span>
+        <span><small style="{{ ui.metricLabel }}">可出勤裝備</small><b style="{{ ui.metricValue }}">18 / 20</b></span>
+        <span><small style="{{ ui.metricLabel }}">已有損耗</small><b style="{{ ui.metricValue }}">2</b></span>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showForecast }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.forecastGrid }}">
+        <div style="{{ ui.forecastCard }}"><span style="{{ ui.loadoutLabel }}">EQUIPMENT WEAR</span><b style="{{ ui.loadoutName }}">100 → 92 (-8)</b><small style="{{ ui.loadoutDetail }}">成功結算後可於裝備頁維修</small></div>
+        <div style="{{ ui.forecastCard }}"><span style="{{ ui.loadoutLabel }}">MNT REWARD</span><b style="{{ ui.loadoutName }}">+6 MNT</b></div>
+        <div style="{{ ui.forecastCard }}"><span style="{{ ui.loadoutLabel }}">CREW FATIGUE</span><b style="{{ ui.loadoutName }}">平均 +14／人</b><small style="{{ ui.loadoutDetail }}">返航後自動恢復部分數值</small></div>
+      </div>
+      <div style="{{ ui.rotationCard }}">
+        <div><span style="{{ ui.panelEyebrow }}">CREW ROTATION ADVISOR</span><b style="{{ ui.rotationHeadline }}">目前隊伍已是最佳建議</b></div>
+        <button style="{{ ui.rotationBtn }}" disabled="">✓ OPTIMAL</button>
+      </div>
+      <button style="{{ ui.deployBtn }}">立即出勤 · DEPLOY</button>
+    </div>
+    </sc-if>
+
+  </div>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.mobileNote }}">已切換為單欄行動版配置</div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SANS = "'Inter','Noto Sans TC',system-ui,sans-serif";
+const MONO = "'Consolas','SFMono-Regular',monospace";
+const LINE = "rgba(141,184,196,.22)";
+const CYAN = "#42dbc8";
+const GOLD = "#f2c66f";
+const PURPLE = "#b99df1";
+const RED = "#f1745b";
+const MUTED = "#88aab3";
+const BRIGHT = "#f0fbfc";
+
+const TURBINES = [
+  { id: "WTG-001", name: "晨曦一號", zone: "A-01", reliability: 88, faults: 1 },
+  { id: "WTG-002", name: "晨曦二號", zone: "A-02", reliability: 82, faults: 1 },
+  { id: "WTG-003", name: "海隼一號", zone: "B-01", reliability: 94, faults: 0 },
+  { id: "WTG-004", name: "海隼二號", zone: "B-02", reliability: 76, faults: 2 },
+  { id: "WTG-005", name: "遠潮一號", zone: "C-01", reliability: 91, faults: 0 },
+  { id: "WTG-006", name: "遠潮二號", zone: "C-02", reliability: 69, faults: 2 },
+];
+
+const CHAPTER_TITLES = [
+  ["溫升訊號・主軸承過熱", "壓力異常・變槳系統失效", "訊號劣化・發電機絕緣劣化"],
+  ["多源訊號・齒輪箱診斷", "雙重隔離・變槳系統", "局部放電・發電機"],
+  ["嚴重・軸承過熱", "偏移・偏航控制偏差", "嚴重・發電機絕緣劣化"],
+  ["危急・軸承過熱", "危急・偏航失效", "危急・發電機絕緣劣化"],
+  ["熱失控・主軸承", "聯鎖失效・偏航系統", "最終危機・發電機絕緣"],
+];
+
+const ROSTER = [
+  { factionCode: "MAR", name: "潮風見習・ROV操作員", role: "ROV操作員", level: "L1", readiness: "穩定", selected: true },
+  { factionCode: "MAR", name: "浪脈執行者・ROV操作員", role: "ROV操作員", level: "L2", readiness: "穩定", selected: true },
+  { factionCode: "OMI", name: "潮風見習・高壓電工程師", role: "高壓電工程師", level: "L1", readiness: "穩定", selected: true },
+  { factionCode: "MAR", name: "風域專家・ROV操作員", role: "ROV操作員", level: "L3", readiness: "疲憊", selected: false },
+  { factionCode: "MAR", name: "海疆導師・ROV操作員", role: "ROV操作員", level: "L4", readiness: "穩定", selected: false },
+  { factionCode: "OMI", name: "潮風見習・振動診斷技師", role: "振動診斷技師", level: "L1", readiness: "穩定", selected: false },
+];
+
+const EVENT_DECK = [
+  { code: "R01", icon: "∿", label: "海況惡化", mult: "×0.75" },
+  { code: "R04", icon: "↯", label: "陣風衝擊", mult: "×0.85" },
+  { code: "R07", icon: "◷", label: "延遲判讀", mult: "×1.00" },
+];
+
+const READINESS_CHIPS = [
+  { label: "PERMIT", value: "PTW-MECH-LOTO ✓" },
+  { label: "PPE", value: "3 項已確認 ✓" },
+  { label: "ACCESS", value: "SOV walk-to-work ✓" },
+  { label: "VESSEL", value: "SOV / CTV ✓" },
+  { label: "MASTERY", value: "2 / 2 合格 ✓" },
+];
+
+const CHECKLIST = [
+  { title: "PTW-MECH-LOTO", detail: "機械作業與鎖定掛牌許可" },
+  { title: "PPE", detail: "海上救生衣・全身式防墜系統・防割手套" },
+  { title: "ACCESS", detail: "SOV walk-to-work 或 CTV boat landing" },
+  { title: "VESSEL", detail: "相容船級 SOV / CTV" },
+  { title: "MASTERY L1+", detail: "2 / 2 名技師合格" },
+];
+
+const STAT_CHIPS = [
+  { value: "300", label: "角色" }, { value: "500", label: "技能" }, { value: "100", label: "Boss" },
+  { value: "20", label: "XP" }, { value: "54", label: "MNT" }, { value: "6", label: "RST" },
+];
+
+class Component extends DCLogic {
+  state = { mainTab: "route", routeTab: "briefing", isMobile: false };
+
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1080px)");
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.onMq();
+    if (this.mq.addEventListener) this.mq.addEventListener("change", this.onMq); else this.mq.addListener(this.onMq);
+  }
+  componentWillUnmount() {
+    if (!this.mq) return;
+    if (this.mq.removeEventListener) this.mq.removeEventListener("change", this.onMq); else this.mq.removeListener(this.onMq);
+  }
+
+  renderVals() {
+    const { mainTab, routeTab, isMobile } = this.state;
+    const px = (n) => n + "px";
+    const tabBtn = (active, accent) => ({
+      minHeight: isMobile ? "42px" : "38px", padding: isMobile ? "9px 12px" : "8px 14px",
+      fontSize: "13px", fontWeight: 800, letterSpacing: ".02em", fontFamily: SANS, cursor: "pointer",
+      border: `1px solid ${active ? accent : LINE}`,
+      background: active ? `color-mix(in srgb, ${accent} 18%, #071a24)` : "rgba(4,17,24,.55)",
+      color: active ? BRIGHT : "#8ba8ae", whiteSpace: "nowrap",
+    });
+
+    const ui = {
+      root: { height: "100dvh", width: "100%", overflow: "hidden", display: "flex", flexDirection: "column", padding: isMobile ? "10px 12px" : "18px 26px", fontFamily: SANS, color: "#e8f5f6" },
+      topbar: { display: "flex", flexWrap: isMobile ? "wrap" : "nowrap", alignItems: "center", gap: isMobile ? "8px" : "22px", paddingBottom: isMobile ? "8px" : "12px", borderBottom: `1px solid ${LINE}`, marginBottom: isMobile ? "8px" : "14px" },
+      brandBlock: { display: "flex", alignItems: "baseline", gap: "12px", minWidth: 0, flex: isMobile ? "1 1 auto" : "0 1 260px", overflow: "hidden" },
+      brandMark: { color: "#06141c", background: CYAN, fontWeight: 900, padding: "5px 8px", fontSize: "14px", letterSpacing: ".06em", flex: "none" },
+      eyebrow: { fontSize: isMobile ? "9px" : "11px", letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      brandTitle: { fontSize: isMobile ? "16px" : "20px", margin: "2px 0 0", color: BRIGHT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      langWrap: { order: isMobile ? 1 : 3, marginLeft: isMobile ? "auto" : "0", flex: "none" },
+      langBtn: { height: isMobile ? "34px" : "40px", minWidth: "50px", padding: "0 10px", fontSize: "13px", fontWeight: 700, border: "1px solid #2e6570", background: "transparent", color: "#cbe5e9", cursor: "pointer" },
+      modeNav: { display: "flex", gap: "6px", order: isMobile ? 2 : 1, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", flexWrap: "nowrap", flexShrink: 0 },
+      modeBtn: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap", border: `1px solid ${LINE}`, color: "#7fa0a8", background: "#071a24", cursor: "pointer" },
+      modeBtnActive: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 800, whiteSpace: "nowrap", border: "1px solid #42b9ab", color: "#eaffff", background: "rgba(66,219,200,.14)", cursor: "pointer" },
+      modeBtnGuide: { minHeight: "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap", border: "1px solid rgba(181,151,239,.4)", color: "#c6aff0", background: "rgba(170,143,234,.08)", cursor: "pointer" },
+      dataStrip: { display: "flex", border: `1px solid ${LINE}`, background: "rgba(5,18,25,.55)", order: isMobile ? 3 : 2, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", marginLeft: isMobile ? "0" : "auto", flexShrink: 0 },
+      dataChip: { minWidth: isMobile ? "62px" : "84px", padding: isMobile ? "7px 9px" : "8px 14px", textAlign: "center", borderRight: `1px solid ${LINE}` },
+      dataChipVal: { display: "block", fontSize: isMobile ? "14px" : "17px", fontWeight: 800, color: BRIGHT, fontFamily: MONO },
+      dataChipLabel: { display: "block", fontSize: isMobile ? "9px" : "10px", color: MUTED, letterSpacing: ".05em" },
+
+      heading: { flex: "none", marginBottom: isMobile ? "8px" : "10px" },
+      headingEyebrow: { fontSize: "11px", letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800 },
+      headingTitle: { margin: "4px 0 2px", fontSize: isMobile ? "20px" : "24px", color: BRIGHT },
+      headingLead: { margin: 0, fontSize: "14px", color: MUTED },
+
+      mainTabs: { flex: "none", display: "flex", gap: "6px", marginBottom: isMobile ? "8px" : "12px", overflowX: "auto", overflowY: "hidden" },
+      body: { flex: "1", minHeight: 0, overflow: "hidden", display: "flex" },
+      panel: { flex: "1", minHeight: 0, overflow: "hidden", display: "flex", flexDirection: "column", background: "linear-gradient(145deg, rgba(13,40,51,.92), rgba(6,24,33,.94))", border: `1px solid ${LINE}`, boxShadow: "0 15px 50px rgba(0,0,0,.18)", padding: isMobile ? "12px" : "16px" },
+      panelEyebrow: { fontSize: "11px", letterSpacing: ".16em", color: "#6f9da8", fontWeight: 800 },
+
+      subTabRow: { display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" },
+      progressTag: { marginLeft: "auto", fontSize: "12px", color: CYAN, fontFamily: MONO, fontWeight: 700 },
+      tabBody: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden", marginTop: "12px" },
+
+      fleetGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px,1fr))", gap: "10px" },
+      fleetCardTop: { display: "flex", justifyContent: "space-between", alignItems: "center" },
+      fleetCardId: { fontFamily: MONO, fontSize: "13px", color: BRIGHT },
+      fleetCardName: { fontSize: "13px", color: "#c3dadf", margin: "6px 0", fontWeight: 600 },
+      fleetCardMetrics: { display: "flex", gap: "12px" },
+      fleetMetricLabel: { display: "block", fontSize: "9px", color: "#6f929a", letterSpacing: ".05em" },
+      fleetMetricVal: { display: "block", fontSize: "15px", color: BRIGHT, fontFamily: MONO },
+
+      chaptersGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px,1fr))", gap: "10px" },
+      chapterCol: { display: "grid", gap: "6px", alignContent: "start" },
+      chapterHead: { fontSize: "11px", letterSpacing: ".1em", color: "#678c96", fontWeight: 800, marginBottom: "2px" },
+      missionOrder: { display: "grid", placeItems: "center", width: "26px", height: "26px", border: "1px solid currentColor", fontSize: "12px", fontWeight: 800, flex: "none" },
+      missionTitle: { display: "block", fontSize: "13px", lineHeight: 1.3 },
+      missionState: { display: "block", fontSize: "11px", marginTop: "2px" },
+
+      briefingCard: { padding: "12px", border: `1px solid ${RED}44`, borderLeft: `3px solid ${RED}`, background: "rgba(5,18,25,.5)" },
+      severityTag: { color: RED, border: `1px solid ${RED}77`, padding: "3px 7px", fontSize: "12px", fontWeight: 800 },
+      briefingBossName: { display: "block", margin: "8px 0 4px", fontSize: "18px", color: BRIGHT },
+      briefingText: { margin: 0, fontSize: "14px", color: "#a9c7cc", lineHeight: 1.55 },
+      objectiveList: { display: "grid", gap: "4px", marginTop: "10px" },
+      objectiveItem: { fontSize: "13px", color: "#8fb3ba" },
+
+      eventDeckGrid: { display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: "8px", marginTop: "12px" },
+      eventChip: { display: "grid", gridTemplateColumns: "auto 1fr auto", gap: "8px", alignItems: "center", padding: "10px", border: `1px solid ${LINE}`, background: "rgba(4,17,24,.55)" },
+      eventChipCode: { fontFamily: MONO, fontWeight: 800, fontSize: "13px", color: GOLD, whiteSpace: "nowrap" },
+      eventChipLabel: { fontSize: "13px", color: "#c3dadf", fontWeight: 600 },
+      eventChipMult: { fontFamily: MONO, fontSize: "12px", color: MUTED },
+
+      readinessChips: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px,1fr))", gap: "8px", marginTop: "12px", alignItems: "stretch" },
+      readinessChipLabel: { display: "block", fontSize: "10px", fontWeight: 800, letterSpacing: ".06em" },
+      readinessChipVal: { display: "block", marginTop: "3px", fontSize: "12px", color: "#dcebed" },
+      deployBtn: { gridColumn: "1 / -1", minHeight: "48px", border: 0, background: "#43dac8", color: "#052029", fontWeight: 900, fontSize: "15px", cursor: "pointer" },
+
+      readinessHead: { display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" },
+      readinessSite: { display: "block", marginTop: "4px", fontSize: "16px", color: BRIGHT },
+      readinessScore: { color: CYAN, fontSize: "14px", fontFamily: MONO },
+      profileMetrics: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px,1fr))", gap: "8px", margin: "14px 0" },
+      metricLabel: { display: "block", fontSize: "11px", color: "#7197a1" },
+      metricValue: { display: "block", marginTop: "4px", fontSize: "15px", color: BRIGHT },
+      checklist: { display: "grid", gap: "8px" },
+      checkRow: { display: "grid", gridTemplateColumns: "30px 1fr", gap: "10px", alignItems: "center", padding: "9px 10px", border: `1px solid ${CYAN}33`, background: "rgba(66,219,200,.05)" },
+      checkIcon: { color: CYAN, fontSize: "16px", fontWeight: 900, textAlign: "center" },
+      checkTitle: { display: "block", fontSize: "14px", color: BRIGHT },
+      checkDetail: { display: "block", fontSize: "12px", color: MUTED, marginTop: "2px" },
+      disclaimer: { marginTop: "auto", paddingTop: "10px", fontSize: "11px", color: "#5f7981", fontStyle: "italic" },
+
+      rosterFilters: { display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "10px" },
+      rosterSearch: { flex: "1 1 200px", height: "42px", padding: "0 12px", fontSize: "14px", background: "#071a24", color: "#dff3f5", border: "1px solid #27515b" },
+      rosterSelect: { height: "42px", padding: "0 10px", fontSize: "13px", background: "#071a24", color: "#dff3f5", border: "1px solid #27515b" },
+      rosterList: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden", display: "grid", gap: "8px" },
+      rosterName: { display: "block", fontSize: "14px", color: BRIGHT },
+      rosterMeta: { display: "block", fontSize: "12px", color: MUTED, marginTop: "2px" },
+      rosterReadiness: { fontSize: "12px", color: "#7ecdb8" },
+
+      loadoutGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: "10px" },
+      loadoutCard: { padding: "12px", border: `1px solid ${LINE}`, background: "rgba(5,20,28,.6)" },
+      loadoutLabel: { display: "block", fontSize: "11px", color: "#6f929a", letterSpacing: ".05em" },
+      loadoutName: { display: "block", margin: "6px 0 3px", fontSize: "15px", color: BRIGHT },
+      loadoutDetail: { display: "block", fontSize: "12px", color: MUTED },
+      inventorySummary: { display: "flex", gap: "16px", marginTop: "14px", flexWrap: "wrap" },
+
+      forecastGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px,1fr))", gap: "10px", marginBottom: "12px" },
+      forecastCard: { padding: "12px", border: `1px solid ${LINE}`, background: "rgba(5,20,28,.6)" },
+      rotationCard: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px", padding: "12px", border: `1px solid ${CYAN}33`, background: "rgba(66,219,200,.05)", marginBottom: "auto" },
+      rotationHeadline: { display: "block", marginTop: "4px", fontSize: "14px", color: BRIGHT },
+      rotationBtn: { minHeight: "36px", padding: "0 14px", border: `1px solid ${CYAN}66`, background: "rgba(66,219,200,.1)", color: CYAN, fontWeight: 800, fontSize: "12px" },
+
+      mobileNote: { textAlign: "center", fontSize: "11px", color: "#5f7981", padding: "6px 0 0" },
+    };
+
+    const tabs = {
+      route: tabBtn(mainTab === "route", CYAN), readiness: tabBtn(mainTab === "readiness", CYAN),
+      crew: tabBtn(mainTab === "crew", CYAN), loadout: tabBtn(mainTab === "loadout", CYAN), forecast: tabBtn(mainTab === "forecast", CYAN),
+      fleet: tabBtn(routeTab === "fleet", CYAN), missions: tabBtn(routeTab === "missions", CYAN), briefing: tabBtn(routeTab === "briefing", CYAN),
+    };
+
+    const turbines = TURBINES.map((t) => {
+      const status = t.reliability >= 85 ? "nominal" : t.reliability >= 70 ? "degraded" : "offline";
+      const accent = status === "nominal" ? CYAN : status === "degraded" ? GOLD : RED;
+      return {
+        ...t, statusLabel: status.toUpperCase(),
+        statusStyle: { fontSize: "10px", fontWeight: 800, color: accent, fontFamily: MONO },
+        cardStyle: { padding: "10px", border: `1px solid ${accent}44`, borderLeft: `3px solid ${accent}`, background: "rgba(4,17,24,.55)" },
+      };
+    });
+
+    const chapters = CHAPTER_TITLES.map((titles, ci) => ({
+      num: ci + 1,
+      missions: titles.map((title, mi) => {
+        const globalIndex = ci * 3 + mi;
+        const state = globalIndex === 0 ? "available" : "locked";
+        const stateLabel = globalIndex === 0 ? "進行中" : "未解鎖";
+        const accent = globalIndex === 0 ? CYAN : "#3d5a63";
+        return {
+          order: String(globalIndex + 1).padStart(2, "0"), title, stateLabel,
+          style: { display: "grid", gridTemplateColumns: "26px 1fr", gap: "8px", alignItems: "center", padding: "8px", border: `1px solid ${state === "available" ? accent + "88" : LINE}`, background: state === "available" ? "rgba(66,219,200,.08)" : "rgba(4,17,24,.4)", color: state === "available" ? BRIGHT : "#5f7981" },
+        };
+      }),
+    }));
+
+    const roster = ROSTER.map((r) => ({
+      ...r,
+      badgeStyle: { display: "grid", placeItems: "center", width: "34px", height: "34px", border: `1px solid ${r.factionCode === "MAR" ? CYAN : "oklch(78% 0.13 230)"}`, color: r.factionCode === "MAR" ? CYAN : "oklch(78% 0.13 230)", fontSize: "11px", fontWeight: 800, flex: "none" },
+      rowStyle: { display: "grid", gridTemplateColumns: "34px 1fr auto auto", gap: "10px", alignItems: "center", padding: "9px 10px", border: `1px solid ${LINE}`, background: "rgba(5,20,28,.55)" },
+      selectStyle: { minHeight: "34px", padding: "0 12px", fontSize: "12px", fontWeight: 800, border: `1px solid ${r.selected ? CYAN : LINE}`, background: r.selected ? "rgba(66,219,200,.12)" : "#071a24", color: r.selected ? CYAN : "#8ba8ae", cursor: "pointer" },
+      selectLabel: r.selected ? "已編組" : "編組",
+    }));
+
+    const readinessChips = READINESS_CHIPS.map((c) => ({ ...c, style: { padding: "8px 9px", border: `1px solid ${CYAN}33`, background: "rgba(66,219,200,.05)", color: CYAN } }));
+
+    return {
+      ui, tabs, isMobile, statChips: STAT_CHIPS, turbines, chapters, roster, eventDeck: EVENT_DECK, readinessChips, checklist: CHECKLIST,
+      showRoute: mainTab === "route", showReadiness: mainTab === "readiness", showCrew: mainTab === "crew", showLoadout: mainTab === "loadout", showForecast: mainTab === "forecast",
+      showFleet: routeTab === "fleet", showMissions: routeTab === "missions", showBriefing: routeTab === "briefing",
+      setTabRoute: () => this.setState({ mainTab: "route" }),
+      setTabReadiness: () => this.setState({ mainTab: "readiness" }),
+      setTabCrew: () => this.setState({ mainTab: "crew" }),
+      setTabLoadout: () => this.setState({ mainTab: "loadout" }),
+      setTabForecast: () => this.setState({ mainTab: "forecast" }),
+      setRouteFleet: () => this.setState({ routeTab: "fleet" }),
+      setRouteMissions: () => this.setState({ routeTab: "missions" }),
+      setRouteBriefing: () => this.setState({ routeTab: "briefing" }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

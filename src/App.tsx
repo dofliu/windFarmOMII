@@ -326,6 +326,9 @@ export default function App() {
   const [operationReturnNotice, setOperationReturnNotice] = useState<OperationReturnNotice | undefined>();
   const [operationInfoTab, setOperationInfoTab] = useState<OperationInfoTab>('log');
   const [operationGuideNotice, setOperationGuideNotice] = useState<{ targetTestId: string; label: string; pulse: number } | undefined>();
+  const [leftTab, setLeftTab] = useState<'mission' | 'stages' | 'resources'>('mission');
+  const [crewTab, setCrewTab] = useState<'profile' | 'actions' | 'loadout'>('profile');
+  const [mobileSection, setMobileSection] = useState<'mission' | 'field' | 'crew'>('mission');
 
   useEffect(() => {
     // 同步 CSS 與 Phaser 的動態偏好，讓高對比事件不會只在其中一層被關閉。
@@ -1160,7 +1163,7 @@ export default function App() {
     <main className="app-shell">
       {header}
       <section className="game-grid" data-testid="mission-operation">
-        <aside className="panel mission-panel">
+        <aside className="panel mission-panel" data-mobile-active={mobileSection === 'mission'}>
           <div className="section-kicker">MISSION CONTROL</div>
           <span className="select-label">{ui.riskEvent}</span>
           <div className="locked-mission">{missionDefinition ? missionTitle(missionDefinition, language) : `${session.mode === 'challenge' ? ui.challenge : ui.sandbox} · ${bossName(session.boss, language)}`}</div>
@@ -1183,65 +1186,86 @@ export default function App() {
               {telegraph.impacts.map((impact) => <i key={impact}>{IMPACT_LABELS[language][impact]}</i>)}
             </div>
           </div>
-          {missionDefinition && <MissionEventDeck mission={missionDefinition} currentRound={session.mission.round} activeRound={session.pendingBranch?.triggerRound} language={language} compact />}
 
-          <div className="mission-metrics">
-            <Metric label={ui.stageNeed} value={session.mission.requirement} />
-            <Metric label={ui.fatigueHit} value={`+${session.boss.fatigueDamage}`} />
-            <Metric label="Phase" value={`${session.mission.phase}/${session.boss.phases}`} />
-          </div>
-          <div className="mission-resource-grid">
-            <ResourceMeter label={ui.weather} value={session.mission.weatherWindow} tone="weather" />
-            <ResourceMeter label={ui.safety} value={session.mission.safety} tone="safety" />
-            <ResourceMeter label={ui.evidence} value={session.mission.evidence} tone="evidence" />
+          <div className="sub-tab-row">
+            <button type="button" className={leftTab === 'mission' ? 'active' : ''} onClick={() => setLeftTab('mission')}>{language === 'zh' ? '事件' : 'MISSION'}</button>
+            <button type="button" className={leftTab === 'stages' ? 'active' : ''} onClick={() => setLeftTab('stages')}>{language === 'zh' ? '階段' : 'STAGES'}</button>
+            <button type="button" className={leftTab === 'resources' ? 'active' : ''} onClick={() => setLeftTab('resources')}>{language === 'zh' ? '資源' : 'METRICS'}</button>
           </div>
 
-          <ol className="stage-list" aria-label="任務工程階段">
-            {MISSION_STAGES.map((stage, index) => {
-              const state = index < session.mission.stageIndex ? 'done' : index === session.mission.stageIndex ? 'current' : 'waiting';
-              return <li key={stage} className={state}><span>{String(index + 1).padStart(2, '0')}</span><b>{language === 'zh' ? STAGE_ZH[index] : stage}</b><i>{state === 'done' ? '✓' : state === 'current' ? '●' : '—'}</i></li>;
-            })}
-          </ol>
-
-          <div className="stage-progress">
-            <div><span>{language === 'zh' ? STAGE_ZH[session.mission.stageIndex] : currentStage}</span><strong>{session.mission.progress} / {session.mission.requirement}</strong></div>
-            <div className="progress-track"><span style={{ width: `${progressRatio * 100}%` }} /></div>
-          </div>
-
-          <div className="mission-action-stack">
-            {missionEnded ? (
-              <button className="primary-button" data-testid="reset-mission" onClick={() => setSession(null)}>{ui.redeploy}</button>
-            ) : (
+          <div className="tab-body">
+            {leftTab === 'mission' && (
               <>
-                <button className={`primary-button${operationRoundConfirm ? ' confirm' : ''}`} data-testid="next-round" disabled={Boolean(session.pendingBranch)} onClick={requestNextRound}>{session.pendingBranch ? (language === 'zh' ? '等待事件回應' : 'Awaiting event response') : operationRoundConfirm ? 'Confirm End Round' : ui.endRound}</button>
-                {operationRoundConfirm && (
-                  <small className="round-commit-confirmation" data-testid="round-commit-confirmation">
-                    {endRoundForecast.failureReason
-                      ? `Forecast failure: ${endRoundForecast.failureReason}`
-                      : forecastBranchEvent
-                        ? `Will trigger ${forecastBranchEvent.code}; click again to commit.`
-                        : `Low margin after round: W ${endRoundForecast.weatherAfter}% / S ${endRoundForecast.safetyAfter}%.`}
-                  </small>
-                )}
-                {operationAbortConfirm ? (
-                  <div className="operation-abort-confirmation" data-testid="abort-operation-confirmation">
-                    <span>{language === 'zh' ? 'Return current sortie?' : 'Return current sortie?'}</span>
-                    <small data-testid="abort-operation-copy">{language === 'zh'
-                      ? 'Return 只中止 sortie；未結算、未寫任務結果、reward、best score 或 mission outcome history。'
-                      : 'Return aborts this sortie only; no mission result, reward, best score, or mission outcome history is written.'}</small>
-                    <button type="button" data-testid="abort-operation-cancel" onClick={cancelOperationAbort}>Cancel</button>
-                    <button type="button" data-testid="abort-operation-confirm" onClick={confirmOperationAbort}>Confirm return</button>
-                  </div>
-                ) : (
-                  <button type="button" className="operation-abort-open" data-testid="abort-operation-open" onClick={openOperationAbort}>Abort / Return Route</button>
-                )}
+                {missionDefinition && <MissionEventDeck mission={missionDefinition} currentRound={session.mission.round} activeRound={session.pendingBranch?.triggerRound} language={language} compact />}
               </>
             )}
+            
+            {leftTab === 'stages' && (
+              <ol className="stage-list" aria-label="任務工程階段">
+                {MISSION_STAGES.map((stage, index) => {
+                  const state = index < session.mission.stageIndex ? 'done' : index === session.mission.stageIndex ? 'current' : 'waiting';
+                  return <li key={stage} className={state}><span>{String(index + 1).padStart(2, '0')}</span><b>{language === 'zh' ? STAGE_ZH[index] : stage}</b><i>{state === 'done' ? '✓' : state === 'current' ? '●' : '—'}</i></li>;
+                })}
+              </ol>
+            )}
+
+            {leftTab === 'resources' && (
+              <>
+                <div className="mission-metrics">
+                  <Metric label={ui.stageNeed} value={session.mission.requirement} />
+                  <Metric label={ui.fatigueHit} value={`+${session.boss.fatigueDamage}`} />
+                  <Metric label="Phase" value={`${session.mission.phase}/${session.boss.phases}`} />
+                </div>
+                <div className="mission-resource-grid">
+                  <ResourceMeter label={ui.weather} value={session.mission.weatherWindow} tone="weather" />
+                  <ResourceMeter label={ui.safety} value={session.mission.safety} tone="safety" />
+                  <ResourceMeter label={ui.evidence} value={session.mission.evidence} tone="evidence" />
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="footer-block">
+            <div className="stage-progress">
+              <div><span>{language === 'zh' ? STAGE_ZH[session.mission.stageIndex] : currentStage}</span><strong>{session.mission.progress} / {session.mission.requirement}</strong></div>
+              <div className="progress-track"><span style={{ width: `${progressRatio * 100}%` }} /></div>
+            </div>
+
+            <div className="mission-action-stack">
+              {missionEnded ? (
+                <button className="primary-button" data-testid="reset-mission" onClick={() => setSession(null)}>{ui.redeploy}</button>
+              ) : (
+                <>
+                  <button className={`primary-button${operationRoundConfirm ? ' confirm' : ''}`} data-testid="next-round" disabled={Boolean(session.pendingBranch)} onClick={requestNextRound}>{session.pendingBranch ? (language === 'zh' ? '等待事件回應' : 'Awaiting event response') : operationRoundConfirm ? 'Confirm End Round' : ui.endRound}</button>
+                  {operationRoundConfirm && (
+                    <small className="round-commit-confirmation" data-testid="round-commit-confirmation">
+                      {endRoundForecast.failureReason
+                        ? `Forecast failure: ${endRoundForecast.failureReason}`
+                        : forecastBranchEvent
+                          ? `Will trigger ${forecastBranchEvent.code}; click again to commit.`
+                          : `Low margin after round: W ${endRoundForecast.weatherAfter}% / S ${endRoundForecast.safetyAfter}%.`}
+                    </small>
+                  )}
+                  {operationAbortConfirm ? (
+                    <div className="operation-abort-confirmation" data-testid="abort-operation-confirmation">
+                      <span>{language === 'zh' ? 'Return current sortie?' : 'Return current sortie?'}</span>
+                      <small data-testid="abort-operation-copy">{language === 'zh'
+                        ? 'Return 只中止 sortie；未結算、未寫任務結果。'
+                        : 'Return aborts this sortie only; no mission result written.'}</small>
+                      <button type="button" data-testid="abort-operation-cancel" onClick={cancelOperationAbort}>Cancel</button>
+                      <button type="button" data-testid="abort-operation-confirm" onClick={confirmOperationAbort}>Confirm return</button>
+                    </div>
+                  ) : (
+                    <button type="button" className="operation-abort-open" data-testid="abort-operation-open" onClick={openOperationAbort}>Abort / Return Route</button>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </aside>
 
         <section className="center-column">
-          <div className="panel field-panel">
+          <div className="panel field-panel" data-mobile-active={mobileSection === 'field'}>
             <div className="field-status"><span className="live-dot" /> LIVE FIELD FEED <span className="telegraph-chip" data-testid="telegraph-chip" style={{ '--hazard': telegraph.accent } as React.CSSProperties}>{telegraph.icon} {telegraph.code}</span>{runtimeTurbine && runtimeTurbineState && <span className={`field-turbine-route ${runtimeTurbineState.availability.toLowerCase()}`} data-testid="field-turbine-status"><i>{runtimeTurbine.id.replace('WTG-OWM-', 'WTG-')}</i><b>{language === 'zh' ? runtimeTurbine.nameZh : runtimeTurbine.nameEn}</b><em>R {runtimeTurbineState.reliability}% · B {runtimeTurbineState.openFaults}</em></span>}<span className={`field-scene-route ${sceneRoute.availability.toLowerCase()}`} data-testid="scene-route-status" title={sceneRouteProvenance(sceneRoute, language)}><i>{sceneRoute.requestedScene.id}</i><b>{sceneRouteName(sceneRoute, language)}</b><em>{sceneRoute.availability}</em></span><strong>{currentStage.toUpperCase()}</strong></div>
             {session.fleetCondition && <div className={`field-fleet-condition ${session.fleetCondition.modifier.pressure.toLowerCase()}`} data-testid="field-fleet-condition">
               <span><small>FLEET CONDITION</small><b>{session.fleetCondition.modifier.turbineId.replace('WTG-OWM-', 'WTG-')} · {session.fleetCondition.modifier.pressure}</b></span>
@@ -1358,7 +1382,7 @@ export default function App() {
           </div>
         </section>
 
-        <aside className="panel card-panel" style={{ '--faction': faction.color } as React.CSSProperties}>
+        <aside className="panel card-panel" style={{ '--faction': faction.color } as React.CSSProperties} data-mobile-active={mobileSection === 'crew'}>
           <div className="team-tabs" role="tablist" aria-label="任務隊伍">
             {session.team.map((member, index) => {
               const character = requiredCharacter(database, member.characterId);
@@ -1366,128 +1390,130 @@ export default function App() {
             })}
           </div>
 
-          <label className="art-preview-select">
-            <span>{ui.shift}</span>
-            <select data-testid="shift-character" value={selectedCharacter.id} disabled={missionEnded} onChange={(event) => shiftSelectedCharacter(event.target.value)}>
-              {sourceArtCharacters.map((character) => (
-                <option key={character.id} value={character.id}>{characterName(character, language)} · {database.sourceArtIndex.items[character.id].version.toUpperCase()}</option>
-              ))}
-            </select>
-          </label>
-
-          <div
-            key={selectedCharacter.id}
-            className="portrait-placeholder"
-            aria-label={sourceArt ? `角色 P01 ${sourceArt.version} 來源原畫` : '角色來源原畫待核准'}
-            data-source-art-character-id={selectedCharacter.id}
-            data-source-art-version={sourceArt?.version ?? ''}
-            data-source-art-file={sourceArt?.file ?? ''}
-            data-source-art-qa-status={sourceArt?.qaStatus ?? ''}
-            data-source-art-engineering-qa-status={sourceArt?.engineeringQaStatus ?? ''}
-          >
-            <div className="portrait-grid" />
-            <div className="portrait-silhouette"><span>◈</span></div>
-            {sourceArtUrl && <img
-                className="source-art-image"
-                src={sourceArtUrl}
-                alt=""
-                onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-source-art')}
-                onError={(event) => event.currentTarget.parentElement?.classList.remove('has-source-art')}
-              />}
-            <div className="source-art-label placeholder-art-label">{ui.sourceArt.toUpperCase()} · {selectedCharacter.artStatus.toUpperCase()}</div>
-            <div className="source-art-label generated-art-label">{ui.sourceArt.toUpperCase()} · P01 {sourceArt?.version.toUpperCase()}</div>
+          <div className="sub-tab-row">
+            <button type="button" className={crewTab === 'profile' ? 'active' : ''} onClick={() => setCrewTab('profile')}>{language === 'zh' ? '角色' : 'PROFILE'}</button>
+            <button type="button" className={crewTab === 'actions' ? 'active' : ''} onClick={() => setCrewTab('actions')}>{language === 'zh' ? '行動' : 'ACTIONS'}</button>
+            <button type="button" className={crewTab === 'loadout' ? 'active' : ''} onClick={() => setCrewTab('loadout')}>{language === 'zh' ? '裝備' : 'LOADOUT'}</button>
           </div>
 
-          <div className="character-heading">
-            <div><span>{selectedCharacter.factionCode} · {selectedCharacter.rarity}</span><h2>{characterName(selectedCharacter, language)}</h2><p>{professionName(selectedCharacter, language)}</p></div>
-            <div className="stars">{'★'.repeat(selectedCharacter.stars)}</div>
-          </div>
+          <div className="crew-tab-body">
+            {crewTab === 'profile' && (
+              <>
+                <label className="art-preview-select">
+                  <span>{ui.shift}</span>
+                  <select data-testid="shift-character" value={selectedCharacter.id} disabled={missionEnded} onChange={(event) => shiftSelectedCharacter(event.target.value)}>
+                    {sourceArtCharacters.map((character) => (
+                      <option key={character.id} value={character.id}>{characterName(character, language)} · {database.sourceArtIndex.items[character.id].version.toUpperCase()}</option>
+                    ))}
+                  </select>
+                </label>
 
-          <div className="mastery-strip" data-testid="active-character-mastery">
-            <div><span>{ui.mastery} L{mastery.level}</span><b>{mastery.xp} XP</b></div>
-            <i><span style={{ width: `${mastery.progress * 100}%` }} /></i>
-          </div>
-          <MasteryPerkBadges xp={masteryXp} language={language} testId="active-character-perks" />
+                <div
+                  key={selectedCharacter.id}
+                  className="portrait-placeholder"
+                  aria-label={sourceArt ? `角色 P01 ${sourceArt.version} 來源原畫` : '角色來源原畫待核准'}
+                  data-source-art-character-id={selectedCharacter.id}
+                  data-source-art-version={sourceArt?.version ?? ''}
+                  data-source-art-file={sourceArt?.file ?? ''}
+                  data-source-art-qa-status={sourceArt?.qaStatus ?? ''}
+                  data-source-art-engineering-qa-status={sourceArt?.engineeringQaStatus ?? ''}
+                >
+                  <div className="portrait-grid" />
+                  <div className="portrait-silhouette"><span>◈</span></div>
+                  {sourceArtUrl && <img
+                      className="source-art-image"
+                      src={sourceArtUrl}
+                      alt=""
+                      onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-source-art')}
+                      onError={(event) => event.currentTarget.parentElement?.classList.remove('has-source-art')}
+                    />}
+                  <div className="source-art-label placeholder-art-label">{ui.sourceArt.toUpperCase()} · {selectedCharacter.artStatus.toUpperCase()}</div>
+                  <div className="source-art-label generated-art-label">{ui.sourceArt.toUpperCase()} · P01 {sourceArt?.version.toUpperCase()}</div>
+                </div>
 
-          <div className={`fatigue-block band-${band.toLowerCase()}`}>
-            <div><span>{ui.fatigue}｜{language === 'zh' ? FATIGUE_ZH[band] : band}</span><strong>{selectedRuntime.fatigue} / {selectedCharacter.fatigueMax}</strong></div>
-            <div className="fatigue-track"><span style={{ width: `${ratio * 100}%` }} /></div>
-          </div>
-          <div className="runtime-statuses" data-testid="runtime-statuses" aria-label={language === 'zh' ? '角色狀態' : 'Character statuses'}>
-            {runtimeStatuses.map((status) => <span key={status.key}><b>{status.icon}</b>{status.label}</span>)}
-          </div>
+                <div className="character-heading">
+                  <div><span>{selectedCharacter.factionCode} · {selectedCharacter.rarity}</span><h2>{characterName(selectedCharacter, language)}</h2><p>{professionName(selectedCharacter, language)}</p></div>
+                  <div className="stars">{'★'.repeat(selectedCharacter.stars)}</div>
+                </div>
 
-          <div className="resource-row">
-            <div><span>AP</span><strong data-testid="active-runtime-ap">{selectedRuntime.actionPoints}</strong></div>
-            <div><span>ENERGY</span><strong data-testid="active-runtime-energy">{selectedRuntime.energy}</strong></div>
-            <div><span>INT</span><strong>{selectedCharacter.intel}</strong></div>
-          </div>
-          <div className="equipment-chip"><span>{ui.equipment}</span><b>{equipmentName(equipment, language)}</b><small>Power +{equipment.reliabilityBonus} · Fatigue -{Math.floor(equipment.fatigueRelief / 2)}</small></div>
-          <div className="loadout-mini-grid">
-            <div><span>{ui.spare}</span><b>{equipmentName(spare, language)}</b></div>
-            <div><span>{ui.vessel}</span><b>{vesselName(vessel, language)}</b></div>
-          </div>
+                <div className="resource-row">
+                  <div><span>AP</span><strong data-testid="active-runtime-ap">{selectedRuntime.actionPoints}</strong></div>
+                  <div><span>ENERGY</span><strong data-testid="active-runtime-energy">{selectedRuntime.energy}</strong></div>
+                  <div><span>INT</span><strong>{selectedCharacter.intel}</strong></div>
+                </div>
 
-          {operationDecision.code === 'ACT' && recommendedSkill && selectedSkillForecast?.ok && <button
-            type="button"
-            className="recommended-skill-cta"
-            data-testid="recommended-skill-cta"
-            data-recommended-actor-index={recommendedTeamSkill?.actorIndex}
-            data-recommended-character-id={recommendedTeamSkill?.character.id}
-            data-recommended-skill-id={recommendedSkill.id}
-            data-recommended-skill-reason={recommendedSkillReason}
-            data-recommended-skill-power={selectedSkillForecast.appliedPower}
-            data-recommended-skill-stage-result={selectedSkillForecast.stageAdvanced ? 'clear' : 'remains'}
-            title={recommendedSkillReason}
-            onClick={() => useTeamSkill(recommendedSkill, recommendedTeamSkill?.actorIndex)}
-          >
-            <span>REC</span>
-            <b>{recommendedTeamSkill && recommendedTeamSkill.actorIndex !== session.selectedIndex ? `${characterName(recommendedTeamSkill.character, language)} → ` : ''}{skillName(recommendedSkill, language)} +{selectedSkillForecast.appliedPower}</b>
-            <small>AP -1 / E -{recommendedSkill.energyCost} / {selectedSkillForecast.stageAdvanced ? 'STAGE CLEAR' : 'STAGE REMAINS'}</small>
-            <small className="recommended-skill-reason" data-testid="recommended-skill-reason">{recommendedSkillReason}</small>
-          </button>}
+                <div className={`fatigue-block band-${band.toLowerCase()}`}>
+                  <div><span>{ui.fatigue}｜{language === 'zh' ? FATIGUE_ZH[band] : band}</span><strong>{selectedRuntime.fatigue} / {selectedCharacter.fatigueMax}</strong></div>
+                  <div className="fatigue-track"><span style={{ width: `${ratio * 100}%` }} /></div>
+                </div>
+                <div className="runtime-statuses" data-testid="runtime-statuses" aria-label={language === 'zh' ? '角色狀態' : 'Character statuses'}>
+                  {runtimeStatuses.map((status) => <span key={status.key}><b>{status.icon}</b>{status.label}</span>)}
+                </div>
+              </>
+            )}
 
-          <div className="skill-list">
-            {characterSkillIds(selectedCharacter).map((skillId, index) => {
-              const skill = database.skillById.get(skillId)!;
-              const availability = canUseSkill(selectedRuntime, selectedCharacter, skill);
-              const stageBoost = stageAffinity(selectedCharacter.factionCode, currentStage);
-              const masteryUnlocked = isSkillSlotUnlocked(index, mastery);
-              const reactiveOutsideWindow = skill.type === 'Reactive';
-              return (
-                <button key={`${skillId}-${index}`} data-testid={`skill-${skill.id}`} className="skill-button" disabled={!availability.ok || missionEnded || diagnosisPending || Boolean(session.pendingBranch) || !masteryUnlocked || reactiveOutsideWindow} onClick={() => useSelectedSkill(skill)} title={!masteryUnlocked ? `${ui.lockedSkill} · L${Math.max(1, index)}` : reactiveOutsideWindow ? (language === 'zh' ? '等待風險事件窗口' : 'Wait for a risk event window') : diagnosisPending ? ui.diagnosis : availability.reason}>
-                  <span className="skill-index">{skill.type === 'Passive' ? 'AUTO' : `0${index + 1}`}</span>
-                  <span className="skill-copy"><b>{masteryUnlocked ? skillName(skill, language) : `🔒 ${skillName(skill, language)}`}</b><small>{skill.type} · Power {skill.power} · Stage ×{stageBoost} · Fatigue {signed(skill.fatigueDelta)}</small></span>
-                  <span className="skill-cost">{skill.type === 'Passive' ? '∞' : `${skill.energyCost}E`}</span>
-                </button>
-              );
-            })}
+            {crewTab === 'actions' && (
+              <>
+                {operationDecision.code === 'ACT' && recommendedSkill && selectedSkillForecast?.ok && <button
+                  type="button"
+                  className="recommended-skill-cta"
+                  data-testid="recommended-skill-cta"
+                  data-recommended-actor-index={recommendedTeamSkill?.actorIndex}
+                  data-recommended-character-id={recommendedTeamSkill?.character.id}
+                  data-recommended-skill-id={recommendedSkill.id}
+                  data-recommended-skill-reason={recommendedSkillReason}
+                  data-recommended-skill-power={selectedSkillForecast.appliedPower}
+                  data-recommended-skill-stage-result={selectedSkillForecast.stageAdvanced ? 'clear' : 'remains'}
+                  title={recommendedSkillReason}
+                  onClick={() => useTeamSkill(recommendedSkill, recommendedTeamSkill?.actorIndex)}
+                >
+                  <span>REC</span>
+                  <b>{recommendedTeamSkill && recommendedTeamSkill.actorIndex !== session.selectedIndex ? `${characterName(recommendedTeamSkill.character, language)} → ` : ''}{skillName(recommendedSkill, language)} +{selectedSkillForecast.appliedPower}</b>
+                  <small>AP -1 / E -{recommendedSkill.energyCost} / {selectedSkillForecast.stageAdvanced ? 'STAGE CLEAR' : 'STAGE REMAINS'}</small>
+                  <small className="recommended-skill-reason" data-testid="recommended-skill-reason">{recommendedSkillReason}</small>
+                </button>}
+
+                <div className="skill-list">
+                  {characterSkillIds(selectedCharacter).map((skillId, index) => {
+                    const skill = database.skillById.get(skillId)!;
+                    const availability = canUseSkill(selectedRuntime, selectedCharacter, skill);
+                    const stageBoost = stageAffinity(selectedCharacter.factionCode, currentStage);
+                    const masteryUnlocked = isSkillSlotUnlocked(index, mastery);
+                    const reactiveOutsideWindow = skill.type === 'Reactive';
+                    return (
+                      <button key={`${skillId}-${index}`} data-testid={`skill-${skill.id}`} className="skill-button" disabled={!availability.ok || missionEnded || diagnosisPending || Boolean(session.pendingBranch) || !masteryUnlocked || reactiveOutsideWindow} onClick={() => useSelectedSkill(skill)} title={!masteryUnlocked ? `${ui.lockedSkill} · L${Math.max(1, index)}` : reactiveOutsideWindow ? (language === 'zh' ? '等待風險事件窗口' : 'Wait for a risk event window') : diagnosisPending ? ui.diagnosis : availability.reason}>
+                        <span className="skill-index">{skill.type === 'Passive' ? 'AUTO' : `0${index + 1}`}</span>
+                        <span className="skill-copy"><b>{masteryUnlocked ? skillName(skill, language) : `🔒 ${skillName(skill, language)}`}</b><small>{skill.type} · Power {skill.power} · Stage ×{stageBoost} · Fatigue {signed(skill.fatigueDelta)}</small></span>
+                        <span className="skill-cost">{skill.type === 'Passive' ? '∞' : `${skill.energyCost}E`}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+
+            {crewTab === 'loadout' && (
+              <>
+                <div className="equipment-chip"><span>{ui.equipment}</span><b>{equipmentName(equipment, language)}</b><small>Power +{equipment.reliabilityBonus} · Fatigue -{Math.floor(equipment.fatigueRelief / 2)}</small></div>
+                <div className="loadout-mini-grid">
+                  <div><span>{ui.spare}</span><b>{equipmentName(spare, language)}</b></div>
+                  <div><span>{ui.vessel}</span><b>{vesselName(vessel, language)}</b></div>
+                </div>
+
+                <div className="mastery-strip" data-testid="active-character-mastery">
+                  <div><span>{ui.mastery} L{mastery.level}</span><b>{mastery.xp} XP</b></div>
+                  <i><span style={{ width: `${mastery.progress * 100}%` }} /></i>
+                </div>
+                <MasteryPerkBadges xp={masteryXp} language={language} testId="active-character-perks" />
+              </>
+            )}
           </div>
         </aside>
       </section>
-      <div className="mobile-action-dock" data-testid="mobile-action-dock">
-        <div><span>{language === 'zh' ? STAGE_ZH[session.mission.stageIndex] : currentStage}</span><b>{session.mission.progress} / {session.mission.requirement}</b></div>
-        {missionEnded
-          ? <button data-testid="mobile-reset-mission" onClick={() => setSession(null)}>{ui.redeploy}</button>
-          : <div className="mobile-action-buttons">
-              <button data-testid="mobile-next-round" disabled={Boolean(session.pendingBranch)} onClick={requestNextRound}>{session.pendingBranch ? (language === 'zh' ? '等待事件回應' : 'Awaiting response') : operationRoundConfirm ? 'Confirm' : ui.endRound}</button>
-              {operationRoundConfirm && (
-                <em className="mobile-round-commit-copy" data-testid="mobile-round-commit-copy">
-                  {endRoundForecast.failureReason
-                    ? `Forecast failure: ${endRoundForecast.failureReason}`
-                    : forecastBranchEvent
-                      ? `Will trigger ${forecastBranchEvent.code}; tap again.`
-                      : `Low margin: W ${endRoundForecast.weatherAfter}% / S ${endRoundForecast.safetyAfter}%.`}
-                </em>
-              )}
-              {operationAbortConfirm
-                ? <>
-                    <em className="mobile-abort-confirm-copy" data-testid="mobile-abort-operation-copy">{language === 'zh' ? 'Return 只中止 sortie；未結算、未寫任務結果。' : 'Return aborts this sortie only; no settlement or mission result is written.'}</em>
-                    <button data-testid="mobile-abort-operation-cancel" onClick={cancelOperationAbort}>Cancel</button>
-                    <button data-testid="mobile-abort-operation-confirm" onClick={confirmOperationAbort}>Return</button>
-                  </>
-                : <button data-testid="mobile-abort-operation-open" onClick={openOperationAbort}>Abort</button>}
-            </div>}
+      <div className="mobile-nav" data-testid="mobile-nav">
+        <button className={mobileSection === 'mission' ? 'active' : ''} onClick={() => setMobileSection('mission')}>{language === 'zh' ? '任務' : 'MISSION'}</button>
+        <button className={mobileSection === 'field' ? 'active' : ''} onClick={() => setMobileSection('field')}>{language === 'zh' ? '現場' : 'FIELD'}</button>
+        <button className={mobileSection === 'crew' ? 'active' : ''} onClick={() => setMobileSection('crew')}>{language === 'zh' ? '小隊' : 'CREW'}</button>
       </div>
       <OnboardingGuide
         progress={onboarding}
@@ -1554,6 +1580,7 @@ function DeploymentScreen({
 }) {
   const [activeTab, setActiveTab] = useState<'route' | 'readiness' | 'crew' | 'loadout' | 'forecast' | 'backup'>('route');
   const [campaignRouteTab, setCampaignRouteTab] = useState<'fleet' | 'missions' | 'briefing'>('fleet');
+  const [sandboxRouteTab, setSandboxRouteTab] = useState<'scenario' | 'scene' | 'briefing'>('scenario');
   const [sandboxSceneFilter, setSandboxSceneFilter] = useState<SandboxSceneAvailabilityFilter>('ALL');
   const [crewFilters, setCrewFilters] = useState<CrewRosterFilters>({
     query: '',
@@ -2063,7 +2090,7 @@ function DeploymentScreen({
       <nav className="workspace-tabs deployment-tabs" role="tablist" aria-label={language === 'zh' ? '部署資訊頁籤' : 'Deployment tabs'} data-testid="deployment-tabs">
         {([
           ['route', language === 'zh' ? '任務航線' : 'Mission route'],
-          ['readiness', mode === 'sandbox' ? (language === 'zh' ? '情境設定' : 'Scenario') : (language === 'zh' ? '作業許可' : 'Readiness')],
+          ...(mode !== 'sandbox' ? [['readiness', (language === 'zh' ? '作業許可' : 'Readiness')] as const] : []),
           ['crew', 'Crew'],
           ['loadout', language === 'zh' ? '裝備' : 'Loadout'],
           ...(mode === 'campaign' ? [['forecast', language === 'zh' ? '出勤預測' : 'Dispatch forecast']] as const : []),
@@ -2105,42 +2132,98 @@ function DeploymentScreen({
               onMaintainTurbinePlan={onMaintainTurbinePlan}
             />
           )}
-          {activeTab === 'route' && mode === 'sandbox' && <div className="campaign-progress"><span>SANDBOX MODE</span><b>{campaign.totalXp} XP</b><small>NO SAVE MUTATION</small></div>}
-          {activeTab === 'route' && mode === 'sandbox' && <label>{ui.riskEvent}
-              <select data-testid="sandbox-boss" value={deployment.sandboxBossId} onChange={(event) => onChange({ ...deployment, sandboxBossId: event.target.value })}>
-                {database.bosses.map((item) => <option key={item.id} value={item.id}>{item.severity} · {item.class} · {bossName(item, language)}</option>)}
-              </select>
-            </label>}
-          {activeTab === 'route' && mode === 'sandbox' && <div className="sandbox-scene-filter" data-testid="sandbox-scene-filter">
-              <div>
-                <span>SCENE ASSET COVERAGE</span>
-                <b data-testid="sandbox-scene-coverage">{sandboxSceneCoverage.integrated}/{sandboxSceneCoverage.total} INTEGRATED · {sandboxSceneCoverage.fallback} FALLBACK</b>
+          {activeTab === 'route' && mode === 'sandbox' && (
+            <nav className="sandbox-route-subtabs" role="tablist" aria-label={language === 'zh' ? '沙盒設定分頁' : 'Sandbox configuration tabs'} data-testid="sandbox-route-subtabs">
+              {([
+                ['scenario', language === 'zh' ? '情境' : 'SCENARIO'],
+                ['scene', language === 'zh' ? '場景' : 'SCENE'],
+                ['briefing', language === 'zh' ? '簡報' : 'BRIEFING'],
+              ] as const).map(([tab, label]) => (
+                <button
+                  key={tab}
+                  type="button"
+                  role="tab"
+                  className={sandboxRouteTab === tab ? 'active' : ''}
+                  aria-selected={sandboxRouteTab === tab}
+                  data-testid={`sandbox-route-tab-${tab}`}
+                  onClick={() => setSandboxRouteTab(tab)}
+                >
+                  {label}
+                </button>
+              ))}
+            </nav>
+          )}
+
+          {activeTab === 'route' && mode === 'sandbox' && sandboxRouteTab === 'scenario' && (
+            <SandboxScenarioPanel
+              scenario={deployment.sandboxScenario}
+              vessel={vessel}
+              language={language}
+              onChange={(sandboxScenario) => onChange({ ...deployment, sandboxScenario })}
+            />
+          )}
+
+          {activeTab === 'route' && mode === 'sandbox' && sandboxRouteTab === 'scene' && (
+            <div className="sandbox-scene-panel">
+              <div className="sandbox-scene-filter" data-testid="sandbox-scene-filter">
+                <div>
+                  <span>SCENE ASSET COVERAGE</span>
+                  <b data-testid="sandbox-scene-coverage">{sandboxSceneCoverage.integrated}/{sandboxSceneCoverage.total} INTEGRATED · {sandboxSceneCoverage.fallback} FALLBACK</b>
+                </div>
+                <div role="tablist" aria-label={language === 'zh' ? '場景可用性篩選' : 'Scene availability filter'}>
+                  {(['ALL', 'INTEGRATED', 'FALLBACK'] as const).map((filter) => (
+                    <button
+                      key={filter}
+                      type="button"
+                      role="tab"
+                      data-testid={`sandbox-scene-filter-${filter.toLowerCase()}`}
+                      aria-selected={sandboxSceneFilter === filter}
+                      className={sandboxSceneFilter === filter ? 'active' : ''}
+                      onClick={() => setSandboxSceneFilter(filter)}
+                    >
+                      {filter === 'ALL' ? `ALL ${sandboxSceneCoverage.total}` : filter === 'INTEGRATED' ? `INTEGRATED ${sandboxSceneCoverage.integrated}` : `FALLBACK ${sandboxSceneCoverage.fallback}`}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div role="tablist" aria-label={language === 'zh' ? '場景可用性篩選' : 'Scene availability filter'}>
-                {(['ALL', 'INTEGRATED', 'FALLBACK'] as const).map((filter) => (
+              <div className="sandbox-scene-grid">
+                {filteredSandboxSceneRoutes.map(({ scene, route }) => (
                   <button
-                    key={filter}
+                    key={scene.id}
                     type="button"
-                    role="tab"
-                    data-testid={`sandbox-scene-filter-${filter.toLowerCase()}`}
-                    aria-selected={sandboxSceneFilter === filter}
-                    className={sandboxSceneFilter === filter ? 'active' : ''}
-                    onClick={() => setSandboxSceneFilter(filter)}
+                    className={`sandbox-scene-card ${deployment.sandboxSceneId === scene.id ? 'active' : ''} ${route.availability.toLowerCase()}`}
+                    onClick={() => onChange({ ...deployment, sandboxSceneId: scene.id })}
                   >
-                    {filter === 'ALL' ? `ALL ${sandboxSceneCoverage.total}` : filter === 'INTEGRATED' ? `INTEGRATED ${sandboxSceneCoverage.integrated}` : `FALLBACK ${sandboxSceneCoverage.fallback}`}
+                    <b>{scene.id}</b>
+                    <span>{sceneRouteName(route, language)}</span>
+                    <small>{route.availability}</small>
                   </button>
                 ))}
               </div>
-            </div>}
-          {activeTab === 'route' && mode === 'sandbox' && <label>{language === 'zh' ? '作業場景' : 'Operation scene'}
-              <select data-testid="sandbox-scene" value={deployment.sandboxSceneId} onChange={(event) => onChange({ ...deployment, sandboxSceneId: event.target.value })}>
-                {!selectedSandboxSceneVisible && <option value={deployment.sandboxSceneId}>{deployment.sandboxSceneId} · {sceneRouteName(sandboxSceneRoute, language)} · {sandboxSceneRoute.availability} · CURRENT</option>}
-                {filteredSandboxSceneRoutes.map(({ scene, route }) => (
-                  <option key={scene.id} value={scene.id}>{scene.id} · {sceneRouteName(route, language)} · {route.availability}</option>
-                ))}
-              </select>
-            </label>}
-          {activeTab === 'route' && mode === 'sandbox' && <SceneRouteSummary route={sandboxSceneRoute} language={language} testId="sandbox-scene-preview" />}
+            </div>
+          )}
+
+          {activeTab === 'route' && mode === 'sandbox' && sandboxRouteTab === 'briefing' && (
+            <div className="sandbox-briefing-panel">
+              <label className="sandbox-boss-selector">
+                <span>{language === 'zh' ? '選擇 Boss' : 'Select Boss'}</span>
+                <select data-testid="sandbox-boss" value={deployment.sandboxBossId} onChange={(event) => onChange({ ...deployment, sandboxBossId: event.target.value })}>
+                  {database.bosses.map((item) => <option key={item.id} value={item.id}>{item.severity} · {item.class} · {bossName(item, language)}</option>)}
+                </select>
+              </label>
+              {(() => {
+                const selectedBoss = database.bossById.get(deployment.sandboxBossId);
+                return selectedBoss && (
+                  <div className="boss-challenge-briefing-card">
+                    <span className="severity-tag">{selectedBoss.severity}</span>
+                    <b className="boss-card-name">{bossName(selectedBoss, language)}</b>
+                    <p>{selectedBoss.mechanic}</p>
+                    <p style={{ marginTop: '8px', fontSize: '12px' }}>Counter Factions: {selectedBoss.counterFactions}</p>
+                  </div>
+                );
+              })()}
+            </div>
+          )}
           {activeTab === 'route' && mode === 'challenge' && <BossChallengeRoutePanel
             challenge={challenge}
             bosses={database.bosses}
@@ -2243,12 +2326,7 @@ function DeploymentScreen({
           {activeTab === 'route' && mode === 'challenge' && challengeRouteItems.length > 0 && challengeStrategyBriefing && <ChallengeStrategyBriefingPanel briefing={challengeStrategyBriefing} language={language} onFindCapability={findCrewCapability} />}
 
           {activeTab === 'readiness' && missionDefinition && <MissionEventDeck mission={missionDefinition} language={language} highlight={onboardingStep === 'EVENT_DECK'} />}
-          {activeTab === 'readiness' && mode === 'sandbox' && <SandboxScenarioPanel
-            scenario={deployment.sandboxScenario}
-            vessel={vessel}
-            language={language}
-            onChange={(sandboxScenario) => onChange({ ...deployment, sandboxScenario })}
-          />}
+
           {activeTab === 'readiness' && missionDefinition && operationReadiness && <section className={`operation-readiness ${operationReadiness.ready ? 'ready' : 'blocked'}`} data-testid="operation-readiness">
             <div className="operation-readiness-heading">
               <div><span>OPERATION READINESS</span><b>{language === 'zh' ? missionDefinition.operationProfile.siteNameZh : missionDefinition.operationProfile.siteNameEn} · {missionDefinition.operationProfile.siteCode}</b></div>
@@ -2288,6 +2366,16 @@ function DeploymentScreen({
           </section>}
 
           {activeTab === 'crew' && <><span className="form-section-label">{ui.team}</span>
+          {mode === 'challenge' && challengeSquadRecommendation
+            ? <BossChallengeSquadAdvisor
+                recommendation={challengeSquadRecommendation}
+                comparison={challengeSquadComparison!}
+                language={language}
+                onApply={applyChallengeSquadRecommendation}
+              />
+            : missionDefinition && rotationRecommendation
+              ? <CrewRotationAdvisor recommendation={rotationRecommendation} language={language} onApply={applyRotationRecommendation} />
+              : null}
           {mode !== 'sandbox' && <section className="crew-roster-filters" data-testid="crew-roster-filters">
             <label><span>{language === 'zh' ? '搜尋' : 'SEARCH'}</span><input data-testid="crew-filter-search" value={crewFilters.query} placeholder={language === 'zh' ? 'ID／姓名／職種' : 'ID / name / role'} onChange={(event) => setCrewFilters({ ...crewFilters, query: event.target.value })} /></label>
             <label><span>FACTION</span><select data-testid="crew-filter-faction" value={crewFilters.factionCode} onChange={(event) => setCrewFilters({ ...crewFilters, factionCode: event.target.value })}>
@@ -2467,46 +2555,6 @@ function DeploymentScreen({
           </div>}
         </section>
 
-        {activeTab !== 'route' && activeTab !== 'forecast' && activeTab !== 'backup' && <section className="panel deployment-analysis">
-          {activeTab === 'crew' && mode === 'challenge' && challengeSquadRecommendation
-            ? <BossChallengeSquadAdvisor
-                recommendation={challengeSquadRecommendation}
-                comparison={challengeSquadComparison!}
-                language={language}
-                onApply={applyChallengeSquadRecommendation}
-              />
-            : activeTab === 'crew' && missionDefinition && rotationRecommendation
-              ? <CrewRotationAdvisor recommendation={rotationRecommendation} language={language} onApply={applyRotationRecommendation} />
-            : <>
-              <div
-                key={previewCharacter.id}
-                className="portrait-placeholder deployment-portrait"
-                aria-label={previewArt ? `角色 P01 ${previewArt.version} 來源原畫` : '角色來源原畫待核准'}
-                data-source-art-character-id={previewCharacter.id}
-                data-source-art-version={previewArt?.version ?? ''}
-                data-source-art-file={previewArt?.file ?? ''}
-                data-source-art-qa-status={previewArt?.qaStatus ?? ''}
-                data-source-art-engineering-qa-status={previewArt?.engineeringQaStatus ?? ''}
-              >
-                <div className="portrait-grid" />
-                <div className="portrait-silhouette"><span>◈</span></div>
-                {previewUrl && <img className="source-art-image" src={previewUrl} alt="" onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-source-art')} />}
-                <div className="source-art-label placeholder-art-label">{ui.sourceArt.toUpperCase()} · {previewCharacter.artStatus.toUpperCase()}</div>
-                <div className="source-art-label generated-art-label">{ui.sourceArt.toUpperCase()} · P01 {previewArt?.version.toUpperCase()}</div>
-              </div>
-              <h3>{characterName(previewCharacter, language)}</h3>
-              <p>{professionName(previewCharacter, language)} · {previewCharacter.factionCode} · {previewCharacter.levelCode}</p>
-            </>}
-          <div className="deployment-stats">
-            <Metric label={ui.counterCoverage} value={`${counterCoverage}/3`} />
-            <Metric label={ui.roundLimit} value={mode === 'challenge' ? BOSS_CHALLENGE_ROUND_LIMIT : mission.roundLimit} />
-            <Metric label={missionDefinition ? 'LOADOUT' : 'BOSS'} value={missionDefinition ? `${loadout.matchedChoices}/3` : boss.class} />
-          </div>
-          <span className="form-section-label">{ui.coverage}</span>
-          <div className="coverage-grid">
-            {MISSION_STAGES.map((stage, index) => <div key={stage} className={coverage[stage] > 0 ? 'covered' : 'gap'}><span>{language === 'zh' ? STAGE_ZH[index] : stage}</span><b>{coverage[stage]}</b></div>)}
-          </div>
-        </section>}
       </div>
     </section>
   );
@@ -2925,8 +2973,17 @@ function BossChallengeRoutePanel({
   const classes = useMemo(() => bossChallengeRouteClasses(bosses), [bosses]);
   const resetFilters = () => onFiltersChange(createInitialBossChallengeRouteFilters());
   const pressureLabel = selectedItem ? challengePressureLabel(selectedItem.audit.pressure, language) : '';
-  return <>
-    <BossChallengeBriefing
+  const [activeChallengeTab, setActiveChallengeTab] = useState<'overview' | 'roster' | 'briefing'>('roster');
+
+  return <section className="boss-challenge-shell">
+    <div className="workspace-tabs boss-challenge-tabs" style={{ marginBottom: 12 }}>
+      <button type="button" className={activeChallengeTab === 'overview' ? 'active' : ''} onClick={() => setActiveChallengeTab('overview')}>{language === 'zh' ? '總覽' : 'Overview'}</button>
+      <button type="button" className={activeChallengeTab === 'roster' ? 'active' : ''} onClick={() => setActiveChallengeTab('roster')}>{language === 'zh' ? 'Boss 列表' : 'Roster'}</button>
+      <button type="button" className={activeChallengeTab === 'briefing' ? 'active' : ''} onClick={() => setActiveChallengeTab('briefing')}>{language === 'zh' ? '簡報' : 'Briefing'}</button>
+    </div>
+
+    {activeChallengeTab === 'overview' && (
+      <BossChallengeBriefing
       challenge={challenge}
       bosses={bosses}
       selectedBoss={selectedItem?.boss}
@@ -2935,57 +2992,77 @@ function BossChallengeRoutePanel({
       repairQueueSessionCount={repairQueueSessionCount}
       language={language}
       onNextRepair={onNextRepair}
-    />
-    <section className="boss-challenge-route-tools" data-testid="challenge-route-tools">
-      <label><span>SEVERITY</span><select data-testid="challenge-filter-severity" value={filters.severity} onChange={(event) => onFiltersChange({ ...filters, severity: event.target.value as BossChallengeRouteSeverity })}>
-        <option value="ALL">ALL</option>{(['S1', 'S2', 'S3', 'S4', 'S5'] as const).map((severity) => <option key={severity} value={severity}>{severity}</option>)}
-      </select></label>
-      <label><span>CLASS</span><select data-testid="challenge-filter-class" value={filters.classCode} onChange={(event) => onFiltersChange({ ...filters, classCode: event.target.value })}>
-        <option value="ALL">ALL</option>{classes.map((classCode) => <option key={classCode} value={classCode}>{classCode}</option>)}
-      </select></label>
-      <label><span>{language === 'zh' ? '紀錄狀態' : 'STATUS'}</span><select data-testid="challenge-filter-status" value={filters.status} onChange={(event) => onFiltersChange({ ...filters, status: event.target.value as BossChallengeRouteStatus })}>
-        <option value="ALL">ALL</option>
-        <option value="UNATTEMPTED">{language === 'zh' ? '未挑戰' : 'UNATTEMPTED'}</option>
-        <option value="CLEARED">{language === 'zh' ? '已通關' : 'CLEARED'}</option>
-        <option value="FAILED">{language === 'zh' ? '未通關' : 'FAILED'}</option>
-      </select></label>
-      <label><span>{language === 'zh' ? '紀錄來源' : 'SOURCE'}</span><select data-testid="challenge-filter-source" value={filters.source} onChange={(event) => onFiltersChange({ ...filters, source: event.target.value as BossChallengeRouteSource })}>
-        <option value="ALL">ALL</option>
-        <option value="OPERATION">OPERATION</option>
-        <option value="DRAFT_CONFIRMATION">DRAFT CONFIRM</option>
-      </select></label>
-      <label><span>{language === 'zh' ? '規劃狀態' : 'DRAFT'}</span><select data-testid="challenge-filter-draft" value={filters.draftStatus} onChange={(event) => onFiltersChange({ ...filters, draftStatus: event.target.value as BossChallengeRouteDraftStatus })}>
-        <option value="ALL">ALL</option>
-        <option value="DRAFTED">DRAFTED</option>
-        <option value="UNDRAFTED">UNDRAFTED</option>
-      </select></label>
-      <label><span>{language === 'zh' ? '結構準備度' : 'READINESS'}</span><select data-testid="challenge-filter-readiness" value={filters.readiness} onChange={(event) => onFiltersChange({ ...filters, readiness: event.target.value as BossChallengeRouteReadinessFilter })}>
-        <option value="ALL">ALL</option>
-        <option value="GAP_FREE">GAP-FREE</option>
-        <option value="HAS_GAPS">HAS GAPS</option>
-        <option value="NO_REACTIVE">NO REACTIVE</option>
-        <option value="NO_TEAM_RECOVERY">NO TEAM RECOVERY</option>
-        <option value="NO_LOW_ENERGY_ACTION">NO LOW ENERGY</option>
-        <option value="STAGE_GAP">STAGE GAP</option>
-      </select></label>
-      <label><span>{language === 'zh' ? '排序' : 'SORT'}</span><select data-testid="challenge-route-sort" value={filters.sort} onChange={(event) => onFiltersChange({ ...filters, sort: event.target.value as BossChallengeRouteSort })}>
-        <option value="ID_ASC">ID ↑</option>
-        <option value="SEVERITY_DESC">SEVERITY ↓</option>
-        <option value="BEST_DESC">BEST SCORE ↓</option>
-        <option value="BEST_ASC">BEST SCORE ↑</option>
-        <option value="AUDIT_HARDEST">AUDIT HARDEST</option>
-        <option value="DRAFTED_FIRST">DRAFTED FIRST</option>
-        <option value="READINESS">READINESS</option>
-      </select></label>
-      <strong data-testid="challenge-route-count">{items.length}/{bosses.length}</strong>
-      <button type="button" data-testid="challenge-route-reset" onClick={resetFilters}>{language === 'zh' ? '重設' : 'RESET'}</button>
-    </section>
-    {selectedItem ? <>
-      <label className="boss-challenge-selector">{language === 'zh' ? '風險事件' : 'Risk event'}
-        <select data-testid="challenge-boss" value={selectedItem.boss.id} onChange={(event) => onSelectBoss(event.target.value)}>
-          {items.map((item) => <option key={item.boss.id} value={item.boss.id}>{item.boss.id} · {item.boss.severity} · {item.boss.class} · {bossName(item.boss, language)} · {challengeRouteStatusLabel(item, language)} · {challengeRouteReadinessLabel(item)}</option>)}
-        </select>
-      </label>
+    />)}
+    
+    {activeChallengeTab === 'roster' && (
+      <div className="boss-challenge-roster-panel">
+        <section className="boss-challenge-route-tools" data-testid="challenge-route-tools">
+          <label><span>SEVERITY</span><select data-testid="challenge-filter-severity" value={filters.severity} onChange={(event) => onFiltersChange({ ...filters, severity: event.target.value as BossChallengeRouteSeverity })}>
+            <option value="ALL">ALL</option>{(['S1', 'S2', 'S3', 'S4', 'S5'] as const).map((severity) => <option key={severity} value={severity}>{severity}</option>)}
+          </select></label>
+          <label><span>CLASS</span><select data-testid="challenge-filter-class" value={filters.classCode} onChange={(event) => onFiltersChange({ ...filters, classCode: event.target.value })}>
+            <option value="ALL">ALL</option>{classes.map((classCode) => <option key={classCode} value={classCode}>{classCode}</option>)}
+          </select></label>
+          <label><span>{language === 'zh' ? '紀錄狀態' : 'STATUS'}</span><select data-testid="challenge-filter-status" value={filters.status} onChange={(event) => onFiltersChange({ ...filters, status: event.target.value as BossChallengeRouteStatus })}>
+            <option value="ALL">ALL</option>
+            <option value="UNATTEMPTED">{language === 'zh' ? '未挑戰' : 'UNATTEMPTED'}</option>
+            <option value="CLEARED">{language === 'zh' ? '已通關' : 'CLEARED'}</option>
+            <option value="FAILED">{language === 'zh' ? '未通關' : 'FAILED'}</option>
+          </select></label>
+          <label><span>{language === 'zh' ? '紀錄來源' : 'SOURCE'}</span><select data-testid="challenge-filter-source" value={filters.source} onChange={(event) => onFiltersChange({ ...filters, source: event.target.value as BossChallengeRouteSource })}>
+            <option value="ALL">ALL</option>
+            <option value="OPERATION">OPERATION</option>
+            <option value="DRAFT_CONFIRMATION">DRAFT CONFIRM</option>
+          </select></label>
+          <label><span>{language === 'zh' ? '規劃狀態' : 'DRAFT'}</span><select data-testid="challenge-filter-draft" value={filters.draftStatus} onChange={(event) => onFiltersChange({ ...filters, draftStatus: event.target.value as BossChallengeRouteDraftStatus })}>
+            <option value="ALL">ALL</option>
+            <option value="DRAFTED">DRAFTED</option>
+            <option value="UNDRAFTED">UNDRAFTED</option>
+          </select></label>
+          <label><span>{language === 'zh' ? '結構準備度' : 'READINESS'}</span><select data-testid="challenge-filter-readiness" value={filters.readiness} onChange={(event) => onFiltersChange({ ...filters, readiness: event.target.value as BossChallengeRouteReadinessFilter })}>
+            <option value="ALL">ALL</option>
+            <option value="GAP_FREE">GAP-FREE</option>
+            <option value="HAS_GAPS">HAS GAPS</option>
+            <option value="NO_REACTIVE">NO REACTIVE</option>
+            <option value="NO_TEAM_RECOVERY">NO TEAM RECOVERY</option>
+            <option value="NO_LOW_ENERGY_ACTION">NO LOW ENERGY</option>
+            <option value="STAGE_GAP">STAGE GAP</option>
+          </select></label>
+          <label><span>{language === 'zh' ? '排序' : 'SORT'}</span><select data-testid="challenge-route-sort" value={filters.sort} onChange={(event) => onFiltersChange({ ...filters, sort: event.target.value as BossChallengeRouteSort })}>
+            <option value="ID_ASC">ID ↑</option>
+            <option value="SEVERITY_DESC">SEVERITY ↓</option>
+            <option value="BEST_DESC">BEST SCORE ↓</option>
+            <option value="BEST_ASC">BEST SCORE ↑</option>
+            <option value="AUDIT_HARDEST">AUDIT HARDEST</option>
+            <option value="DRAFTED_FIRST">DRAFTED FIRST</option>
+            <option value="READINESS">READINESS</option>
+          </select></label>
+          <strong data-testid="challenge-route-count">{items.length}/{bosses.length}</strong>
+          <button type="button" data-testid="challenge-route-reset" onClick={resetFilters}>{language === 'zh' ? '重設' : 'RESET'}</button>
+        </section>
+        <div className="boss-challenge-grid">
+          {items.map((item) => (
+            <div key={item.boss.id} className={`boss-challenge-card ${selectedItem?.boss.id === item.boss.id ? 'selected' : ''}`} onClick={() => { onSelectBoss(item.boss.id); setActiveChallengeTab('briefing'); }}>
+              <div className="boss-card-top">
+                <span className={`severity-tag ${item.boss.severity}`}>{item.boss.severity}</span>
+                <b>{item.boss.id}</b>
+              </div>
+              <b className="boss-card-name">{bossName(item.boss, language)}</b>
+              <small className="boss-card-class">{item.boss.class} · {challengeRouteStatusLabel(item, language)}</small>
+              <div className="boss-card-best">{item.record ? item.record.bestScore : (language === 'zh' ? '尚無紀錄' : 'NO RECORD')}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {activeChallengeTab === 'briefing' && (
+      selectedItem ? <>
+        <div className="boss-challenge-briefing-card">
+          <span className={`severity-tag big ${selectedItem.boss.severity}`}>{selectedItem.boss.severity}</span>
+          <b className="boss-card-name">{bossName(selectedItem.boss, language)}</b>
+          <p>{selectedItem.boss.mechanic}</p>
+        </div>
       <div className={`boss-challenge-audit ${selectedItem.audit.pressure}${selectedItem.hardOutlier ? ' hard-outlier' : ''}`} data-testid="challenge-audit-selected">
         <span>DETERMINISTIC AUDIT</span>
         <b>{pressureLabel} · {selectedItem.audit.score}</b>
@@ -3039,11 +3116,12 @@ function BossChallengeRoutePanel({
         onConfirmSettlement={onConfirmSettlement}
         onCancelSettlement={onCancelSettlement}
       />}
-    </> : <div className="boss-challenge-route-empty" data-testid="challenge-route-empty">
-      <b>{language === 'zh' ? '沒有符合條件的 Boss' : 'No matching Boss'}</b>
-      <button type="button" onClick={resetFilters}>{language === 'zh' ? '清除篩選' : 'CLEAR FILTERS'}</button>
-    </div>}
-  </>;
+      </> : <div className="boss-challenge-route-empty" data-testid="challenge-route-empty">
+        <b>{language === 'zh' ? '沒有符合條件的 Boss' : 'No matching Boss'}</b>
+        <button type="button" onClick={() => { resetFilters(); setActiveChallengeTab('roster'); }}>{language === 'zh' ? '清除篩選' : 'CLEAR FILTERS'}</button>
+      </div>
+    )}
+  </section>;
 }
 
 function BossChallengeRouteRepair({
@@ -4455,11 +4533,10 @@ function CodexScreen({ database, campaign, language }: { database: GameDatabase;
                 <>
                   <p>{language === 'zh' ? entry.summaryZh : entry.summaryEn}</p>
                   <ul>{(language === 'zh' ? entry.keyPointsZh : entry.keyPointsEn).map((point) => <li key={point}>{point}</li>)}</ul>
-                  <div className="codex-safety"><b>{language === 'zh' ? '安全邊界' : 'Safety boundary'}</b><span>{language === 'zh' ? entry.safetyNoteZh : entry.safetyNoteEn}</span></div>
-                  <small>{language === 'zh' ? entry.sourceNoteZh : entry.sourceNoteEn}</small>
+                  <div className="codex-safety"><b>{language === 'zh' ? '安全邊界' : 'Safety boundary'}</b><p>{language === 'zh' ? entry.safetyNoteZh : entry.safetyNoteEn}</p></div>
                 </>
               ) : (
-                <div className="codex-lock-copy"><span>LOCKED</span><p>{language === 'zh' ? '完成任務後解鎖：' : 'Complete mission to unlock: '}<b>{missionTitle(mission, language)}</b></p></div>
+                <div className="codex-locked-hint"><b>LOCKED</b><p>{language === 'zh' ? '完成任務後解鎖：' : 'Complete mission to unlock: '}{missionTitle(mission, language)}</p></div>
               )}
             </article>
           );

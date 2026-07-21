@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    html, body, #root { height: 100%; margin: 0; }
+    body { background: radial-gradient(circle at 55% 0%, #123745 0, #071820 46%, #041017 100%); overflow: hidden; }
+    * { box-sizing: border-box; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: rgba(141,184,196,.28); }
+    @keyframes livePulse { 0%,100% { opacity: 1; box-shadow: 0 0 12px #56e1c9; } 50% { opacity: .55; box-shadow: 0 0 4px #56e1c9; } }
+  </style>
+</helmet>
+
+<div style="{{ ui.root }}">
+
+  <div style="{{ ui.topbar }}">
+    <div style="{{ ui.brandBlock }}">
+      <span style="{{ ui.brandMark }}">OWM</span>
+      <div style="min-width:0;">
+        <div style="{{ ui.eyebrow }}">DOF LAB · STRATEGY SIMULATION</div>
+        <h1 style="{{ ui.brandTitle }}">Offshore Wind Masters</h1>
+      </div>
+    </div>
+
+    <div style="{{ ui.langWrap }}">
+      <button style="{{ ui.langBtn }}">EN</button>
+    </div>
+
+    <div style="{{ ui.modeNav }}">
+      <button style="{{ ui.modeBtnActive }}">戰役</button>
+      <button style="{{ ui.modeBtn }}">Boss 挑戰</button>
+      <button style="{{ ui.modeBtn }}">沙盒</button>
+      <button style="{{ ui.modeBtn }}">收藏</button>
+      <button style="{{ ui.modeBtn }}">知識庫</button>
+      <button style="{{ ui.modeBtnGuide }}">重播教學</button>
+    </div>
+
+    <div style="{{ ui.dataStrip }}">
+      <sc-for list="{{ statChips }}" as="chip" hint-placeholder-count="6">
+        <div style="{{ ui.dataChip }}">
+          <strong style="{{ ui.dataChipVal }}">{{ chip.value }}</strong>
+          <span style="{{ ui.dataChipLabel }}">{{ chip.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="{{ ui.gameGrid }}">
+
+    <sc-if value="{{ showMission }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.panelEyebrow }}">MISSION CONTROL</div>
+
+      <label style="{{ ui.fieldLabel }}">風險事件</label>
+      <select style="{{ ui.select }}">
+        <option>溫升訊號・主軸承過熱</option>
+      </select>
+
+      <div style="{{ ui.stageHeadRow }}">
+        <span style="{{ ui.s1Badge }}">S1</span>
+        <div style="min-width:0; flex:1;">
+          <h2 style="{{ ui.stageTitle }}">徵兆・軸承過熱</h2>
+        </div>
+        <div style="{{ ui.stageCounter }}">
+          <strong style="{{ ui.stageCounterNum }}">1</strong>
+          <span style="{{ ui.stageCounterMax }}">/ 11</span>
+        </div>
+      </div>
+
+      <p style="{{ ui.stageDesc }}">SCADA 顯示軸承溫度持續偏離基線。先建立證據鏈，再決定是否隔離與更換。</p>
+
+      <div style="{{ ui.hazardChip }}"><i style="{{ ui.hazardChipGlyph }}">◆</i><span>DRV 傳動衝擊</span></div>
+
+      <div style="{{ ui.subTabRow }}">
+        <button style="{{ tabs.leftMission }}" onClick="{{ setLeftMission }}">事件</button>
+        <button style="{{ tabs.leftStages }}" onClick="{{ setLeftStages }}">階段</button>
+        <button style="{{ tabs.leftResources }}" onClick="{{ setLeftResources }}">資源</button>
+      </div>
+
+      <div style="{{ ui.tabBody }}">
+        <sc-if value="{{ showLeftMission }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ ui.eventDeckTitle }}">MISSION EVENT DECK</div>
+          <div style="{{ ui.eventDeckGrid }}">
+            <sc-for list="{{ eventDeck }}" as="ev" hint-placeholder-count="3">
+              <div style="{{ ui.eventChip }}">
+                <span style="{{ ui.eventChipCode }}">{{ ev.icon }} {{ ev.code }}</span>
+                <b style="{{ ui.eventChipLabel }}">{{ ev.label }}</b>
+                <small style="{{ ui.eventChipMult }}">{{ ev.mult }}</small>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showLeftStages }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.stageList }}">
+            <sc-for list="{{ stageListView }}" as="st" hint-placeholder-count="6">
+              <div style="{{ st.rowStyle }}">
+                <span style="{{ ui.stageListMarker }}">{{ st.marker }}</span>
+                <span style="{{ ui.stageListName }}">{{ st.num }} {{ st.name }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showLeftResources }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.metricsGrid }}">
+            <div style="{{ ui.metricCell }}"><span style="{{ ui.metricLabel }}">階段需求</span><strong style="{{ ui.metricValue }}">14</strong></div>
+            <div style="{{ ui.metricCell }}"><span style="{{ ui.metricLabel }}">疲勞衝擊</span><strong style="{{ ui.metricValue }}">+12</strong></div>
+            <div style="{{ ui.metricCellLast }}"><span style="{{ ui.metricLabel }}">Phase</span><strong style="{{ ui.metricValue }}">1 / 1</strong></div>
+          </div>
+          <div style="{{ ui.meterBlock }}">
+            <div style="{{ ui.meterRow }}"><span style="{{ ui.meterLabel }}">天候窗口</span><b style="{{ ui.meterValue }}">100%</b></div>
+            <div style="{{ ui.meterTrack }}"><span style="{{ meters.weather }}"></span></div>
+          </div>
+          <div style="{{ ui.meterBlock }}">
+            <div style="{{ ui.meterRow }}"><span style="{{ ui.meterLabel }}">安全</span><b style="{{ ui.meterValue }}">100%</b></div>
+            <div style="{{ ui.meterTrack }}"><span style="{{ meters.safety }}"></span></div>
+          </div>
+          <div style="{{ ui.meterBlock }}">
+            <div style="{{ ui.meterRow }}"><span style="{{ ui.meterLabel }}">證據</span><b style="{{ ui.meterValue }}">12%</b></div>
+            <div style="{{ ui.meterTrack }}"><span style="{{ meters.evidence }}"></span></div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="{{ ui.footerBlock }}">
+        <div style="{{ ui.detectRow }}"><span>偵測 0 / 14</span><span style="{{ ui.detectStatus }}">執行中</span></div>
+        <div style="{{ ui.meterTrack }}"><span style="{{ meters.detect }}"></span></div>
+
+        <button style="{{ endRound.style }}" onClick="{{ toggleEndRound }}">{{ endRound.label }}</button>
+        <sc-if value="{{ endRoundConfirm }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.commitWarning }}">將觸發 WEATHER_ESCALATION，再次點擊以確認。</div>
+        </sc-if>
+        <button style="{{ ui.abortBtn }}" onClick="{{ toggleAbort }}">Abort / Return Route</button>
+        <sc-if value="{{ abortOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.abortNotice }}">Return 只中止本次出勤，不會結算或寫入任務結果。</div>
+        </sc-if>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showField }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.fieldStatusRow }}">
+        <span style="{{ ui.liveDot }}"></span>
+        <span style="{{ ui.fieldStatusLabel }}">LIVE FIELD FEED</span>
+        <span style="{{ ui.hazardChipSmall }}">◆ DRV</span>
+        <span style="{{ ui.fieldChip }}">WTG-001 晨曦一號 · R 96% · B 0</span>
+        <span style="{{ ui.fieldChipIntegrated }}">SCN003 風場全景・雨天 · INTEGRATED</span>
+        <span style="{{ ui.detectBadge }}">DETECT</span>
+      </div>
+
+      <div style="{{ ui.fleetConditionStrip }}">
+        <span style="{{ ui.fleetConditionCell }}"><small style="{{ ui.fleetConditionLabel }}">FLEET CONDITION</small><b style="{{ ui.fleetConditionVal }}">WTG-001 · NOMINAL</b></span>
+        <span style="{{ ui.fleetConditionCell }}"><small style="{{ ui.fleetConditionLabel }}">COST</small><b style="{{ ui.fleetConditionVal }}">+2 → +2</b></span>
+        <span style="{{ ui.fleetConditionCell }}"><small style="{{ ui.fleetConditionLabel }}">SAFETY</small><b style="{{ ui.fleetConditionVal }}">100 → 100</b></span>
+        <span style="{{ ui.fleetConditionCellLast }}"><small style="{{ ui.fleetConditionLabel }}">RELIABILITY</small><b style="{{ ui.fleetConditionVal }}">15 → 15</b></span>
+        <em style="{{ ui.fleetConditionNote }}">Gameplay abstraction</em>
+      </div>
+
+      <div style="{{ ui.heroWrap }}">
+        <img src="assets/offshore-field-feed_scn003_rain_v001.png" alt="現場即時影像・風場全景・雨天" style="{{ ui.heroImg }}">
+        <div style="{{ ui.heroTopLeft }}">
+          <b style="{{ ui.heroTopLeftTitle }}">環海聯盟｜即時作業視窗</b>
+          <span style="{{ ui.heroTopLeftSub }}">DETECT · RISK 0%</span>
+        </div>
+        <div style="{{ ui.heroBottomRight }}">ROTOR DIGITAL TWIN · 3B · SHAFT LOCK</div>
+      </div>
+
+      <div style="{{ ui.formulaStrip }}">
+        <span>本階需求 = ceil(80 ÷ (1 × 6)) = <strong style="{{ ui.formulaEmph }}">14</strong></span>
+        <span style="{{ ui.formulaRight }}">克制陣營 Power × 1.25</span>
+      </div>
+
+      <div style="{{ ui.decisionBanner }}">
+        <span style="{{ ui.decisionTag }}">NEXT DECISION · ACT</span>
+        <span style="{{ ui.decisionText }}">潮風見習・ROV操作員 → ROV操作員・快速處置，預估 +32 power</span>
+        <button style="{{ ui.guideCta }}">GUIDE</button>
+      </div>
+
+      <div style="{{ ui.subTabRow }}">
+        <button style="{{ tabs.centerLog }}" onClick="{{ setCenterLog }}">LOG</button>
+        <button style="{{ tabs.centerSummary }}" onClick="{{ setCenterSummary }}">SUMMARY</button>
+        <button style="{{ tabs.centerObjectives }}" onClick="{{ setCenterObjectives }}">OBJECTIVES</button>
+        <span style="{{ ui.centerHeading }}">{{ centerHeading }}</span>
+      </div>
+
+      <div style="{{ ui.centerTabBody }}">
+        <sc-if value="{{ showCenterLog }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ logEntries }}" as="entry" hint-placeholder-count="3">
+            <p style="{{ ui.logLine }}"><span style="{{ ui.logLineId }}">{{ entry.id }}</span>{{ entry.text }}</p>
+          </sc-for>
+        </sc-if>
+        <sc-if value="{{ showCenterSummary }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.summaryGrid }}">
+            <sc-for list="{{ summaryGrid }}" as="s" hint-placeholder-count="8">
+              <div style="{{ ui.summaryCell }}"><small style="{{ ui.summaryLabel }}">{{ s.label }}</small><b style="{{ ui.summaryValue }}">{{ s.value }}</b></div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showCenterObjectives }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.objectivesGrid }}">
+            <sc-for list="{{ objectivesView }}" as="o" hint-placeholder-count="5">
+              <div style="{{ o.style }}"><small style="{{ ui.objLabel }}">{{ o.label }}</small><b style="{{ ui.objValue }}">{{ o.value }}</b></div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ showCrew }}" hint-placeholder-val="{{ true }}">
+    <div style="{{ ui.panel }}">
+      <div style="{{ ui.crewTopTabs }}">
+        <sc-for list="{{ crewList }}" as="c" hint-placeholder-count="3">
+          <button style="{{ c.style }}" onClick="{{ c.onClick }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="{{ ui.subTabRow }}">
+        <button style="{{ tabs.crewProfile }}" onClick="{{ setCrewProfile }}">角色</button>
+        <button style="{{ tabs.crewActions }}" onClick="{{ setCrewActions }}">行動</button>
+        <button style="{{ tabs.crewLoadout }}" onClick="{{ setCrewLoadout }}">裝備</button>
+      </div>
+
+      <div style="{{ ui.crewTabBody }}">
+        <sc-if value="{{ showCrewProfile }}" hint-placeholder-val="{{ true }}">
+          <div style="{{ ui.portraitWrap }}">
+            <img src="{{ crew.portrait }}" alt="{{ crew.name }}" style="{{ ui.portraitImg }}">
+            <div style="{{ ui.portraitScrim }}"></div>
+            <div style="{{ crew.starsBadgeStyle }}">{{ crew.starsDisplay }}</div>
+            <div style="{{ ui.sourceTag }}">{{ crew.sourceTag }}</div>
+            <div style="{{ ui.portraitNameplate }}">
+              <div style="{{ crew.factionTagStyle }}">{{ crew.factionCode }} · {{ crew.rarity }}</div>
+              <h2 style="{{ ui.portraitName }}">{{ crew.name }}</h2>
+              <div style="{{ ui.portraitMeta }}">{{ crew.role }} · {{ crew.level }} · {{ crew.xp }}</div>
+            </div>
+          </div>
+
+          <div style="{{ ui.statRow }}">
+            <div style="{{ ui.statCell }}"><span style="{{ ui.statLabel }}">AP</span><strong style="{{ crew.accentNumStyle }}">{{ crew.ap }}</strong></div>
+            <div style="{{ ui.statCell }}"><span style="{{ ui.statLabel }}">ENERGY</span><strong style="{{ crew.accentNumStyle }}">{{ crew.energy }}</strong></div>
+            <div style="{{ ui.statCellLast }}"><span style="{{ ui.statLabel }}">INT</span><strong style="{{ crew.accentNumStyle }}">{{ crew.intel }}</strong></div>
+          </div>
+
+          <div style="{{ crew.fatigueBlockStyle }}">
+            <div style="{{ ui.fatigueRow }}"><span>疲勞 · {{ crew.fatigueState }}</span><b style="{{ ui.fatigueVal }}">{{ crew.fatigueValue }} / {{ crew.fatigueMax }}</b></div>
+            <div style="{{ ui.meterTrack }}"><span style="{{ crew.fatigueBarStyle }}"></span></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showCrewActions }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ crew.recCardStyle }}">
+            <div style="{{ ui.recTag }}">REC</div>
+            <div style="min-width:0;">
+              <b style="{{ ui.recName }}">{{ crew.rec.name }}</b>
+              <small style="{{ ui.recCost }}">{{ crew.rec.cost }} · <span style="{{ crew.accentText }}">{{ crew.rec.power }}</span></small>
+              <p style="{{ ui.recReason }}">{{ crew.rec.reason }}</p>
+            </div>
+          </div>
+          <div style="{{ ui.skillRow }}">
+            <div style="{{ ui.skillTag }}">AUTO</div>
+            <div style="min-width:0;"><b style="{{ ui.skillName }}">{{ crew.auto.name }}</b><small style="{{ ui.skillDetail }}">{{ crew.auto.detail }}</small></div>
+            <div style="{{ ui.skillCost }}">{{ crew.auto.cost }}</div>
+          </div>
+          <div style="{{ ui.skillRow }}">
+            <div style="{{ ui.skillTag }}">02</div>
+            <div style="min-width:0;"><b style="{{ ui.skillName }}">{{ crew.skill2.name }}</b><small style="{{ ui.skillDetail }}">{{ crew.skill2.detail }}</small></div>
+            <div style="{{ ui.skillCost }}">{{ crew.skill2.cost }}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showCrewLoadout }}" hint-placeholder-val="{{ false }}">
+          <div style="{{ ui.equipGrid }}">
+            <div style="{{ ui.equipChip }}"><span style="{{ ui.equipLabel }}">任務裝備</span><b style="{{ ui.equipName }}">{{ crew.taskEquipment.name }}</b><small style="{{ ui.equipDetail }}">{{ crew.taskEquipment.detail }}</small></div>
+            <div style="{{ ui.equipChip }}"><span style="{{ ui.equipLabel }}">任務備品</span><b style="{{ ui.equipName }}">{{ crew.taskSupply }}</b></div>
+            <div style="{{ ui.equipChip }}"><span style="{{ ui.equipLabel }}">作業船舶</span><b style="{{ ui.equipName }}">{{ crew.vessel }}</b></div>
+          </div>
+          <div style="{{ ui.perkGrid }}">
+            <sc-for list="{{ crew.perksView }}" as="p" hint-placeholder-count="2">
+              <div style="{{ p.style }}">
+                <span style="{{ ui.perkLevel }}">{{ p.level }}</span>
+                <b style="{{ ui.perkName }}">{{ p.name }}</b>
+                <small style="{{ ui.perkXp }}">{{ p.xp }}</small>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+    </sc-if>
+
+  </div>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ ui.mobileNav }}">
+      <button style="{{ mobileNavStyles.mission }}" onClick="{{ setMobileMission }}">任務</button>
+      <button style="{{ mobileNavStyles.field }}" onClick="{{ setMobileField }}">現場</button>
+      <button style="{{ mobileNavStyles.crew }}" onClick="{{ setMobileCrew }}">小隊</button>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;density&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;comfortable&quot;, &quot;options&quot;: [&quot;comfortable&quot;, &quot;spacious&quot;], &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Display&quot;}, &quot;reduceMotion&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Display&quot;}}">
+const SANS = "'Inter', 'Noto Sans TC', system-ui, sans-serif";
+const MONO = "'Consolas', 'SFMono-Regular', monospace";
+const LINE = "rgba(141,184,196,.22)";
+const CYAN = "#42dbc8";
+const GOLD = "#f2c66f";
+const PURPLE = "#b99df1";
+const RED = "#f1745b";
+const MUTED = "#88aab3";
+const BRIGHT = "#f0fbfc";
+
+const CREW = [
+  {
+    tabLabel: "MAR 1", factionCode: "MAR", accent: CYAN,
+    rarity: "Common", stars: 1,
+    name: "潮風見習・ROV操作員", role: "ROV操作員", level: "熟練度 L1", xp: "0 XP",
+    portrait: "assets/CHR-MAR-196_L1_P01_v002.png", sourceTag: "來源原畫・P01 V002",
+    fatigueState: "穩定", fatigueValue: 0, fatigueMax: 112,
+    ap: 2, energy: 4, intel: 93,
+    taskEquipment: { name: "初級・三軸加速規", detail: "Power +3 · Fatigue -1" },
+    taskSupply: "初級・主軸承備品", vessel: "海上運維支援船",
+    perks: [
+      { level: "L4", name: "專家整備", xp: "500 XP", locked: true },
+      { level: "L5", name: "資深防護", xp: "900 XP", locked: true },
+    ],
+    rec: { name: "ROV操作員・快速處置", power: "+32", cost: "AP -1 · E -2 · STAGE CLEAR", reason: "推薦理由：目前隊伍中最高可用戰力 32，選定即可清除本階段。" },
+    auto: { name: "ROV操作員・專注校準", detail: "被動 · Power 17 · 階段 ×1.25 · 疲勞 0", cost: "—" },
+    skill2: { name: "ROV操作員・快速處置", detail: "主動 · Power 22 · 階段 ×1.25 · 疲勞 -6", cost: "2E" },
+  },
+  {
+    tabLabel: "MAR 2", factionCode: "MAR", accent: CYAN,
+    rarity: "Rare", stars: 2,
+    name: "浪脈執行者・ROV操作員", role: "ROV操作員", level: "熟練度 L2", xp: "250 XP",
+    portrait: "assets/CHR-MAR-197_L2_P01_v001.png", sourceTag: "來源原畫・P01 V001",
+    fatigueState: "穩定", fatigueValue: 18, fatigueMax: 127,
+    ap: 2, energy: 4, intel: 107,
+    taskEquipment: { name: "中級・三軸加速規", detail: "Power +5 · Fatigue -1" },
+    taskSupply: "中級・主軸承備品", vessel: "海上運維支援船",
+    perks: [
+      { level: "L3", name: "快速反應", xp: "250 XP", locked: false },
+      { level: "L4", name: "專家整備", xp: "500 XP", locked: true },
+    ],
+    rec: { name: "ROV操作員・精準隔離", power: "+41", cost: "AP -1 · E -2 · STAGE CLEAR", reason: "推薦理由：隊伍中次高戰力，可承擔隔離階段判讀。" },
+    auto: { name: "ROV操作員・沉著操縱", detail: "被動 · Power 24 · 階段 ×1.25 · 疲勞 0", cost: "—" },
+    skill2: { name: "ROV操作員・精準隔離", detail: "主動 · Power 31 · 階段 ×1.3 · 疲勞 -8", cost: "2E" },
+  },
+  {
+    tabLabel: "OMI 3", factionCode: "OMI", accent: "oklch(78% 0.13 230)",
+    rarity: "Common", stars: 1,
+    name: "潮風見習・高壓電工程師", role: "高壓電工程師", level: "熟練度 L1", xp: "0 XP",
+    portrait: "assets/CHR-OMI-241_L1_P01_v001.png", sourceTag: "來源原畫・P01 V001",
+    fatigueState: "穩定", fatigueValue: 0, fatigueMax: 109,
+    ap: 2, energy: 4, intel: 84,
+    taskEquipment: { name: "初級・弧光防護組", detail: "Power +2 · Fatigue -1" },
+    taskSupply: "初級・高壓檢測耗材", vessel: "海上運維支援船",
+    perks: [
+      { level: "L4", name: "電氣主管認證", xp: "500 XP", locked: true },
+      { level: "L5", name: "資深防護", xp: "900 XP", locked: true },
+    ],
+    rec: { name: "高壓電工程師・迴路檢測", power: "+26", cost: "AP -1 · E -2 · STAGE 推進", reason: "推薦理由：負責驗證階段的迴路判讀作業。" },
+    auto: { name: "高壓電工程師・風險預判", detail: "被動 · Power 15 · 階段 ×1.2 · 疲勞 0", cost: "—" },
+    skill2: { name: "高壓電工程師・迴路檢測", detail: "主動 · Power 20 · 階段 ×1.2 · 疲勞 -5", cost: "2E" },
+  },
+];
+
+const STAGE_LIST = [
+  { num: "01", name: "偵測", status: "current" },
+  { num: "02", name: "診斷", status: "pending" },
+  { num: "03", name: "隔離", status: "pending" },
+  { num: "04", name: "修復", status: "pending" },
+  { num: "05", name: "驗證", status: "pending" },
+  { num: "06", name: "復歸", status: "pending" },
+];
+
+const EVENT_DECK = [
+  { code: "R01", icon: "∿", label: "海況惡化", mult: "×0.75" },
+  { code: "R04", icon: "↯", label: "陣風衝擊", mult: "×0.85" },
+  { code: "R07", icon: "◷", label: "延遲判讀", mult: "×1.00" },
+];
+
+const SUMMARY_GRID = [
+  { label: "STAGE", value: "DETECT 1 / 1" },
+  { label: "PROGRESS", value: "0 / 14" },
+  { label: "WEATHER", value: "100%" },
+  { label: "SAFETY", value: "100%" },
+  { label: "EVIDENCE", value: "12%" },
+  { label: "SCENE", value: "SCN003 · INTEGRATED" },
+  { label: "TURBINE", value: "WTG-001 · R 96%" },
+  { label: "FLEET", value: "NOMINAL" },
+];
+
+const OBJECTIVES = [
+  { label: "STAGE TARGET", value: "完成偵測 14 點證據", state: "active" },
+  { label: "LEARNING OBJECTIVE", value: "先建立證據鏈，再判斷隔離", state: "active" },
+  { label: "DIAGNOSIS GATE", value: "診斷階段尚未開放", state: "waiting" },
+  { label: "BRANCH EVENT", value: "R04 陣風衝擊・尚未觸發", state: "waiting" },
+  { label: "RISK FLOOR", value: "安全需維持 ≥ 60%", state: "done" },
+];
+
+const LOG_ENTRIES = [
+  { id: "01", text: "任務 MSN-TUT-001 已部署・場景 SCN003・整備 5/5・天候 100・動員 +2・風場 NOMINAL" },
+  { id: "02", text: "成本 +2 → +2・Safety 100 → 100・Reliability 15 → 15" },
+  { id: "03", text: "配置小隊：潮風見習・ROV操作員 / 浪脈執行者・ROV操作員 / 潮風見習・高壓電工程師" },
+];
+
+const STAT_CHIPS = [
+  { value: "300", label: "角色" },
+  { value: "500", label: "技能" },
+  { value: "100", label: "Boss" },
+  { value: "20", label: "XP" },
+  { value: "54", label: "MNT" },
+  { value: "6", label: "RST" },
+];
+
+class Component extends DCLogic {
+  state = {
+    leftTab: "mission", centerTab: "log", crewIndex: 0, crewTab: "profile",
+    mobileSection: "mission", endRoundConfirm: false, abortOpen: false, isMobile: false,
+  };
+
+  componentDidMount() {
+    this.mq = window.matchMedia("(max-width: 1180px)");
+    this.onMq = () => this.setState({ isMobile: this.mq.matches });
+    this.onMq();
+    if (this.mq.addEventListener) this.mq.addEventListener("change", this.onMq);
+    else this.mq.addListener(this.onMq);
+  }
+
+  componentWillUnmount() {
+    if (!this.mq) return;
+    if (this.mq.removeEventListener) this.mq.removeEventListener("change", this.onMq);
+    else this.mq.removeListener(this.onMq);
+  }
+
+  renderVals() {
+    const { leftTab, centerTab, crewIndex, crewTab, mobileSection, endRoundConfirm, abortOpen, isMobile } = this.state;
+    const crewRaw = CREW[crewIndex];
+    const density = this.props.density === "spacious" ? 1.12 : 1;
+    const reduceMotion = !!this.props.reduceMotion;
+    const px = (n) => Math.round(n * density) + "px";
+
+    const tabBtn = (active, accent, big) => ({
+      minHeight: big ? (isMobile ? "44px" : "40px") : (isMobile ? "40px" : "36px"),
+      padding: isMobile ? "9px 12px" : "8px 14px",
+      fontSize: px(isMobile ? 13 : 13),
+      fontWeight: 800, letterSpacing: ".02em", fontFamily: SANS, cursor: "pointer",
+      border: `1px solid ${active ? accent : LINE}`,
+      background: active ? `color-mix(in srgb, ${accent} 18%, #071a24)` : "rgba(4,17,24,.55)",
+      color: active ? BRIGHT : "#8ba8ae", whiteSpace: "nowrap",
+    });
+
+    const showMission = !isMobile || mobileSection === "mission";
+    const showField = !isMobile || mobileSection === "field";
+    const showCrew = !isMobile || mobileSection === "crew";
+
+    const ui = {
+      root: {
+        height: "100dvh", width: "100%", overflow: "hidden", display: "flex", flexDirection: "column",
+        padding: isMobile ? "10px 12px" : "18px 26px", fontFamily: SANS, color: "#e8f5f6",
+      },
+      topbar: {
+        display: "flex", flexWrap: isMobile ? "wrap" : "nowrap", alignItems: "center",
+        gap: isMobile ? "8px" : "22px", paddingBottom: isMobile ? "8px" : "12px",
+        borderBottom: `1px solid ${LINE}`, marginBottom: isMobile ? "8px" : "14px",
+      },
+      brandMark: { color: "#06141c", background: CYAN, fontWeight: 900, padding: "5px 8px", fontSize: px(14), letterSpacing: ".06em", order: 0, flex: "none" },
+      brandBlock: { display: "flex", alignItems: "baseline", gap: "12px", minWidth: 0, flex: isMobile ? "1 1 auto" : "0 1 260px", overflow: "hidden" },
+      eyebrow: { fontSize: px(isMobile ? 9 : 11), letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      brandTitle: { fontSize: px(isMobile ? 16 : 20), margin: "2px 0 0", letterSpacing: ".01em", color: BRIGHT, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      langWrap: { order: isMobile ? 1 : 3, marginLeft: isMobile ? "auto" : "0", flex: "none" },
+      langBtn: { height: isMobile ? "34px" : "40px", minWidth: "50px", padding: "0 10px", fontSize: px(13), fontWeight: 700, border: "1px solid #2e6570", background: "transparent", color: "#cbe5e9", cursor: "pointer" },
+      modeNav: { display: "flex", gap: "6px", order: isMobile ? 2 : 1, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", flexWrap: "nowrap", flexShrink: 0 },
+      modeBtn: { minHeight: isMobile ? "38px" : "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: px(12), fontWeight: 700, letterSpacing: ".04em", whiteSpace: "nowrap", border: `1px solid ${LINE}`, color: "#7fa0a8", background: "#071a24", cursor: "pointer" },
+      modeBtnActive: { minHeight: isMobile ? "38px" : "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: px(12), fontWeight: 800, letterSpacing: ".04em", whiteSpace: "nowrap", border: "1px solid #42b9ab", color: "#eaffff", background: "rgba(66,219,200,.14)", cursor: "pointer" },
+      modeBtnGuide: { minHeight: isMobile ? "38px" : "38px", padding: isMobile ? "8px 12px" : "9px 14px", fontSize: px(12), fontWeight: 700, letterSpacing: ".04em", whiteSpace: "nowrap", border: "1px solid rgba(181,151,239,.4)", color: "#c6aff0", background: "rgba(170,143,234,.08)", cursor: "pointer" },
+      dataStrip: { display: "flex", border: `1px solid ${LINE}`, background: "rgba(5,18,25,.55)", order: isMobile ? 3 : 2, width: isMobile ? "100%" : "auto", overflowX: "auto", overflowY: "hidden", marginLeft: isMobile ? "0" : "auto", flexShrink: 0 },
+      dataChip: { minWidth: isMobile ? "62px" : "84px", padding: isMobile ? "7px 9px" : "8px 14px", textAlign: "center", borderRight: `1px solid ${LINE}` },
+      dataChipVal: { display: "block", fontSize: px(isMobile ? 14 : 17), fontWeight: 800, color: BRIGHT, fontFamily: MONO },
+      dataChipLabel: { display: "block", fontSize: px(isMobile ? 9 : 10), color: MUTED, letterSpacing: ".05em" },
+
+      gameGrid: { display: "grid", gridTemplateColumns: isMobile ? "1fr" : "300px minmax(420px,1fr) 330px", gridTemplateRows: "1fr", gap: isMobile ? "0" : "12px", flex: "1", minHeight: "0", overflow: "hidden" },
+      panel: { background: "linear-gradient(145deg, rgba(13,40,51,.92), rgba(6,24,33,.94))", border: `1px solid ${LINE}`, boxShadow: "0 15px 50px rgba(0,0,0,.18)", minHeight: 0, overflow: "hidden", display: "flex", flexDirection: "column", padding: isMobile ? "12px" : "16px" },
+      panelEyebrow: { fontSize: px(12), letterSpacing: ".18em", color: "#6f9da8", fontWeight: 800 },
+
+      fieldLabel: { display: "block", marginTop: "12px", color: MUTED, fontSize: px(13), fontWeight: 600 },
+      select: { width: "100%", marginTop: "6px", background: "#071a24", color: "#dff3f5", border: "1px solid #27515b", padding: "10px 12px", fontSize: px(14), fontFamily: SANS },
+
+      stageHeadRow: { display: "flex", gap: "10px", alignItems: "flex-start", marginTop: "14px" },
+      s1Badge: { background: "rgba(66,219,200,.14)", border: `1px solid ${CYAN}`, color: CYAN, fontWeight: 900, fontSize: px(13), padding: "4px 8px", flex: "none" },
+      stageTitle: { margin: "1px 0 0", fontSize: px(20), lineHeight: 1.2, color: BRIGHT },
+      stageCounter: { textAlign: "right", flex: "none" },
+      stageCounterNum: { fontSize: px(24), color: GOLD, lineHeight: 1 },
+      stageCounterMax: { fontSize: px(12), color: MUTED },
+      stageDesc: { margin: "10px 0 0", color: "#a9c7cc", fontSize: px(14), lineHeight: 1.55 },
+      hazardChip: { display: "inline-flex", gap: "6px", alignItems: "center", marginTop: "10px", padding: "5px 10px", border: `1px solid ${GOLD}55`, color: GOLD, fontSize: px(13), fontWeight: 700 },
+      hazardChipGlyph: { fontStyle: "normal" },
+
+      subTabRow: { display: "flex", gap: "6px", marginTop: "14px", alignItems: "center" },
+      tabBody: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden", marginTop: "10px" },
+
+      eventDeckTitle: { fontSize: px(11), letterSpacing: ".12em", color: "#7fa4ad", fontWeight: 800, marginBottom: "8px" },
+      eventDeckGrid: { display: "grid", gap: "8px" },
+      eventChip: { display: "grid", gridTemplateColumns: "auto 1fr auto", gap: "8px", alignItems: "center", padding: "10px", border: `1px solid ${LINE}`, background: "rgba(4,17,24,.55)" },
+      eventChipCode: { fontFamily: MONO, fontWeight: 800, fontSize: px(13), color: GOLD, whiteSpace: "nowrap" },
+      eventChipLabel: { fontSize: px(14), color: "#c3dadf", fontWeight: 600 },
+      eventChipMult: { fontFamily: MONO, fontSize: px(13), color: MUTED },
+
+      stageList: { display: "grid", gap: "4px" },
+      stageListMarker: { width: "18px", display: "inline-block", textAlign: "center", flex: "none" },
+      stageListName: { fontSize: px(15), fontWeight: 700 },
+
+      metricsGrid: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", border: `1px solid ${LINE}`, marginBottom: "12px" },
+      metricCell: { padding: "10px", textAlign: "center", borderRight: `1px solid ${LINE}` },
+      metricCellLast: { padding: "10px", textAlign: "center" },
+      metricLabel: { display: "block", fontSize: px(11), color: "#7fa0a8", letterSpacing: ".04em" },
+      metricValue: { fontSize: px(19), color: BRIGHT },
+
+      meterBlock: { marginBottom: "10px" },
+      meterRow: { display: "flex", justifyContent: "space-between", color: "#9cbcc3", fontSize: px(13), fontWeight: 600 },
+      meterLabel: {}, meterValue: { color: "#dcebed" },
+      meterTrack: { height: "6px", marginTop: "5px", background: "#06141c", overflow: "hidden" },
+
+      footerBlock: { marginTop: "auto", paddingTop: "10px", borderTop: `1px solid ${LINE}`, display: "grid", gap: "8px" },
+      detectRow: { display: "flex", justifyContent: "space-between", fontSize: px(14), fontWeight: 700 },
+      detectStatus: { color: CYAN },
+      commitWarning: { padding: "8px 10px", border: `1px solid ${GOLD}4d`, background: "rgba(242,198,111,.08)", color: GOLD, fontSize: px(12), fontWeight: 700, lineHeight: 1.4 },
+      abortBtn: { minHeight: "40px", border: `1px solid ${GOLD}59`, background: "rgba(242,198,111,.08)", color: GOLD, fontWeight: 800, fontSize: px(13), cursor: "pointer" },
+      abortNotice: { padding: "8px 10px", border: `1px solid ${RED}6b`, background: "rgba(241,116,91,.08)", color: "#ffd0c5", fontSize: px(12), lineHeight: 1.4 },
+
+      fieldStatusRow: { display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center", fontSize: px(12) },
+      liveDot: { width: "9px", height: "9px", borderRadius: "50%", background: "#56e1c9", boxShadow: "0 0 12px #56e1c9", animation: reduceMotion ? "none" : "livePulse 2.2s ease-in-out infinite", flex: "none" },
+      fieldStatusLabel: { letterSpacing: ".14em", color: "#9ee9df", fontWeight: 800 },
+      hazardChipSmall: { padding: "3px 8px", border: `1px solid ${GOLD}66`, color: GOLD, fontWeight: 700, fontFamily: MONO, fontSize: px(11) },
+      fieldChip: { padding: "3px 8px", border: `1px solid ${CYAN}44`, background: "rgba(4,17,24,.5)", color: "#b3c9cc", fontFamily: MONO, fontSize: px(11), whiteSpace: "nowrap" },
+      fieldChipIntegrated: { padding: "3px 8px", border: `1px solid ${CYAN}66`, background: "rgba(66,219,200,.08)", color: "#59d6c4", fontFamily: MONO, fontSize: px(11), whiteSpace: "nowrap" },
+      detectBadge: { marginLeft: "auto", padding: "3px 9px", border: `1px solid ${CYAN}88`, color: "#9ee9df", fontWeight: 800, fontFamily: MONO, fontSize: px(11) },
+
+      fleetConditionStrip: { display: "grid", gridTemplateColumns: "repeat(4, minmax(0,1fr)) auto", gap: "6px", alignItems: "center", padding: "6px 8px", marginTop: "8px", border: `1px solid ${CYAN}38`, borderLeft: `3px solid ${CYAN}`, background: "rgba(4,17,24,.55)" },
+      fleetConditionCell: { paddingLeft: "8px", borderLeft: `1px solid ${LINE}`, minWidth: 0 },
+      fleetConditionCellLast: { paddingLeft: "8px", minWidth: 0 },
+      fleetConditionLabel: { display: "block", color: "#6f929a", fontSize: px(9), fontWeight: 700, letterSpacing: ".05em" },
+      fleetConditionVal: { display: "block", color: "#d6e7e7", fontSize: px(12), fontWeight: 800, fontFamily: MONO, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+      fleetConditionNote: { color: "#6f8b91", fontSize: px(10), fontStyle: "italic", textAlign: "right", whiteSpace: "nowrap" },
+
+      heroWrap: { position: "relative", flex: "1", minHeight: 0, marginTop: "10px", background: "#071a24", overflow: "hidden" },
+      heroImg: { width: "100%", height: "100%", objectFit: "cover", display: "block" },
+      heroTopLeft: { position: "absolute", left: "12px", top: "12px", padding: "8px 12px", background: "rgba(4,17,24,.68)", borderLeft: `2px solid ${CYAN}` },
+      heroTopLeftTitle: { display: "block", fontSize: px(14), color: "#eef8f9" },
+      heroTopLeftSub: { fontSize: px(11), color: "#9ee9df", fontFamily: MONO, letterSpacing: ".05em" },
+      heroBottomRight: { position: "absolute", right: "12px", bottom: "12px", padding: "5px 10px", background: "rgba(4,17,24,.68)", color: "#9ee9df", fontFamily: MONO, fontSize: px(10), letterSpacing: ".05em" },
+
+      formulaStrip: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 2px 0", fontFamily: MONO, color: "#8fb3ba", fontSize: px(12) },
+      formulaEmph: { color: GOLD, fontSize: px(15) },
+      formulaRight: { color: "#7fa0a8" },
+
+      decisionBanner: { display: "flex", flexWrap: "wrap", gap: "10px", alignItems: "center", marginTop: "10px", padding: "9px 12px", border: `1px solid ${CYAN}30`, borderLeft: `3px solid ${CYAN}`, background: "rgba(66,219,200,.06)" },
+      decisionTag: { fontWeight: 900, fontSize: px(12), color: CYAN, letterSpacing: ".04em", whiteSpace: "nowrap" },
+      decisionText: { fontSize: px(13), color: "#d8e8e9", flex: "1", minWidth: "180px" },
+      guideCta: { padding: "6px 12px", border: `1px solid ${CYAN}88`, background: "rgba(66,219,200,.12)", color: "#6cdbcb", fontWeight: 800, fontSize: px(12), cursor: "pointer" },
+
+      centerHeading: { marginLeft: "auto", fontSize: px(12), letterSpacing: ".1em", color: "#7ea4ad", fontWeight: 700 },
+      centerTabBody: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden", marginTop: "10px" },
+      logLine: { margin: "0 0 10px", fontSize: px(14), color: "#b9d3d8", lineHeight: 1.5 },
+      logLineId: { color: "#4e747e", marginRight: "10px", fontFamily: MONO, fontWeight: 700 },
+
+      summaryGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px,1fr))", gap: "8px" },
+      summaryCell: { padding: "10px", border: `1px solid ${CYAN}26`, background: "rgba(4,17,24,.5)" },
+      summaryLabel: { display: "block", color: "#6f929b", fontSize: px(10), fontWeight: 800, letterSpacing: ".05em" },
+      summaryValue: { display: "block", marginTop: "4px", color: "#d8e8e9", fontSize: px(15), fontFamily: MONO, fontWeight: 700 },
+
+      objectivesGrid: { display: "grid", gap: "8px" },
+      objLabel: { display: "block", color: "#6f929b", fontSize: px(10), fontWeight: 800, letterSpacing: ".06em" },
+      objValue: { display: "block", marginTop: "4px", color: "#d8e8e9", fontSize: px(14), fontWeight: 600 },
+
+      crewTopTabs: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "6px" },
+      crewTabBody: { flex: "1", minHeight: 0, overflowY: "auto", overflowX: "hidden", marginTop: "12px", display: "flex", flexDirection: "column" },
+
+      portraitWrap: { position: "relative", flex: "1", minHeight: isMobile ? "220px" : "260px", overflow: "hidden", background: "#071a24" },
+      portraitImg: { width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 14%", display: "block" },
+      portraitScrim: { position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(4,17,24,.95), rgba(4,17,24,.05) 55%)" },
+      sourceTag: { position: "absolute", left: "10px", top: "10px", fontSize: px(10), letterSpacing: ".06em", color: "#d3e8ea", background: "rgba(4,16,22,.6)", padding: "4px 7px" },
+      portraitNameplate: { position: "absolute", left: "12px", right: "12px", bottom: "10px" },
+      portraitName: { margin: "3px 0", fontSize: px(20), color: "#f4fbfb", lineHeight: 1.2 },
+      portraitMeta: { fontSize: px(13), color: "#bcd8dc" },
+
+      statRow: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", border: `1px solid ${LINE}`, margin: "10px 0" },
+      statCell: { textAlign: "center", padding: "9px", borderRight: `1px solid ${LINE}` },
+      statCellLast: { textAlign: "center", padding: "9px" },
+      statLabel: { display: "block", fontSize: px(10), color: "#7197a1", letterSpacing: ".08em" },
+
+      fatigueRow: { display: "flex", justifyContent: "space-between", fontSize: px(13), fontWeight: 700, color: "#dcebed" },
+      fatigueVal: { fontFamily: MONO },
+
+      recTag: { display: "grid", placeItems: "center", minWidth: "38px", height: "34px", color: "#031820", fontWeight: 900, fontSize: px(11), fontFamily: MONO, flex: "none" },
+      recName: { display: "block", fontSize: px(15), color: "#f4fbfb", fontWeight: 800 },
+      recCost: { display: "block", marginTop: "3px", fontSize: px(12), color: "#9fc2c7", fontFamily: MONO },
+      recReason: { margin: "6px 0 0", fontSize: px(12), color: GOLD, lineHeight: 1.4 },
+
+      skillRow: { display: "grid", gridTemplateColumns: "40px 1fr auto", gap: "10px", alignItems: "center", padding: "10px", border: `1px solid ${LINE}`, background: "rgba(5,20,28,.6)", marginBottom: "8px" },
+      skillTag: { textAlign: "center", fontSize: px(11), fontWeight: 800, color: "#8fb3ba", fontFamily: MONO },
+      skillName: { display: "block", fontSize: px(14), color: "#dceced", fontWeight: 700 },
+      skillDetail: { display: "block", marginTop: "3px", fontSize: px(11), color: "#6f929a" },
+      skillCost: { textAlign: "center", color: GOLD, fontSize: px(13), fontFamily: MONO, fontWeight: 700 },
+
+      equipGrid: { display: "grid", gap: "8px", marginBottom: "12px" },
+      equipChip: { padding: "9px 10px", background: "rgba(5,20,28,.65)", border: `1px solid ${LINE}` },
+      equipLabel: { display: "block", color: "#6f929a", fontSize: px(10), letterSpacing: ".05em" },
+      equipName: { display: "block", margin: "4px 0", fontSize: px(14), color: "#dceced", fontWeight: 700 },
+      equipDetail: { display: "block", fontSize: px(11), color: "#8fb3ba" },
+
+      perkGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" },
+      perkLevel: { display: "block", fontSize: px(10), fontFamily: MONO, fontWeight: 800 },
+      perkName: { display: "block", fontSize: px(12), fontWeight: 700, marginTop: "2px" },
+      perkXp: { display: "block", fontSize: px(10), marginTop: "2px" },
+
+      mobileNav: { display: "flex", gap: "8px", padding: "8px 2px 2px", borderTop: `1px solid ${LINE}`, marginTop: "8px" },
+    };
+
+    const tabs = {
+      leftMission: tabBtn(leftTab === "mission", CYAN),
+      leftStages: tabBtn(leftTab === "stages", CYAN),
+      leftResources: tabBtn(leftTab === "resources", CYAN),
+      centerLog: tabBtn(centerTab === "log", CYAN),
+      centerSummary: tabBtn(centerTab === "summary", CYAN),
+      centerObjectives: tabBtn(centerTab === "objectives", CYAN),
+      crewProfile: tabBtn(crewTab === "profile", crewRaw.accent),
+      crewActions: tabBtn(crewTab === "actions", crewRaw.accent),
+      crewLoadout: tabBtn(crewTab === "loadout", crewRaw.accent),
+    };
+
+    const mobileNavStyles = {
+      mission: { flex: 1, minHeight: "50px", fontSize: px(14), fontWeight: 800, cursor: "pointer", border: `1px solid ${mobileSection === "mission" ? CYAN : LINE}`, color: mobileSection === "mission" ? "#eaffff" : "#7fa0a8", background: mobileSection === "mission" ? "rgba(66,219,200,.14)" : "#071a24" },
+      field: { flex: 1, minHeight: "50px", fontSize: px(14), fontWeight: 800, cursor: "pointer", border: `1px solid ${mobileSection === "field" ? CYAN : LINE}`, color: mobileSection === "field" ? "#eaffff" : "#7fa0a8", background: mobileSection === "field" ? "rgba(66,219,200,.14)" : "#071a24" },
+      crew: { flex: 1, minHeight: "50px", fontSize: px(14), fontWeight: 800, cursor: "pointer", border: `1px solid ${mobileSection === "crew" ? CYAN : LINE}`, color: mobileSection === "crew" ? "#eaffff" : "#7fa0a8", background: mobileSection === "crew" ? "rgba(66,219,200,.14)" : "#071a24" },
+    };
+
+    const stageListView = STAGE_LIST.map((s) => ({
+      ...s, marker: s.status === "current" ? "●" : "—",
+      rowStyle: {
+        display: "grid", gridTemplateColumns: "22px 1fr", alignItems: "center", padding: "8px 6px",
+        borderBottom: `1px solid ${LINE}`,
+        background: s.status === "current" ? "linear-gradient(90deg, rgba(66,219,200,.14), transparent)" : "transparent",
+        borderLeft: s.status === "current" ? `3px solid ${CYAN}` : "3px solid transparent",
+        color: s.status === "current" ? "#efffff" : "#7f9da5",
+      },
+    }));
+
+    const objectivesView = OBJECTIVES.map((o) => ({
+      ...o,
+      style: {
+        padding: "9px 10px", border: `1px solid ${LINE}`,
+        borderLeft: `3px solid ${o.state === "active" ? CYAN : o.state === "done" ? PURPLE : "#4c6870"}`,
+        background: "rgba(4,17,24,.5)",
+      },
+    }));
+
+    const crew = {
+      ...crewRaw,
+      starsDisplay: "★".repeat(crewRaw.stars) + "☆".repeat(5 - crewRaw.stars),
+      starsBadgeStyle: { position: "absolute", right: "10px", top: "10px", padding: "4px 8px", background: "rgba(4,16,22,.65)", color: GOLD, fontSize: px(12), letterSpacing: ".04em" },
+      factionTagStyle: { fontSize: px(11), letterSpacing: ".1em", color: crewRaw.accent, fontWeight: 800, marginBottom: "2px" },
+      accentNumStyle: { fontSize: px(26), color: crewRaw.accent, fontFamily: MONO },
+      accentText: { color: GOLD, fontWeight: 800 },
+      fatigueBlockStyle: { padding: "9px 10px", background: "rgba(0,0,0,.2)", borderLeft: `3px solid ${crewRaw.fatigueValue / crewRaw.fatigueMax > 0.7 ? RED : crewRaw.fatigueValue / crewRaw.fatigueMax > 0.4 ? GOLD : "#49c8a7"}` },
+      fatigueBarStyle: { display: "block", height: "100%", width: Math.round((crewRaw.fatigueValue / crewRaw.fatigueMax) * 100) + "%", background: "#49c8a7" },
+      recCardStyle: { display: "grid", gridTemplateColumns: "auto 1fr", gap: "10px", alignItems: "start", marginBottom: "10px", padding: "10px", border: `1px solid ${crewRaw.accent}aa`, borderLeft: `3px solid ${crewRaw.accent}`, background: `color-mix(in srgb, ${crewRaw.accent} 12%, rgba(5,20,28,.86))` },
+      perksView: crewRaw.perks.map((p) => ({
+        ...p,
+        style: {
+          display: "grid", gridTemplateColumns: "30px 1fr", gap: "2px 8px", alignItems: "center", padding: "7px 8px",
+          border: `1px solid ${p.locked ? LINE : "rgba(170,143,234,.42)"}`,
+          background: p.locked ? "rgba(5,20,28,.5)" : "rgba(170,143,234,.08)",
+          color: p.locked ? "#5f7981" : "#c7aff5",
+        },
+      })),
+    };
+
+    // update recCardStyle's inner tag color to have contrasting text
+    crew.recCardStyle = { ...crew.recCardStyle };
+
+    const meters = {
+      weather: { display: "block", height: "100%", width: "100%", background: "#62a8db" },
+      safety: { display: "block", height: "100%", width: "100%", background: "#58d1a4" },
+      evidence: { display: "block", height: "100%", width: "12%", background: PURPLE },
+      detect: { display: "block", height: "100%", width: "0%", background: "linear-gradient(90deg,#2ab8a8,#7bf3df)" },
+    };
+
+    const endRound = {
+      style: {
+        minHeight: "48px", fontWeight: 900, fontSize: px(15), letterSpacing: ".02em", border: 0, cursor: "pointer",
+        background: endRoundConfirm ? GOLD : "#43dac8", color: endRoundConfirm ? "#221607" : "#052029",
+        boxShadow: endRoundConfirm ? "0 0 0 1px rgba(242,198,111,.35), 0 0 18px rgba(242,198,111,.22)" : "none",
+      },
+      label: endRoundConfirm ? "Confirm End Round" : "結束本回合",
+    };
+
+    const crewList = CREW.map((c, i) => ({
+      label: c.tabLabel,
+      style: tabBtn(i === crewIndex, c.accent, true),
+      onClick: () => this.setState({ crewIndex: i, crewTab: "profile" }),
+    }));
+
+    return {
+      ui, tabs, meters, endRound, crew, crewList, mobileNavStyles,
+      isMobile, showMission, showField, showCrew,
+      leftTab, showLeftMission: leftTab === "mission", showLeftStages: leftTab === "stages", showLeftResources: leftTab === "resources",
+      centerTab, showCenterLog: centerTab === "log", showCenterSummary: centerTab === "summary", showCenterObjectives: centerTab === "objectives",
+      centerHeading: centerTab === "log" ? "OPERATION LOG" : centerTab === "summary" ? "OPERATION SUMMARY" : "OPERATION OBJECTIVES",
+      crewTab, showCrewProfile: crewTab === "profile", showCrewActions: crewTab === "actions", showCrewLoadout: crewTab === "loadout",
+      endRoundConfirm, abortOpen,
+      statChips: STAT_CHIPS, eventDeck: EVENT_DECK, stageListView, summaryGrid: SUMMARY_GRID, objectivesView, logEntries: LOG_ENTRIES,
+      setLeftMission: () => this.setState({ leftTab: "mission" }),
+      setLeftStages: () => this.setState({ leftTab: "stages" }),
+      setLeftResources: () => this.setState({ leftTab: "resources" }),
+      setCenterLog: () => this.setState({ centerTab: "log" }),
+      setCenterSummary: () => this.setState({ centerTab: "summary" }),
+      setCenterObjectives: () => this.setState({ centerTab: "objectives" }),
+      setCrewProfile: () => this.setState({ crewTab: "profile" }),
+      setCrewActions: () => this.setState({ crewTab: "actions" }),
+      setCrewLoadout: () => this.setState({ crewTab: "loadout" }),
+      setMobileMission: () => this.setState({ mobileSection: "mission" }),
+      setMobileField: () => this.setState({ mobileSection: "field" }),
+      setMobileCrew: () => this.setState({ mobileSection: "crew" }),
+      toggleEndRound: () => this.setState((s) => ({ endRoundConfirm: !s.endRoundConfirm })),
+      toggleAbort: () => this.setState((s) => ({ abortOpen: !s.abortOpen })),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
