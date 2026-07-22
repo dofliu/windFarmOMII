@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.30.0-ui-redesign-daylight-deepops - 2026-07-22
+
+- Completed full UI redesign and theme system replacement driven by `design.md` specification.
+- Integrated dual-theme engine (`[data-theme="daylight"]` default and `[data-theme="deepops"]` dark mode) with CSS variable tokens (`--owm-surface`, `--owm-border`, `--owm-text`, `--owm-accent`, `--owm-mono`, `--owm-round`).
+- Added persistent Theme Switcher (`☀️ Daylight` / `🌙 Deep Ops`) in top header control bar.
+- Refactored `.topbar` to single-row compact flex layout (44px min-height) preventing header line-wrapping and button overlapping.
+- Systematically migrated all page sub-panels (Deployment, Fleet Dispatch, Sandbox Scenario Lab, Collection, Codex, Boss Challenge) from hardcoded dark styles to responsive CSS theme tokens.
+- Optimized character collection card thumbnail rendering using `background-image` CSS containers to prevent 404 image request failures.
+- Compacted page headings and top margins to pull primary content upwards and maximize visible screen space on 1080p and 800p displays.
+- Verified: `pnpm validate:art`, `pnpm build`, cross-theme toggle rendering, and end-to-end game flow verification.
+
 ## 3.29.0-source-art-batch022-r7-samples - 2026-07-19
 
 - Generated three representative `BATCH-P01-022` R7 Source Art QA samples before full-batch production/import: `CHR-GOV-031` masculine, `CHR-ACA-071` androgynous, and `CHR-GOV-032` feminine.

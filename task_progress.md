@@ -1,8 +1,19 @@
 # OWM 專案進度
 
-更新日期：2026-07-19
+更新日期：2026-07-22
 
-## Current clean status - 2026-07-19
+## Current clean status - 2026-07-22
+
+- Version: `3.30.0-ui-redesign-daylight-deepops`.
+- Completed: full UI redesign and theme system replacement driven by `design.md`.
+- Completed: dual-theme engine (`Daylight` light default & `Deep Ops` dark toggleable) with CSS theme variables (`--owm-surface`, `--owm-border`, `--owm-accent`, `--owm-mono`, `--owm-round`).
+- Completed: Topbar single-row compact flex layout (44px min-height) fixing button overlap and line wrapping.
+- Completed: full theme token migration for all sub-pages (Deployment, Fleet Dispatch, Sandbox Scenario Lab, Collection, Codex, Boss Challenge).
+- Completed: `CollectionScreen` thumbnail background-image rendering fix preventing 404 image errors.
+- Completed: page heading vertical compression pulling main interactive panels up by ~80-100px.
+- Verified: `npm run build` passes with zero errors; full game flow and theme toggling validated.
+
+## Previous clean status - 2026-07-19
 
 - Version: `3.29.0-source-art-batch022-r7-samples`.
 - Completed: generated three representative `BATCH-P01-022` R7 Source Art QA samples before full-batch production/import: `CHR-GOV-031` masculine, `CHR-ACA-071` androgynous, and `CHR-GOV-032` feminine.

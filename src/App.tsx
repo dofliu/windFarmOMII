@@ -321,6 +321,13 @@ export default function App() {
   const [view, setView] = useState<GameView>('campaign');
   const [onboarding, setOnboarding] = useState<OnboardingProgress>(() => resumeOnboardingAtDeployment(loadOnboardingProgress()));
   const [reducedMotion, setReducedMotion] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [theme, setTheme] = useState<'daylight' | 'deepops'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('owm-theme');
+      if (saved === 'deepops' || saved === 'daylight') return saved;
+    }
+    return 'daylight';
+  });
   const [operationAbortConfirm, setOperationAbortConfirm] = useState(false);
   const [operationRoundConfirm, setOperationRoundConfirm] = useState(false);
   const [operationReturnNotice, setOperationReturnNotice] = useState<OperationReturnNotice | undefined>();
@@ -329,6 +336,13 @@ export default function App() {
   const [leftTab, setLeftTab] = useState<'mission' | 'stages' | 'resources'>('mission');
   const [crewTab, setCrewTab] = useState<'profile' | 'actions' | 'loadout'>('profile');
   const [mobileSection, setMobileSection] = useState<'mission' | 'field' | 'crew'>('mission');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('owm-theme', theme);
+    }
+  }, [theme]);
 
   useEffect(() => {
     // 同步 CSS 與 Phaser 的動態偏好，讓高對比事件不會只在其中一層被關閉。
@@ -599,7 +613,7 @@ export default function App() {
     if (!bossChanged) persistChallengeDraft(resolved.sandboxBossId, resolved.teamIds);
     setDeployment(resolved);
   };
-  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} />;
+  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} />;
 
   if (!session) {
     if (view === 'collection') {
@@ -4238,10 +4252,12 @@ function Topbar({
   language,
   onboarding,
   reducedMotion,
+  theme,
   onNavigate,
   onReplayOnboarding,
   onToggleLanguage,
   onToggleMotion,
+  onToggleTheme,
 }: {
   database: GameDatabase;
   campaign: CampaignProgress;
@@ -4249,10 +4265,12 @@ function Topbar({
   language: Language;
   onboarding: OnboardingProgress;
   reducedMotion: boolean;
+  theme: 'daylight' | 'deepops';
   onNavigate: (view: GameView) => void;
   onReplayOnboarding: () => void;
   onToggleLanguage: () => void;
   onToggleMotion: () => void;
+  onToggleTheme: () => void;
 }) {
   const ui = UI[language];
   return (
@@ -4277,8 +4295,13 @@ function Topbar({
         <DataChip value={campaign.maintenanceCredits} label="MNT" />
         <DataChip value={campaign.recoveryTokens} label="RST" />
       </div>
-      <button className="motion-button" data-testid="motion-toggle" aria-pressed={reducedMotion} onClick={onToggleMotion}>{reducedMotion ? (language === 'zh' ? '低動態' : 'Low motion') : (language === 'zh' ? '標準動態' : 'Full motion')}</button>
-      <button className="language-button" data-testid="language-toggle" onClick={onToggleLanguage}>{language === 'zh' ? 'EN' : '繁中'}</button>
+      <div className="header-controls">
+        <button className="theme-button" data-testid="theme-toggle" onClick={onToggleTheme}>
+          {theme === 'daylight' ? '☀️ Daylight' : '🌙 Deep Ops'}
+        </button>
+        <button className="motion-button" data-testid="motion-toggle" aria-pressed={reducedMotion} onClick={onToggleMotion}>{reducedMotion ? (language === 'zh' ? '低動態' : 'Low motion') : (language === 'zh' ? '標準動態' : 'Full motion')}</button>
+        <button className="language-button" data-testid="language-toggle" onClick={onToggleLanguage}>{language === 'zh' ? 'EN' : '繁中'}</button>
+      </div>
     </header>
   );
 }
@@ -4445,8 +4468,11 @@ function CollectionScreen({
             data-source-art-engineering-qa-status={art?.engineeringQaStatus ?? ''}
             style={{ '--faction': database.factionById.get(character.factionCode)?.color ?? '#42dbc8' } as React.CSSProperties}
           >
-            <div className="collection-art">
-              {art ? <img loading="lazy" src={`/assets/source-art/p01/${art.file}`} alt="" /> : <span>◈</span>}
+            <div
+              className="collection-art"
+              style={art ? { backgroundImage: `url('/assets/source-art/p01/${art.file}')`, backgroundSize: 'cover', backgroundPosition: 'center 14%' } : undefined}
+            >
+              {!art && <span>◈</span>}
               <small>{art ? `P01 ${art.version.toUpperCase()}` : 'PROMPT READY'}</small>
               {!careerUnlocked && <em className="career-lock-badge">🔒 {character.levelCode}</em>}
             </div>

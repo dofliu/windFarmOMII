@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.29.0-source-art-batch022-r7-samples",
+  "version": "3.30.0-ui-redesign-daylight-deepops",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",
