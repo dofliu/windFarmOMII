@@ -58,6 +58,9 @@ class OWMAudioEngine {
   public playSfx(type: 'click' | 'theme' | 'artpack' | 'ptw' | 'deploy' | 'round' | 'victory'): void {
     if (this.isMuted) return;
     this.ensureContext();
+    if (!this.isBgmRunning) {
+      this.startBgm();
+    }
     if (!this.ctx) return;
 
     const now = this.ctx.currentTime;
@@ -212,19 +215,19 @@ class OWMAudioEngine {
 
     const filter = this.ctx.createBiquadFilter();
     filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(300, now);
+    filter.frequency.setValueAtTime(350, now);
 
     // LFO to modulate sea wave frequency
     const lfo = this.ctx.createOscillator();
     lfo.frequency.setValueAtTime(0.12, now); // ~8 second wave cycle
     const lfoGain = this.ctx.createGain();
-    lfoGain.gain.setValueAtTime(200, now);
+    lfoGain.gain.setValueAtTime(250, now);
 
     lfo.connect(lfoGain);
     lfoGain.connect(filter.frequency);
 
     this.waveGain = this.ctx.createGain();
-    this.waveGain.gain.setValueAtTime(0.04, now);
+    this.waveGain.gain.setValueAtTime(0.06, now);
 
     whiteNoise.connect(filter);
     filter.connect(this.waveGain);
@@ -233,9 +236,9 @@ class OWMAudioEngine {
     whiteNoise.start(now);
     lfo.start(now);
 
-    // 2. Ambient Harmony Chords
+    // 2. Ambient Harmony Chords & Melodic Arpeggio
     this.padGain = this.ctx.createGain();
-    this.padGain.gain.setValueAtTime(0.03, now);
+    this.padGain.gain.setValueAtTime(0.12, now);
     this.padGain.connect(this.ctx.destination);
 
     const playChordPad = () => {
@@ -249,22 +252,37 @@ class OWMAudioEngine {
         if (!this.ctx) return;
         const osc = this.ctx.createOscillator();
         const g = this.ctx.createGain();
-        osc.type = 'sine';
+        osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, padNow);
         g.gain.setValueAtTime(0.001, padNow);
-        g.gain.linearRampToValueAtTime(0.02, padNow + 2);
-        g.gain.linearRampToValueAtTime(0.001, padNow + 6);
+        g.gain.linearRampToValueAtTime(0.06, padNow + 1.5);
+        g.gain.linearRampToValueAtTime(0.001, padNow + 5.5);
 
         osc.connect(g);
         if (this.padGain) g.connect(this.padGain);
 
         osc.start(padNow);
-        osc.stop(padNow + 6.5);
+        osc.stop(padNow + 5.8);
       });
+
+      // Play soft melodic arpeggio
+      const arpNotes = [523.25, 659.25, 783.99, 880.00, 1046.50];
+      const randomNote = arpNotes[Math.floor(Math.random() * arpNotes.length)];
+      const arpOsc = this.ctx.createOscillator();
+      const arpGain = this.ctx.createGain();
+      arpOsc.type = 'sine';
+      arpOsc.frequency.setValueAtTime(randomNote, padNow + 1.0);
+      arpGain.gain.setValueAtTime(0.001, padNow + 1.0);
+      arpGain.gain.linearRampToValueAtTime(0.04, padNow + 1.2);
+      arpGain.gain.exponentialRampToValueAtTime(0.001, padNow + 3.0);
+      arpOsc.connect(arpGain);
+      if (this.padGain) arpGain.connect(this.padGain);
+      arpOsc.start(padNow + 1.0);
+      arpOsc.stop(padNow + 3.2);
     };
 
     playChordPad();
-    this.bgmInterval = window.setInterval(playChordPad, 7000);
+    this.bgmInterval = window.setInterval(playChordPad, 5500);
   }
 
   public stopBgm(): void {
