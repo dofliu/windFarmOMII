@@ -1,8 +1,19 @@
 # OWM 專案進度
 
-更新日期：2026-07-22
+更新日期：2026-07-23
 
-## Current clean status - 2026-07-22
+## Current clean status - 2026-07-23
+
+- Version: `3.32.0-web-audio-engine`.
+- Completed: Web Audio API Synthesizer & Audio Engine (`src/domain/audio.ts`) with zero external file dependencies.
+- Completed: procedural sea wave & wind ambient soundscape synthesizer (8s wave LFO modulation).
+- Completed: theme-reactive ambient pad harmonies (`Daylight` A Major pad / `Deep Ops` A Minor sub-bass drone).
+- Completed: interactive Sound FX (UI click, theme chime, art pack arpeggio, PTW confirmation, maritime horn ship dispatch, round radar pulse, victory chords).
+- Completed: Audio Control button (`🔊 Sound` / `🔇 Muted`) in Topbar header controls with localStorage persistence.
+- Completed: V2 Shinkai Art Pack & Dual Art Engine architecture (`public/assets/source-art/v2-shinkai/`).
+- Verified: `npm run build` passes with zero errors; verified audio toggling and SFX triggers end-to-end.
+
+## Previous clean status - 2026-07-22
 
 - Version: `3.31.0-v2-shinkai-art-engine`.
 - Completed: V2 Shinkai Art Pack & Dual Art Engine architecture (`public/assets/source-art/v2-shinkai/`).

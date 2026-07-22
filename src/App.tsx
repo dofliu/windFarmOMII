@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useMemo, useState, type KeyboardEvent } from 'react';
+import { audioEngine } from './domain/audio';
 import { OnboardingGuide, type OnboardingSurface } from './components/OnboardingGuide';
 import { characterSkillIds, loadGameDatabase } from './domain/data';
 import { bossName, characterName, professionName, skillName } from './domain/localization';
@@ -335,14 +336,29 @@ export default function App() {
     }
     return 'classic';
   });
+  const [audioMuted, setAudioMuted] = useState(() => audioEngine.getMuted());
 
   const handleToggleArtPack = () => {
+    audioEngine.playSfx('artpack');
     setArtPack((prev) => {
       const next = prev === 'classic' ? 'shinkai' : 'classic';
       if (typeof window !== 'undefined') localStorage.setItem('owm-art-pack', next);
       return next;
     });
   };
+
+  const handleToggleAudio = () => {
+    const nextMuted = audioEngine.toggleMuted();
+    setAudioMuted(nextMuted);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    audioEngine.setTheme(theme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('owm-theme', theme);
+    }
+  }, [theme]);
   const [operationAbortConfirm, setOperationAbortConfirm] = useState(false);
   const [operationRoundConfirm, setOperationRoundConfirm] = useState(false);
   const [operationReturnNotice, setOperationReturnNotice] = useState<OperationReturnNotice | undefined>();
@@ -628,7 +644,7 @@ export default function App() {
     if (!bossChanged) persistChallengeDraft(resolved.sandboxBossId, resolved.teamIds);
     setDeployment(resolved);
   };
-  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} artPack={artPack} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} />;
+  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} artPack={artPack} audioMuted={audioMuted} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} onToggleAudio={handleToggleAudio} />;
 
   if (!session) {
     if (view === 'collection') {
@@ -654,6 +670,7 @@ export default function App() {
     const deploymentCrewReady = view !== 'campaign'
       || (deploymentCareerReady && deployment.teamIds.every((id) => isCrewMemberDeployable(campaign, requiredCharacter(database, id))));
     const deploy = () => {
+      audioEngine.playSfx('deploy');
       if (new Set(deployment.teamIds).size !== deployment.teamIds.length) return;
       if (view === 'sandbox') {
         const boss = database.bossById.get(deployment.sandboxBossId);
@@ -4278,12 +4295,14 @@ function Topbar({
   reducedMotion,
   theme,
   artPack,
+  audioMuted,
   onNavigate,
   onReplayOnboarding,
   onToggleLanguage,
   onToggleMotion,
   onToggleTheme,
   onToggleArtPack,
+  onToggleAudio,
 }: {
   database: GameDatabase;
   campaign: CampaignProgress;
@@ -4293,12 +4312,14 @@ function Topbar({
   reducedMotion: boolean;
   theme: 'daylight' | 'deepops';
   artPack: 'classic' | 'shinkai';
+  audioMuted: boolean;
   onNavigate: (view: GameView) => void;
   onReplayOnboarding: () => void;
   onToggleLanguage: () => void;
   onToggleMotion: () => void;
   onToggleTheme: () => void;
   onToggleArtPack: () => void;
+  onToggleAudio: () => void;
 }) {
   const ui = UI[language];
   return (
@@ -4308,7 +4329,7 @@ function Topbar({
         <div className="brand-line"><span className="brand-mark">OWM</span><h1>Offshore Wind Masters</h1></div>
       </div>
       <nav className="mode-nav" aria-label="Game mode">
-        {(['campaign', 'challenge', 'sandbox', 'collection', 'codex'] as const).map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} onClick={() => onNavigate(item)}>{ui[item]}</button>)}
+        {(['campaign', 'challenge', 'sandbox', 'collection', 'codex'] as const).map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{ui[item]}</button>)}
         <button className="onboarding-replay" data-testid="onboarding-replay" onClick={onReplayOnboarding}>
           {onboarding.status === 'active'
             ? (language === 'zh' ? `導覽 ${onboarding.stepIndex + 1}/5` : `Guide ${onboarding.stepIndex + 1}/5`)
@@ -4324,10 +4345,13 @@ function Topbar({
         <DataChip value={campaign.recoveryTokens} label="RST" />
       </div>
       <div className="header-controls">
+        <button className="theme-button audio-button" data-testid="audio-toggle" onClick={onToggleAudio}>
+          {audioMuted ? '🔇 Muted' : '🔊 Sound'}
+        </button>
         <button className="theme-button art-pack-button" data-testid="art-pack-toggle" onClick={onToggleArtPack}>
           {artPack === 'shinkai' ? '✨ 新海誠動漫' : '🎨 經典圖庫'}
         </button>
-        <button className="theme-button" data-testid="theme-toggle" onClick={onToggleTheme}>
+        <button className="theme-button" data-testid="theme-toggle" onClick={() => { audioEngine.playSfx('theme'); onToggleTheme(); }}>
           {theme === 'daylight' ? '☀️ Daylight' : '🌙 Deep Ops'}
         </button>
         <button className="motion-button" data-testid="motion-toggle" aria-pressed={reducedMotion} onClick={onToggleMotion}>{reducedMotion ? (language === 'zh' ? '低動態' : 'Low motion') : (language === 'zh' ? '標準動態' : 'Full motion')}</button>

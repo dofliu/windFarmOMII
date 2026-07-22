@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.31.0-v2-shinkai-art-engine",
+  "version": "3.32.0-web-audio-engine",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",

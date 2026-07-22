@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.32.0-web-audio-engine - 2026-07-23
+
+- Built pure Web Audio API Synthesizer & Audio Asset Engine (`src/domain/audio.ts`) with zero external file dependencies.
+- Added procedural ocean wave and wind ambient soundscape synthesizer (8s wave LFO modulation).
+- Added theme-reactive ambient pad harmonies (Daylight A Major pad / Deep Ops A Minor sub-bass drone).
+- Added interactive Sound FX: UI click, theme toggle chime, art pack switch arpeggio, PTW checklist confirmation, maritime horn ship dispatch, round advance radar pulse, and victory chords.
+- Integrated Audio Control button (`🔊 Sound` / `🔇 Muted`) in Topbar controls with localStorage persistence.
+- Verified: `npm run build` passes with zero errors; verified end-to-end audio toggling and SFX triggers.
+
 ## 3.31.0-v2-shinkai-art-engine - 2026-07-22
 
 - Built and integrated the V2 Shinkai Art Pack & Dual Art Engine (`public/assets/source-art/v2-shinkai/`).
