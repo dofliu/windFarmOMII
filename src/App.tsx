@@ -328,6 +328,21 @@ export default function App() {
     }
     return 'daylight';
   });
+  const [artPack, setArtPack] = useState<'classic' | 'shinkai'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('owm-art-pack');
+      if (saved === 'shinkai' || saved === 'classic') return saved;
+    }
+    return 'classic';
+  });
+
+  const handleToggleArtPack = () => {
+    setArtPack((prev) => {
+      const next = prev === 'classic' ? 'shinkai' : 'classic';
+      if (typeof window !== 'undefined') localStorage.setItem('owm-art-pack', next);
+      return next;
+    });
+  };
   const [operationAbortConfirm, setOperationAbortConfirm] = useState(false);
   const [operationRoundConfirm, setOperationRoundConfirm] = useState(false);
   const [operationReturnNotice, setOperationReturnNotice] = useState<OperationReturnNotice | undefined>();
@@ -613,11 +628,11 @@ export default function App() {
     if (!bossChanged) persistChallengeDraft(resolved.sandboxBossId, resolved.teamIds);
     setDeployment(resolved);
   };
-  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} />;
+  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} artPack={artPack} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} />;
 
   if (!session) {
     if (view === 'collection') {
-      return <main className="app-shell">{header}<CollectionScreen database={database} campaign={campaign} language={language} onImportProgress={importCampaign} /><OnboardingGuide progress={onboarding} surface="away" language={language} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
+      return <main className="app-shell">{header}<CollectionScreen database={database} campaign={campaign} language={language} artPack={artPack} onImportProgress={importCampaign} /><OnboardingGuide progress={onboarding} surface="away" language={language} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
     }
     if (view === 'codex') {
       return <main className="app-shell">{header}<CodexScreen database={database} campaign={campaign} language={language} /><OnboardingGuide progress={onboarding} surface="away" language={language} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
@@ -687,6 +702,7 @@ export default function App() {
           challenge={challenge}
           mode={view}
           language={language}
+          artPack={artPack}
           onboardingStep={view === 'campaign' && onboarding.status === 'active' ? onboardingStep : undefined}
           operationReadiness={operationReadiness}
           operationReturnNotice={view === 'campaign' ? operationReturnNotice : undefined}
@@ -734,8 +750,11 @@ export default function App() {
   const runtimeTurbine = missionDefinition ? database.turbineById.get(missionDefinition.turbineId) : undefined;
   const runtimeTurbineState = runtimeTurbine ? campaign.windFarm[runtimeTurbine.id] : undefined;
   const sceneRoute = resolveSceneRoute(session.sceneId, database.sceneById, database.sceneAssets);
+  const shinkaiArt = database.shinkaiArtIndex?.items[selectedCharacter.id];
   const sourceArt = database.sourceArtIndex.items[selectedCharacter.id];
-  const sourceArtUrl = sourceArt ? `/assets/source-art/p01/${sourceArt.file}` : null;
+  const sourceArtUrl = artPack === 'shinkai' && shinkaiArt
+    ? `/assets/source-art/v2-shinkai/${shinkaiArt.file}`
+    : (sourceArt ? `/assets/source-art/p01/${sourceArt.file}` : null);
   const sourceArtCharacters = Object.keys(database.sourceArtIndex.items)
     .map((characterId) => requiredCharacter(database, characterId));
   const faction = database.factionById.get(selectedCharacter.factionCode)!;
@@ -1558,6 +1577,7 @@ function DeploymentScreen({
   challenge,
   mode,
   language,
+  artPack,
   onboardingStep,
   operationReadiness,
   operationReturnNotice,
@@ -1578,6 +1598,7 @@ function DeploymentScreen({
   challenge: BossChallengeProgress;
   mode: 'campaign' | 'challenge' | 'sandbox';
   language: Language;
+  artPack?: 'classic' | 'shinkai';
   onboardingStep?: OnboardingStep;
   operationReadiness?: OperationReadinessEvaluation;
   operationReturnNotice?: OperationReturnNotice;
@@ -1782,8 +1803,11 @@ function DeploymentScreen({
     );
   }, [boss, crewFilters.capability, database.skillById, filteredCrew, mode, teamKey]);
   const previewCharacter = team[0];
+  const shinkaiPreviewArt = database.shinkaiArtIndex?.items[previewCharacter.id];
   const previewArt = database.sourceArtIndex.items[previewCharacter.id];
-  const previewUrl = previewArt ? `/assets/source-art/p01/${previewArt.file}` : null;
+  const previewUrl = artPack === 'shinkai' && shinkaiPreviewArt
+    ? `/assets/source-art/v2-shinkai/${shinkaiPreviewArt.file}`
+    : (previewArt ? `/assets/source-art/p01/${previewArt.file}` : null);
   const ownedEquipmentIds = new Set(campaign.ownedEquipmentIds);
   const equipmentOwned = mode !== 'campaign' || ownedEquipmentIds.has(deployment.equipmentId);
   const spareOwned = mode !== 'campaign' || ownedEquipmentIds.has(deployment.spareId);
@@ -4253,11 +4277,13 @@ function Topbar({
   onboarding,
   reducedMotion,
   theme,
+  artPack,
   onNavigate,
   onReplayOnboarding,
   onToggleLanguage,
   onToggleMotion,
   onToggleTheme,
+  onToggleArtPack,
 }: {
   database: GameDatabase;
   campaign: CampaignProgress;
@@ -4266,11 +4292,13 @@ function Topbar({
   onboarding: OnboardingProgress;
   reducedMotion: boolean;
   theme: 'daylight' | 'deepops';
+  artPack: 'classic' | 'shinkai';
   onNavigate: (view: GameView) => void;
   onReplayOnboarding: () => void;
   onToggleLanguage: () => void;
   onToggleMotion: () => void;
   onToggleTheme: () => void;
+  onToggleArtPack: () => void;
 }) {
   const ui = UI[language];
   return (
@@ -4296,6 +4324,9 @@ function Topbar({
         <DataChip value={campaign.recoveryTokens} label="RST" />
       </div>
       <div className="header-controls">
+        <button className="theme-button art-pack-button" data-testid="art-pack-toggle" onClick={onToggleArtPack}>
+          {artPack === 'shinkai' ? '✨ 新海誠動漫' : '🎨 經典圖庫'}
+        </button>
         <button className="theme-button" data-testid="theme-toggle" onClick={onToggleTheme}>
           {theme === 'daylight' ? '☀️ Daylight' : '🌙 Deep Ops'}
         </button>
@@ -4310,11 +4341,13 @@ function CollectionScreen({
   database,
   campaign,
   language,
+  artPack,
   onImportProgress,
 }: {
   database: GameDatabase;
   campaign: CampaignProgress;
   language: Language;
+  artPack?: 'classic' | 'shinkai';
   onImportProgress: (progress: CampaignProgress) => void;
 }) {
   const [activeTab, setActiveTab] = useState<'crew' | 'resources'>('crew');
@@ -4455,7 +4488,14 @@ function CollectionScreen({
           const careerUnlocked = unlockedCharacterIds.has(character.id);
           const persistentFatigue = campaignCrewFatigue(campaign, character.id);
           const readinessBand = crewReadinessBand(campaign, character);
+          const shinkaiArt = database.shinkaiArtIndex?.items[character.id];
           const art = database.sourceArtIndex.items[character.id];
+          const activeArtFile = artPack === 'shinkai' && shinkaiArt
+            ? `/assets/source-art/v2-shinkai/${shinkaiArt.file}`
+            : (art ? `/assets/source-art/p01/${art.file}` : null);
+          const activeArtBadge = artPack === 'shinkai' && shinkaiArt
+            ? 'V2 SHINKAI'
+            : (art ? `P01 ${art.version.toUpperCase()}` : 'PROMPT READY');
           return <article
             key={character.id}
             className={`collection-card${careerUnlocked ? '' : ' career-locked'}`}
@@ -4470,10 +4510,10 @@ function CollectionScreen({
           >
             <div
               className="collection-art"
-              style={art ? { backgroundImage: `url('/assets/source-art/p01/${art.file}')`, backgroundSize: 'cover', backgroundPosition: 'center 14%' } : undefined}
+              style={activeArtFile ? { backgroundImage: `url('${activeArtFile}')`, backgroundSize: 'cover', backgroundPosition: 'center 14%' } : undefined}
             >
-              {!art && <span>◈</span>}
-              <small>{art ? `P01 ${art.version.toUpperCase()}` : 'PROMPT READY'}</small>
+              {!activeArtFile && <span>◈</span>}
+              <small>{activeArtBadge}</small>
               {!careerUnlocked && <em className="career-lock-badge">🔒 {character.levelCode}</em>}
             </div>
             <div className="collection-copy"><span>{character.factionCode} · {character.levelCode}</span><b>{characterName(character, language)}</b><small>{professionName(character, language)}</small></div>

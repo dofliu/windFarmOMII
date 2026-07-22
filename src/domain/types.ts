@@ -327,6 +327,7 @@ export interface GameDatabase {
   codex: CodexEntryData[];
   vessels: VesselData[];
   sourceArtIndex: SourceArtIndexData;
+  shinkaiArtIndex?: SourceArtIndexData;
   factionById: Map<string, FactionData>;
   careerTrackById: Map<string, CareerTrackData>;
   characterById: Map<string, CharacterData>;

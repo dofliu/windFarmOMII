@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.31.0-v2-shinkai-art-engine - 2026-07-22
+
+- Built and integrated the V2 Shinkai Art Pack & Dual Art Engine (`public/assets/source-art/v2-shinkai/`).
+- Added persistent Art Pack Switcher button (`✨ 新海誠動漫` / `🎨 經典圖庫`) in topbar controls with `localStorage` state persistence.
+- Implemented smooth art fallback protection: dynamically resolves V2 Shinkai assets while cleanly falling back to classic P01 art when a character is in queue.
+- Generated initial representative Makoto Shinkai style character assets for all factions with luminous volumetric lighting, vibrant anime aesthetics, diverse poses, and attractive designs.
+- Preserved 100% of existing P01 classic artwork (`public/assets/source-art/p01/`) without deleting or overwriting any original assets.
+- Compacted topbar header and page headings, pulling main interactive panels up by 80-100px for single-screen optimization.
+- Verified: `npm run build` passes with zero errors; verified cross-theme and cross-artpack dynamic switching end-to-end.
+
 ## 3.30.0-ui-redesign-daylight-deepops - 2026-07-22
 
 - Completed full UI redesign and theme system replacement driven by `design.md` specification.

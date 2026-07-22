@@ -4,6 +4,19 @@
 
 ## Current clean status - 2026-07-22
 
+- Version: `3.31.0-v2-shinkai-art-engine`.
+- Completed: V2 Shinkai Art Pack & Dual Art Engine architecture (`public/assets/source-art/v2-shinkai/`).
+- Completed: Art Pack Switcher button (`✨ 新海誠動漫` / `🎨 經典圖庫`) in Topbar controls with localStorage persistence.
+- Completed: smooth art fallback protection (resolves V2 Shinkai assets while cleanly falling back to classic P01 art).
+- Completed: full UI redesign & theme system (`Daylight` light & `Deep Ops` dark) driven by `design.md`.
+- Completed: Topbar single-row compact flex layout (44px min-height) fixing button overlap and line wrapping.
+- Completed: full theme token migration for all sub-pages (Deployment, Fleet Dispatch, Sandbox Scenario Lab, Collection, Codex, Boss Challenge).
+- Completed: page heading vertical compression pulling main interactive panels up by ~80-100px.
+- Preserved: 100% of existing P01 classic artwork (`public/assets/source-art/p01/`) without deleting or overwriting any original assets.
+- Verified: `npm run build` passes with zero errors; verified cross-theme and cross-artpack dynamic switching end-to-end.
+
+## Previous clean status - 2026-07-22
+
 - Version: `3.30.0-ui-redesign-daylight-deepops`.
 - Completed: full UI redesign and theme system replacement driven by `design.md`.
 - Completed: dual-theme engine (`Daylight` light default & `Deep Ops` dark toggleable) with CSS theme variables (`--owm-surface`, `--owm-border`, `--owm-accent`, `--owm-mono`, `--owm-round`).

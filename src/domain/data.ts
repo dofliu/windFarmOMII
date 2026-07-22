@@ -33,8 +33,18 @@ async function fetchSourceArtIndex(): Promise<SourceArtIndexData> {
   return response.json() as Promise<SourceArtIndexData>;
 }
 
+async function fetchShinkaiArtIndex(): Promise<SourceArtIndexData | undefined> {
+  try {
+    const response = await fetch('/assets/source-art/v2-shinkai/index.json');
+    if (!response.ok) return undefined;
+    return (await response.json()) as SourceArtIndexData;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function loadGameDatabase(): Promise<GameDatabase> {
-  const [manifest, factions, careerTracks, characters, skills, equipment, bosses, bossChallengeAudit, scenes, sceneAssets, missions, turbines, codex, vessels, sourceArtIndex] = await Promise.all([
+  const [manifest, factions, careerTracks, characters, skills, equipment, bosses, bossChallengeAudit, scenes, sceneAssets, missions, turbines, codex, vessels, sourceArtIndex, shinkaiArtIndex] = await Promise.all([
     fetchJson<ManifestData>('manifest.json'),
     fetchJson<FactionData[]>('factions.json'),
     fetchJson<CareerTrackData[]>('tracks.json'),
@@ -50,6 +60,7 @@ export async function loadGameDatabase(): Promise<GameDatabase> {
     fetchJson<CodexEntryData[]>('codex.json'),
     fetchJson<VesselData[]>('vessels.json'),
     fetchSourceArtIndex(),
+    fetchShinkaiArtIndex(),
   ]);
 
   const database: GameDatabase = {
@@ -68,6 +79,7 @@ export async function loadGameDatabase(): Promise<GameDatabase> {
     codex,
     vessels,
     sourceArtIndex,
+    shinkaiArtIndex,
     factionById: new Map(factions.map((item) => [item.code, item])),
     careerTrackById: new Map(careerTracks.map((item) => [item.id, item])),
     characterById: new Map(characters.map((item) => [item.id, item])),

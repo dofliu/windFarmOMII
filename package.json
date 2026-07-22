@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.30.0-ui-redesign-daylight-deepops",
+  "version": "3.31.0-v2-shinkai-art-engine",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",
