@@ -1,7 +1,7 @@
 {
   "schemaVersion": "2.0-shinkai",
   "artPackName": "Shinkai Anime Aesthetic",
-  "total": 22,
+  "total": 26,
   "items": {
     "CHR-GOV-001": {
       "characterId": "CHR-GOV-001",
@@ -133,6 +133,30 @@
       "characterId": "CHR-DEV-004",
       "version": "v2.0-shinkai",
       "file": "CHR-DEV-004_v2_shinkai.png",
+      "qaStatus": "Shinkai Approved"
+    },
+    "CHR-OMI-005": {
+      "characterId": "CHR-OMI-005",
+      "version": "v2.0-shinkai",
+      "file": "CHR-OMI-005_v2_shinkai.png",
+      "qaStatus": "Shinkai Approved"
+    },
+    "CHR-GOV-008": {
+      "characterId": "CHR-GOV-008",
+      "version": "v2.0-shinkai",
+      "file": "CHR-GOV-008_v2_shinkai.png",
+      "qaStatus": "Shinkai Approved"
+    },
+    "CHR-MAR-004": {
+      "characterId": "CHR-MAR-004",
+      "version": "v2.0-shinkai",
+      "file": "CHR-MAR-004_v2_shinkai.png",
+      "qaStatus": "Shinkai Approved"
+    },
+    "CHR-DEV-005": {
+      "characterId": "CHR-DEV-005",
+      "version": "v2.0-shinkai",
+      "file": "CHR-DEV-005_v2_shinkai.png",
       "qaStatus": "Shinkai Approved"
     }
   }
