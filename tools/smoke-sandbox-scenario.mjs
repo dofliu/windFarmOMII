@@ -66,7 +66,6 @@ try {
   const campaignRaw = await page.evaluate(() => localStorage.getItem('owm.campaign.v5'));
 
   await page.getByTestId('nav-sandbox').click();
-  await page.getByTestId('deployment-tab-readiness').click();
   await page.getByTestId('sandbox-scenario-panel').waitFor({ state: 'visible' });
   const defaultPanel = await page.getByTestId('sandbox-scenario-panel').innerText();
   if (!defaultPanel.includes('STANDARD') || !defaultPanel.includes('100%') || !defaultPanel.includes('12R')) {
@@ -93,8 +92,10 @@ try {
   await page.screenshot({ path: screenshots.scenario });
 
   await page.getByTestId('deploy-mission').click();
-  await page.getByTestId('sandbox-operation-scenario').waitFor({ state: 'visible' });
   await page.locator('.phaser-host canvas').waitFor({ state: 'visible', timeout: 15000 });
+  await page.getByTestId('operation-flow-mission').click();
+  await page.getByTestId('sandbox-operation-scenario').waitFor({ state: 'visible' });
+  await page.getByTestId('operation-left-tab-resources').click();
   const sessionScenario = await page.getByTestId('sandbox-operation-scenario').innerText();
   if (!sessionScenario.includes('SEA STATE') || !sessionScenario.includes('5') || !sessionScenario.includes('55') || !sessionScenario.includes('65') || !sessionScenario.includes('20') || !sessionScenario.includes('W3 / S2 / F2')) {
     throw new Error(`Sandbox session did not snapshot scenario values: ${sessionScenario}`);
@@ -107,19 +108,22 @@ try {
   if (initialWeather !== 55 || initialSafety !== 65 || initialEvidence !== 20) {
     throw new Error(`Custom resources not applied: W${initialWeather} S${initialSafety} E${initialEvidence}`);
   }
-  await page.getByTestId('next-round').click();
+  const nextRound = page.getByTestId('next-round');
+  await nextRound.click();
+  const roundCommitConfirmation = page.getByTestId('round-commit-confirmation');
+  if (await roundCommitConfirmation.isVisible().catch(() => false)) await nextRound.click();
   const settledWeather = Number((await page.locator('.resource-meter.weather b').innerText()).replace('%', ''));
   if (settledWeather !== 44) throw new Error(`Sea State 5 projected weather loss should be 11: ${initialWeather} -> ${settledWeather}`);
   if (await page.evaluate(() => localStorage.getItem('owm.campaign.v5')) !== campaignRaw) {
     throw new Error('Sandbox Scenario Lab mutated Campaign save.');
   }
+  await page.getByTestId('operation-flow-field').click();
   await assertDesktopSingleScreen(page, 'Sandbox Operation', '.game-grid');
   await page.screenshot({ path: screenshots.operation });
 
   const mobile = await browser.newPage({ viewport: { width: 768, height: 900 } });
   await prepare(mobile);
   await mobile.getByTestId('nav-sandbox').click();
-  await mobile.getByTestId('deployment-tab-readiness').click();
   await mobile.getByTestId('sandbox-preset-extreme').click();
   const mobileMetrics = await documentMetrics(mobile, '.deployment-shell');
   if (mobileMetrics.scrollWidth > mobileMetrics.viewportWidth + 1) {

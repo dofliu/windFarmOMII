@@ -448,7 +448,7 @@ export function resolveSkill(
 
   const currentStage = MISSION_STAGES[mission.stageIndex];
   const counterFactions = boss.counterFactions.split(',').map((value) => value.trim());
-  const counterMultiplier = counterFactions.includes(character.factionCode) ? 1.25 : 1;
+  const counterMultiplier = counterFactions.includes(character.factionCode) ? 1.35 : 1;
   const stageMultiplier = stageAffinity(character.factionCode, currentStage);
   const fatigueMultiplier = fatigueEfficiency(fatigueBand(runtime, character));
   const equipmentBonus = compatibleEquipmentBonus(equipment, character);

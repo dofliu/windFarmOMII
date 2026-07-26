@@ -30,6 +30,7 @@ import {
   parseCampaignSave,
   recordFleetConditionDispatch,
   repairCampaignEquipment,
+  recoveryTokensForMission,
   restCampaignCharacter,
   resolveDiagnosisDecision,
   serializeCampaignSave,
@@ -239,12 +240,12 @@ describe('Campaign progression', () => {
       bestGradeAfter: debrief.grade,
       scoreRecordStatus: 'FIRST_BEST',
     });
-    expect(result.reward.maintenanceCreditsEarned).toBe(33);
+    expect(result.reward.maintenanceCreditsEarned).toBe(20);
     expect(result.reward.equipmentWear.map((item) => item.after)).toEqual([92, 95]);
-    expect(result.progress.maintenanceCredits).toBe(113);
-    expect(result.reward.recoveryTokensEarned).toBe(2);
-    expect(result.progress.recoveryTokens).toBe(5);
-    expect(result.progress.crewFatigue[character.id]).toBe(14);
+    expect(result.progress.maintenanceCredits).toBe(100);
+    expect(result.reward.recoveryTokensEarned).toBe(0);
+    expect(result.progress.recoveryTokens).toBe(3);
+    expect(result.progress.crewFatigue[character.id]).toBe(23);
     expect(result.reward.windFarmUpdate).toMatchObject({ turbineId: turbine.id, reliabilityDelta: 8, backlogDelta: -1 });
     expect(result.progress.windFarm[turbine.id]).toMatchObject({ reliability: 96, availability: 'AVAILABLE', openFaults: 0, completedMissions: 1 });
     expect(result.progress.fleetOperationsHistory).toHaveLength(1);
@@ -255,7 +256,7 @@ describe('Campaign progression', () => {
       turbineId: turbine.id,
       outcome: 'CLEAR',
       grade: 'S',
-      creditsDelta: 33,
+      creditsDelta: 20,
       reliabilityBefore: 88,
       reliabilityAfter: 96,
       backlogBefore: 1,
@@ -269,6 +270,13 @@ describe('Campaign progression', () => {
     expect(finalResult.reward.campaignCompleted).toBe(true);
     expect(finalResult.progress.completedMissionIds).toEqual([mission.id, mission2.id]);
     expect(finalResult.progress.fleetOperationsHistory.map((item) => item.sequence)).toEqual([1, 2]);
+  });
+
+  it('RST 只在 SOV 完成每三關補給節點時取得', () => {
+    expect(recoveryTokensForMission(mission, vessel, true)).toBe(0);
+    expect(recoveryTokensForMission({ order: 3 }, vessel, true)).toBe(1);
+    expect(recoveryTokensForMission({ order: 3 }, { class: 'CTV' }, true)).toBe(0);
+    expect(recoveryTokensForMission({ order: 3 }, vessel, false)).toBe(0);
   });
 
   it('重玩任務會比較本次分數與任務前 best，不新增存檔欄位', () => {
@@ -576,11 +584,11 @@ describe('Campaign progression', () => {
     const runtimeMission = { ...createMission(boss), complete: true, evidence: 80, safety: 90 };
     const debrief = missionDebrief(runtimeMission, boss, [{ characterId: character.id, fatigue: 70, actionPoints: 1, energy: 1, fatigueProtection: 0, cooldowns: {}, statuses: [] }], new Map([[character.id, character]]));
     const result = awardCampaignMission(rested.progress, mission, debrief, true, [character.id], [mission], allEquipment, [equipment.id, spare.id], [character, reserve], vessel, { [character.id]: 70 });
-    expect(result.progress.crewFatigue[character.id]).toBe(64);
-    expect(result.progress.crewFatigue[reserve.id]).toBe(34);
+    expect(result.progress.crewFatigue[character.id]).toBe(73);
+    expect(result.progress.crewFatigue[reserve.id]).toBe(46);
     expect(result.reward.crewFatigueUpdates).toEqual(expect.arrayContaining([
-      expect.objectContaining({ characterId: character.id, source: 'deployed', missionEnd: 70, recovery: 6, after: 64 }),
-      expect.objectContaining({ characterId: reserve.id, source: 'reserve', before: 50, recovery: 16, after: 34 }),
+      expect.objectContaining({ characterId: character.id, source: 'deployed', missionEnd: 76, recovery: 3, after: 73 }),
+      expect.objectContaining({ characterId: reserve.id, source: 'reserve', before: 50, recovery: 4, after: 46 }),
     ]));
   });
 });

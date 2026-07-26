@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0",
   "promptRevision": "OWM-P01-R7-CASTING-VARIETY-ANTI-CLONE",
-  "generatedAt": "2026-07-23T02:44:38.975Z",
-  "total": 210,
+  "generatedAt": "2026-07-26T06:07:33.374Z",
+  "total": 300,
   "items": {
     "CHR-GOV-001": {
       "characterId": "CHR-GOV-001",
@@ -212,6 +212,76 @@
       "version": "v001",
       "file": "CHR-GOV-030_L5_P01_v001.png",
       "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-031": {
+      "characterId": "CHR-GOV-031",
+      "version": "v001",
+      "file": "CHR-GOV-031_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-032": {
+      "characterId": "CHR-GOV-032",
+      "version": "v002",
+      "file": "CHR-GOV-032_L2_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-033": {
+      "characterId": "CHR-GOV-033",
+      "version": "v001",
+      "file": "CHR-GOV-033_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-034": {
+      "characterId": "CHR-GOV-034",
+      "version": "v001",
+      "file": "CHR-GOV-034_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-035": {
+      "characterId": "CHR-GOV-035",
+      "version": "v001",
+      "file": "CHR-GOV-035_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-036": {
+      "characterId": "CHR-GOV-036",
+      "version": "v001",
+      "file": "CHR-GOV-036_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-037": {
+      "characterId": "CHR-GOV-037",
+      "version": "v001",
+      "file": "CHR-GOV-037_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-038": {
+      "characterId": "CHR-GOV-038",
+      "version": "v001",
+      "file": "CHR-GOV-038_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-039": {
+      "characterId": "CHR-GOV-039",
+      "version": "v001",
+      "file": "CHR-GOV-039_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-GOV-040": {
+      "characterId": "CHR-GOV-040",
+      "version": "v001",
+      "file": "CHR-GOV-040_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
       "engineeringQaStatus": "Not Reviewed"
     },
     "CHR-ACA-041": {
@@ -424,6 +494,111 @@
       "qaStatus": "Visual Review Required",
       "engineeringQaStatus": "Not Reviewed"
     },
+    "CHR-ACA-071": {
+      "characterId": "CHR-ACA-071",
+      "version": "v001",
+      "file": "CHR-ACA-071_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-072": {
+      "characterId": "CHR-ACA-072",
+      "version": "v002",
+      "file": "CHR-ACA-072_L2_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-073": {
+      "characterId": "CHR-ACA-073",
+      "version": "v001",
+      "file": "CHR-ACA-073_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-074": {
+      "characterId": "CHR-ACA-074",
+      "version": "v001",
+      "file": "CHR-ACA-074_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-075": {
+      "characterId": "CHR-ACA-075",
+      "version": "v001",
+      "file": "CHR-ACA-075_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-076": {
+      "characterId": "CHR-ACA-076",
+      "version": "v001",
+      "file": "CHR-ACA-076_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-077": {
+      "characterId": "CHR-ACA-077",
+      "version": "v001",
+      "file": "CHR-ACA-077_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-078": {
+      "characterId": "CHR-ACA-078",
+      "version": "v001",
+      "file": "CHR-ACA-078_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-079": {
+      "characterId": "CHR-ACA-079",
+      "version": "v001",
+      "file": "CHR-ACA-079_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-080": {
+      "characterId": "CHR-ACA-080",
+      "version": "v001",
+      "file": "CHR-ACA-080_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-081": {
+      "characterId": "CHR-ACA-081",
+      "version": "v001",
+      "file": "CHR-ACA-081_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-082": {
+      "characterId": "CHR-ACA-082",
+      "version": "v001",
+      "file": "CHR-ACA-082_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-083": {
+      "characterId": "CHR-ACA-083",
+      "version": "v001",
+      "file": "CHR-ACA-083_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-084": {
+      "characterId": "CHR-ACA-084",
+      "version": "v001",
+      "file": "CHR-ACA-084_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-ACA-085": {
+      "characterId": "CHR-ACA-085",
+      "version": "v001",
+      "file": "CHR-ACA-085_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
     "CHR-DEV-086": {
       "characterId": "CHR-DEV-086",
       "version": "v001",
@@ -632,6 +807,76 @@
       "version": "v001",
       "file": "CHR-DEV-115_L5_P01_v001.png",
       "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-116": {
+      "characterId": "CHR-DEV-116",
+      "version": "v002",
+      "file": "CHR-DEV-116_L1_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-117": {
+      "characterId": "CHR-DEV-117",
+      "version": "v001",
+      "file": "CHR-DEV-117_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-118": {
+      "characterId": "CHR-DEV-118",
+      "version": "v001",
+      "file": "CHR-DEV-118_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-119": {
+      "characterId": "CHR-DEV-119",
+      "version": "v001",
+      "file": "CHR-DEV-119_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-120": {
+      "characterId": "CHR-DEV-120",
+      "version": "v001",
+      "file": "CHR-DEV-120_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-121": {
+      "characterId": "CHR-DEV-121",
+      "version": "v001",
+      "file": "CHR-DEV-121_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-122": {
+      "characterId": "CHR-DEV-122",
+      "version": "v001",
+      "file": "CHR-DEV-122_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-123": {
+      "characterId": "CHR-DEV-123",
+      "version": "v001",
+      "file": "CHR-DEV-123_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-124": {
+      "characterId": "CHR-DEV-124",
+      "version": "v001",
+      "file": "CHR-DEV-124_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-DEV-125": {
+      "characterId": "CHR-DEV-125",
+      "version": "v001",
+      "file": "CHR-DEV-125_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
       "engineeringQaStatus": "Not Reviewed"
     },
     "CHR-MFG-126": {
@@ -844,6 +1089,146 @@
       "qaStatus": "Visual Review Required",
       "engineeringQaStatus": "Not Reviewed"
     },
+    "CHR-MFG-156": {
+      "characterId": "CHR-MFG-156",
+      "version": "v002",
+      "file": "CHR-MFG-156_L1_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-157": {
+      "characterId": "CHR-MFG-157",
+      "version": "v001",
+      "file": "CHR-MFG-157_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-158": {
+      "characterId": "CHR-MFG-158",
+      "version": "v001",
+      "file": "CHR-MFG-158_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-159": {
+      "characterId": "CHR-MFG-159",
+      "version": "v001",
+      "file": "CHR-MFG-159_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-160": {
+      "characterId": "CHR-MFG-160",
+      "version": "v001",
+      "file": "CHR-MFG-160_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-161": {
+      "characterId": "CHR-MFG-161",
+      "version": "v001",
+      "file": "CHR-MFG-161_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-162": {
+      "characterId": "CHR-MFG-162",
+      "version": "v001",
+      "file": "CHR-MFG-162_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-163": {
+      "characterId": "CHR-MFG-163",
+      "version": "v001",
+      "file": "CHR-MFG-163_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-164": {
+      "characterId": "CHR-MFG-164",
+      "version": "v001",
+      "file": "CHR-MFG-164_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-165": {
+      "characterId": "CHR-MFG-165",
+      "version": "v001",
+      "file": "CHR-MFG-165_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-166": {
+      "characterId": "CHR-MFG-166",
+      "version": "v001",
+      "file": "CHR-MFG-166_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-167": {
+      "characterId": "CHR-MFG-167",
+      "version": "v001",
+      "file": "CHR-MFG-167_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-168": {
+      "characterId": "CHR-MFG-168",
+      "version": "v001",
+      "file": "CHR-MFG-168_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-169": {
+      "characterId": "CHR-MFG-169",
+      "version": "v001",
+      "file": "CHR-MFG-169_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-170": {
+      "characterId": "CHR-MFG-170",
+      "version": "v001",
+      "file": "CHR-MFG-170_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-171": {
+      "characterId": "CHR-MFG-171",
+      "version": "v001",
+      "file": "CHR-MFG-171_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-172": {
+      "characterId": "CHR-MFG-172",
+      "version": "v001",
+      "file": "CHR-MFG-172_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-173": {
+      "characterId": "CHR-MFG-173",
+      "version": "v001",
+      "file": "CHR-MFG-173_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-174": {
+      "characterId": "CHR-MFG-174",
+      "version": "v001",
+      "file": "CHR-MFG-174_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MFG-175": {
+      "characterId": "CHR-MFG-175",
+      "version": "v001",
+      "file": "CHR-MFG-175_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
     "CHR-MAR-176": {
       "characterId": "CHR-MAR-176",
       "version": "v001",
@@ -1054,6 +1439,111 @@
       "qaStatus": "Visual Review Required",
       "engineeringQaStatus": "Not Reviewed"
     },
+    "CHR-MAR-206": {
+      "characterId": "CHR-MAR-206",
+      "version": "v001",
+      "file": "CHR-MAR-206_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-207": {
+      "characterId": "CHR-MAR-207",
+      "version": "v001",
+      "file": "CHR-MAR-207_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-208": {
+      "characterId": "CHR-MAR-208",
+      "version": "v001",
+      "file": "CHR-MAR-208_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-209": {
+      "characterId": "CHR-MAR-209",
+      "version": "v001",
+      "file": "CHR-MAR-209_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-210": {
+      "characterId": "CHR-MAR-210",
+      "version": "v001",
+      "file": "CHR-MAR-210_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-211": {
+      "characterId": "CHR-MAR-211",
+      "version": "v001",
+      "file": "CHR-MAR-211_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-212": {
+      "characterId": "CHR-MAR-212",
+      "version": "v001",
+      "file": "CHR-MAR-212_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-213": {
+      "characterId": "CHR-MAR-213",
+      "version": "v001",
+      "file": "CHR-MAR-213_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-214": {
+      "characterId": "CHR-MAR-214",
+      "version": "v001",
+      "file": "CHR-MAR-214_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-215": {
+      "characterId": "CHR-MAR-215",
+      "version": "v001",
+      "file": "CHR-MAR-215_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-216": {
+      "characterId": "CHR-MAR-216",
+      "version": "v001",
+      "file": "CHR-MAR-216_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-217": {
+      "characterId": "CHR-MAR-217",
+      "version": "v001",
+      "file": "CHR-MAR-217_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-218": {
+      "characterId": "CHR-MAR-218",
+      "version": "v001",
+      "file": "CHR-MAR-218_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-219": {
+      "characterId": "CHR-MAR-219",
+      "version": "v001",
+      "file": "CHR-MAR-219_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-MAR-220": {
+      "characterId": "CHR-MAR-220",
+      "version": "v001",
+      "file": "CHR-MAR-220_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
     "CHR-OMI-221": {
       "characterId": "CHR-OMI-221",
       "version": "v002",
@@ -1262,6 +1752,146 @@
       "version": "v001",
       "file": "CHR-OMI-250_L5_P01_v001.png",
       "qaStatus": "Visual Review Required",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-251": {
+      "characterId": "CHR-OMI-251",
+      "version": "v002",
+      "file": "CHR-OMI-251_L1_P01_v002.png",
+      "qaStatus": "Correction QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-252": {
+      "characterId": "CHR-OMI-252",
+      "version": "v001",
+      "file": "CHR-OMI-252_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-253": {
+      "characterId": "CHR-OMI-253",
+      "version": "v001",
+      "file": "CHR-OMI-253_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-254": {
+      "characterId": "CHR-OMI-254",
+      "version": "v001",
+      "file": "CHR-OMI-254_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-255": {
+      "characterId": "CHR-OMI-255",
+      "version": "v001",
+      "file": "CHR-OMI-255_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-256": {
+      "characterId": "CHR-OMI-256",
+      "version": "v001",
+      "file": "CHR-OMI-256_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-257": {
+      "characterId": "CHR-OMI-257",
+      "version": "v001",
+      "file": "CHR-OMI-257_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-258": {
+      "characterId": "CHR-OMI-258",
+      "version": "v001",
+      "file": "CHR-OMI-258_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-259": {
+      "characterId": "CHR-OMI-259",
+      "version": "v001",
+      "file": "CHR-OMI-259_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-260": {
+      "characterId": "CHR-OMI-260",
+      "version": "v001",
+      "file": "CHR-OMI-260_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-261": {
+      "characterId": "CHR-OMI-261",
+      "version": "v001",
+      "file": "CHR-OMI-261_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-262": {
+      "characterId": "CHR-OMI-262",
+      "version": "v001",
+      "file": "CHR-OMI-262_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-263": {
+      "characterId": "CHR-OMI-263",
+      "version": "v001",
+      "file": "CHR-OMI-263_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-264": {
+      "characterId": "CHR-OMI-264",
+      "version": "v001",
+      "file": "CHR-OMI-264_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-265": {
+      "characterId": "CHR-OMI-265",
+      "version": "v001",
+      "file": "CHR-OMI-265_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-266": {
+      "characterId": "CHR-OMI-266",
+      "version": "v001",
+      "file": "CHR-OMI-266_L3_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-267": {
+      "characterId": "CHR-OMI-267",
+      "version": "v001",
+      "file": "CHR-OMI-267_L4_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-268": {
+      "characterId": "CHR-OMI-268",
+      "version": "v001",
+      "file": "CHR-OMI-268_L5_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-269": {
+      "characterId": "CHR-OMI-269",
+      "version": "v001",
+      "file": "CHR-OMI-269_L1_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
+      "engineeringQaStatus": "Not Reviewed"
+    },
+    "CHR-OMI-270": {
+      "characterId": "CHR-OMI-270",
+      "version": "v001",
+      "file": "CHR-OMI-270_L2_P01_v001.png",
+      "qaStatus": "Technical QA Pending",
       "engineeringQaStatus": "Not Reviewed"
     },
     "CHR-DIG-271": {

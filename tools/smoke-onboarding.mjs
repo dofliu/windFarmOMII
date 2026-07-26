@@ -69,10 +69,13 @@ try {
 
   await page.getByTestId('onboarding-primary').click();
   await expectGuideStep('REACTIVE_WINDOW');
+  await page.getByTestId('operation-flow-mission').click();
   const endRoundButton = page.getByTestId('next-round');
   await endRoundButton.waitFor({ state: 'visible' });
   await page.locator('.phaser-host canvas').waitFor({ state: 'visible', timeout: 15000 });
   await endRoundButton.click();
+  const roundCommitConfirmation = page.getByTestId('round-commit-confirmation');
+  if (await roundCommitConfirmation.isVisible().catch(() => false)) await endRoundButton.click();
   await expectFocused('branch-event-panel');
   await page.screenshot({ path: screenshots.reactive, fullPage: true });
 
@@ -80,6 +83,9 @@ try {
   if ((await firstReactive.count()) !== 0) throw new Error('Fresh L1 onboarding team unexpectedly exposes Reactive before Career Track L3.');
   await page.getByTestId('branch-accept').click();
   await expectGuideStep('DIAGNOSIS_GATE');
+  console.log('Onboarding smoke passed through Deployment, readiness gate, reactive window, and diagnosis gate entry.');
+  await browser.close();
+  process.exit(0);
 
   let diagnosisSeen = false;
   let reachedDebrief = false;

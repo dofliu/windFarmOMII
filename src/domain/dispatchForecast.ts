@@ -4,11 +4,14 @@ import {
   applyMasteryPerks,
   campaignCrewFatigue,
   campaignEquipmentCondition,
+  campaignOperationalFatigue,
+  campaignTransitRecovery,
   crewReadinessBandForFatigue,
   equipmentWearForMission,
   evaluateLoadout,
   maintenanceCreditsForMission,
   masteryPerkModifiers,
+  recoveryTokensForMission,
   teamMasteryPerks,
   type CampaignProgress,
   type CrewReadinessBand,
@@ -34,6 +37,7 @@ export interface DispatchCrewForecast {
   before: number;
   fatigueMax: number;
   perRoundDamage: number;
+  operationalLoad: number;
   transitRecovery: number;
   afterOneRound: number;
   afterRoundLimit: number;
@@ -44,6 +48,7 @@ export interface DispatchCrewForecast {
 export interface DispatchCrewForecastContext {
   roundLimit: number;
   baseFatigueDamage: number;
+  operationalLoad: number;
   transitRecovery: number;
 }
 
@@ -93,9 +98,9 @@ export function createDispatchForecast(
   const successRewardMin = maintenanceCreditsForMission(mission, { totalScore: 0 }, true);
   const successRewardMax = maintenanceCreditsForMission(mission, { totalScore: 100 }, true);
   const failureReward = maintenanceCreditsForMission(mission, { totalScore: 0 }, false);
-  const crewContext = createDispatchCrewForecastContext(boss, equipment, vessel);
+  const crewContext = createDispatchCrewForecastContext(boss, equipment, vessel, mission);
   const crewForecast = crew.map((character) => createDispatchCrewForecast(campaign, character, crewContext));
-  const recoveryTokensEarned = vessel.class === 'SOV' ? 2 : 1;
+  const recoveryTokensEarned = recoveryTokensForMission(mission, vessel, true);
   const fleetModifier = createFleetConditionDispatchModifier(campaign.windFarm, mission.turbineId);
   const fleetCondition = fleetModifier
     ? projectFleetConditionDispatch(
@@ -139,19 +144,20 @@ export function createDispatchCrewForecast(
   character: CharacterData,
   context: DispatchCrewForecastContext,
 ): DispatchCrewForecast {
-  const { roundLimit, baseFatigueDamage, transitRecovery } = context;
+  const { roundLimit, baseFatigueDamage, operationalLoad, transitRecovery } = context;
   const before = campaignCrewFatigue(campaign, character.id);
   const perRoundDamage = Math.max(
     1,
     baseFatigueDamage - masteryPerkModifiers(campaign.characterXp[character.id] ?? 0).fatigueProtection,
   );
-  const afterOneRound = afterTransitRecovery(before, perRoundDamage, 1, character.fatigueMax, transitRecovery);
-  const afterRoundLimit = afterTransitRecovery(before, perRoundDamage, roundLimit, character.fatigueMax, transitRecovery);
+  const afterOneRound = afterTransitRecovery(before, perRoundDamage, 1, operationalLoad, character.fatigueMax, transitRecovery);
+  const afterRoundLimit = afterTransitRecovery(before, perRoundDamage, roundLimit, operationalLoad, character.fatigueMax, transitRecovery);
   return {
     characterId: character.id,
     before,
     fatigueMax: character.fatigueMax,
     perRoundDamage,
+    operationalLoad,
     transitRecovery,
     afterOneRound,
     afterRoundLimit,
@@ -164,13 +170,15 @@ export function createDispatchCrewForecastContext(
   boss: BossData,
   equipment: EquipmentData,
   vessel: VesselData,
+  mission?: Pick<MissionData, 'chapter'>,
 ): DispatchCrewForecastContext {
   const classRule = bossClassRule(boss.class);
   const operationalRelief = Math.floor(equipment.fatigueRelief / 2) + vessel.fatigueRelief;
   return {
     roundLimit: createMission(boss).roundLimit,
     baseFatigueDamage: Math.max(1, boss.fatigueDamage + classRule.fatigueBonus - operationalRelief),
-    transitRecovery: Math.max(0, vessel.fatigueRelief * 2),
+    operationalLoad: mission ? campaignOperationalFatigue(mission) : 0,
+    transitRecovery: campaignTransitRecovery(vessel),
   };
 }
 
@@ -207,9 +215,10 @@ function afterTransitRecovery(
   before: number,
   perRoundDamage: number,
   rounds: number,
+  operationalLoad: number,
   fatigueMax: number,
   transitRecovery: number,
 ): number {
-  const missionEnd = Math.min(fatigueMax, Math.max(0, before + perRoundDamage * rounds));
+  const missionEnd = Math.min(fatigueMax, Math.max(0, before + perRoundDamage * rounds + operationalLoad));
   return Math.max(0, missionEnd - transitRecovery);
 }

@@ -309,6 +309,7 @@ interface OperationReturnNotice {
 }
 
 type OperationInfoTab = 'log' | 'summary' | 'objectives';
+type DeploymentTabId = 'route' | 'readiness' | 'crew' | 'loadout' | 'forecast' | 'backup';
 type SandboxSceneAvailabilityFilter = 'ALL' | 'INTEGRATED' | 'FALLBACK';
 
 export default function App() {
@@ -362,11 +363,11 @@ export default function App() {
   const [operationAbortConfirm, setOperationAbortConfirm] = useState(false);
   const [operationRoundConfirm, setOperationRoundConfirm] = useState(false);
   const [operationReturnNotice, setOperationReturnNotice] = useState<OperationReturnNotice | undefined>();
-  const [operationInfoTab, setOperationInfoTab] = useState<OperationInfoTab>('log');
+  const [operationInfoTab, setOperationInfoTab] = useState<OperationInfoTab>('summary');
   const [operationGuideNotice, setOperationGuideNotice] = useState<{ targetTestId: string; label: string; pulse: number } | undefined>();
   const [leftTab, setLeftTab] = useState<'mission' | 'stages' | 'resources'>('mission');
-  const [crewTab, setCrewTab] = useState<'profile' | 'actions' | 'loadout'>('profile');
-  const [mobileSection, setMobileSection] = useState<'mission' | 'field' | 'crew'>('mission');
+  const [crewTab, setCrewTab] = useState<'profile' | 'actions' | 'loadout'>('actions');
+  const [mobileSection, setMobileSection] = useState<'mission' | 'field' | 'crew'>('field');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -676,7 +677,9 @@ export default function App() {
         const boss = database.bossById.get(deployment.sandboxBossId);
         if (boss) {
           setOperationReturnNotice(undefined);
-          setOperationInfoTab('log');
+          setOperationInfoTab('summary');
+          setMobileSection('field');
+          setCrewTab('actions');
           setSession(createSandboxSession(database, boss, deployment, campaign, language));
         }
         return;
@@ -685,7 +688,9 @@ export default function App() {
         const boss = database.bossById.get(deployment.sandboxBossId);
         if (boss) {
           setOperationReturnNotice(undefined);
-          setOperationInfoTab('log');
+          setOperationInfoTab('summary');
+          setMobileSection('field');
+          setCrewTab('actions');
           setSession(createBossChallengeSession(database, boss, deployment, campaign, language));
         }
         return;
@@ -701,7 +706,9 @@ export default function App() {
         setCampaign(nextCampaign);
       }
       setOperationReturnNotice(undefined);
-      setOperationInfoTab('log');
+      setOperationInfoTab('summary');
+      setMobileSection('field');
+      setCrewTab('actions');
       setSession(nextSession);
     };
     const guidedDeploy = () => {
@@ -769,6 +776,11 @@ export default function App() {
   const sceneRoute = resolveSceneRoute(session.sceneId, database.sceneById, database.sceneAssets);
   const shinkaiArt = database.shinkaiArtIndex?.items[selectedCharacter.id];
   const sourceArt = database.sourceArtIndex.items[selectedCharacter.id];
+  const activeSourceArt = artPack === 'shinkai' && shinkaiArt
+    ? { ...shinkaiArt, pack: 'shinkai' as const }
+    : sourceArt
+      ? { ...sourceArt, pack: 'classic' as const }
+      : undefined;
   const sourceArtUrl = artPack === 'shinkai' && shinkaiArt
     ? `/assets/source-art/v2-shinkai/${shinkaiArt.file}`
     : (sourceArt ? `/assets/source-art/p01/${sourceArt.file}` : null);
@@ -904,9 +916,11 @@ export default function App() {
     };
     if (operationDecision.code === 'DIAG') return { targetTestId: 'diagnosis-rec-cta', label: 'DIAG REC' };
     if (operationDecision.code === 'ACT') return { targetTestId: 'recommended-skill-cta', label: 'SKILL REC' };
-    return { targetTestId: 'next-round', label: operationDecision.code === 'RISK' ? 'ROUND RISK' : 'END ROUND' };
+    return { targetTestId: 'round-decision-cta', label: operationDecision.code === 'RISK' ? 'ROUND RISK' : 'END ROUND' };
   })();
   const activateOperationDecisionGuide = () => {
+    setMobileSection(operationDecision.code === 'ACT' ? 'crew' : 'field');
+    if (operationDecision.code === 'ACT') setCrewTab('actions');
     const target = document.querySelector<HTMLElement>(`[data-testid="${operationDecisionGuide.targetTestId}"]`);
     if (!target) return;
     const pulse = Date.now();
@@ -1212,7 +1226,31 @@ export default function App() {
   return (
     <main className="app-shell">
       {header}
-      <section className="game-grid" data-testid="mission-operation">
+      <nav className="operation-flow-nav" aria-label={language === 'zh' ? '作業流程' : 'Operation flow'} data-testid="operation-flow-nav">
+        {([
+          ['mission', '01', language === 'zh' ? '任務情勢' : 'Mission', language === 'zh' ? '風險、階段與資源' : 'Risk, stages and resources'],
+          ['field', '02', language === 'zh' ? '現場決策' : 'Decision', language === 'zh' ? '只看現在要處理的事項' : 'Current decision only'],
+          ['crew', '03', language === 'zh' ? '技師行動' : 'Crew action', language === 'zh' ? '選人、技能與裝備' : 'Crew, skills and loadout'],
+        ] as const).map(([section, step, label, detail]) => (
+          <button
+            key={section}
+            type="button"
+            data-testid={`operation-flow-${section}`}
+            className={mobileSection === section ? 'active' : ''}
+            aria-current={mobileSection === section ? 'step' : undefined}
+            onClick={() => {
+              setMobileSection(section);
+              if (section === 'crew') setCrewTab('actions');
+              if (section === 'field') setOperationInfoTab('summary');
+            }}
+          >
+            <span>{step}</span>
+            <b>{label}</b>
+            <small>{detail}</small>
+          </button>
+        ))}
+      </nav>
+      <section className="game-grid" data-testid="mission-operation" data-operation-section={mobileSection} data-mission-id={session.missionId ?? ''}>
         <aside className="panel mission-panel" data-mobile-active={mobileSection === 'mission'}>
           <div className="section-kicker">MISSION CONTROL</div>
           <span className="select-label">{ui.riskEvent}</span>
@@ -1238,9 +1276,9 @@ export default function App() {
           </div>
 
           <div className="sub-tab-row">
-            <button type="button" className={leftTab === 'mission' ? 'active' : ''} onClick={() => setLeftTab('mission')}>{language === 'zh' ? '事件' : 'MISSION'}</button>
-            <button type="button" className={leftTab === 'stages' ? 'active' : ''} onClick={() => setLeftTab('stages')}>{language === 'zh' ? '階段' : 'STAGES'}</button>
-            <button type="button" className={leftTab === 'resources' ? 'active' : ''} onClick={() => setLeftTab('resources')}>{language === 'zh' ? '資源' : 'METRICS'}</button>
+            <button type="button" data-testid="operation-left-tab-mission" className={leftTab === 'mission' ? 'active' : ''} onClick={() => setLeftTab('mission')}>{language === 'zh' ? '事件' : 'MISSION'}</button>
+            <button type="button" data-testid="operation-left-tab-stages" className={leftTab === 'stages' ? 'active' : ''} onClick={() => setLeftTab('stages')}>{language === 'zh' ? '階段' : 'STAGES'}</button>
+            <button type="button" data-testid="operation-left-tab-resources" className={leftTab === 'resources' ? 'active' : ''} onClick={() => setLeftTab('resources')}>{language === 'zh' ? '資源' : 'METRICS'}</button>
           </div>
 
           <div className="tab-body">
@@ -1335,7 +1373,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="panel event-panel">
+          <div className="panel event-panel" data-mobile-active={mobileSection === 'field'}>
             <div className="event-title"><span data-testid="operation-info-heading">{operationInfoTitle}</span><strong>{session.mission.complete ? ui.missionComplete : session.mission.failed ? ui.missionFailed : ui.active}</strong></div>
             {session.pendingBranch && <BranchEventPanel event={session.pendingBranch} options={reactiveOptions} language={language} highlight={onboarding.status === 'active' && onboardingStep === 'REACTIVE_WINDOW'} onReact={(actorIndex, skillId) => resolveBranch(actorIndex, skillId)} onAccept={() => resolveBranch()} />}
             {diagnosisPending && missionDefinition && <DiagnosisPanel mission={missionDefinition} language={language} highlight={onboarding.status === 'active' && onboardingStep === 'DIAGNOSIS_GATE'} onChoose={chooseDiagnosis} />}
@@ -1441,9 +1479,9 @@ export default function App() {
           </div>
 
           <div className="sub-tab-row">
-            <button type="button" className={crewTab === 'profile' ? 'active' : ''} onClick={() => setCrewTab('profile')}>{language === 'zh' ? '角色' : 'PROFILE'}</button>
-            <button type="button" className={crewTab === 'actions' ? 'active' : ''} onClick={() => setCrewTab('actions')}>{language === 'zh' ? '行動' : 'ACTIONS'}</button>
-            <button type="button" className={crewTab === 'loadout' ? 'active' : ''} onClick={() => setCrewTab('loadout')}>{language === 'zh' ? '裝備' : 'LOADOUT'}</button>
+            <button type="button" data-testid="operation-crew-tab-profile" className={crewTab === 'profile' ? 'active' : ''} onClick={() => setCrewTab('profile')}>{language === 'zh' ? '角色' : 'PROFILE'}</button>
+            <button type="button" data-testid="operation-crew-tab-actions" className={crewTab === 'actions' ? 'active' : ''} onClick={() => setCrewTab('actions')}>{language === 'zh' ? '行動' : 'ACTIONS'}</button>
+            <button type="button" data-testid="operation-crew-tab-loadout" className={crewTab === 'loadout' ? 'active' : ''} onClick={() => setCrewTab('loadout')}>{language === 'zh' ? '裝備' : 'LOADOUT'}</button>
           </div>
 
           <div className="crew-tab-body">
@@ -1452,21 +1490,26 @@ export default function App() {
                 <label className="art-preview-select">
                   <span>{ui.shift}</span>
                   <select data-testid="shift-character" value={selectedCharacter.id} disabled={missionEnded} onChange={(event) => shiftSelectedCharacter(event.target.value)}>
-                    {sourceArtCharacters.map((character) => (
-                      <option key={character.id} value={character.id}>{characterName(character, language)} · {database.sourceArtIndex.items[character.id].version.toUpperCase()}</option>
-                    ))}
+                    {sourceArtCharacters.map((character) => {
+                      const optionShinkaiArt = database.shinkaiArtIndex?.items[character.id];
+                      const optionLabel = artPack === 'shinkai' && optionShinkaiArt
+                        ? 'V2 SHINKAI'
+                        : `P01 ${database.sourceArtIndex.items[character.id].version.toUpperCase()}`;
+                      return <option key={character.id} value={character.id}>{characterName(character, language)} · {optionLabel}</option>;
+                    })}
                   </select>
                 </label>
 
                 <div
                   key={selectedCharacter.id}
                   className="portrait-placeholder"
-                  aria-label={sourceArt ? `角色 P01 ${sourceArt.version} 來源原畫` : '角色來源原畫待核准'}
+                  aria-label={activeSourceArt ? `角色 ${activeSourceArt.pack === 'shinkai' ? 'V2 SHINKAI' : `P01 ${activeSourceArt.version}`} 來源原畫` : '角色來源原畫待核准'}
                   data-source-art-character-id={selectedCharacter.id}
-                  data-source-art-version={sourceArt?.version ?? ''}
-                  data-source-art-file={sourceArt?.file ?? ''}
-                  data-source-art-qa-status={sourceArt?.qaStatus ?? ''}
-                  data-source-art-engineering-qa-status={sourceArt?.engineeringQaStatus ?? ''}
+                  data-source-art-pack={activeSourceArt?.pack ?? ''}
+                  data-source-art-version={activeSourceArt?.version ?? ''}
+                  data-source-art-file={activeSourceArt?.file ?? ''}
+                  data-source-art-qa-status={activeSourceArt?.qaStatus ?? ''}
+                  data-source-art-engineering-qa-status={activeSourceArt?.engineeringQaStatus ?? (activeSourceArt?.pack === 'shinkai' ? 'PACK_QA_REQUIRED' : '')}
                 >
                   <div className="portrait-grid" />
                   <div className="portrait-silhouette"><span>◈</span></div>
@@ -1478,7 +1521,7 @@ export default function App() {
                       onError={(event) => event.currentTarget.parentElement?.classList.remove('has-source-art')}
                     />}
                   <div className="source-art-label placeholder-art-label">{ui.sourceArt.toUpperCase()} · {selectedCharacter.artStatus.toUpperCase()}</div>
-                  <div className="source-art-label generated-art-label">{ui.sourceArt.toUpperCase()} · P01 {sourceArt?.version.toUpperCase()}</div>
+                  <div className="source-art-label generated-art-label">{ui.sourceArt.toUpperCase()} · {activeSourceArt?.pack === 'shinkai' ? 'V2 SHINKAI' : `P01 ${sourceArt?.version?.toUpperCase() ?? ''}`}</div>
                 </div>
 
                 <div className="character-heading">
@@ -1561,9 +1604,48 @@ export default function App() {
         </aside>
       </section>
       <div className="mobile-nav" data-testid="mobile-nav">
-        <button className={mobileSection === 'mission' ? 'active' : ''} onClick={() => setMobileSection('mission')}>{language === 'zh' ? '任務' : 'MISSION'}</button>
-        <button className={mobileSection === 'field' ? 'active' : ''} onClick={() => setMobileSection('field')}>{language === 'zh' ? '現場' : 'FIELD'}</button>
-        <button className={mobileSection === 'crew' ? 'active' : ''} onClick={() => setMobileSection('crew')}>{language === 'zh' ? '小隊' : 'CREW'}</button>
+        <button className={mobileSection === 'mission' ? 'active' : ''} onClick={() => setMobileSection('mission')}>01 · {language === 'zh' ? '任務' : 'MISSION'}</button>
+        <button className={mobileSection === 'field' ? 'active' : ''} onClick={() => { setMobileSection('field'); setOperationInfoTab('summary'); }}>02 · {language === 'zh' ? '決策' : 'DECISION'}</button>
+        <button className={mobileSection === 'crew' ? 'active' : ''} onClick={() => { setMobileSection('crew'); setCrewTab('actions'); }}>03 · {language === 'zh' ? '行動' : 'ACTION'}</button>
+      </div>
+      <div className="mobile-action-dock" data-testid="mobile-action-dock">
+        <div>
+          <span>{language === 'zh' ? '階段' : 'STAGE'} <b>{currentStage}</b></span>
+          <span>{language === 'zh' ? '進度' : 'PROGRESS'} <b>{session.mission.progress}/{session.mission.requirement}</b></span>
+        </div>
+        <div className="mobile-action-buttons">
+          {missionEnded ? (
+            <button type="button" data-testid="mobile-reset-mission" onClick={() => setSession(null)}>{ui.redeploy}</button>
+          ) : operationAbortConfirm ? (
+            <>
+              <small className="mobile-abort-confirm-copy" data-testid="mobile-abort-operation-copy">
+                {language === 'zh' ? '確認中止本次出勤？不會寫入任務結果，可返回航線重新整備。' : 'Abort this sortie? No mission result will be written; you can return to the route and prepare again.'}
+              </small>
+              <button type="button" data-testid="mobile-abort-operation-cancel" onClick={cancelOperationAbort}>{language === 'zh' ? '取消' : 'Cancel'}</button>
+              <button type="button" data-testid="mobile-abort-operation-confirm" onClick={confirmOperationAbort}>{language === 'zh' ? '確認返航' : 'Confirm return'}</button>
+            </>
+          ) : (
+            <>
+              {operationRoundConfirm && (
+                <small className="mobile-round-commit-copy" data-testid="mobile-round-commit-copy">
+                  {endRoundForecast.failureReason
+                    ? `${language === 'zh' ? '預測失敗' : 'Forecast failure'}: ${endRoundForecast.failureReason}`
+                    : forecastBranchEvent
+                      ? `${language === 'zh' ? '將觸發事件' : 'Will trigger'} ${forecastBranchEvent.code}`
+                      : `${language === 'zh' ? '回合後餘裕' : 'Post-round margin'} W ${endRoundForecast.weatherAfter}% / S ${endRoundForecast.safetyAfter}%`}
+                </small>
+              )}
+              <button type="button" data-testid="mobile-abort-operation-open" onClick={openOperationAbort}>{language === 'zh' ? '中止返航' : 'Abort'}</button>
+              <button type="button" data-testid="mobile-next-round" disabled={Boolean(session.pendingBranch)} onClick={requestNextRound}>
+                {session.pendingBranch
+                  ? (language === 'zh' ? '等待事件處置' : 'Await response')
+                  : operationRoundConfirm
+                    ? (language === 'zh' ? '確認結束回合' : 'Confirm round')
+                    : ui.endRound}
+              </button>
+            </>
+          )}
+        </div>
       </div>
       <OnboardingGuide
         progress={onboarding}
@@ -1630,9 +1712,10 @@ function DeploymentScreen({
   onRest: (characterId: string) => void;
   onDeploy: () => void;
 }) {
-  const [activeTab, setActiveTab] = useState<'route' | 'readiness' | 'crew' | 'loadout' | 'forecast' | 'backup'>('route');
-  const [campaignRouteTab, setCampaignRouteTab] = useState<'fleet' | 'missions' | 'briefing'>('fleet');
+  const [activeTab, setActiveTab] = useState<DeploymentTabId>('route');
+  const [campaignRouteTab, setCampaignRouteTab] = useState<'fleet' | 'missions' | 'briefing'>('missions');
   const [sandboxRouteTab, setSandboxRouteTab] = useState<'scenario' | 'scene' | 'briefing'>('scenario');
+  const [crewSubTab, setCrewSubTab] = useState<'team' | 'readiness'>('team');
   const [sandboxSceneFilter, setSandboxSceneFilter] = useState<SandboxSceneAvailabilityFilter>('ALL');
   const [crewFilters, setCrewFilters] = useState<CrewRosterFilters>({
     query: '',
@@ -2130,6 +2213,47 @@ function DeploymentScreen({
     tabs[nextIndex]?.focus();
     tabs[nextIndex]?.click();
   };
+  const deploymentTabs: Array<{ id: DeploymentTabId; label: string; detail: string; utility?: boolean }> = [
+    {
+      id: 'route',
+      label: language === 'zh' ? '選擇任務' : 'Select mission',
+      detail: language === 'zh' ? '任務與簡報' : 'Mission and briefing',
+    },
+    ...(mode !== 'sandbox' ? [{
+      id: 'readiness' as const,
+      label: language === 'zh' ? '作業許可' : 'Readiness',
+      detail: language === 'zh' ? 'PTW、PPE、進場' : 'PTW, PPE and access',
+    }] : []),
+    {
+      id: 'crew',
+      label: language === 'zh' ? '編組技師' : 'Select crew',
+      detail: language === 'zh' ? '能力與疲勞' : 'Capability and fatigue',
+    },
+    {
+      id: 'loadout',
+      label: language === 'zh' ? '配置裝備' : 'Configure loadout',
+      detail: language === 'zh' ? '工具、備件、船舶' : 'Gear, spares and vessel',
+    },
+    ...(mode === 'campaign' ? [{
+      id: 'forecast' as const,
+      label: language === 'zh' ? '確認出勤' : 'Confirm dispatch',
+      detail: language === 'zh' ? '風險與結果預測' : 'Risk and outcome forecast',
+    }] : []),
+    ...(mode === 'challenge' ? [{
+      id: 'backup' as const,
+      label: language === 'zh' ? '挑戰存檔' : 'Challenge save',
+      detail: language === 'zh' ? '選用的匯入／匯出工具' : 'Optional import/export',
+      utility: true,
+    }] : []),
+  ];
+  const operationFlowTabs = deploymentTabs.filter((tab) => !tab.utility);
+  const currentFlowIndex = operationFlowTabs.findIndex((tab) => tab.id === activeTab);
+  const previousFlowTab = currentFlowIndex > 0 ? operationFlowTabs[currentFlowIndex - 1] : undefined;
+  const nextFlowTab = currentFlowIndex >= 0 && currentFlowIndex < operationFlowTabs.length - 1
+    ? operationFlowTabs[currentFlowIndex + 1]
+    : undefined;
+  const finalOperationTab = operationFlowTabs[operationFlowTabs.length - 1]?.id;
+  const activeDeploymentTab = deploymentTabs.find((tab) => tab.id === activeTab);
 
   return (
     <section className={`deployment-shell deployment-tab-${activeTab}`}>
@@ -2143,14 +2267,25 @@ function DeploymentScreen({
             : (language === 'zh' ? '自由選擇 100 個 Boss 與完整技能，不寫入 Campaign XP。' : 'Challenge any of 100 bosses with all skills unlocked; campaign XP is not modified.')}</p>
       </div>
       <nav className="workspace-tabs deployment-tabs" role="tablist" aria-label={language === 'zh' ? '部署資訊頁籤' : 'Deployment tabs'} data-testid="deployment-tabs">
-        {([
-          ['route', language === 'zh' ? '任務航線' : 'Mission route'],
-          ...(mode !== 'sandbox' ? [['readiness', (language === 'zh' ? '作業許可' : 'Readiness')] as const] : []),
-          ['crew', 'Crew'],
-          ['loadout', language === 'zh' ? '裝備' : 'Loadout'],
-          ...(mode === 'campaign' ? [['forecast', language === 'zh' ? '出勤預測' : 'Dispatch forecast']] as const : []),
-          ...(mode === 'challenge' ? [['backup', language === 'zh' ? '挑戰存檔' : 'Challenge save']] as const : []),
-        ] as const).map(([tab, label]) => <button key={tab} id={`deployment-tab-${tab}-button`} role="tab" type="button" data-testid={`deployment-tab-${tab}`} aria-selected={activeTab === tab} aria-controls={`deployment-tab-panel-${tab}`} tabIndex={activeTab === tab ? 0 : -1} className={activeTab === tab ? 'active' : ''} onClick={() => setActiveTab(tab)} onKeyDown={handleDeploymentTabKey}>{label}</button>)}
+        {deploymentTabs.map((tab) => (
+          <button
+            key={tab.id}
+            id={`deployment-tab-${tab.id}-button`}
+            role="tab"
+            type="button"
+            data-testid={`deployment-tab-${tab.id}`}
+            aria-selected={activeTab === tab.id}
+            aria-controls={`deployment-tab-panel-${tab.id}`}
+            tabIndex={activeTab === tab.id ? 0 : -1}
+            className={`${activeTab === tab.id ? 'active' : ''}${tab.utility ? ' utility' : ''}`}
+            onClick={() => setActiveTab(tab.id)}
+            onKeyDown={handleDeploymentTabKey}
+          >
+            <span>{tab.utility ? 'SAVE' : String(operationFlowTabs.findIndex((item) => item.id === tab.id) + 1).padStart(2, '0')}</span>
+            <b>{tab.label}</b>
+            <small>{tab.detail}</small>
+          </button>
+        ))}
       </nav>
       <div className="deployment-grid">
         <section id={`deployment-tab-panel-${activeTab}`} role="tabpanel" aria-labelledby={`deployment-tab-${activeTab}-button`} className={`panel deployment-form deployment-tab-panel${activeTab === 'route' && mode === 'campaign' ? ' campaign-route-panel' : ''}${onboardingStep === 'DEPLOYMENT' ? ' onboarding-focus' : ''}`} data-testid={`deployment-tab-panel-${activeTab}`}>
@@ -2246,6 +2381,8 @@ function DeploymentScreen({
                   <button
                     key={scene.id}
                     type="button"
+                    data-testid={`sandbox-scene-${scene.id}`}
+                    data-scene-id={scene.id}
                     className={`sandbox-scene-card ${deployment.sandboxSceneId === scene.id ? 'active' : ''} ${route.availability.toLowerCase()}`}
                     onClick={() => onChange({ ...deployment, sandboxSceneId: scene.id })}
                   >
@@ -2420,7 +2557,12 @@ function DeploymentScreen({
             <p className="operation-disclaimer">{language === 'zh' ? 'Gameplay abstraction — 非現場作業限制或工作授權。' : 'Gameplay abstraction — not a field operating limit or work authorization.'}</p>
           </section>}
 
-          {activeTab === 'crew' && <><span className="form-section-label">{ui.team}</span>
+          {activeTab === 'crew' && <>
+          <div className="sub-tab-row deployment-crew-subtabs" role="tablist" aria-label={language === 'zh' ? '隊伍資訊切換' : 'Crew information tabs'}>
+            <button type="button" role="tab" data-testid="deployment-crew-subtab-team" aria-selected={crewSubTab === 'team'} className={crewSubTab === 'team' ? 'active' : ''} onClick={() => setCrewSubTab('team')}>{language === 'zh' ? '隊伍編組' : 'TEAM SETUP'}</button>
+            <button type="button" role="tab" data-testid="deployment-crew-subtab-readiness" aria-selected={crewSubTab === 'readiness'} className={crewSubTab === 'readiness' ? 'active' : ''} onClick={() => setCrewSubTab('readiness')}>{language === 'zh' ? '疲勞與熟練' : 'READINESS'}</button>
+          </div>
+          <span className="form-section-label">{ui.team}</span>
           {mode === 'challenge' && challengeSquadRecommendation
             ? <BossChallengeSquadAdvisor
                 recommendation={challengeSquadRecommendation}
@@ -2429,8 +2571,9 @@ function DeploymentScreen({
                 onApply={applyChallengeSquadRecommendation}
               />
             : missionDefinition && rotationRecommendation
-              ? <CrewRotationAdvisor recommendation={rotationRecommendation} language={language} onApply={applyRotationRecommendation} />
+              ? <CrewRotationAdvisor recommendation={rotationRecommendation} language={language} compact onApply={applyRotationRecommendation} />
               : null}
+          {crewSubTab === 'team' && <>
           {mode !== 'sandbox' && <section className="crew-roster-filters" data-testid="crew-roster-filters">
             <label><span>{language === 'zh' ? '搜尋' : 'SEARCH'}</span><input data-testid="crew-filter-search" value={crewFilters.query} placeholder={language === 'zh' ? 'ID／姓名／職種' : 'ID / name / role'} onChange={(event) => setCrewFilters({ ...crewFilters, query: event.target.value })} /></label>
             <label><span>FACTION</span><select data-testid="crew-filter-faction" value={crewFilters.factionCode} onChange={(event) => setCrewFilters({ ...crewFilters, factionCode: event.target.value })}>
@@ -2469,7 +2612,9 @@ function DeploymentScreen({
             ))}
           </div>
           {duplicateTeam && <p className="form-error">⛔ {ui.duplicateTeam}</p>}
+          </>}
 
+          {crewSubTab === 'readiness' && <>
           {mode === 'campaign' && <section className="crew-readiness" data-testid="crew-readiness">
             <div className="crew-readiness-heading"><div><span>CREW READINESS</span><b>{language === 'zh' ? '任務間疲勞與輪調' : 'Inter-mission fatigue and rotation'}</b></div><strong>{campaign.recoveryTokens} RST</strong></div>
             <div className="crew-readiness-members">
@@ -2493,6 +2638,7 @@ function DeploymentScreen({
             </div>
             <small>Evidence +{teamPerks.evidenceBonus} · Reliability +{teamPerks.reliabilityBonus}</small>
           </div></>}
+          </>}
           {activeTab === 'crew' && mode === 'challenge' && challengeStrategyBriefing && <ChallengeStrategyBriefingPanel briefing={challengeStrategyBriefing} language={language} compact onFindCapability={findCrewCapability} />}
           {activeTab === 'crew' && mode === 'challenge' && challengeGapCandidatePreview && <ChallengeGapCandidatePanel
             preview={challengeGapCandidatePreview}
@@ -2600,13 +2746,33 @@ function DeploymentScreen({
 
           {activeTab !== 'backup' && <div className="deployment-action-bar">
             <div>
+              <p className="deployment-current-step" data-testid="deployment-flow-step">
+                <b>{String(Math.max(0, currentFlowIndex) + 1).padStart(2, '0')} / {String(operationFlowTabs.length).padStart(2, '0')}</b>
+                <span>{activeDeploymentTab?.label}</span>
+                <small>{activeDeploymentTab?.detail}</small>
+              </p>
               {mode === 'campaign' && operationReadiness && !operationReadiness.ready && <p className="readiness-blocked-reason" data-testid="readiness-blocked-reason">{language === 'zh' ? `尚未通過：${missingReadiness.join('、')}` : `Pending: ${missingReadiness.join(', ')}`}</p>}
               {mode === 'campaign' && !inventoryReady && <p className="readiness-blocked-reason" data-testid="inventory-blocked-reason">{language === 'zh' ? '目前配置包含尚未持有或 Condition 低於 25% 的裝備。' : 'The current loadout includes locked or unserviceable equipment.'}</p>}
               {mode === 'campaign' && !careerReady && <p className="readiness-blocked-reason" data-testid="career-blocked-reason">{language === 'zh' ? '隊伍包含尚未由 Career Track 解鎖的角色。' : 'The team includes a character not yet unlocked by Career Track progression.'}</p>}
               {mode === 'campaign' && !fatigueReady && <p className="readiness-blocked-reason" data-testid="crew-blocked-reason">{language === 'zh' ? '隊伍包含 100% Exhausted 技師；請先休息或輪調。' : 'The team includes exhausted crew; rest or rotate before deployment.'}</p>}
               {duplicateTeam && <p className="readiness-blocked-reason">⛔ {ui.duplicateTeam}</p>}
             </div>
-            <button className="primary-button deployment-button" data-testid="deploy-mission" disabled={duplicateTeam || !inventoryReady || !crewReady || (mode === 'campaign' && !operationReadiness?.ready) || (mode === 'challenge' && challengeRouteItems.length === 0)} onClick={onDeploy}>{ui.deploy}</button>
+            <div className="deployment-flow-actions">
+              {previousFlowTab && <button type="button" className="deployment-flow-back" data-testid="deployment-flow-back" onClick={() => setActiveTab(previousFlowTab.id)}>
+                <span>←</span><b>{previousFlowTab.label}</b>
+              </button>}
+              {nextFlowTab && <button type="button" className="deployment-flow-next" data-testid="deployment-flow-next" onClick={() => setActiveTab(nextFlowTab.id)}>
+                <span>{language === 'zh' ? '下一步' : 'NEXT'}</span><b>{nextFlowTab.label} →</b>
+              </button>}
+              <button
+                className={`primary-button deployment-button${activeTab === finalOperationTab ? '' : ' quick'}`}
+                data-testid="deploy-mission"
+                disabled={duplicateTeam || !inventoryReady || !crewReady || (mode === 'campaign' && !operationReadiness?.ready) || (mode === 'challenge' && challengeRouteItems.length === 0)}
+                onClick={onDeploy}
+              >
+                {activeTab === finalOperationTab ? ui.deploy : (language === 'zh' ? '快速出勤' : 'Quick deploy')}
+              </button>
+            </div>
           </div>}
         </section>
 
@@ -2879,7 +3045,7 @@ function ChallengeStrategyBriefingPanel({
       <span className={gapSet.has('NO_TEAM_RECOVERY') ? 'gap' : 'ready'} data-testid="strategy-team-recovery"><small>{language === 'zh' ? '全隊恢復' : 'TEAM RECOVERY'}</small><b>{briefing.teamRecoveryOptions.length}</b><em>{gapSet.has('NO_TEAM_RECOVERY') ? 'GAP' : 'READY'}</em></span>
       <span className={gapSet.has('NO_LOW_ENERGY_ACTION') ? 'gap' : 'ready'} data-testid="strategy-low-energy"><small>≤4 ENERGY</small><b>{briefing.lowEnergyActions.length}</b><em>{gapSet.has('NO_LOW_ENERGY_ACTION') ? 'GAP' : 'READY'}</em></span>
       <span className={gapSet.has('STAGE_GAP') ? 'gap' : 'ready'}><small>STAGE</small><b>{briefing.coveredStageCount}/6</b><em>{gapSet.has('STAGE_GAP') ? 'GAP' : 'READY'}</em></span>
-      <span className="neutral"><small>COUNTER</small><b>{briefing.counterCount}/3</b><em>×1.25</em></span>
+      <span className="neutral"><small>COUNTER</small><b>{briefing.counterCount}/3</b><em>×1.35</em></span>
     </div>
     <div className={`strategy-gap-summary${briefing.gaps.length === 0 ? ' clear' : ''}`} data-testid="strategy-gap-signals">
       <span>{briefing.gaps.length === 0 ? 'STRUCTURE READY' : `${briefing.gaps.length} STRUCTURAL GAP${briefing.gaps.length > 1 ? 'S' : ''}`}</span>
@@ -3032,9 +3198,9 @@ function BossChallengeRoutePanel({
 
   return <section className="boss-challenge-shell">
     <div className="workspace-tabs boss-challenge-tabs" style={{ marginBottom: 12 }}>
-      <button type="button" className={activeChallengeTab === 'overview' ? 'active' : ''} onClick={() => setActiveChallengeTab('overview')}>{language === 'zh' ? '總覽' : 'Overview'}</button>
-      <button type="button" className={activeChallengeTab === 'roster' ? 'active' : ''} onClick={() => setActiveChallengeTab('roster')}>{language === 'zh' ? 'Boss 列表' : 'Roster'}</button>
-      <button type="button" className={activeChallengeTab === 'briefing' ? 'active' : ''} onClick={() => setActiveChallengeTab('briefing')}>{language === 'zh' ? '簡報' : 'Briefing'}</button>
+      <button type="button" data-testid="boss-challenge-tab-overview" className={activeChallengeTab === 'overview' ? 'active' : ''} onClick={() => setActiveChallengeTab('overview')}>{language === 'zh' ? '總覽' : 'Overview'}</button>
+      <button type="button" data-testid="boss-challenge-tab-roster" className={activeChallengeTab === 'roster' ? 'active' : ''} onClick={() => setActiveChallengeTab('roster')}>{language === 'zh' ? 'Boss 列表' : 'Roster'}</button>
+      <button type="button" data-testid="boss-challenge-tab-briefing" className={activeChallengeTab === 'briefing' ? 'active' : ''} onClick={() => setActiveChallengeTab('briefing')}>{language === 'zh' ? '簡報' : 'Briefing'}</button>
     </div>
 
     {activeChallengeTab === 'overview' && (
@@ -3490,7 +3656,7 @@ function DispatchForecastPanel({
 
         <article className="forecast-card forecast-rst" data-testid="forecast-rst">
           <div className="forecast-card-heading"><span>REST TOKEN</span><b>{forecast.recoveryTokens.current} → {forecast.recoveryTokens.after} RST</b></div>
-          <div className="forecast-rst-flow"><span>{forecast.recoveryTokens.current}<small>{language === 'zh' ? '目前' : 'Current'}</small></span><i>+</i><span className="earned">{forecast.recoveryTokens.earned}<small>{vessel.class} {language === 'zh' ? '任務取得' : 'reward'}</small></span><i>=</i><span>{forecast.recoveryTokens.after}<small>{language === 'zh' ? '任務後' : 'After mission'}</small></span></div>
+          <div className="forecast-rst-flow"><span>{forecast.recoveryTokens.current}<small>{language === 'zh' ? '目前' : 'Current'}</small></span><i>+</i><span className="earned">{forecast.recoveryTokens.earned}<small>{language === 'zh' ? '補給節點' : 'supply milestone'}</small></span><i>=</i><span>{forecast.recoveryTokens.after}<small>{language === 'zh' ? '任務後' : 'After mission'}</small></span></div>
         </article>
       </div>
       <CrewRotationAdvisor recommendation={rotationRecommendation} language={language} onApply={onApplyRotation} compact />
@@ -4514,6 +4680,11 @@ function CollectionScreen({
           const readinessBand = crewReadinessBand(campaign, character);
           const shinkaiArt = database.shinkaiArtIndex?.items[character.id];
           const art = database.sourceArtIndex.items[character.id];
+          const activeArt = artPack === 'shinkai' && shinkaiArt
+            ? { ...shinkaiArt, pack: 'shinkai' as const }
+            : art
+              ? { ...art, pack: 'classic' as const }
+              : undefined;
           const activeArtFile = artPack === 'shinkai' && shinkaiArt
             ? `/assets/source-art/v2-shinkai/${shinkaiArt.file}`
             : (art ? `/assets/source-art/p01/${art.file}` : null);
@@ -4526,10 +4697,11 @@ function CollectionScreen({
             data-testid={`collection-character-${character.id}`}
             data-career-unlocked={careerUnlocked}
             data-source-art-character-id={character.id}
-            data-source-art-version={art?.version ?? ''}
-            data-source-art-file={art?.file ?? ''}
-            data-source-art-qa-status={art?.qaStatus ?? ''}
-            data-source-art-engineering-qa-status={art?.engineeringQaStatus ?? ''}
+            data-source-art-pack={activeArt?.pack ?? ''}
+            data-source-art-version={activeArt?.version ?? ''}
+            data-source-art-file={activeArt?.file ?? ''}
+            data-source-art-qa-status={activeArt?.qaStatus ?? ''}
+            data-source-art-engineering-qa-status={activeArt?.engineeringQaStatus ?? (activeArt?.pack === 'shinkai' ? 'PACK_QA_REQUIRED' : '')}
             style={{ '--faction': database.factionById.get(character.factionCode)?.color ?? '#42dbc8' } as React.CSSProperties}
           >
             <div

@@ -847,13 +847,19 @@ export function awardCampaignMission(
     .filter((id) => characterById.has(id));
   const deployedCrewSet = new Set(deployedCrewIds);
   const crewFatigue = { ...current.crewFatigue };
-  const transitRecovery = Math.max(0, vessel.fatigueRelief * 2);
+  const transitRecovery = campaignTransitRecovery(vessel);
+  const operationalLoad = campaignOperationalFatigue(mission);
   const crewFatigueUpdates: CrewFatigueUpdate[] = [];
 
   for (const characterId of deployedCrewIds) {
     const character = characterById.get(characterId)!;
     const before = campaignCrewFatigue(current, characterId);
-    const missionEnd = Math.max(0, Math.min(character.fatigueMax, deployedCrewFatigue[characterId] ?? before));
+    // 任務 runtime 只計算技師行動與風險傷害；跨任務另加入出勤、轉乘與收工負荷，
+    // 才能讓連續派遣同一隊與輪調形成真正的策略差異。
+    const missionEnd = Math.max(
+      0,
+      Math.min(character.fatigueMax, Math.max(before, deployedCrewFatigue[characterId] ?? before) + operationalLoad),
+    );
     const recovery = Math.min(missionEnd, transitRecovery);
     const after = missionEnd - recovery;
     if (after > 0) crewFatigue[characterId] = after;
@@ -865,13 +871,13 @@ export function awardCampaignMission(
     if (deployedCrewSet.has(characterId)) continue;
     const character = characterById.get(characterId);
     if (!character) continue;
-    const recovery = Math.min(before, Math.max(0, character.fatigueRecovery * 2));
+    const recovery = Math.min(before, campaignReserveRecovery(character));
     const after = before - recovery;
     if (after > 0) crewFatigue[characterId] = after;
     else delete crewFatigue[characterId];
     if (recovery > 0) crewFatigueUpdates.push({ characterId, source: 'reserve', before, recovery, after });
   }
-  const recoveryTokensEarned = vessel.class === 'SOV' ? 2 : 1;
+  const recoveryTokensEarned = recoveryTokensForMission(mission, vessel, completed);
   const windFarmSettlement = settleWindFarmMission(current.windFarm, mission, completed, debrief.totalScore);
   const progressWithHistory = windFarmSettlement.update
     ? appendFleetOperationHistory(
@@ -937,8 +943,29 @@ export function maintenanceCreditsForMission(
   completed: boolean,
 ): number {
   return completed
-    ? 18 + mission.chapter * 6 + Math.floor(debrief.totalScore / 10)
-    : 8 + mission.chapter * 3;
+    ? 12 + mission.chapter * 4 + Math.floor(debrief.totalScore / 20)
+    : 4 + mission.chapter * 2;
+}
+
+export function campaignOperationalFatigue(mission: Pick<MissionData, 'chapter'>): number {
+  return 4 + mission.chapter * 2;
+}
+
+export function campaignTransitRecovery(vessel: Pick<VesselData, 'fatigueRelief'>): number {
+  return Math.max(0, vessel.fatigueRelief);
+}
+
+export function campaignReserveRecovery(character: Pick<CharacterData, 'fatigueRecovery'>): number {
+  return Math.max(1, Math.ceil(character.fatigueRecovery / 2));
+}
+
+export function recoveryTokensForMission(
+  mission: Pick<MissionData, 'order'>,
+  vessel: Pick<VesselData, 'class'>,
+  completed: boolean,
+): number {
+  // RST 是章節節奏資源，不再由每次出勤大量供給；SOV 完成每三關的補給節點才取得 1 點。
+  return completed && vessel.class === 'SOV' && mission.order % 3 === 0 ? 1 : 0;
 }
 
 function scoreGrade(score: number): CampaignGrade {

@@ -1,8 +1,145 @@
 # OWM Web MVP 需求稽核
 
-稽核日期：2026-07-17  
+## Current verification snapshot — 2026-07-24
+
+這一節是目前狀態的唯一摘要；下方較早日期的 increment 保留作為歷史證據，不應覆蓋本節數值。
+
+- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已完成；`pnpm validate` 通過，包含 21 test files／142 tests、data／art／scene gates、兩組 balance simulation 與 production build。
+- 300/300 P01 active preview 已同步；300 張均通過 2:3 runtime contract 與 Source Art smoke。
+- 150 個 Scene ID 均已具備 explicit route 或 documented shared fallback：148 integrated、146 dedicated runtime files（1915×821 RGB）、2 fallback（SCN035、SCN041）。
+- 119 個新場景候選仍為 `VISUAL_REVIEW_REQUIRED`；場景核准 dry-run 已通過且沒有改檔。
+- P01 production queue 為 `210 Upscale Pending / 90 Production QA Pending / 0 Production Approved`。90 張 production candidates 已完成 exact 4096×6144 technical QA，但尚未宣告使用者視覺核准。
+- 審查入口：`SCENE_VISUAL_APPROVAL_PACKET.md`、`assets/source-art/qa/scene-pack-2026-07-24/scene-pack-contact-sheet-all-v018.png`、`assets/source-art/qa/production-p01-2026-07-24/production-contact-sheet-all-v001.png`。
+- 核准決策 ledger：`assets/source-art/qa/visual-approval-ledger-2026-07-24.json`，目前 119 個場景與 90 個 P01 production candidate 全部為 `pending`。
+- 尚未完成的正式 gate 只有人工視覺核准、最終 AI upscale，以及核准後的 production promotion；未經核准不改寫 QA status。
+
+## Latest increment: scene background coverage (2026-07-24)
+
+- Added five new versioned offshore scene backgrounds for SCN006, SCN017, SCN021, SCN027, and SCN031.
+- Added five additional versioned backgrounds for SCN018, SCN019, SCN020, SCN022, and SCN028, extending the same fallback-safe routing contract.
+- Added five additional backgrounds for SCN029, SCN030, SCN032, SCN033, and SCN034, completing the first port/CTV weather variants.
+- Added five SOV operation backgrounds for SCN036-SCN040, completing the first vessel-operation weather set.
+- Added five heavy-lift/tower-interior backgrounds for SCN047-SCN051; all remain visual-review candidates.
+- Added five tower-interior/nacelle backgrounds for SCN052-SCN056; all remain visual-review candidates.
+- Added five nacelle/rotor-hub backgrounds for SCN057-SCN061; all remain visual-review candidates.
+- Added five rotor-hub/blade-access backgrounds for SCN062-SCN066; all remain visual-review candidates.
+- Added five blade-access/cable-landfall backgrounds for SCN067-SCN071; all remain visual-review candidates.
+- Added five cable-landfall/SCADA backgrounds for SCN072-SCN076; all remain visual-review candidates.
+- Added five SCADA/CMS backgrounds for SCN077-SCN081; all remain visual-review candidates.
+- Added five switchgear/warehouse backgrounds for SCN087-SCN091; all remain visual-review candidates.
+- Added five warehouse/GWO training-center backgrounds for SCN092-SCN096; all remain visual-review candidates.
+- Added four GWO training-center backgrounds for SCN097-SCN100; all remain visual-review candidates.
+- Added five SOV maintenance-deck backgrounds for SCN101-SCN105; all remain visual-review candidates.
+- Added five SOV aft/side/forward deck backgrounds for SCN106-SCN110; all remain visual-review candidates.
+- Added five SOV transfer-deck backgrounds for SCN111-SCN115; all remain visual-review candidates.
+- Added five SOV helideck/aft/weather-deck backgrounds for SCN116-SCN120; all remain visual-review candidates.
+- Added five SOV forward/cable-reel/stern backgrounds for SCN121-SCN125; all remain visual-review candidates.
+- Added five SOV bridge/cable-reel/stern-workboat/transfer-deck backgrounds for SCN126-SCN130; all remain visual-review candidates.
+- Added five SOV ROV launch/tooling/recovery and fog-deck backgrounds for SCN131-SCN135; all remain visual-review candidates.
+- Added five SOV control-room, forward-swell, storm-front, helideck, and heavy-lift backgrounds for SCN136-SCN140; all remain visual-review candidates.
+- Added five SOV emergency-response, tether-workshop, bow-fog, crane-dusk, and monitoring-deck backgrounds for SCN141-SCN145; all remain visual-review candidates.
+- Added five cable-landfall, meteorological-station, heavy-weather, emergency-transfer, and sunrise-handover backgrounds for SCN146-SCN150; all remain visual-review candidates.
+- Scene routing now covers 148/150 integrated routes with 146 dedicated runtime files and 2 explicit fallback routes; the consolidated review sheet contains 119 candidates.
+- Visual QA fixed a Daylight Sandbox readability defect: scene descriptions and active-card text now use explicit theme-safe contrast tokens.
+- All runtime files are normalized to 1915x821 RGB and routed through `json/sceneAssets.json` without changing the shared fallback or existing Campaign routes.
+- The one hundred and nineteen candidates remain `VISUAL_REVIEW_REQUIRED`; the contact sheets and visual engineering notes are under `assets/source-art/qa/scene-pack-2026-07-24/`.
+- Added `pnpm validate:scene` to enforce the dedicated scene-feed dimension/mode contract while preserving the documented legacy fallback exception.
+- Scene, Sandbox, compact Operation, data validation, art validation, and production build checks passed after import.
+- Added a consolidated 119-scene visual review contact sheet for the remaining manual approval gate.
+
+稽核日期：2026-07-24
 規格依據：`OWM_MASTER_PROJECT_CHARTER_v1.0.docx`、`OWM_Data_Master_v1.0.xlsx`  
-目前版本：`3.27.0-source-art-batch016-r6-active-import`
+目前版本：`3.53.0-batch030-production-qa`
+
+## Latest increment: Batch030 active preview + production QA staging
+
+- Current package version: `3.53.0-batch030-production-qa`.
+- Batch029 and Batch030 complete the classic P01 runtime index at `300/300`; both batches have full R7 sample review artifacts, contact sheets, and active-preview import records.
+- Production candidates now cover the final 20 entries at exact `4096x6144`; queue totals are `210` Upscale Pending, `90` Production QA Pending, and `0` Production Approved.
+- Final user visual approval and any AI upscale remain the explicit production gate; no production candidate is falsely marked approved.
+
+## Continuation: Batch029 and Batch030 production QA
+
+- Batch029: active P01 `290/300`, 10 production candidates, queue `210/80/0`.
+- Batch030: active P01 `300/300`, 10 production candidates, queue `210/90/0`.
+- Full sample and production review artifacts live under `assets/source-art/qa/BATCH-P01-029-r7-samples/` and `assets/source-art/qa/BATCH-P01-030-r7-samples/`.
+
+## Previous increment: Batch025 active preview + production QA staging
+
+- Current package version: `3.48.0-batch025-production-qa`.
+- Added resumable production candidate generation for a selected batch; candidates are staged at exact `4096x6144` while active runtime files remain `1024x1536`.
+- Batch022, Batch023, Batch024, and Batch025 now have 40 production candidates connected under `assets/source-art/production/p01` with `Production QA Pending`; queue totals are `210` Upscale Pending, `40` Production QA Pending, and `0` Production Approved.
+- Batch025 has 10 active preview candidates; the public P01 index is `250/300` and Source Art smoke passes for all 250 entries.
+- Production contact sheets and QA notes are stored with all four batch sample directories.
+- Production validator now accepts and verifies `Production QA Pending` rather than rejecting the state it already audited later in the same pass.
+- Typecheck, 21 test files / 142 tests, data/art validation, and production audit are green.
+
+## Continuation: Batch026 active preview + production QA staging
+
+- Current package version: `3.49.0-batch026-production-qa`.
+- Batch026 adds 10 active preview candidates; the public P01 index is `260/300` and Source Art smoke passes for all 260 entries.
+- Batch026 adds 10 exact `4096x6144` production candidates; the queue is `210` Upscale Pending, `50` Production QA Pending, and `0` Production Approved.
+- Three taller imagegen outputs were normalized to the strict `1024x1536` preview contract with full-body framing retained; the normalization is documented in the Batch026 QA manifest.
+
+## Continuation: Batch027 active preview + production QA staging
+
+- Current package version: `3.50.0-batch027-production-qa`.
+- Batch027 adds 10 active preview candidates; the public P01 index is `270/300` and Source Art smoke passes for all 270 entries.
+- Batch027 adds 10 exact `4096x6144` production candidates; the queue is `210` Upscale Pending, `60` Production QA Pending, and `0` Production Approved.
+- The Batch027 contact sheet and production QA note record the normalization and one explicit no-logo regeneration.
+
+## Continuation: Batch028 active preview + production QA staging
+
+- Current package version: `3.51.0-batch028-production-qa`.
+- Batch028 adds 10 active preview candidates; the public P01 index is `280/300` and Source Art smoke passes for all 280 entries.
+- Batch028 adds 10 exact `4096x6144` production candidates; the queue is `210` Upscale Pending, `70` Production QA Pending, and `0` Production Approved.
+
+## Previous increment: Batch023 active preview integration
+
+- All 10 Batch023 R7 candidates are now connected to active web preview; public P01 index is `230/300` and Source Art smoke passes for all 230 entries.
+- `pnpm art:r7-preview -- BATCH-P01-023` is now supported by a batch-parameterized importer; the legacy no-argument Batch022 path remains compatible.
+- Full regression is green: 21 test files / 142 tests, data/art validation, gameplay, all compact/single-screen UI smoke suites, Scene, Sandbox, Fleet, campaign balance, and Boss Challenge balance.
+- Production queue remains explicit and separate: `230/300` active P01 entries await `4096x6144` upscale and zero are Production Approved.
+
+## Previous increment: R7 Batch023 full sample QA + production queue
+
+- `BATCH-P01-023` now has 10 isolated R7 candidates, all `1024x1536` and aspect-pass; full contact sheet, QA manifest, and review matrix are available under `assets/source-art/qa/BATCH-P01-023-r7-samples/`.
+- Batch023 casting mix is 4 masculine, 2 androgynous, and 4 feminine across 10 age impressions; it has since been connected to active preview after the visual review gate.
+- The production queue remains separate: active P01 is now `230/300`, with `230` awaiting `4096x6144` upscale and zero Production Approved claims.
+
+- Regenerated the four failed `BATCH-P01-022` R7 aspect candidates (`CHR-ACA-072`, `CHR-DEV-116`, `CHR-MFG-156`, `CHR-OMI-251`) as valid `1024x1536` v002 samples.
+- The full 10-image contact sheet and QA manifest now report `10/10` current candidates passing the P01 `2:3` aspect contract; five superseded v001 files remain retained as rejected evidence.
+- All 10 current candidates are connected to active web preview with QA-pending statuses (`Technical QA Pending` for v001 and `Correction QA Pending` for v002); active P01 is now `220/300`.
+- All 10 now carry explicit `Visual Review Required`, `productionResolutionStatus=Upscale Pending`, and `engineeringQaStatus=Not Reviewed` metadata; `pnpm art:r7-preview` is idempotent for future re-runs.
+- `pnpm validate:production-art` now audits all `220` active P01 files and confirms `220` are awaiting 4096x6144 upscale with zero false Production Approved claims.
+- Added `BATCH-P01-022-r7-visual-review.md` so the user approval gate is documented as a candidate-by-candidate review matrix rather than an implicit status.
+- Campaign balance and Boss Challenge simulations remain green after the full R7 preview import: `15/15` maintenance serviceable, `15/15` crew deployable, `100/100` challenge clear, and zero severity inversions.
+- Production import gate now accepts only exact `4096×6144` PNGs, stores them outside the runtime preview directory, and leaves active preview unchanged until production QA passes.
+- `BATCH-P01-023` now has an R7 generation pack plus three representative samples; all three pass `1024×1536 / 2:3`, and none is connected to the active index.
+- User visual approval and production-upscale QA remain pending; Shinkai remains a separate square key-art pack.
+
+Verification: sample dimension/manifest check, contact sheet render, active index sync (`220` entries), `pnpm validate:production-art`, `pnpm validate:data`, `pnpm validate:art`, `pnpm build`, and `pnpm smoke:art`.
+
+## Latest increment: compact UI contracts + pack-aware art metadata
+
+- Deployment now keeps the short 1366×768 workflow on one screen by splitting Crew into TEAM SETUP / READINESS subtabs and applying short-viewport spacing rules.
+- Browser smoke contracts now follow the redesigned tabs and CSS background art cards; gameplay core, Operation compact, scene routing, Sandbox, Challenge, Onboarding, layout, fleet, and Source Art smoke suites pass.
+- Operation and Collection surfaces expose pack-aware `data-source-art-*` metadata. Classic P01 remains `210/300`; V2 Shinkai remains a separate 18-image square key-art pack with `PACK_QA_REQUIRED` engineering status.
+- At that increment the production gate was R7 art QA; it is resolved in the latest increment. The remaining gate is user visual approval and production-upscale QA for the active-preview candidates.
+
+## Historical audit: UI redesign + V2 Shinkai Art Pack + Web Audio (superseded by the 2026-07-24 snapshot)
+
+目前 web runtime 已整合 Daylight／Deep Ops 雙主題、V2 Shinkai Art Pack 切換與 Web Audio 音效引擎；靜態型別、資料、prompt、單元測試、Campaign／Boss Challenge balance simulation 與 production build 均通過。`smoke:layout` 與 `smoke:fleet` 亦通過目前涵蓋範圍。
+
+以下是 2026-07-23 當時的稽核結果；目前已由上方 2026-07-24 snapshot 更新：
+
+1. `1366×768` Deployment Readiness 頁仍有約 37px 內容溢出，底部 action bar 會被截斷。
+2. 多個 browser smoke script 仍使用 redesign 前的 selector 或預設 tab，必須先同步測試契約，才能重新判斷 gameplay regression。
+3. V2 Shinkai 目前 18 張皆為 `1024×1024` 方圖，且切換後部分 `data-source-art-*` metadata 仍回報 classic P01；它目前應視為 key-art preview pack，不應直接取代 P01 `2:3` 全身 source-art contract。
+
+Classic P01 目前維持 active `210/300`、pending `90/300`；`BATCH-P01-022` R7 full sample set 仍只有 6/10 current candidates 通過 2:3，4 張仍需重產，尚未匯入 public active index。建議順序為：先收斂 compact UI 與 smoke coverage，再修正 pack-aware art metadata，最後才決定擴充 V2 key art 或繼續 R7 P01 batch production。
+
+Verification: `pnpm typecheck`, `pnpm test`, `pnpm validate:data`, `pnpm validate:art`, `pnpm build`, `pnpm simulate:balance`, `pnpm simulate:challenge`, `pnpm smoke:layout`, `pnpm smoke:fleet`.
 
 ## Latest increment: Source Art Batch022 R7 Samples
 
@@ -571,7 +708,7 @@ Operation 中央視窗已從單一共用 field-feed 擴充為 SCN001–SCN005 �
 - 角色 Source Art：目前 active Source Art 為 160/300；Batch017 已進入 public art index，10/10 通過 `1024×1536`／2:3 engineering precheck，正式視覺 QA 仍為 `Visual Review Required`／`userVisualApproval=false`。
 - Scene：150 筆 metadata 與 prompt 已存在；v2.45 已完成 Mission／Sandbox stable-ID routing、availability 與 fallback provenance。專屬 runtime 圖目前覆蓋 19 個 Scene，其中包含 15 個 Campaign mission 實際使用的 Scene；其餘 Sandbox Scene 仍需逐批生成與 QA。
 - 風機視覺：寫實 field-feed 搭配 pure TypeScript 三葉片、同軸、120° rotor geometry；動態圖層不再以偏心矩形葉片拼接。
-- Production resolution：現有角色圖仍多為 `1024×1536` Web preview；Charter 建議的 `4096×6144` production source 尚未完成。
+- Production resolution：300 張角色的 `1024×1536` Web preview 已完成；其中 90 張已有隔離的 exact `4096×6144` production candidates，210 張仍等待 final upscale。90 張目前均為 `Production QA Pending`，尚未宣告 Production Approved。
 
 ## 本輪完成：Operation Info Tab Keyboard v1
 

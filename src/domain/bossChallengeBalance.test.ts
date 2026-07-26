@@ -38,6 +38,7 @@ describe('Boss Challenge deterministic balance audit', () => {
       checks: {
         allBossesClearable: true,
         candidateDiversity: true,
+        recommendationDiversity: true,
         lowSeverityAccessible: true,
         severityProgression: true,
         endgamePressure: true,

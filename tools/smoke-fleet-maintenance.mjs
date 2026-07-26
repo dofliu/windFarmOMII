@@ -31,6 +31,7 @@ async function prepare(page) {
     localStorage.setItem('owm.onboarding.v1', JSON.stringify({ schemaVersion: 1, status: 'completed', stepIndex: 4 }));
   });
   await page.reload({ waitUntil: 'networkidle' });
+  await page.getByTestId('campaign-route-tab-fleet').click();
 }
 
 async function documentMetrics(page, rootSelector) {
@@ -254,6 +255,7 @@ try {
   await page.screenshot({ path: screenshots.settlement });
 
   await page.reload({ waitUntil: 'networkidle' });
+  await page.getByTestId('campaign-route-tab-fleet').click();
   await page.getByTestId('wind-turbine-WTG-OWM-004').click();
   const restoredQuote = await page.getByTestId('fleet-maintenance-action').innerText();
   if (!restoredQuote.includes('86→94%') || !restoredQuote.includes('1→0') || !restoredQuote.includes('48→23 (-25)')) {
@@ -269,6 +271,7 @@ try {
     throw new Error(`Single maintenance history did not append deterministically: ${JSON.stringify(secondSaved?.fleetOperationsHistory)}`);
   }
   await page.reload({ waitUntil: 'networkidle' });
+  await page.getByTestId('campaign-route-tab-fleet').click();
   await page.getByTestId('fleet-board-tab-history').click();
   const historyText = await page.getByTestId('fleet-history-panel').innerText();
   if (!historyText.includes('2/30') || !historyText.includes('MAINTENANCE') || !historyText.includes('WTG-004') || !historyText.includes('MNT 48→23') || !historyText.includes('MNT 80→48')) {

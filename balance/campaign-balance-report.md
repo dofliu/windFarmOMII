@@ -12,19 +12,19 @@ Gate：PASS
 
 ## Equipment maintenance economy
 
-> Policy: L5 deterministic route uses each Mission recommended loadout and performs a full repair after every Mission. MNT and Condition are gameplay abstractions.
+> Policy: L5 deterministic route uses each Mission recommended loadout and performs a full repair after every Mission. The gate requires 30-100 ending MNT, so repairs remain viable without restoring the old oversized surplus. MNT and Condition are gameplay abstractions.
 
 | Serviceable missions | Initial MNT | Earned MNT | Repair spend | Ending MNT | Lowest post-mission condition | Repair failures | Gate |
 |---:|---:|---:|---:|---:|---:|---:|---|
-| 15/15 | 80 | 652 | 438 | 294 | 84% | 0 | PASS |
+| 15/15 | 80 | 413 | 438 | 55 | 84% | 0 | PASS |
 
 ## Crew readiness economy
 
-> Policy: the sequential L5 route carries Crew fatigue between Missions, rotates by recommended factions, and spends one RST only when an Exhausted crew member would block Deployment. RST and fatigue are gameplay abstractions.
+> Policy: the sequential L5 route carries Crew fatigue between Missions, rotates by recommended factions, and spends one RST before a Critical or Exhausted member deploys. The gate requires real RST use, 50-99% observed persistent fatigue, and 1-6 ending RST. RST and fatigue are gameplay abstractions.
 
 | Deployable missions | Completed missions | Initial RST | Earned RST | Spent RST | Ending RST | Rest actions | Exhausted blocks | Max persistent fatigue | Gate |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| 15/15 | 15/15 | 3 | 29 | 0 | 32 | 0 | 0 | 1% | PASS |
+| 15/15 | 15/15 | 3 | 5 | 2 | 6 | 2 | 0 | 76% | PASS |
 
 | Profile | Mission | Ch. | Result | Pressure | Round | Safety | Weather | Avg fatigue | Score | Grade | Branch mitigation |
 |---|---|---:|---|---|---:|---:|---:|---:|---:|---|---:|

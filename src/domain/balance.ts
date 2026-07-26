@@ -223,9 +223,9 @@ function simulateCrewReadinessEconomy(
   for (const mission of missions) {
     const team = selectRepresentativeTeam(database.characters, mission, profile);
 
-    // 只有在角色已 Exhausted、確實會阻擋 Deployment 時才使用 RST；其餘疲勞交給輪調與 Reserve recovery。
+    // Critical 已有明顯效率懲罰，因此在出勤前主動使用有限 RST；Tired 則交給輪調與 Reserve recovery。
     for (const character of team) {
-      while (!isCrewMemberDeployable(progress, character)) {
+      while (crewReadinessBand(progress, character) === 'Critical' || !isCrewMemberDeployable(progress, character)) {
         const rested = restCampaignCharacter(progress, character);
         if (!rested) break;
         progress = rested.progress;
@@ -292,7 +292,11 @@ function simulateCrewReadinessEconomy(
     gatePassed: deployableMissions === missions.length
       && completedMissions === missions.length
       && exhaustedBlocks === 0
-      && progress.recoveryTokens >= 0,
+      && tokensSpent >= 1
+      && maxPersistentFatiguePercent >= 50
+      && maxPersistentFatiguePercent < 100
+      && progress.recoveryTokens >= 1
+      && progress.recoveryTokens <= 6,
   };
 }
 
@@ -362,7 +366,10 @@ function simulateMaintenanceEconomy(
     totalMissions: missions.length,
     repairFailures,
     lowestPostMissionCondition,
-    gatePassed: serviceableMissions === missions.length && repairFailures === 0 && progress.maintenanceCredits >= 0,
+    gatePassed: serviceableMissions === missions.length
+      && repairFailures === 0
+      && progress.maintenanceCredits >= 30
+      && progress.maintenanceCredits <= 100,
   };
 }
 

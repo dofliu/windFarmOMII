@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "model": "OWM_CHALLENGE_DETERMINISTIC_AUTOPLAY",
   "note": "Deterministic gameplay simulation only; not field, SCADA, human-factors or experimental evidence.",
   "contract": {
@@ -49,6 +49,12 @@
       "critical": 4,
       "failed": 0
     }
+  },
+  "teamDiversity": {
+    "policy": "TOP_AUDITED_VARIANT_BY_BOSS",
+    "uniqueRecommendedTeams": 18,
+    "mostReusedTeamCount": 12,
+    "counterAlignedRecommendations": 100
   },
   "bySeverity": [
     {
@@ -192,8 +198,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-210",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -226,9 +234,11 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
-        "CHR-MAR-220",
+        "CHR-MAR-210",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -260,10 +270,12 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -294,8 +306,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -328,9 +342,11 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
-        "CHR-MAR-220",
+        "CHR-MAR-215",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -362,6 +378,8 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-MAR-200",
         "CHR-MAR-220",
@@ -396,8 +414,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-210",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -430,9 +450,11 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
-        "CHR-MAR-220",
+        "CHR-MAR-210",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -464,10 +486,12 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -498,8 +522,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -532,10 +558,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -566,6 +594,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -600,9 +630,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -634,8 +666,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -668,8 +702,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -702,9 +738,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -736,10 +774,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -770,6 +810,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -804,9 +846,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -838,8 +882,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -872,8 +918,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -906,9 +954,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -940,10 +990,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -974,6 +1026,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -1008,9 +1062,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1042,8 +1098,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1076,8 +1134,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1110,9 +1170,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1144,10 +1206,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -1178,6 +1242,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -1212,9 +1278,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1246,8 +1314,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1280,8 +1350,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1314,9 +1386,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1348,10 +1422,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -1382,6 +1458,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -1416,9 +1494,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1450,8 +1530,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1484,8 +1566,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1518,9 +1602,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1552,10 +1638,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -1586,6 +1674,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -1620,9 +1710,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1654,8 +1746,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1688,8 +1782,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1722,9 +1818,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1756,10 +1854,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -1790,6 +1890,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -1824,9 +1926,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1858,8 +1962,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1892,8 +1998,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -1926,9 +2034,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -1960,10 +2070,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -1994,6 +2106,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -2028,9 +2142,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2062,8 +2178,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -2096,8 +2214,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -2130,9 +2250,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2164,10 +2286,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -2198,6 +2322,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -2232,9 +2358,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2266,8 +2394,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -2300,8 +2430,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -2334,9 +2466,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2368,10 +2502,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -2402,6 +2538,8 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-ACA-050",
@@ -2436,9 +2574,11 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-ACA-050",
+        "CHR-ACA-055",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2470,10 +2610,12 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-ACA-050",
-        "CHR-OMI-270"
+        "CHR-DIG-275",
+        "CHR-MAR-220"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -2504,9 +2646,11 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-ACA-050",
+        "CHR-DIG-275",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2538,9 +2682,11 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
         "CHR-ACA-050",
+        "CHR-ACA-055",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2572,10 +2718,12 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
         "CHR-ACA-050",
-        "CHR-OMI-270"
+        "CHR-DIG-275",
+        "CHR-MAR-220"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -2606,6 +2754,8 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-ACA-050",
@@ -2640,9 +2790,11 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-ACA-050",
+        "CHR-ACA-055",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2674,10 +2826,12 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-ACA-050",
-        "CHR-OMI-270"
+        "CHR-DIG-275",
+        "CHR-MAR-220"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -2708,9 +2862,11 @@
         "DIG",
         "ACA"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-ACA-050",
+        "CHR-DIG-275",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2742,9 +2898,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2776,10 +2934,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 16,
@@ -2810,6 +2970,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -2844,9 +3006,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -2864,8 +3028,8 @@
       "weatherWindow": 10,
       "evidence": 32,
       "reliability": 189,
-      "averageFatiguePercent": 10,
-      "maxFatiguePercent": 10,
+      "averageFatiguePercent": 12,
+      "maxFatiguePercent": 15,
       "score": 54,
       "grade": "D",
       "resourceFloor": 10
@@ -2878,8 +3042,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -2898,8 +3064,8 @@
       "weatherWindow": 22,
       "evidence": 57,
       "reliability": 256,
-      "averageFatiguePercent": 10,
-      "maxFatiguePercent": 10,
+      "averageFatiguePercent": 12,
+      "maxFatiguePercent": 16,
       "score": 58,
       "grade": "D",
       "resourceFloor": 22
@@ -2912,10 +3078,12 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -2946,8 +3114,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -2980,9 +3150,11 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
-        "CHR-MAR-220",
+        "CHR-MAR-215",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3014,6 +3186,8 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-MAR-200",
         "CHR-MAR-220",
@@ -3048,8 +3222,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-210",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -3082,9 +3258,11 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
-        "CHR-MAR-220",
+        "CHR-MAR-210",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3116,10 +3294,12 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 24,
@@ -3150,8 +3330,10 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
+        "CHR-MAR-215",
         "CHR-MAR-220",
         "CHR-OMI-270"
       ],
@@ -3184,9 +3366,11 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-MAR-200",
-        "CHR-MAR-220",
+        "CHR-MAR-215",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3218,6 +3402,8 @@
         "MAR",
         "OMI"
       ],
+      "counterCount": 3,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-MAR-200",
         "CHR-MAR-220",
@@ -3252,9 +3438,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3286,8 +3474,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -3320,8 +3510,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -3354,9 +3546,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3388,10 +3582,12 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-MAR-220",
         "CHR-MFG-165",
-        "CHR-OMI-270"
+        "CHR-OMI-265"
       ],
       "candidateTeamsEvaluated": 24,
       "successfulCandidateTeams": 8,
@@ -3422,6 +3618,8 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
         "CHR-MFG-165",
@@ -3456,9 +3654,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
         "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-OMI-265",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3490,8 +3690,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-ACA-050",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -3524,8 +3726,10 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
+        "CHR-DIG-275",
         "CHR-MFG-165",
         "CHR-OMI-270"
       ],
@@ -3558,9 +3762,11 @@
         "OMI",
         "MFG"
       ],
+      "counterCount": 2,
+      "coveredStageCount": 6,
       "teamIds": [
-        "CHR-ACA-045",
-        "CHR-MFG-165",
+        "CHR-MAR-220",
+        "CHR-MFG-150",
         "CHR-OMI-270"
       ],
       "candidateTeamsEvaluated": 24,
@@ -3590,6 +3796,7 @@
     "checks": {
       "allBossesClearable": true,
       "candidateDiversity": true,
+      "recommendationDiversity": true,
       "lowSeverityAccessible": true,
       "severityProgression": true,
       "endgamePressure": true

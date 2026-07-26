@@ -38,18 +38,23 @@ describe('Campaign balance simulation', () => {
       serviceableMissions: 15,
       totalMissions: 15,
       repairFailures: 0,
+      creditsEarned: 413,
+      repairSpend: 438,
+      endingCredits: 55,
       gatePassed: true,
     });
-    expect(report.maintenanceEconomy.endingCredits).toBeGreaterThanOrEqual(0);
     expect(report.crewReadinessEconomy).toMatchObject({
       policy: 'ROTATE_AND_REST_BEFORE_L5_MISSION',
       deployableMissions: 15,
       completedMissions: 15,
       totalMissions: 15,
       exhaustedBlocks: 0,
+      tokensEarned: 5,
+      tokensSpent: 2,
+      endingTokens: 6,
+      maxPersistentFatiguePercent: 76,
       gatePassed: true,
     });
-    expect(report.crewReadinessEconomy.endingTokens).toBeGreaterThanOrEqual(0);
 
     const finale = report.results.filter((result) => result.chapter === 5);
     expect(finale.filter((result) => result.profile === 'L1' && result.success)).toHaveLength(0);

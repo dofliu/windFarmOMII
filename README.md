@@ -1,5 +1,18 @@
 # Offshore Wind Masters Web
 
+## Current verification snapshot — 2026-07-26
+
+- Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
+- 策略平衡 v1 已套用：15 關輪調路線消耗 `2 RST`、最高持續疲勞 `76%`、結束保有 `6 RST`；完整裝備維修後保有 `55 MNT`。
+- Boss counter 為 `×1.35`；100 Boss 推薦由 6 組提高為 18 組，單隊最多重複由 70 次降為 12 次，並維持 `100/100` 可完成。
+- 最新驗證結果以 `balance/campaign-balance-report.md`、`balance/boss-challenge-balance-report.md` 與 `GAMEPLAY_EXPERIENCE_AUDIT_2026-07-26.md` 為準。
+- P01 active preview 為 `300/300`；Scene coverage 為 `148/150` integrated、`146` dedicated runtime files、`2` documented fallback。
+- 使用者已全量核准 `119` 個 Scene 與 `90` 個 P01 production candidates；Scene 已完成 promotion，P01 仍待 final AI upscale 與 production promotion。
+- 目前 P01 production queue 為 `210 Upscale Pending / 90 Production QA Pending / 0 Production Approved`；4096x6144 staging 檔案不冒充 final AI upscale。
+- 審查與追蹤入口：[SCENE_VISUAL_APPROVAL_PACKET.md](SCENE_VISUAL_APPROVAL_PACKET.md)、[P01 production review sheet](assets/source-art/qa/production-p01-2026-07-24/production-contact-sheet-all-v001.png)、[approval ledger](assets/source-art/qa/visual-approval-ledger-2026-07-24.json)、[release-gate audit](assets/source-art/qa/release-gate-audit-2026-07-24.json)。
+
+下方的 `2026-07-19` 與更早段落是歷史開發紀錄；若與本節數值不同，以本節及 `RELEASE_READINESS.md` 為準。
+
 ## Current clean status - 2026-07-19
 
 - Version: `3.29.0-source-art-batch022-r7-samples`.
@@ -576,7 +589,7 @@ Offshore Wind Masters（OWM）現已改為純 Web 策略卡牌 MVP，不需要 U
 
 ```powershell
 pnpm install
-pnpm dev
+pnpm dev -- --port 4173
 ```
 
 瀏覽器開啟：`http://127.0.0.1:4173`
@@ -588,6 +601,19 @@ pnpm dev
 ```
 
 此指令會先更新 100 Boss Challenge audit snapshot，再同步 JSON、執行資料 QA、Vitest、45 組 Campaign runtime、maintenance／Crew readiness gates、TypeScript typecheck 與 production build。建置結果位於 `dist/`。
+
+Release gate 快照與人工審核狀態：
+
+```powershell
+pnpm qa:release-audit
+pnpm smoke:release-audit
+pnpm smoke:visual-ledger
+pnpm qa:visual-dashboard
+pnpm smoke:visual-dashboard
+pnpm qa:promotion-preflight -- --kind scene --id SCN146
+```
+
+這些指令只整理／驗證目前 Scene、P01 queue 與 approval ledger；dashboard 可下載人工決策檔，promotion preflight 會拒絕尚未 approved 的 ID，但所有指令都不會自動核准素材或替換 runtime art。
 
 只執行 Campaign balance simulation：
 
@@ -672,3 +698,20 @@ balance/                           # 可稽核的 Markdown／JSON simulation rep
 ## 尚未完成的資產門檻
 
 目前美術範圍定為 300 名角色各 1 張 P01，不生產每名角色的 P02–P10。全部 prompt 已套用 [Engineering Background Guardrails](assets/source-art/PROMPT_GUARDRAILS.md)，要求每座完整 rotor 恰好三支葉片、120° 等間距且風機幾何合理。`BATCH-P01-001` 至 `BATCH-P01-019` 已原子匯入 180 張 Web preview；active 版本皆通過 2:3 技術 QA，180 名角色已完成遊戲載入 smoke test。Batch019 的 QA JSON 明確記錄 `userVisualApproval=false`、`Visual Review Required`；尚未核准的 preview 仍需人工確認，全部 180 張也都需升至 4096×6144，才符合 production source resolution。Scene metadata 為 150/150；目前 29/150 Scene 有 direct runtime field-feed，其餘透過已驗證 fallback 顯示。
+# 2026-07-26 遊戲體驗版本
+
+目前 Web MVP 已可進行完整測試。部署流程已拆成 5 步驟，作戰流程已拆成「任務情勢／現場決策／技師行動」3 個聚焦畫面；桌機不再一次顯示三欄資訊，390px 手機也可用固定底部導覽與回合控制完成操作。
+
+本次完整檢視與策略結果請見 [GAMEPLAY_EXPERIENCE_AUDIT_2026-07-26.md](GAMEPLAY_EXPERIENCE_AUDIT_2026-07-26.md)。
+
+快速驗證：
+
+```powershell
+pnpm typecheck
+pnpm test
+pnpm smoke:gameplay
+pnpm smoke:layout
+pnpm smoke:mobile:flow
+pnpm simulate:balance
+pnpm simulate:challenge
+```

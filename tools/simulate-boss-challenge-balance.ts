@@ -86,6 +86,7 @@ function renderMarkdown(report: BossChallengeBalanceReport, gates: BossChallenge
     `| L${report.contract.masteryLevel} / ${report.contract.masteryXp} XP | ${report.contract.roundLimit} | ${report.contract.equipmentId} | ${report.contract.spareId} | ${report.contract.vesselId} | ${report.candidatePolicy.eligibleCharacters} | ${report.candidatePolicy.counterSets} | ${report.candidatePolicy.exactThreePersonCombinationsPerCounterSet.toLocaleString('en-US')} |`,
     '',
     `候選策略：${report.candidatePolicy.policies.join(' / ')}，每個 counter set 與策略保留前 ${report.candidatePolicy.topTeamsPerPolicy} 隊；重複隊伍合併後逐 Boss 實跑正式 runtime。`,
+    `推薦策略：${report.teamDiversity.policy}；${report.teamDiversity.uniqueRecommendedTeams} 組成功隊伍、單隊最多重複 ${report.teamDiversity.mostReusedTeamCount} 次、6/6 stage 且至少 2/3 counter ${report.teamDiversity.counterAlignedRecommendations}/${report.summary.totalBosses}。`,
     `Challenge-only GRD reserve：S4 Weather Protection +${report.contract.gridWeatherProtectionBonusBySeverity.S4 ?? 0}；S5 Weather Protection +${report.contract.gridWeatherProtectionBonusBySeverity.S5 ?? 0}、每回合 Energy reserve +${report.contract.gridEnergyReserveBonusBySeverity.S5 ?? 0}。Campaign 數值不變。`,
     '',
     '## Fairness gates',

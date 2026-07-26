@@ -122,7 +122,7 @@ describe('Mission resolver', () => {
     expect(result.stageAdvanced).toBe(true);
     expect(result.mission.stageIndex).toBe(1);
     expect(result.mission.complete).toBe(false);
-    expect(result.appliedPower).toBe(125);
+    expect(result.appliedPower).toBe(135);
   });
 
   it('六階段完成後進入下一個 Boss phase', () => {

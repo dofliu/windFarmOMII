@@ -1,5 +1,183 @@
 # Changelog
 
+## 3.54.0-strategy-balance-v1 - 2026-07-26
+
+- Added inter-mission operational fatigue, reduced transit/reserve recovery, and limited RST rewards to completed SOV supply milestones every third mission.
+- Tightened Campaign MNT rewards while preserving a verified 15/15 full-repair route; ending credits changed from 294 to 55.
+- Increased Boss counter power from `x1.25` to `x1.35` and made counter count the primary audited team-ranking signal.
+- Added deterministic near-best audited team rotation per Boss plus a recommendation-diversity gate: 18 unique recommended teams, maximum 12 repeats, and 100/100 recommendations with 6/6 stage coverage plus at least 2/3 counter members.
+- Verified the complete Campaign still clears at L1 6/6 required, L3 12/12 required, and L5 15/15; the rotation route spends 2 RST, reaches 76% persistent fatigue, and finishes with 6 RST.
+- Boss Challenge remains 100/100 clearable with no severity inversion.
+
+## 3.53.0-batch030-production-qa - 2026-07-24
+
+- Completed the final Batch030 R7 sample set with 4 masculine, 2 androgynous, and 4 feminine presentations across ten distinct age impressions and task silhouettes.
+- Imported Batch030 into active web preview; classic P01 now reaches `300/300`, and Source Art smoke passes for all 300 characters.
+- Staged and imported 10 Batch030 production candidates; queue is now `210` Upscale Pending, `90` Production QA Pending, and `0` Production Approved.
+- Added five realistic scene-feed candidates for SCN006, SCN017, SCN021, SCN027, and SCN031; each is normalized to `1915x821` RGB and remains `VISUAL_REVIEW_REQUIRED` pending user review.
+- Added a second five-image pack for SCN018, SCN019, SCN020, SCN022, and SCN028, covering floating turbine weather variants, substation clear weather, and port rain.
+- Added a third five-image pack for SCN029, SCN030, SCN032, SCN033, and SCN034, covering port dusk/night and CTV clear/rain/dusk.
+- Added a fourth five-image pack for SCN036-SCN040, covering SOV dawn, clear, rain, dusk, and night operations.
+- Added a fifth five-image pack for SCN047-SCN051, covering heavy-lift vessel clear/rain/dusk/night and tower-interior dawn.
+- Added a sixth five-image pack for SCN052-SCN056, covering tower-interior clear/rain/dusk/night and nacelle dawn.
+- Added a seventh five-image pack for SCN057-SCN061, covering nacelle clear/rain/dusk/night and rotor-hub dawn.
+- Added an eighth five-image pack for SCN062-SCN066, covering rotor-hub clear/rain/dusk/night and blade-access dawn.
+- Added a ninth five-image pack for SCN067-SCN071, covering blade-access clear/rain/dusk/night and cable-landfall dawn.
+- Added a tenth five-image pack for SCN072-SCN076, covering cable-landfall clear/rain/dusk/night and SCADA dawn.
+- Added an eleventh five-image pack for SCN077-SCN081, covering SCADA clear/rain/dusk/night and CMS dawn.
+- Added a twelfth five-image pack for SCN087-SCN091, covering switchgear clear/rain/dusk/night and warehouse dawn.
+- Added a thirteenth five-image pack for SCN092-SCN096, covering warehouse clear/rain/dusk/night and GWO training-center dawn; all remain visual-review candidates.
+- Added a four-image pack for SCN097-SCN100, covering GWO training-center clear/rain/dusk/night; all remain visual-review candidates.
+- Added a five-image pack for SCN101-SCN105, covering SOV maintenance-deck dawn/clear/rain/dusk/night; all remain visual-review candidates.
+- Added a five-image pack for SCN106-SCN110, covering SOV aft/side/forward deck views across dawn/clear/rain/dusk/night; all remain visual-review candidates.
+- Added a five-image pack for SCN111-SCN115, covering SOV transfer-deck dawn/clear/rain/dusk/night views; all remain visual-review candidates.
+- Added a five-image pack for SCN116-SCN120, covering SOV helideck, aft, and weather-deck dawn/clear/rain/dusk/night views; all remain visual-review candidates.
+- Added a five-image pack for SCN121-SCN125, covering SOV forward, cable-reel, stern, and night service-deck views; all remain visual-review candidates.
+- Added a five-image pack for SCN126-SCN130, covering SOV bridge-side dawn, cable/tooling deck clear and blue-hour views, stern workboat rain, and transfer-deck dawn mist; all remain visual-review candidates.
+- Added a five-image pack for SCN131-SCN135, covering SOV ROV launch/tooling/recovery decks and sea-fog weather deck views; all remain visual-review candidates.
+- Added a five-image pack for SCN136-SCN140, covering SOV ROV control room, forward swell, storm-front maintenance, helideck readiness, and heavy-lift component deck views; all remain visual-review candidates.
+- Added a five-image pack for SCN141-SCN145, covering SOV emergency-response swell, tether workshop, bow fog, crane-deck dusk, and environmental monitoring dawn views; all remain visual-review candidates.
+- Added a five-image pack for SCN146-SCN150, covering cable-landfall dawn, meteorological-station dusk, heavy-weather preparation, emergency transfer night, and sunrise handover-ready deck views; all remain visual-review candidates.
+- Fixed low-contrast Sandbox Scene card descriptions and undefined `--bright` style references in the redesigned UI.
+- Revalidated the complete gameplay smoke suite after the fix; no regressions were found.
+- Updated the Scene Routing smoke contract to `148/150` integrated and `2/150` fallback routes while retaining a fallback assertion on an uncovered scene.
+- Added `pnpm validate:scene` to prevent future dedicated scene assets from bypassing the `1915x821 RGB` runtime contract.
+- Added an explicit-ID `pnpm scene:approve` workflow with dry-run validation for the pending visual review gate; no scene was promoted automatically.
+
+## 3.52.0-batch029-production-qa - 2026-07-24
+
+- Completed the Batch029 R7 casting-diversity sample set and imported all ten candidates into active web preview.
+- Staged and imported 10 Batch029 production candidates; queue became `210` Upscale Pending, `80` Production QA Pending, and `0` Production Approved.
+
+## 3.51.0-batch028-production-qa - 2026-07-24
+
+- Generated and QA-checked the full 10-image Batch028 R7 sample set with 4 masculine, 2 androgynous, and 4 feminine presentations.
+- Normalized taller imagegen outputs to the strict `1024x1536` preview contract while retaining full-body framing.
+- Imported Batch028 into active web preview; active P01 is now `280/300`, and Source Art smoke passes for all 280 characters.
+- Staged and imported 10 Batch028 production candidates; queue is now `210` Upscale Pending, `70` Production QA Pending, and `0` Production Approved.
+
+
+## 3.50.0-batch027-production-qa - 2026-07-24
+
+- Generated and QA-checked the full 10-image Batch027 R7 sample set with 4 masculine, 2 androgynous, and 4 feminine presentations.
+- Normalized taller imagegen outputs to the strict `1024x1536` preview contract while retaining full-body framing; one visible nacelle-marking candidate was regenerated with an explicit no-logo constraint.
+- Imported Batch027 into active web preview; active P01 is now `270/300`, and Source Art smoke passes for all 270 characters.
+- Staged and imported 10 Batch027 production candidates; queue is now `210` Upscale Pending, `60` Production QA Pending, and `0` Production Approved.
+
+
+## 3.49.0-batch026-production-qa - 2026-07-24
+
+- Generated and QA-checked the full 10-image Batch026 R7 sample set with 4 masculine, 2 androgynous, and 4 feminine presentations.
+- Normalized three taller imagegen outputs to the strict `1024x1536` preview contract while retaining full-body framing.
+- Imported Batch026 into active web preview; active P01 is now `260/300`, and Source Art smoke passes for all 260 characters.
+- Staged and imported 10 Batch026 production candidates; queue is now `210` Upscale Pending, `50` Production QA Pending, and `0` Production Approved.
+
+
+## 3.48.0-batch025-production-qa - 2026-07-24
+
+- Generated and QA-checked the full 10-image Batch025 R7 sample set with 4 masculine, 2 androgynous, and 4 feminine presentations.
+- Imported Batch025 into active web preview; active P01 is now `250/300`, and Source Art smoke passes for all 250 characters.
+- Staged and imported 10 Batch025 production candidates; queue is now `210` Upscale Pending, `40` Production QA Pending, and `0` Production Approved.
+- Added Batch025 full sample review, production contact sheet, and production QA notes.
+
+## 3.47.0-batch024-production-qa - 2026-07-23
+
+- Generated and QA-checked the full 10-image Batch024 R7 sample set with 4 masculine, 2 androgynous, and 4 feminine presentations.
+- Imported Batch024 into active web preview; active P01 is now `240/300`, and Source Art smoke passes for all 240 characters.
+- Staged and imported 10 Batch024 production candidates; queue is now `210` Upscale Pending, `30` Production QA Pending, and `0` Production Approved.
+- Added Batch024 full sample review, production contact sheet, and production QA notes.
+
+## 3.46.0-batch022-023-production-qa - 2026-07-23
+
+- Extended the production candidate workflow from Batch023 to the next Batch022 batch.
+- Imported 20 exact `4096x6144` production candidates in total; queue is now `210` Upscale Pending, `20` Production QA Pending, and `0` Production Approved.
+- Added production contact sheets and QA notes for Batch022 and Batch023; active runtime remains `230` preview entries.
+- Re-ran the production validator successfully after the second batch import.
+
+## 3.45.0-batch023-production-qa - 2026-07-23
+
+- Added resumable `pnpm art:production-candidates -- --batch-id <BATCH-ID>` to stage exact `4096x6144` candidates from reviewed 2:3 previews without changing active runtime art.
+- Imported all 10 Batch023 production candidates; queue is now `220` Upscale Pending, `10` Production QA Pending, and `0` Production Approved.
+- Fixed `validate-production-art` to accept and verify the existing `Production QA Pending` state, including production file presence and exact dimensions.
+- Verified typecheck, 21 test files / 142 tests, data/art validation, and production queue audit.
+
+## 3.44.0-batch023-r7-active-preview - 2026-07-23
+
+- Imported all 10 Batch023 R7 candidates into active web preview; active P01 is now `230/300`.
+- Rebuilt `public/assets/source-art/p01/index.json` and the production bundle; Source Art smoke passed for all 230 active characters.
+- Generalized `pnpm art:r7-preview -- <BATCH-ID>` while preserving the existing Batch022 default behavior.
+- Full regression passed: 21 test files / 142 tests, data/art validation, gameplay, layout, compact Operation/Deployment, Challenge, Onboarding, Scene, Sandbox, Fleet, campaign balance, and Boss Challenge balance.
+- Production status remains `Upscale Pending` for all 230 active P01 entries; no Production Approved claim was added.
+
+## 3.43.0-batch023-r7-full-samples - 2026-07-23
+
+- Expanded `BATCH-P01-023` from three representatives to ten R7 Source Art candidates.
+- All ten candidates pass `1024x1536 / 2:3`; the full contact sheet, QA manifest, and visual review matrix are stored under `assets/source-art/qa/BATCH-P01-023-r7-samples/`.
+- Casting mix is 4 masculine, 2 androgynous, and 4 feminine with ten distinct age impressions; all remain `Not Imported` pending visual approval.
+- Preserved full-body composition for two generator outputs by using non-destructive blurred-background extension rather than cropping head or boots.
+
+## 3.42.0-batch023-r7-samples - 2026-07-23
+
+- Exported the `BATCH-P01-023` R7 generation pack and generated three representative Source Art samples: `CHR-GOV-033`, `CHR-ACA-073`, and `CHR-OMI-253`.
+- All three samples pass `1024×1536 / 2:3`; their contact sheet and review notes remain isolated from the active index pending visual review.
+
+## 3.41.0-production-import-gate - 2026-07-23
+
+- Added `pnpm art:import-production` for non-destructive 4096×6144 PNG imports into `assets/source-art/production/p01`.
+- Production sources are tracked as `Production QA Pending` without changing active web preview; the importer rejects 1024×1536 preview files.
+- Production metadata is mirrored into both the master manifest and the owning batch manifest.
+- Extended `pnpm validate:production-art` to audit production files and distinguish `Upscale Pending`, `Production QA Pending`, and `Production Approved`.
+
+## 3.40.0-r7-final-gate-audit - 2026-07-23
+
+- Re-ran campaign balance and Boss Challenge simulations after the 220-entry R7 preview update: all maintenance/crew readiness gates pass, Challenge is `100/100`, and severity inversions remain zero.
+- Re-ran Challenge and Onboarding browser smoke; both remain green.
+
+## 3.39.0-r7-visual-review-report - 2026-07-23
+
+- Added `assets/source-art/qa/BATCH-P01-022-r7-samples/BATCH-P01-022-r7-visual-review.md` with all 10 candidate identities, task poses, dimensions, active QA states, and the explicit approval gate.
+- Kept production resolution and user visual approval pending; no runtime asset status was promoted to Approved.
+
+## 3.38.0-r7-production-queue-audit - 2026-07-23
+
+- Added `pnpm validate:production-art` to audit all active P01 PNG files, 2:3 geometry, index/manifest parity, and production-resolution status.
+- The audit confirms 220 active P01 assets are still awaiting 4096x6144 upscale and no asset is falsely marked `Production Approved`.
+
+## 3.37.0-r7-production-queue - 2026-07-23
+
+- Added explicit production-QA metadata to all 10 R7 active candidates: `Visual Review Required`, `Upscale Pending`, and `engineeringQaStatus=Not Reviewed`.
+- Made `pnpm art:r7-preview` idempotent so the active preview import and QA metadata can be safely re-applied without overwriting changed files.
+- Kept the runtime web preview at 220 active P01 entries; no production-resolution approval was asserted.
+- Verified: metadata audit, `pnpm validate:data`, `pnpm validate:art`, `pnpm build`, and `pnpm smoke:art`.
+
+## 3.36.0-r7-full-active-preview - 2026-07-23
+
+- Added the repeatable `pnpm art:r7-preview` import path and connected all 10 current `BATCH-P01-022` R7 candidates to active P01 web preview.
+- Kept every candidate QA-pending (`Technical QA Pending` for v001 and `Correction QA Pending` for v002); no user visual approval or production upscale is asserted.
+- Active P01 index increased from `214/300` to `220/300`; five superseded v001 files remain rejected evidence only.
+- Verified: `pnpm validate:data`, `pnpm validate:art`, `pnpm build`, and `pnpm smoke:art` for 220 active entries.
+
+## 3.35.0-r7-active-preview - 2026-07-23
+
+- Connected the four reviewed `BATCH-P01-022` v002 candidates to the active P01 web preview: `CHR-ACA-072`, `CHR-DEV-116`, `CHR-MFG-156`, and `CHR-OMI-251`.
+- Preserved `Correction QA Pending` and explicit active-preview metadata; user visual approval and production upscale remain pending.
+- Active P01 index increased from `210/300` to `214/300`; the remaining six R7 samples remain isolated in the QA contact sheet.
+- Verified: active index sync (`214` entries), sample manifest, `pnpm validate:art`, and `pnpm build`.
+
+## 3.34.0-r7-sample-qa - 2026-07-23
+
+- Regenerated the four failed `BATCH-P01-022` R7 sample candidates as valid `1024x1536` v002 Source Art images with explicit turbine-geometry and anti-clone negative prompts.
+- Rebuilt the full 10-image contact sheet and QA manifest; all current candidates pass the P01 `2:3` aspect contract, while superseded v001 failures remain as rejected evidence.
+- Kept all samples outside the active Source Art index pending visual review; no gameplay logic or runtime asset contract changed.
+- Verified: sample dimension/manifest check, contact sheet render, and `pnpm validate:art`.
+
+## 3.33.0-ui-contracts-pack-metadata - 2026-07-23
+
+- Compressed the 1366×768 Deployment layout with Crew TEAM SETUP / READINESS subtabs and short-viewport spacing rules; compact smoke confirms no document or panel overflow.
+- Updated redesigned-tab smoke contracts for Operation, Campaign Scene, Sandbox, Boss Challenge, Onboarding, and Source Art CSS background cards.
+- Added pack-aware `data-source-art-*` metadata for classic P01 and V2 Shinkai surfaces, including explicit `PACK_QA_REQUIRED` for the square Shinkai key-art pack.
+- Verified: `pnpm typecheck`, `pnpm test`, `pnpm validate:data`, `pnpm validate:art`, `pnpm build`, `pnpm smoke:gameplay`, `pnpm smoke:operation:compact`, `pnpm smoke:deployment:compact`, `pnpm smoke:scene`, `pnpm smoke:sandbox`, `pnpm smoke:challenge`, `pnpm smoke:onboarding`, `pnpm smoke:layout`, `pnpm smoke:fleet`, and `pnpm smoke:art`.
+
 ## 3.32.0-web-audio-engine - 2026-07-23
 
 - Built pure Web Audio API Synthesizer & Audio Asset Engine (`src/domain/audio.ts`) with zero external file dependencies.

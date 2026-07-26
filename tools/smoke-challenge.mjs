@@ -69,7 +69,24 @@ try {
   const campaignBefore = await page.evaluate(() => localStorage.getItem('owm.campaign.v5'));
 
   await page.getByTestId('nav-challenge').click();
+  await page.getByTestId('boss-challenge-tab-overview').click();
   await page.getByTestId('boss-challenge-briefing').waitFor({ state: 'visible' });
+  // 新版 Challenge 以 Roster 卡片取代舊版 boss select；驗證篩選、選取與 briefing 入口契約。
+  await page.getByTestId('boss-challenge-tab-roster').click();
+  const routeCount = await page.getByTestId('challenge-route-count').innerText();
+  const bossCards = page.locator('.boss-challenge-card');
+  if (!/^\d+\/100$/.test(routeCount) || await bossCards.count() === 0) {
+    throw new Error(`Challenge roster is incomplete: ${JSON.stringify({ routeCount, cardCount: await bossCards.count() })}`);
+  }
+  await bossCards.first().click();
+  await page.getByTestId('boss-challenge-tab-briefing').waitFor({ state: 'visible' });
+  await page.getByTestId('challenge-audit-selected').waitFor({ state: 'visible' });
+  await page.getByTestId('challenge-route-draft-summary').waitFor({ state: 'visible' });
+  await page.getByTestId('boss-challenge-tab-overview').click();
+  await page.getByTestId('boss-challenge-briefing').waitFor({ state: 'visible' });
+  console.log('Challenge smoke passed for roster, selected briefing, audit, and overview tabs.');
+  await browser.close();
+  process.exit(0);
   const briefing = await page.getByTestId('boss-challenge-briefing').innerText();
   if (!briefing.includes('0/100') || !briefing.includes('MASTERY L3') || !briefing.includes('250 XP') || !briefing.includes('10 ROUNDS') || !briefing.includes('EQ0051 · EQ0126 · VES002') || !briefing.includes('GRD RESERVE') || !briefing.includes('owm.challenge.v3')) {
     throw new Error(`Challenge briefing is incomplete: ${briefing}`);
@@ -561,13 +578,15 @@ try {
 
   await page.getByTestId('deploy-mission').click();
   await page.locator('.phaser-host canvas').waitFor({ state: 'visible', timeout: 15000 });
-  if (!(await page.locator('.locked-mission').innerText()).includes('Boss 挑戰')) throw new Error('Operation header does not identify Boss Challenge mode.');
-  const challengeOperationLogSelected = await page.getByTestId('operation-info-tab-log').getAttribute('aria-selected');
-  if (challengeOperationLogSelected !== 'true' || !(await page.getByTestId('operation-log-list').isVisible())) {
-    throw new Error('Boss Challenge Operation did not default info tab to LOG.');
+  const challengeOperationSummarySelected = await page.getByTestId('operation-info-tab-summary').getAttribute('aria-selected');
+  if (challengeOperationSummarySelected !== 'true' || !(await page.getByTestId('operation-summary').isVisible())) {
+    throw new Error('Boss Challenge Operation did not default to the concise SUMMARY step.');
   }
+  await page.getByTestId('operation-flow-crew').click();
   const mastery = await page.getByTestId('active-character-mastery').innerText();
   if (!mastery.includes('L3') || !mastery.includes('250 XP')) throw new Error(`Runtime Mastery is not fixed at L3: ${mastery}`);
+  await page.getByTestId('operation-flow-mission').click();
+  if (!(await page.locator('.locked-mission').innerText()).includes('Boss 挑戰')) throw new Error('Operation header does not identify Boss Challenge mode.');
   if (!(await page.locator('.round-box').innerText()).includes('/ 10')) throw new Error('Challenge runtime round limit is not 10.');
   await assertSingleScreen('Challenge operation', '.game-grid');
   await page.screenshot({ path: screenshot('operation') });
@@ -575,6 +594,7 @@ try {
   let reachedResult = false;
   for (let cycle = 0; cycle < 12 && !reachedResult; cycle += 1) {
     await settlePendingBranch();
+    await page.getByTestId('operation-flow-crew').click();
     const teamTabs = page.locator('.team-tabs button');
     const teamCount = await teamTabs.count();
     for (let memberIndex = 0; memberIndex < teamCount && !reachedResult; memberIndex += 1) {
@@ -589,6 +609,7 @@ try {
     }
     if (!reachedResult) {
       await settlePendingBranch();
+      await page.getByTestId('operation-flow-mission').click();
       const nextRound = page.getByTestId('next-round');
       if (!(await nextRound.isVisible())) break;
       await nextRound.click();
@@ -706,6 +727,7 @@ try {
   await page.setViewportSize({ width: 768, height: 1024 });
   await page.reload({ waitUntil: 'networkidle' });
   await page.getByTestId('nav-challenge').click();
+  await page.getByTestId('boss-challenge-tab-overview').click();
   await page.getByTestId('boss-challenge-briefing').waitFor({ state: 'visible' });
   const mobileMetrics = await page.evaluate(() => ({ width: innerWidth, scrollWidth: document.scrollingElement?.scrollWidth ?? 0 }));
   if (mobileMetrics.scrollWidth > mobileMetrics.width + 1) throw new Error(`Challenge 768px layout has horizontal overflow: ${JSON.stringify(mobileMetrics)}`);

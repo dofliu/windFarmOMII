@@ -7,3 +7,15 @@ coverage/
 public/data/
 tmp/
 *.log
+
+# Image assets & heavy media
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.bmp
+*.tiff
+public/assets/
+assets/source-art/
+

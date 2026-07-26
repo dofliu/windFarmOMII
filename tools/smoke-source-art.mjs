@@ -24,6 +24,7 @@ const omi233ScreenshotPath = path.join(outputDirectory, 'owm-source-art-omi-233-
 const omi246ScreenshotPath = path.join(outputDirectory, 'owm-source-art-omi-246-v001.png');
 const gov028ScreenshotPath = path.join(outputDirectory, 'owm-source-art-gov-028-v001.png');
 const artIndex = JSON.parse(await readFile(path.join(projectRoot, 'public', 'assets', 'source-art', 'p01', 'index.json'), 'utf8'));
+const shinkaiIndex = JSON.parse(await readFile(path.join(projectRoot, 'public', 'assets', 'source-art', 'v2-shinkai', 'index.json'), 'utf8'));
 const expectedCharacters = Object.keys(artIndex.items);
 
 await mkdir(outputDirectory, { recursive: true });
@@ -46,22 +47,19 @@ try {
     await artSelector.fill(characterId);
     const card = page.getByTestId(`collection-character-${characterId}`);
     await card.waitFor({ state: 'visible' });
-    const image = card.locator('.collection-art img');
+    const image = card.locator('.collection-art');
     await image.waitFor({ state: 'visible' });
-    await page.waitForFunction((id) => {
-      const element = document.querySelector(`[data-testid="collection-character-${id}"] .collection-art img`);
-      return element instanceof HTMLImageElement && element.complete && element.naturalWidth > 0 && element.naturalHeight > 0;
-    }, characterId);
+    await page.waitForFunction(({ id, file }) => {
+      const element = document.querySelector(`[data-testid="collection-character-${id}"] .collection-art`);
+      return element instanceof HTMLElement && getComputedStyle(element).backgroundImage.includes(file);
+    }, { id: characterId, file: artIndex.items[characterId].file });
     const imageState = await image.evaluate((element) => ({
-      src: element.getAttribute('src'),
-      naturalWidth: element.naturalWidth,
-      naturalHeight: element.naturalHeight,
+      backgroundImage: getComputedStyle(element).backgroundImage,
+      backgroundSize: getComputedStyle(element).backgroundSize,
+      backgroundPosition: getComputedStyle(element).backgroundPosition,
     }));
-    if (!imageState.src?.includes(characterId) || imageState.naturalWidth === 0 || imageState.naturalHeight === 0) {
-      throw new Error(`${characterId} source art did not load correctly: ${JSON.stringify(imageState)}`);
-    }
-    if (!imageState.src.includes(artIndex.items[characterId].file)) {
-      throw new Error(`${characterId} did not use active art index file: ${imageState.src}`);
+    if (!imageState.backgroundImage.includes(artIndex.items[characterId].file)) {
+      throw new Error(`${characterId} did not use active art index file: ${JSON.stringify(imageState)}`);
     }
     const cardMetadata = await card.evaluate((element) => ({
       characterId: element.getAttribute('data-source-art-character-id'),
@@ -135,6 +133,35 @@ try {
     if (characterId === 'CHR-GOV-028') {
       await page.screenshot({ path: gov028ScreenshotPath, fullPage: true });
     }
+  }
+
+  // 圖包切換後，卡片 metadata 必須與實際顯示的 Shinkai 檔案同步，避免只換圖不換資料契約。
+  await page.getByTestId('art-pack-toggle').click();
+  const shinkaiCharacterId = 'CHR-GOV-001';
+  const shinkaiArt = shinkaiIndex.items[shinkaiCharacterId];
+  await artSelector.fill(shinkaiCharacterId);
+  const shinkaiCard = page.getByTestId(`collection-character-${shinkaiCharacterId}`);
+  await shinkaiCard.waitFor({ state: 'visible' });
+  await page.waitForFunction(({ id, file }) => {
+    const element = document.querySelector(`[data-testid="collection-character-${id}"] .collection-art`);
+    return element instanceof HTMLElement && getComputedStyle(element).backgroundImage.includes(file);
+  }, { id: shinkaiCharacterId, file: shinkaiArt.file });
+  const shinkaiMetadata = await shinkaiCard.evaluate((element) => ({
+    pack: element.getAttribute('data-source-art-pack'),
+    version: element.getAttribute('data-source-art-version'),
+    file: element.getAttribute('data-source-art-file'),
+    qaStatus: element.getAttribute('data-source-art-qa-status'),
+    engineeringQaStatus: element.getAttribute('data-source-art-engineering-qa-status'),
+  }));
+  const expectedShinkaiMetadata = {
+    pack: 'shinkai',
+    version: shinkaiArt.version,
+    file: shinkaiArt.file,
+    qaStatus: shinkaiArt.qaStatus,
+    engineeringQaStatus: 'PACK_QA_REQUIRED',
+  };
+  if (JSON.stringify(shinkaiMetadata) !== JSON.stringify(expectedShinkaiMetadata)) {
+    throw new Error(`Shinkai source-art card metadata mismatch: ${JSON.stringify({ expectedShinkaiMetadata, shinkaiMetadata })}`);
   }
 
   if (errors.length > 0) {

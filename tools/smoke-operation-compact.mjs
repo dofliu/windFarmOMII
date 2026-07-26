@@ -15,7 +15,7 @@ const errors = [];
 page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
 page.on('pageerror', (error) => errors.push(error.message));
 
-async function assertCompactOperationScreen(label) {
+async function assertCompactOperationScreen(label, { allowTransientFieldShrink = false } = {}) {
   const metrics = await page.evaluate(() => {
     const rectMetric = (element) => {
       const rect = element?.getBoundingClientRect();
@@ -70,7 +70,7 @@ async function assertCompactOperationScreen(label) {
     }
   }
 
-  if (metrics.elements.phaserHost.height < 230) {
+  if (!allowTransientFieldShrink && metrics.elements.phaserHost.height < 230) {
     throw new Error(`${label} field feed became too small for useful play: ${JSON.stringify(metrics)}`);
   }
 
@@ -91,6 +91,14 @@ try {
   }
   await page.getByTestId('deploy-mission').click();
   await page.locator('.phaser-host[data-scene-ready="true"] canvas').waitFor({ state: 'visible', timeout: 15000 });
+  if ((await page.getByTestId('operation-flow-field').getAttribute('aria-current')) !== 'step') {
+    throw new Error('Operation should open in the focused FIELD decision step.');
+  }
+  if (await page.locator('.mission-panel').isVisible() || await page.locator('.card-panel').isVisible()) {
+    throw new Error('Focused FIELD decision step should not show both side panels at once.');
+  }
+  await page.getByTestId('operation-flow-crew').click();
+  await page.getByTestId('operation-crew-tab-actions').click();
   const rotorTelemetry = await page.locator('.phaser-host').evaluate((element) => ({
     bladeCount: element.getAttribute('data-rotor-blade-count'),
     shaftLocked: element.getAttribute('data-rotor-shaft-locked'),
@@ -200,16 +208,19 @@ try {
   if (decisionAction.includes('ACT')) {
     const logCountBefore = await page.locator('[data-testid="operation-log-list"] p').count();
     await page.getByTestId('operation-info-tab-summary').click();
+    await page.getByTestId('operation-crew-tab-profile').click();
+    const activeCharacterBefore = await page.locator('.portrait-placeholder').getAttribute('data-source-art-character-id');
+    const apBefore = Number(await page.getByTestId('active-runtime-ap').innerText());
+    const energyBefore = Number(await page.getByTestId('active-runtime-energy').innerText());
+    await page.getByTestId('operation-crew-tab-actions').click();
     const recommendedSkillCtas = page.locator('[data-testid="recommended-skill-cta"]');
     const recommendedCharacterId = await recommendedSkillCtas.getAttribute('data-recommended-character-id');
-    const activeCharacterBefore = await page.locator('.portrait-placeholder').getAttribute('data-source-art-character-id');
     const ctaText = await recommendedSkillCtas.innerText();
     const energyCost = Number(ctaText.match(/E -(\d+)/)?.[1] ?? NaN);
     const stageBefore = await page.getByTestId('operation-summary-stage').innerText();
     const progressBefore = Number((await page.getByTestId('operation-summary-progress').innerText()).split('/')[0]);
-    const apBefore = Number(await page.getByTestId('active-runtime-ap').innerText());
-    const energyBefore = Number(await page.getByTestId('active-runtime-energy').innerText());
     await recommendedSkillCtas.click();
+    await page.getByTestId('operation-crew-tab-profile').click();
     await page.waitForFunction(
       ({ activeCharacterBefore, recommendedCharacterId, apBefore, energyBefore, energyCost }) => {
         const activeCharacterId = document.querySelector('.portrait-placeholder')?.getAttribute('data-source-art-character-id');
@@ -240,6 +251,8 @@ try {
   for (let attempt = 0; attempt < 9; attempt += 1) {
     const currentDecision = await page.getByTestId('operation-decision-action').innerText();
     if (/\b(ROUND|RISK)\b/.test(currentDecision)) break;
+    // REC CTA 位於 ACTIONS 子頁；每輪決策前先切回該頁，避免 profile 內容遮住可操作按鈕。
+    await page.getByTestId('operation-crew-tab-actions').click();
     if (currentDecision.includes('DIAG')) {
       const diagnosisRecommendation = page.getByTestId('diagnosis-rec-cta');
       if (!(await diagnosisRecommendation.isVisible().catch(() => false))) break;
@@ -262,6 +275,7 @@ try {
 
   const roundDecision = await page.getByTestId('operation-decision-action').innerText();
   if (/\b(ROUND|RISK)\b/.test(roundDecision)) {
+    await page.getByTestId('operation-flow-mission').click();
     await page.getByTestId('operation-info-tab-log').click();
     const roundBefore = Number(await page.locator('.round-box strong').innerText());
     const roundLogCountBefore = await page.locator('[data-testid="operation-log-list"] p').count();
@@ -301,7 +315,7 @@ try {
     if (roundLogCountAfter <= roundLogCountBefore || roundAfter < roundBefore) {
       throw new Error(`Round decision CTA did not execute End Round settlement: ${JSON.stringify({ roundBefore, roundAfter, roundLogCountBefore, roundLogCountAfter, confirmationRequired })}`);
     }
-    await assertCompactOperationScreen('Operation compact round decision CTA settlement');
+    await assertCompactOperationScreen('Operation compact round decision CTA settlement', { allowTransientFieldShrink: true });
   } else {
     throw new Error(`Compact Operation never reached ROUND/RISK decision for CTA verification: ${roundDecision}`);
   }

@@ -61,6 +61,8 @@ export interface BossChallengeBalanceResult {
   severity: string;
   class: string;
   counterFactions: string[];
+  counterCount: number;
+  coveredStageCount: number;
   teamIds: [string, string, string];
   candidateTeamsEvaluated: number;
   successfulCandidateTeams: number;
@@ -119,7 +121,7 @@ export interface BossChallengeSeverityInversion {
 }
 
 export interface BossChallengeBalanceReport {
-  schemaVersion: 1;
+  schemaVersion: 2;
   model: 'OWM_CHALLENGE_DETERMINISTIC_AUTOPLAY';
   note: string;
   contract: {
@@ -140,6 +142,12 @@ export interface BossChallengeBalanceReport {
     exactThreePersonCombinationsPerCounterSet: number;
   };
   summary: BossChallengeBalanceSummary;
+  teamDiversity: {
+    policy: 'TOP_AUDITED_VARIANT_BY_BOSS';
+    uniqueRecommendedTeams: number;
+    mostReusedTeamCount: number;
+    counterAlignedRecommendations: number;
+  };
   bySeverity: BossChallengeSeveritySummary[];
   outliers: {
     unclearableBossIds: string[];
@@ -156,6 +164,7 @@ export interface BossChallengeBalanceGateResult {
   checks: {
     allBossesClearable: boolean;
     candidateDiversity: boolean;
+    recommendationDiversity: boolean;
     lowSeverityAccessible: boolean;
     severityProgression: boolean;
     endgamePressure: boolean;
@@ -226,7 +235,7 @@ export function simulateBossChallengeBalance(
         loadout,
         projection,
       ));
-      const best = [...simulations].sort(compareCandidateSimulations)[0];
+      const best = selectAuditedRecommendation(simulations, boss);
       const successfulCandidateTeams = simulations.filter((result) => result.success).length;
       return {
         ...best,
@@ -238,8 +247,13 @@ export function simulateBossChallengeBalance(
 
   const bySeverity = ['S1', 'S2', 'S3', 'S4', 'S5'].map((severity) => summarizeResults(results.filter((result) => result.severity === severity), severity));
   const severityInversions = findSeverityInversions(results);
+  const recommendedTeamCounts = results.reduce((counts, result) => {
+    const key = result.teamIds.join('|');
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>());
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     model: 'OWM_CHALLENGE_DETERMINISTIC_AUTOPLAY',
     note: 'Deterministic gameplay simulation only; not field, SCADA, human-factors or experimental evidence.',
     contract: {
@@ -260,6 +274,12 @@ export function simulateBossChallengeBalance(
       exactThreePersonCombinationsPerCounterSet: combinationsOfThree(database.characters.length),
     },
     summary: summarizeResults(results),
+    teamDiversity: {
+      policy: 'TOP_AUDITED_VARIANT_BY_BOSS',
+      uniqueRecommendedTeams: recommendedTeamCounts.size,
+      mostReusedTeamCount: Math.max(0, ...recommendedTeamCounts.values()),
+      counterAlignedRecommendations: results.filter((result) => result.counterCount >= 2 && result.coveredStageCount === 6).length,
+    },
     bySeverity,
     outliers: {
       unclearableBossIds: results.filter((result) => !result.success).map((result) => result.bossId),
@@ -306,6 +326,9 @@ export function evaluateBossChallengeBalanceGates(report: BossChallengeBalanceRe
   const checks = {
     allBossesClearable: report.summary.completedBosses === report.summary.totalBosses,
     candidateDiversity: report.results.every((result) => result.successfulCandidateTeams >= Math.min(3, result.candidateTeamsEvaluated)),
+    recommendationDiversity: report.teamDiversity.uniqueRecommendedTeams >= 12
+      && report.teamDiversity.mostReusedTeamCount <= 12
+      && report.teamDiversity.counterAlignedRecommendations === report.summary.totalBosses,
     lowSeverityAccessible: lowSeverity.every((result) => result.success && result.score >= 60 && result.candidateCompletionRate >= 25),
     severityProgression: report.outliers.severityInversions.length === 0,
     endgamePressure: finalSeverity.length > 0
@@ -315,6 +338,7 @@ export function evaluateBossChallengeBalanceGates(report: BossChallengeBalanceRe
   const errors = [
     !checks.allBossesClearable ? `All 100 bosses must be clearable: ${report.summary.completedBosses}/${report.summary.totalBosses}` : '',
     !checks.candidateDiversity ? `Every boss needs at least three successful audited candidate teams: ${report.outliers.fragileBossIds.join(', ')}` : '',
+    !checks.recommendationDiversity ? `Boss recommendations need counter-led team variation with full stage coverage: ${report.teamDiversity.uniqueRecommendedTeams} unique teams, max reuse ${report.teamDiversity.mostReusedTeamCount}, aligned ${report.teamDiversity.counterAlignedRecommendations}/${report.summary.totalBosses}` : '',
     !checks.lowSeverityAccessible ? `S1-S2 must score >=60 with >=25% candidate completion: ${lowSeverity.filter((result) => !result.success || result.score < 60 || result.candidateCompletionRate < 25).map((result) => result.bossId).join(', ')}` : '',
     !checks.severityProgression ? `Severity score inversions exceed 8 points: ${report.outliers.severityInversions.map((item) => `${item.easierBossId}->${item.harderBossId}`).join(', ')}` : '',
     !checks.endgamePressure ? 'S5 must all clear while retaining at least one tight or critical result.' : '',
@@ -356,15 +380,15 @@ export function selectBossChallengeCandidateTeams(
         const indexes: [number, number, number] = [first, second, third];
 
         considerRankedTeam(rankedByPolicy.balanced, limit, {
-          score: coverageCount * 1_000_000_000_000 + counterCount * 10_000_000_000 + Math.min(2, reactivePower) * 10_000_000 + Math.min(2, supportPower) * 1_000_000 + factionDiversity * 100_000 + activePower * 100 + durability,
+          score: Number(coverageCount === MISSION_STAGES.length) * 1_000_000_000_000_000 + counterCount * 1_000_000_000_000 + coverageCount * 10_000_000_000 + Math.min(2, reactivePower) * 10_000_000 + Math.min(2, supportPower) * 1_000_000 + factionDiversity * 100_000 + activePower * 100 + durability,
           key: '', indexes, policy: 'balanced', coverageCount, counterCount,
         }, stats);
         considerRankedTeam(rankedByPolicy.power, limit, {
-          score: coverageCount * 1_000_000_000_000 + counterCount * 10_000_000_000 + activePower * 1_000_000 + tempo * 1_000 + reactivePower * 10 + durability,
+          score: Number(coverageCount === MISSION_STAGES.length) * 1_000_000_000_000_000 + counterCount * 1_000_000_000_000 + coverageCount * 10_000_000_000 + activePower * 1_000_000 + tempo * 1_000 + reactivePower * 10 + durability,
           key: '', indexes, policy: 'power', coverageCount, counterCount,
         }, stats);
         considerRankedTeam(rankedByPolicy.survival, limit, {
-          score: coverageCount * 1_000_000_000_000 + counterCount * 10_000_000_000 + supportPower * 10_000_000 + reactivePower * 1_000_000 + durability * 1_000 + activePower,
+          score: Number(coverageCount === MISSION_STAGES.length) * 1_000_000_000_000_000 + counterCount * 1_000_000_000_000 + coverageCount * 10_000_000_000 + supportPower * 10_000_000 + reactivePower * 1_000_000 + durability * 1_000 + activePower,
           key: '', indexes, policy: 'survival', coverageCount, counterCount,
         }, stats);
       }
@@ -399,6 +423,11 @@ function simulateCandidate(
   projection: ReturnType<typeof createBossChallengeCampaignProjection>,
 ): CandidateSimulation {
   const selectedCharacters = candidate.teamIds.map((id) => requiredCharacter(characterMap, id));
+  const counterFactions = new Set(boss.counterFactions.split(',').map((value) => value.trim()));
+  const counterCount = selectedCharacters.filter((character) => counterFactions.has(character.factionCode)).length;
+  const coverageCount = MISSION_STAGES.filter((stage) => (
+    selectedCharacters.some((character) => (FACTION_STAGE_SPECIALTIES[character.factionCode] ?? []).includes(stage))
+  )).length;
   const perks = teamMasteryPerks(candidate.teamIds, projection);
   let team = selectedCharacters.map((character) => createCharacterRuntime(character, perks.byCharacterId[character.id]));
   let mission: MissionState = {
@@ -458,6 +487,8 @@ function simulateCandidate(
     severity: boss.severity,
     class: boss.class,
     counterFactions: boss.counterFactions.split(',').map((value) => value.trim()),
+    counterCount,
+    coveredStageCount: coverageCount,
     teamIds: candidate.teamIds,
     candidateTeamsEvaluated: 1,
     successfulCandidateTeams: Number(mission.complete),
@@ -535,6 +566,24 @@ function compareCandidateSimulations(left: CandidateSimulation, right: Candidate
   if (left.round !== right.round) return left.round - right.round;
   if (left.resourceFloor !== right.resourceFloor) return right.resourceFloor - left.resourceFloor;
   return left.teamIds.join('|').localeCompare(right.teamIds.join('|'));
+}
+
+function selectAuditedRecommendation(
+  simulations: CandidateSimulation[],
+  boss: BossData,
+): CandidateSimulation {
+  const ranked = [...simulations].sort(compareCandidateSimulations);
+  const best = ranked[0];
+  const variants = ranked.filter((candidate) => (
+    candidate.success
+    && candidate.counterCount >= 2
+    && candidate.coveredStageCount === MISSION_STAGES.length
+    && candidate.score >= best.score - 5
+    && candidate.resourceFloor >= best.resourceFloor - 12
+  )).slice(0, 6);
+  if (variants.length <= 1) return best;
+  const numericId = Number(boss.id.match(/(\d+)/)?.[1] ?? 0);
+  return variants[numericId % variants.length];
 }
 
 function summarizeResults(results: BossChallengeBalanceResult[]): BossChallengeBalanceSummary;

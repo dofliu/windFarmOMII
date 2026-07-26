@@ -53,16 +53,16 @@ describe('Campaign Dispatch Forecast', () => {
     expect(forecast.equipment.map((item) => [item.afterSuccess, item.afterFailure])).toEqual([[92, 86], [95, 91]]);
     expect(forecast.maintenance).toMatchObject({
       current: 80,
-      successRewardMin: 24,
-      successRewardMax: 34,
-      failureReward: 11,
+      successRewardMin: 16,
+      successRewardMax: 21,
+      failureReward: 6,
       successRepairCost: 7,
       failureRepairCost: 12,
-      afterSuccessFullRepairMin: 97,
-      afterSuccessFullRepairMax: 107,
-      afterFailureFullRepair: 79,
+      afterSuccessFullRepairMin: 89,
+      afterSuccessFullRepairMax: 94,
+      afterFailureFullRepair: 74,
     });
-    expect(forecast.recoveryTokens).toEqual({ current: 3, earned: 2, after: 5 });
+    expect(forecast.recoveryTokens).toEqual({ current: 3, earned: 0, after: 3 });
     expect(forecast.branchEventCount).toBe(2);
   });
 
@@ -77,8 +77,8 @@ describe('Campaign Dispatch Forecast', () => {
     const baseline = forecast.crew[1];
 
     expect(forecast.roundLimit).toBe(11);
-    expect(veteran).toMatchObject({ before: 20, perRoundDamage: 6, transitRecovery: 6, afterOneRound: 20, afterRoundLimit: 80, oneRoundBand: 'Stable', roundLimitBand: 'Critical' });
-    expect(baseline).toMatchObject({ before: 0, perRoundDamage: 8, transitRecovery: 6, afterOneRound: 2, afterRoundLimit: 82, oneRoundBand: 'Stable', roundLimitBand: 'Critical' });
+    expect(veteran).toMatchObject({ before: 20, perRoundDamage: 6, operationalLoad: 6, transitRecovery: 3, afterOneRound: 29, afterRoundLimit: 89, oneRoundBand: 'Stable', roundLimitBand: 'Critical' });
+    expect(baseline).toMatchObject({ before: 0, perRoundDamage: 8, operationalLoad: 6, transitRecovery: 3, afterOneRound: 11, afterRoundLimit: 91, oneRoundBand: 'Stable', roundLimitBand: 'Critical' });
   });
 
   it('Forecast 使用 target turbine 與正式 loadout/mastery 顯示 fleet condition 前後值', () => {

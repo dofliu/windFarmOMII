@@ -128,7 +128,7 @@ export function createCrewRotationRecommendation(
 ): CrewRotationRecommendation {
   const currentIds = new Set(currentTeamIds);
   const counters = new Set(boss.counterFactions.split(',').map((value) => value.trim()).filter(Boolean));
-  const context = createDispatchCrewForecastContext(boss, equipment, vessel);
+  const context = createDispatchCrewForecastContext(boss, equipment, vessel, mission);
   const requiredMastery = mission.operationProfile.minimumMasteryLevel;
   const requiredQualifiedMembers = mission.operationProfile.minimumQualifiedMembers;
   const allCandidates = characters.map((character): CrewRotationCandidate => {

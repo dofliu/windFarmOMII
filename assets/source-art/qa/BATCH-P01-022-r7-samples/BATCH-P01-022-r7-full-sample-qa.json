@@ -5,18 +5,19 @@
   "purpose": "Full 10-character R7 Source Art QA sample set before active import",
   "activeImportStatus": "Not Imported",
   "summary": {
-    "sampleFiles": 11,
-    "currentCandidateCount": 6,
-    "currentAspectPass": 6,
+    "sampleFiles": 15,
+    "currentCandidateCount": 10,
+    "currentAspectPass": 10,
     "currentAspectFail": 0,
     "rejectedEvidenceCount": 5,
+    "activeImportCount": 10,
     "genderPresentation": {
       "androgynous": 2,
-      "feminine": 2,
-      "masculine": 2
+      "feminine": 4,
+      "masculine": 4
     },
-    "uniqueAgeImpressions": 6,
-    "uniqueProfessions": 5,
+    "uniqueAgeImpressions": 10,
+    "uniqueProfessions": 6,
     "visualReviewStatus": "Required"
   },
   "items": [
@@ -33,7 +34,7 @@
       "expectedAspect": "2:3",
       "aspectStatus": "Pass",
       "qaStatus": "Sample Review Required",
-      "activeImportStatus": "Not Imported"
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-GOV-032",
@@ -47,7 +48,8 @@
       "aspect": 0.4745,
       "expectedAspect": "2:3",
       "aspectStatus": "Fail",
-      "qaStatus": "Regenerate Required",
+      "qaStatus": "Rejected Evidence",
+      "evidenceStatus": "Rejected",
       "activeImportStatus": "Not Imported"
     },
     {
@@ -63,7 +65,22 @@
       "expectedAspect": "2:3",
       "aspectStatus": "Pass",
       "qaStatus": "Sample Review Required",
-      "activeImportStatus": "Not Imported"
+      "activeImportStatus": "Imported to active preview; QA Pending"
+    },
+    {
+      "characterId": "CHR-ACA-072",
+      "sampleVersion": "v002",
+      "genderPresentation": "masculine",
+      "ageImpression": "mid-30s turbine mechanic",
+      "professionEn": "Vibration Diagnostics Researcher",
+      "sampleFile": "CHR-ACA-072_L2_P01_v002_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-ACA-071",
@@ -78,7 +95,7 @@
       "expectedAspect": "2:3",
       "aspectStatus": "Pass",
       "qaStatus": "Sample Review Required",
-      "activeImportStatus": "Not Imported"
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-ACA-072",
@@ -92,8 +109,24 @@
       "aspect": 0.4745,
       "expectedAspect": "2:3",
       "aspectStatus": "Fail",
-      "qaStatus": "Regenerate Required",
+      "qaStatus": "Rejected Evidence",
+      "evidenceStatus": "Rejected",
       "activeImportStatus": "Not Imported"
+    },
+    {
+      "characterId": "CHR-DEV-116",
+      "sampleVersion": "v002",
+      "genderPresentation": "feminine",
+      "ageImpression": "early-50s project controller",
+      "professionEn": "Quality Assurance Engineer",
+      "sampleFile": "CHR-DEV-116_L1_P01_v002_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-DEV-116",
@@ -107,8 +140,24 @@
       "aspect": 0.5,
       "expectedAspect": "2:3",
       "aspectStatus": "Fail",
-      "qaStatus": "Regenerate Required",
+      "qaStatus": "Rejected Evidence",
+      "evidenceStatus": "Rejected",
       "activeImportStatus": "Not Imported"
+    },
+    {
+      "characterId": "CHR-MFG-156",
+      "sampleVersion": "v002",
+      "genderPresentation": "masculine",
+      "ageImpression": "late-20s rope access technician",
+      "professionEn": "Generator Engineer",
+      "sampleFile": "CHR-MFG-156_L1_P01_v002_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-DEV-117",
@@ -123,7 +172,7 @@
       "expectedAspect": "2:3",
       "aspectStatus": "Pass",
       "qaStatus": "Sample Review Required",
-      "activeImportStatus": "Not Imported"
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-MFG-156",
@@ -137,7 +186,8 @@
       "aspect": 0.4444,
       "expectedAspect": "2:3",
       "aspectStatus": "Fail",
-      "qaStatus": "Regenerate Required",
+      "qaStatus": "Rejected Evidence",
+      "evidenceStatus": "Rejected",
       "activeImportStatus": "Not Imported"
     },
     {
@@ -153,7 +203,7 @@
       "expectedAspect": "2:3",
       "aspectStatus": "Pass",
       "qaStatus": "Sample Review Required",
-      "activeImportStatus": "Not Imported"
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-MAR-206",
@@ -168,7 +218,7 @@
       "expectedAspect": "2:3",
       "aspectStatus": "Pass",
       "qaStatus": "Sample Review Required",
-      "activeImportStatus": "Not Imported"
+      "activeImportStatus": "Imported to active preview; QA Pending"
     },
     {
       "characterId": "CHR-OMI-251",
@@ -182,12 +232,28 @@
       "aspect": 0.5,
       "expectedAspect": "2:3",
       "aspectStatus": "Fail",
-      "qaStatus": "Regenerate Required",
+      "qaStatus": "Rejected Evidence",
+      "evidenceStatus": "Rejected",
       "activeImportStatus": "Not Imported"
+    },
+    {
+      "characterId": "CHR-OMI-251",
+      "sampleVersion": "v002",
+      "genderPresentation": "feminine",
+      "ageImpression": "late-30s electrical safety officer",
+      "professionEn": "Gearbox Diagnostics Specialist",
+      "sampleFile": "CHR-OMI-251_L1_P01_v002_sample.png",
+      "width": 1024,
+      "height": 1536,
+      "aspect": 0.6667,
+      "expectedAspect": "2:3",
+      "aspectStatus": "Pass",
+      "qaStatus": "Sample Review Required",
+      "activeImportStatus": "Imported to active preview; QA Pending"
     }
   ],
   "guardrails": [
-    "Do not import these samples into public active Source Art index until visual review passes.",
+    "Do not mark these samples as user-visually-approved until review passes; the four reviewed candidates may remain in active preview with QA Pending status.",
     "R7 samples should visibly vary age, face architecture, body build, pose/action, camera angle, and tool interaction before outfit/background.",
     "Reject samples that collapse into same pretty heroine, glamour pose, outfit/background-only variation, invalid 2:3 framing, or malformed wind turbine geometry."
   ]

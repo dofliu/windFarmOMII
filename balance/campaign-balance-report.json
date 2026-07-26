@@ -1580,9 +1580,9 @@
   "maintenanceEconomy": {
     "policy": "FULL_REPAIR_AFTER_EACH_L5_MISSION",
     "initialCredits": 80,
-    "creditsEarned": 652,
+    "creditsEarned": 413,
     "repairSpend": 438,
-    "endingCredits": 294,
+    "endingCredits": 55,
     "serviceableMissions": 15,
     "totalMissions": 15,
     "repairFailures": 0,
@@ -1592,15 +1592,15 @@
   "crewReadinessEconomy": {
     "policy": "ROTATE_AND_REST_BEFORE_L5_MISSION",
     "initialTokens": 3,
-    "tokensEarned": 29,
-    "tokensSpent": 0,
-    "endingTokens": 32,
-    "restActions": 0,
+    "tokensEarned": 5,
+    "tokensSpent": 2,
+    "endingTokens": 6,
+    "restActions": 2,
     "deployableMissions": 15,
     "completedMissions": 15,
     "totalMissions": 15,
     "exhaustedBlocks": 0,
-    "maxPersistentFatiguePercent": 1,
+    "maxPersistentFatiguePercent": 76,
     "gatePassed": true
   },
   "gates": {

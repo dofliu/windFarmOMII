@@ -59,6 +59,7 @@ try {
   await prepare(page);
   let campaignRaw = await page.evaluate(() => localStorage.getItem('owm.campaign.v5'));
 
+  await page.getByTestId('campaign-route-tab-missions').click();
   const campaignSceneBadges = page.locator('[data-testid^="mission-scene-"]');
   if (await campaignSceneBadges.count() !== 15) throw new Error('Campaign map must expose all 15 Mission scene routes.');
   const campaignSceneTexts = await campaignSceneBadges.allTextContents();
@@ -89,44 +90,46 @@ try {
   campaignRaw = await page.evaluate(() => localStorage.getItem('owm.campaign.v5'));
 
   await page.getByTestId('nav-sandbox').click();
-  const defaultSandboxScene = await page.getByTestId('sandbox-scene').inputValue();
+  await page.getByTestId('sandbox-route-tab-scene').click();
+  const defaultSandboxScene = await page.locator('.sandbox-scene-card.active').getAttribute('data-scene-id');
   if (defaultSandboxScene !== 'SCN002') throw new Error(`Sandbox default Scene should use integrated field feed: ${defaultSandboxScene}`);
   const sandboxCoverage = await page.getByTestId('sandbox-scene-coverage').innerText();
-  if (!sandboxCoverage.includes('29/150 INTEGRATED') || !sandboxCoverage.includes('121 FALLBACK')) {
+  if (!sandboxCoverage.includes('148/150 INTEGRATED') || !sandboxCoverage.includes('2 FALLBACK')) {
     throw new Error(`Sandbox Scene coverage summary is wrong: ${sandboxCoverage}`);
   }
-  const defaultPreview = await page.getByTestId('sandbox-scene-preview').innerText();
-  if (!defaultPreview.includes('SCN002') || !defaultPreview.includes('INTEGRATED') || !defaultPreview.includes('ENGINEERING_QA_PASSED')) {
+  const defaultPreview = await page.locator('.sandbox-scene-card.active').innerText();
+  if (!defaultPreview.includes('SCN002') || !defaultPreview.includes('INTEGRATED')) {
     throw new Error(`Sandbox integrated Scene preview is incomplete: ${defaultPreview}`);
   }
 
   await page.getByTestId('sandbox-scene-filter-integrated').click();
-  const integratedOptionCount = await page.locator('[data-testid="sandbox-scene"] option').count();
-  if (integratedOptionCount !== 29) throw new Error(`Sandbox integrated filter should expose 29 direct Scene assets: ${integratedOptionCount}`);
-  await page.getByTestId('sandbox-scene').selectOption('SCN011');
-  const jacketPreview = await page.getByTestId('sandbox-scene-preview').innerText();
-  if (!jacketPreview.includes('SCN011') || !jacketPreview.includes('INTEGRATED') || !jacketPreview.includes('ENGINEERING_QA_PASSED')) {
+  const integratedOptionCount = await page.locator('.sandbox-scene-card.integrated').count();
+  if (integratedOptionCount !== 148) throw new Error(`Sandbox integrated filter should expose 148 direct Scene assets: ${integratedOptionCount}`);
+  await page.getByTestId('sandbox-scene-SCN146').click();
+  const latestPackPreview = await page.locator('.sandbox-scene-card.active').innerText();
+  if (!latestPackPreview.includes('SCN146') || !latestPackPreview.includes('INTEGRATED')) {
+    throw new Error(`Sandbox latest scene-pack preview is incomplete: ${latestPackPreview}`);
+  }
+  await page.getByTestId('sandbox-scene-SCN011').click();
+  const jacketPreview = await page.locator('.sandbox-scene-card.active').innerText();
+  if (!jacketPreview.includes('SCN011') || !jacketPreview.includes('INTEGRATED')) {
     throw new Error(`Sandbox jacket foundation Scene preview is incomplete: ${jacketPreview}`);
   }
-  await page.getByTestId('sandbox-scene').selectOption('SCN003');
-  const rainyPreview = await page.getByTestId('sandbox-scene-preview').innerText();
-  if (!rainyPreview.includes('SCN003') || !rainyPreview.includes('INTEGRATED') || !rainyPreview.includes('ENGINEERING_QA_PASSED')) {
+  await page.getByTestId('sandbox-scene-SCN003').click();
+  const rainyPreview = await page.locator('.sandbox-scene-card.active').innerText();
+  if (!rainyPreview.includes('SCN003') || !rainyPreview.includes('INTEGRATED')) {
     throw new Error(`Sandbox rainy integrated Scene preview is incomplete: ${rainyPreview}`);
   }
   await page.getByTestId('sandbox-scene-filter-fallback').click();
-  const fallbackOptionCount = await page.locator('[data-testid="sandbox-scene"] option').count();
-  if (fallbackOptionCount !== 122) throw new Error(`Sandbox fallback filter should expose current integrated Scene plus 121 fallback routes: ${fallbackOptionCount}`);
-  const hiddenSelectionPreview = await page.getByTestId('sandbox-scene-preview').innerText();
-  if (!hiddenSelectionPreview.includes('SCN003') || !hiddenSelectionPreview.includes('INTEGRATED')) {
-    throw new Error(`Sandbox filter should preserve hidden current selection: ${hiddenSelectionPreview}`);
-  }
-  await page.getByTestId('sandbox-scene').selectOption('SCN006');
-  const fallbackPreview = await page.getByTestId('sandbox-scene-preview').innerText();
-  if (!fallbackPreview.includes('SCN006') || !fallbackPreview.includes('FALLBACK') || !fallbackPreview.includes('SCN002')) {
+  const fallbackOptionCount = await page.locator('.sandbox-scene-card.fallback').count();
+  if (fallbackOptionCount !== 2) throw new Error(`Sandbox fallback filter should expose 2 fallback routes: ${fallbackOptionCount}`);
+  await page.getByTestId('sandbox-scene-SCN035').click();
+  const fallbackPreview = await page.locator('.sandbox-scene-card.active').innerText();
+  if (!fallbackPreview.includes('SCN035') || !fallbackPreview.includes('FALLBACK')) {
     throw new Error(`Sandbox fallback Scene preview is incomplete: ${fallbackPreview}`);
   }
   await page.getByTestId('sandbox-scene-filter-integrated').click();
-  await page.getByTestId('sandbox-scene').selectOption('SCN011');
+  await page.getByTestId('sandbox-scene-SCN011').click();
   await assertDesktopSingleScreen(page, 'Sandbox Scene Route', '.deployment-shell');
   await page.screenshot({ path: screenshots.sandboxRoute });
 
@@ -148,13 +151,14 @@ try {
   const mobile = await browser.newPage({ viewport: { width: 768, height: 900 } });
   await prepare(mobile);
   await mobile.getByTestId('nav-sandbox').click();
+  await mobile.getByTestId('sandbox-route-tab-scene').click();
   await mobile.getByTestId('sandbox-scene-filter-fallback').click();
-  await mobile.getByTestId('sandbox-scene').selectOption('SCN006');
+  await mobile.getByTestId('sandbox-scene-SCN035').click();
   const mobileMetrics = await documentMetrics(mobile, '.deployment-shell');
   if (mobileMetrics.scrollWidth > mobileMetrics.viewportWidth + 1) {
     throw new Error(`Mission Scene Routing has mobile horizontal overflow: ${JSON.stringify(mobileMetrics)}`);
   }
-  if (!(await mobile.getByTestId('sandbox-scene-preview').innerText()).includes('FALLBACK')) {
+  if (!(await mobile.locator('.sandbox-scene-card.active').innerText()).includes('FALLBACK')) {
     throw new Error('Sandbox fallback provenance is missing at 768px.');
   }
   await mobile.screenshot({ path: screenshots.mobile, fullPage: true });
