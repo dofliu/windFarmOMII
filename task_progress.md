@@ -1121,3 +1121,11 @@
 - Boss 推薦差異：unique team `6→18`，單隊最高重複 `70→12`，6/6 stage 且至少 2/3 counter `100/100`；Challenge 仍 `100/100` 可完成、0 severity inversion。
 - 新增 hard gates，防止 MNT 過度寬裕、RST 零消耗、持續疲勞過低與 Boss 萬用隊重新壟斷。
 - 驗證通過：`pnpm validate`（21 files / 143 tests、資料／Scene／Art、Campaign／Challenge balance、production build）、Campaign gameplay、Boss Challenge、1440×900 layout 與 390×844 mobile flow smoke。
+
+## Next session handoff - 2026-07-27
+
+- 穩定基準：`3.54.0-strategy-balance-v1`，commit `0067b1f`。
+- 交接入口：`NEXT_SESSION_HANDOFF_2026-07-27.md`。
+- 下一主線：Playtest v1；先驗證玩家是否理解 Deployment、Fatigue/RST、MNT 與 Boss counter，再決定策略平衡 v2。
+- 預計產出：三段短測試流程、桌機／手機觀察表，以及 3–5 位玩家的行為紀錄。
+- Guardrail：沒有實際 playtest 資料前，不再任意調整數值，也不把 deterministic simulation 當成人因測試結果。

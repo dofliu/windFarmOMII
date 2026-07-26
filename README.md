@@ -1,5 +1,7 @@
 # Offshore Wind Masters Web
 
+> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-07-27.md](NEXT_SESSION_HANDOFF_2026-07-27.md)。目前主線是 Playtest v1，不是繼續增加圖片或直接再調整平衡數值。
+
 ## Current verification snapshot — 2026-07-26
 
 - Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
