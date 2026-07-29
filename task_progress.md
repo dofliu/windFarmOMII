@@ -1129,3 +1129,42 @@
 - 下一主線：Playtest v1；先驗證玩家是否理解 Deployment、Fatigue/RST、MNT 與 Boss counter，再決定策略平衡 v2。
 - 預計產出：三段短測試流程、桌機／手機觀察表，以及 3–5 位玩家的行為紀錄。
 - Guardrail：沒有實際 playtest 資料前，不再任意調整數值，也不把 deterministic simulation 當成人因測試結果。
+
+## Current increment - 2026-07-27（策略決策 Playtest 紀錄）
+
+- Version：`3.55.0-playtest-observation`。
+- 新增頂部「測試／Playtest」工作區，可用匿名 participant code 與 Desktop／Mobile 標記啟動、完成及下載獨立 `OWM_PLAYTEST_SESSION` v1 JSON。
+- Playtest session 使用獨立 localStorage `owm.playtest.v1`，不修改 Campaign／Challenge save。
+- 自動記錄 `CREW_ROTATED`、`RST_SPENT`、`EQUIPMENT_REPAIRED`、`FLEET_MAINTAINED`、`MISSION_DEPLOYED`、`MISSION_SETTLED` 與跨頁行為；event 保存 stable IDs、Fatigue、RST、MNT 及裝備 Condition 快照。
+- Playtest 頁面提供輪調、RST、MNT 與主持人觀察欄位；明確要求只用匿名代碼，不輸入姓名、Email、學號或其他個資。
+- 新增 `PLAYTEST_PROTOCOL_2026-07-27.md`，定義 3–5 人、桌機／手機覆蓋、think-aloud、中性提示、JSON 命名與 `NA` 規則。
+- 新增 4 個 domain tests 與 `pnpm smoke:playtest`；桌機 1440×900、手機 390×844、localStorage persistence、JSON download、44px mobile action 與無水平溢位均通過。
+- 驗證通過：`pnpm validate`（22 files / 147 tests、資料／Scene／Art、Campaign／Challenge balance、production build）、Campaign gameplay、1440×900 layout、390×844 mobile flow 與 Playtest smoke。
+- Guardrail：目前尚未取得任何真人 playtest 資料；不得把自動事件、simulation 或 smoke 結果宣稱為玩家理解。
+- 下一步：依 `PLAYTEST_PROTOCOL_2026-07-27.md` 執行 3–5 位真人測試，收齊完成 JSON 後再彙整理解障礙，決定是否調整教學訊息或策略門檻。
+
+## Current increment - 2026-07-27（Playtest Evidence Pipeline）
+
+- Version：`3.56.0-playtest-analysis-pipeline`。
+- 新增 `pnpm playtest:summary`，批次讀取 `playtest-results/` 的 `OWM_PLAYTEST_SESSION` v1 exports，驗證 schema、匿名代碼、裝置、完成狀態與 timestamps。
+- Summary hard gates：3–5 位、Desktop／Mobile 均有覆蓋、全部 session completed、四個觀察欄位完整、participant code 唯一；未達時明確輸出 `INCOMPLETE`。
+- 產生 `PLAYTEST_SUMMARY.md` 與 `.json`，分開呈現 action participants、notes present 與 action+note evidence；不自動產生「玩家已理解」分數。
+- 無事件或未填資料保留 `NA`；原始 participant JSON 與衍生 summary 已由 `.gitignore` 排除，避免研究紀錄誤入 repository。
+- 新增 3 個 aggregation tests；Playtest 相關 focused suite 現為 2 files／7 tests。
+- 驗證通過：`pnpm validate`（23 files／150 tests、資料／Scene／Art、Campaign／Challenge balance、production build）。
+- Final AI upscale runtime preflight：本機可用 RTX 4080 Laptop GPU（12 GB）與 CUDA-enabled PyTorch 2.6.0，但目前沒有 Real-ESRGAN／waifu2x／UpScayl executable 或已快取的 super-resolution model weights。
+- Guardrail：現有 `generate-production-candidates.py` 只做 deterministic Lanczos staging resize；在建立可重現的 AI model／weights／checksum contract 前，不將其重新標示為 final AI upscale。
+- 下一步仍是收集 3–5 位真人資料；與此同時可獨立進行 90 張已核准 P01 的 final AI upscale／full-resolution QA。
+
+## Current increment - 2026-07-27（新手練習與正式測試分流）
+
+- Version：`3.57.1-guided-practice-overlay-fix`。
+- Playtest 起始頁拆成兩條明確路徑：「第一次玩：開始練習導覽」與「已熟悉玩法：開始正式測試」。
+- 練習導覽不建立 participant session、不寫入 `owm.playtest.v1`，避免提示過程污染正式觀察事件。
+- 五段導覽全面補強：每一步都顯示目的、逐項操作、完成條件及 Fatigue／RST／MNT／Energy／Reactive／Evidence 等名詞速查。
+- 練習完成或略過後自動回到 Playtest；完成狀態會顯示「已完成一次練習」，仍可隨時重播。
+- 正式測試頁明列三個策略決策、不是手速／高分測試、至少三關流程，以及換班、RST、MNT、四個觀察欄位的完成 checklist。
+- `PLAYTEST_PROTOCOL_2026-07-27.md` 已改為先做標準化練習，再輸入匿名代碼開始正式紀錄。
+- `pnpm smoke:playtest` 新增練習不產生正式資料、導覽關鍵教學內容、桌機／手機無水平溢位與截圖驗證。
+- 驗證通過：`pnpm validate`（23 files／150 tests、資料／Scene／Art、Campaign／Challenge balance、production build）、Onboarding、Campaign gameplay、1440×900 layout、390×844 mobile flow 與 Playtest smoke。
+- Usability 修正：完整導覽新增「縮小後操作」；縮小後浮動框完全退出畫面，底層資訊與控制項均可見、可點。頂部「導覽 n/5」改為原進度展開，不再誤觸重設；Desktop／Mobile smoke 均實際點擊底層 Deployment tabs 與 readiness controls。

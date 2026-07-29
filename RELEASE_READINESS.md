@@ -1,5 +1,12 @@
 # OWM Web MVP Release Readiness
 
+## Current project increment - 2026-07-27
+
+- Current version：`3.57.1-guided-practice-overlay-fix`。
+- Gameplay、策略平衡 v1、分離式新手練習導覽與 Playtest observation／evidence pipeline 已完成自動驗證。
+- Playtest 尚未取得真人資料，因此不宣稱玩家已理解 Crew rotation、RST 或 MNT；這不改寫既有 production art gate。
+- Production release 的主要非真人工作仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
+
 ## Current increment - 2026-07-24 (user full visual approval)
 
 - 使用者已一次性核准全部 `119` 個 Scene candidates 與 `90` 個 P01 production candidates；共用 ledger 已完成決策記錄。
@@ -31,8 +38,7 @@
 - Promotion 前置檢查：`pnpm qa:promotion-preflight -- --kind <scene|p01> --id <ID>`；只接受 ledger approved 的候選，並且保持 read-only。
 - Revalidated on 2026-07-24 after the approval packet: `pnpm validate`、`pnpm validate:production-art`、`pnpm validate:scene`、21 test files/142 tests、gameplay/layout/scene/art smoke 全部通過。
 
-更新日期：2026-07-24  
-版本：`3.53.0-batch030-production-qa`
+Production art gate baseline：`3.53.0-batch030-production-qa`
 
 ## 已驗證完成
 

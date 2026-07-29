@@ -7,6 +7,8 @@ coverage/
 public/data/
 tmp/
 *.log
+playtest-results/*.json
+playtest-results/PLAYTEST_SUMMARY.md
 
 # Image assets & heavy media
 *.png

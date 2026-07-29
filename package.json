@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.54.0-strategy-balance-v1",
+  "version": "3.57.1-guided-practice-overlay-fix",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",
@@ -36,6 +36,8 @@
     "smoke:deployment:compact": "node tools/smoke-deployment-compact.mjs",
     "smoke:operation:compact": "node tools/smoke-operation-compact.mjs",
     "smoke:mobile:flow": "node tools/smoke-mobile-flow.mjs",
+    "smoke:playtest": "node tools/smoke-playtest.mjs",
+    "playtest:summary": "node tools/summarize-playtests.mjs",
     "smoke:sandbox": "node tools/smoke-sandbox-scenario.mjs",
     "smoke:scene": "node tools/smoke-scene-routing.mjs",
     "smoke:fleet": "node tools/smoke-fleet-maintenance.mjs",

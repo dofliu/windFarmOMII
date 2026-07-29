@@ -1,17 +1,18 @@
 # OWM Web MVP 需求稽核
 
-## Current verification snapshot — 2026-07-24
+## Current verification snapshot — 2026-07-27
 
 這一節是目前狀態的唯一摘要；下方較早日期的 increment 保留作為歷史證據，不應覆蓋本節數值。
 
-- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已完成；`pnpm validate` 通過，包含 21 test files／142 tests、data／art／scene gates、兩組 balance simulation 與 production build。
+- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing、Collection 與 Playtest evidence pipeline 已完成自動驗證；最新測試數與 build 結果以 `task_progress.md` 為準。
 - 300/300 P01 active preview 已同步；300 張均通過 2:3 runtime contract 與 Source Art smoke。
 - 150 個 Scene ID 均已具備 explicit route 或 documented shared fallback：148 integrated、146 dedicated runtime files（1915×821 RGB）、2 fallback（SCN035、SCN041）。
-- 119 個新場景候選仍為 `VISUAL_REVIEW_REQUIRED`；場景核准 dry-run 已通過且沒有改檔。
-- P01 production queue 為 `210 Upscale Pending / 90 Production QA Pending / 0 Production Approved`。90 張 production candidates 已完成 exact 4096×6144 technical QA，但尚未宣告使用者視覺核准。
+- 119 個新場景候選已由使用者全量核准並完成 promotion；目前 `0` Scene visual review required。
+- P01 production queue 為 `210 Upscale Pending / 90 Production QA Pending / 0 Production Approved`。90 張 production candidates 已完成 exact 4096×6144 staging technical QA 並取得使用者視覺核准，但 staging resize 不冒充 final AI upscale。
 - 審查入口：`SCENE_VISUAL_APPROVAL_PACKET.md`、`assets/source-art/qa/scene-pack-2026-07-24/scene-pack-contact-sheet-all-v018.png`、`assets/source-art/qa/production-p01-2026-07-24/production-contact-sheet-all-v001.png`。
-- 核准決策 ledger：`assets/source-art/qa/visual-approval-ledger-2026-07-24.json`，目前 119 個場景與 90 個 P01 production candidate 全部為 `pending`。
-- 尚未完成的正式 gate 只有人工視覺核准、最終 AI upscale，以及核准後的 production promotion；未經核准不改寫 QA status。
+- 核准決策 ledger：`assets/source-art/qa/visual-approval-ledger-2026-07-24.json`，119 個場景與 90 個 P01 production candidates 均已記錄為 approved。
+- 尚未完成的 production gate 是 final AI upscale、full-resolution QA，以及通過後的 production promotion。
+- Playtest 尚未取得 3–5 位真人資料；在資料到齊前不宣稱玩家已理解 Crew rotation、RST 或 MNT。
 
 ## Latest increment: scene background coverage (2026-07-24)
 

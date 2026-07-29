@@ -55,12 +55,16 @@ try {
   await page.screenshot({ path: screenshots.deployment, fullPage: true });
 
   await page.getByTestId('onboarding-primary').click();
-  await expectGuideStep('EVENT_DECK');
+  await page.getByTestId('onboarding-guide').waitFor({ state: 'hidden' });
   await expectFocused('mission-event-deck');
+  await page.getByTestId('onboarding-replay').click();
+  await expectGuideStep('EVENT_DECK');
   if (await page.getByTestId('onboarding-primary').isEnabled()) throw new Error('Onboarding allowed deployment before Operation Readiness 5/5.');
+  await page.getByTestId('onboarding-collapse').click();
   for (const testId of ['planning-confirm-permit', 'planning-confirm-ppe', 'planning-confirm-access']) {
     await page.getByTestId(testId).check();
   }
+  await page.getByTestId('onboarding-replay').click();
   const readinessText = await page.getByTestId('operation-readiness').innerText();
   if (!readinessText.includes('5/5 · READY') || !(await page.getByTestId('onboarding-primary').isEnabled())) {
     throw new Error(`Onboarding readiness gate did not unlock: ${readinessText}`);
@@ -68,6 +72,7 @@ try {
   await page.screenshot({ path: screenshots.eventDeck, fullPage: true });
 
   await page.getByTestId('onboarding-primary').click();
+  await page.getByTestId('onboarding-replay').click();
   await expectGuideStep('REACTIVE_WINDOW');
   await page.getByTestId('operation-flow-mission').click();
   const endRoundButton = page.getByTestId('next-round');

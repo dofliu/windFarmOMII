@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState, type KeyboardEvent } from 'react';
 import { audioEngine } from './domain/audio';
 import { OnboardingGuide, type OnboardingSurface } from './components/OnboardingGuide';
+import { PlaytestPanel } from './components/PlaytestPanel';
 import { characterSkillIds, loadGameDatabase } from './domain/data';
 import { bossName, characterName, professionName, skillName } from './domain/localization';
 import {
@@ -211,6 +212,18 @@ import {
   type TurbineMaintenanceSettlement,
 } from './domain/windFarm';
 import { THREE_BLADE_ANGLES, fleetTurbineIconGeometry, turbineBladePolygon } from './domain/turbineGeometry';
+import {
+  appendPlaytestEvent,
+  completePlaytestSession,
+  createPlaytestSession,
+  loadPlaytestSession,
+  savePlaytestSession,
+  updatePlaytestNotes,
+  type PlaytestEventKind,
+  type PlaytestNotes,
+  type PlaytestPlatform,
+  type PlaytestSession,
+} from './domain/playtest';
 import type {
   BossData,
   CharacterData,
@@ -231,7 +244,7 @@ const IMPACT_LABELS = {
   zh: { fatigue: '疲勞', safety: '安全', weather: '天候', evidence: '證據', reliability: '可靠度', progress: '進度', cost: '成本', energy: 'Energy' },
   en: { fatigue: 'Fatigue', safety: 'Safety', weather: 'Weather', evidence: 'Evidence', reliability: 'Reliability', progress: 'Progress', cost: 'Cost', energy: 'Energy' },
 } as const;
-type GameView = 'campaign' | 'challenge' | 'sandbox' | 'collection' | 'codex';
+type GameView = 'campaign' | 'challenge' | 'sandbox' | 'collection' | 'codex' | 'playtest';
 const UI = {
   zh: {
     characters: '角色', skills: '技能', bosses: 'Boss', riskEvent: '風險事件', stageNeed: '階段需求', fatigueHit: '疲勞衝擊',
@@ -240,7 +253,7 @@ const UI = {
     deployment: '任務部署', deploymentLead: '先配置跨專業隊伍與任務裝備，再進入風場作業。', team: '三人任務隊伍', equipment: '任務裝備', deploy: '開始任務',
     coverage: '六階段專業涵蓋', counterCoverage: 'Boss 克制人數', roundLimit: '回合上限', weather: '天候窗口', safety: '安全', evidence: '證據', cost: '成本', debrief: '任務結算',
     duplicateTeam: '隊伍角色不可重複', shiftRejected: '該角色已在隊伍中', mission: '教學任務', vessel: '作業船舶', spare: '任務備品', diagnosis: '診斷判斷',
-    campaign: '戰役', challenge: 'Boss 挑戰', sandbox: '沙盒', collection: '收藏', codex: '知識庫', mastery: '熟練度', lockedSkill: '熟練度不足',
+    campaign: '戰役', challenge: 'Boss 挑戰', sandbox: '沙盒', collection: '收藏', codex: '知識庫', playtest: '測試', mastery: '熟練度', lockedSkill: '熟練度不足',
   },
   en: {
     characters: 'Characters', skills: 'Skills', bosses: 'Bosses', riskEvent: 'Risk event', stageNeed: 'Stage need', fatigueHit: 'Fatigue hit',
@@ -249,7 +262,7 @@ const UI = {
     deployment: 'Mission deployment', deploymentLead: 'Configure a cross-functional team and mission equipment before offshore operations.', team: 'Three-person team', equipment: 'Mission equipment', deploy: 'Deploy mission',
     coverage: 'Six-stage coverage', counterCoverage: 'Boss counters', roundLimit: 'Round limit', weather: 'Weather window', safety: 'Safety', evidence: 'Evidence', cost: 'Cost', debrief: 'Mission debrief',
     duplicateTeam: 'Team members must be unique', shiftRejected: 'Character is already on the team', mission: 'Training mission', vessel: 'Operation vessel', spare: 'Mission spare', diagnosis: 'Diagnosis decision',
-    campaign: 'Campaign', challenge: 'Boss Challenge', sandbox: 'Sandbox', collection: 'Collection', codex: 'Codex', mastery: 'Mastery', lockedSkill: 'Mastery level required',
+    campaign: 'Campaign', challenge: 'Boss Challenge', sandbox: 'Sandbox', collection: 'Collection', codex: 'Codex', playtest: 'Playtest', mastery: 'Mastery', lockedSkill: 'Mastery level required',
   },
 } as const;
 
@@ -321,7 +334,10 @@ export default function App() {
   const [campaign, setCampaign] = useState<CampaignProgress | null>(null);
   const [challenge, setChallenge] = useState<BossChallengeProgress | null>(null);
   const [view, setView] = useState<GameView>('campaign');
+  const [playtest, setPlaytest] = useState<PlaytestSession | null>(() => loadPlaytestSession());
   const [onboarding, setOnboarding] = useState<OnboardingProgress>(() => resumeOnboardingAtDeployment(loadOnboardingProgress()));
+  const [guidedPractice, setGuidedPractice] = useState(false);
+  const [guideCollapsed, setGuideCollapsed] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [theme, setTheme] = useState<'daylight' | 'deepops'>(() => {
     if (typeof window !== 'undefined') {
@@ -338,6 +354,15 @@ export default function App() {
     return 'classic';
   });
   const [audioMuted, setAudioMuted] = useState(() => audioEngine.getMuted());
+
+  const recordPlaytestEvent = (kind: PlaytestEventKind, details: Record<string, unknown> = {}) => {
+    setPlaytest((current) => {
+      if (!current || current.status !== 'active') return current;
+      const next = appendPlaytestEvent(current, kind, details);
+      savePlaytestSession(next);
+      return next;
+    });
+  };
 
   const handleToggleArtPack = () => {
     audioEngine.playSfx('artpack');
@@ -441,6 +466,16 @@ export default function App() {
     );
     saveCampaignProgress(result.progress);
     setCampaign(result.progress);
+    recordPlaytestEvent('MISSION_SETTLED', {
+      missionId: missionDefinition.id,
+      success: session.mission.complete,
+      grade: debrief.grade,
+      score: debrief.totalScore,
+      round: session.mission.round,
+      maintenanceCredits: result.progress.maintenanceCredits,
+      recoveryTokens: result.progress.recoveryTokens,
+      crewFatigue: Object.fromEntries(session.team.map((member) => [member.characterId, member.fatigue])),
+    });
     setSession((current) => current ? { ...current, settled: true, reward: result.reward } : current);
   }, [campaign, characterMap, database, session]);
 
@@ -488,12 +523,39 @@ export default function App() {
     });
   };
   const advanceGuide = () => updateOnboarding(advanceOnboarding);
-  const completeGuide = () => updateOnboarding(completeOnboarding);
-  const skipGuide = () => updateOnboarding(skipOnboarding);
+  const completeGuide = () => {
+    updateOnboarding(completeOnboarding);
+    if (guidedPractice) {
+      setGuideCollapsed(false);
+      setGuidedPractice(false);
+      setSession(null);
+      setView('playtest');
+    }
+  };
+  const skipGuide = () => {
+    updateOnboarding(skipOnboarding);
+    if (guidedPractice) {
+      setGuideCollapsed(false);
+      setGuidedPractice(false);
+      setSession(null);
+      setView('playtest');
+    }
+  };
   const replayGuide = () => {
     const next = restartOnboarding();
     saveOnboardingProgress(next);
     setOnboarding(next);
+    setGuideCollapsed(false);
+    setGuidedPractice(false);
+    setSession(null);
+    setView('campaign');
+  };
+  const startGuidedPractice = () => {
+    const next = restartOnboarding();
+    saveOnboardingProgress(next);
+    setOnboarding(next);
+    setGuideCollapsed(false);
+    setGuidedPractice(true);
     setSession(null);
     setView('campaign');
   };
@@ -502,7 +564,49 @@ export default function App() {
     setSession(null);
     setView('campaign');
   };
+  const showOrReplayGuide = () => {
+    if (onboarding.status === 'active') {
+      setGuideCollapsed(false);
+      if (view !== 'campaign' || (session && session.mode !== 'campaign')) {
+        setSession(null);
+        setView('campaign');
+      }
+      return;
+    }
+    replayGuide();
+  };
   const toggleLanguage = () => setLanguage(language === 'zh' ? 'en' : 'zh');
+  const startPlaytest = (participantCode: string, platform: PlaytestPlatform) => {
+    if (onboarding.status === 'active') {
+      const nextOnboarding = skipOnboarding(onboarding);
+      saveOnboardingProgress(nextOnboarding);
+      setOnboarding(nextOnboarding);
+    }
+    setGuidedPractice(false);
+    const next = createPlaytestSession(participantCode, platform);
+    savePlaytestSession(next);
+    setPlaytest(next);
+  };
+  const updatePlaytestObservation = (notes: Partial<PlaytestNotes>) => {
+    setPlaytest((current) => {
+      if (!current) return current;
+      const next = updatePlaytestNotes(current, notes);
+      savePlaytestSession(next);
+      return next;
+    });
+  };
+  const finishPlaytest = () => {
+    setPlaytest((current) => {
+      if (!current) return current;
+      const next = completePlaytestSession(current);
+      savePlaytestSession(next);
+      return next;
+    });
+  };
+  const clearPlaytest = () => {
+    savePlaytestSession(null);
+    setPlaytest(null);
+  };
   const persistChallengeDraft = (bossId: string, teamIds: [string, string, string]) => {
     const boss = database.bossById.get(bossId);
     if (!boss) return;
@@ -532,6 +636,7 @@ export default function App() {
     } : current);
   };
   const navigate = (nextView: GameView) => {
+    if (nextView !== view) recordPlaytestEvent('VIEW_CHANGED', { from: view, to: nextView });
     setSession(null);
     setOperationReturnNotice(undefined);
     if (nextView === 'campaign') {
@@ -597,16 +702,30 @@ export default function App() {
   };
   const repairEquipment = (equipmentId: string) => {
     const item = requiredEquipment(database, equipmentId);
+    const conditionBefore = campaignEquipmentCondition(campaign, equipmentId);
     const result = repairCampaignEquipment(campaign, item);
     if (!result) return;
     saveCampaignProgress(result.progress);
     setCampaign(result.progress);
+    recordPlaytestEvent('EQUIPMENT_REPAIRED', {
+      equipmentId,
+      conditionBefore,
+      conditionAfter: campaignEquipmentCondition(result.progress, equipmentId),
+      maintenanceCreditsBefore: campaign.maintenanceCredits,
+      maintenanceCreditsAfter: result.progress.maintenanceCredits,
+      missionId: deployment.missionId,
+    });
   };
   const maintainTurbine = (turbineId: string): TurbineMaintenanceSettlement | null => {
     const result = maintainCampaignTurbine(campaign, turbineId);
     if (!result) return null;
     saveCampaignProgress(result.progress);
     setCampaign(result.progress);
+    recordPlaytestEvent('FLEET_MAINTAINED', {
+      turbineIds: [turbineId],
+      maintenanceCreditsBefore: campaign.maintenanceCredits,
+      maintenanceCreditsAfter: result.progress.maintenanceCredits,
+    });
     return result.settlement;
   };
   const maintainTurbinePlan = (turbineIds: string[]): FleetMaintenancePlanSettlement | null => {
@@ -614,14 +733,28 @@ export default function App() {
     if (!result) return null;
     saveCampaignProgress(result.progress);
     setCampaign(result.progress);
+    recordPlaytestEvent('FLEET_MAINTAINED', {
+      turbineIds,
+      maintenanceCreditsBefore: campaign.maintenanceCredits,
+      maintenanceCreditsAfter: result.progress.maintenanceCredits,
+    });
     return result.settlement;
   };
   const restCrewMember = (characterId: string) => {
     const character = requiredCharacter(database, characterId);
+    const fatigueBefore = campaignCrewFatigue(campaign, characterId);
     const result = restCampaignCharacter(campaign, character);
     if (!result) return;
     saveCampaignProgress(result.progress);
     setCampaign(result.progress);
+    recordPlaytestEvent('RST_SPENT', {
+      characterId,
+      fatigueBefore,
+      fatigueAfter: campaignCrewFatigue(result.progress, characterId),
+      recoveryTokensBefore: campaign.recoveryTokens,
+      recoveryTokensAfter: result.progress.recoveryTokens,
+      missionId: deployment.missionId,
+    });
   };
   const confirmChallengeDraftClear = (preview: BossChallengeDraftSettlementPreview): BossChallengeSettlement => {
     const confirmedBoss = database.bossById.get(preview.bossId);
@@ -632,6 +765,17 @@ export default function App() {
     return result.settlement;
   };
   const changeDeployment = (next: DeploymentState) => {
+    if (view === 'campaign' && next.teamIds.some((id, index) => id !== deployment.teamIds[index])) {
+      recordPlaytestEvent('CREW_ROTATED', {
+        missionId: next.missionId,
+        previousTeamIds: deployment.teamIds,
+        nextTeamIds: next.teamIds,
+        previousCrewFatigue: Object.fromEntries(deployment.teamIds.map((id) => [id, campaignCrewFatigue(campaign, id)])),
+        nextCrewFatigue: Object.fromEntries(next.teamIds.map((id) => [id, campaignCrewFatigue(campaign, id)])),
+        recoveryTokens: campaign.recoveryTokens,
+        maintenanceCredits: campaign.maintenanceCredits,
+      });
+    }
     if (view !== 'challenge') {
       setDeployment(next);
       return;
@@ -645,14 +789,17 @@ export default function App() {
     if (!bossChanged) persistChallengeDraft(resolved.sandboxBossId, resolved.teamIds);
     setDeployment(resolved);
   };
-  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} artPack={artPack} audioMuted={audioMuted} onNavigate={navigate} onReplayOnboarding={replayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} onToggleAudio={handleToggleAudio} />;
+  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} artPack={artPack} audioMuted={audioMuted} onNavigate={navigate} onReplayOnboarding={showOrReplayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} onToggleAudio={handleToggleAudio} />;
 
   if (!session) {
     if (view === 'collection') {
-      return <main className="app-shell">{header}<CollectionScreen database={database} campaign={campaign} language={language} artPack={artPack} onImportProgress={importCampaign} /><OnboardingGuide progress={onboarding} surface="away" language={language} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
+      return <main className="app-shell">{header}<CollectionScreen database={database} campaign={campaign} language={language} artPack={artPack} onImportProgress={importCampaign} /><OnboardingGuide progress={onboarding} surface="away" language={language} collapsed={guideCollapsed} onCollapsedChange={setGuideCollapsed} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
     }
     if (view === 'codex') {
-      return <main className="app-shell">{header}<CodexScreen database={database} campaign={campaign} language={language} /><OnboardingGuide progress={onboarding} surface="away" language={language} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
+      return <main className="app-shell">{header}<CodexScreen database={database} campaign={campaign} language={language} /><OnboardingGuide progress={onboarding} surface="away" language={language} collapsed={guideCollapsed} onCollapsedChange={setGuideCollapsed} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
+    }
+    if (view === 'playtest') {
+      return <main className="app-shell">{header}<PlaytestPanel language={language} session={playtest} onboardingStatus={onboarding.status} onStartPractice={startGuidedPractice} onStart={startPlaytest} onUpdateNotes={updatePlaytestObservation} onComplete={finishPlaytest} onClear={clearPlaytest} onOpenCampaign={() => navigate('campaign')} /></main>;
     }
     const selectedMission = view === 'campaign' ? database.missionById.get(deployment.missionId) : undefined;
     const operationReadiness = selectedMission
@@ -700,6 +847,18 @@ export default function App() {
       if (!mission || !boss || !campaign.unlockedMissionIds.includes(mission.id) || !operationReadiness?.ready) return;
       if (!deploymentEquipmentReady || !deploymentCrewReady) return;
       const nextSession = createSession(database, mission, boss, deployment, campaign, operationReadiness, language);
+      recordPlaytestEvent('MISSION_DEPLOYED', {
+        missionId: mission.id,
+        teamIds: deployment.teamIds,
+        crewFatigue: Object.fromEntries(deployment.teamIds.map((id) => [id, campaignCrewFatigue(campaign, id)])),
+        recoveryTokens: campaign.recoveryTokens,
+        maintenanceCredits: campaign.maintenanceCredits,
+        equipmentId: deployment.equipmentId,
+        equipmentCondition: campaignEquipmentCondition(campaign, deployment.equipmentId),
+        spareId: deployment.spareId,
+        spareCondition: campaignEquipmentCondition(campaign, deployment.spareId),
+        vesselId: deployment.vesselId,
+      });
       if (nextSession.fleetCondition) {
         const nextCampaign = recordFleetConditionDispatch(campaign, mission, nextSession.fleetCondition);
         saveCampaignProgress(nextCampaign);
@@ -745,6 +904,9 @@ export default function App() {
           progress={onboarding}
           surface={view === 'campaign' ? 'deployment' : 'away'}
           language={language}
+          collapsed={guideCollapsed}
+          onCollapsedChange={setGuideCollapsed}
+          practiceMode={guidedPractice}
           canDeploy={view !== 'campaign' || Boolean(operationReadiness?.ready && deploymentEquipmentReady && deploymentCrewReady)}
           onAdvance={advanceGuide}
           onDeploy={guidedDeploy}
@@ -1659,6 +1821,9 @@ export default function App() {
                 ? 'debrief'
                 : 'operation') satisfies OnboardingSurface}
         language={language}
+        collapsed={guideCollapsed}
+        onCollapsedChange={setGuideCollapsed}
+        practiceMode={guidedPractice}
         onAdvance={advanceGuide}
         onDeploy={returnGuideToCampaign}
         onComplete={completeGuide}
@@ -4495,7 +4660,7 @@ function Topbar({
         <div className="brand-line"><span className="brand-mark">OWM</span><h1>Offshore Wind Masters</h1></div>
       </div>
       <nav className="mode-nav" aria-label="Game mode">
-        {(['campaign', 'challenge', 'sandbox', 'collection', 'codex'] as const).map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{ui[item]}</button>)}
+        {(['campaign', 'challenge', 'sandbox', 'collection', 'codex', 'playtest'] as const).map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{ui[item]}</button>)}
         <button className="onboarding-replay" data-testid="onboarding-replay" onClick={onReplayOnboarding}>
           {onboarding.status === 'active'
             ? (language === 'zh' ? `導覽 ${onboarding.stepIndex + 1}/5` : `Guide ${onboarding.stepIndex + 1}/5`)

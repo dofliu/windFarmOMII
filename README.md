@@ -717,3 +717,29 @@ pnpm smoke:mobile:flow
 pnpm simulate:balance
 pnpm simulate:challenge
 ```
+
+# 2026-07-27 Playtest 紀錄與證據彙整版本
+
+版本 `3.57.1-guided-practice-overlay-fix` 將「新手練習」與「正式 Playtest」分開。第一次進入頂部「測試／Playtest」頁面時，可先啟動不記錄資料的五段練習導覽；完成後再使用匿名代碼啟動獨立正式 session。系統只會在正式階段於 localStorage `owm.playtest.v1` 記錄：
+
+- Campaign 隊伍輪調與當時 Crew Fatigue。
+- RST 使用前後的角色疲勞與 token 數量。
+- Equipment／Fleet Maintenance 的 MNT 前後狀態。
+- Mission 部署、結算、隊伍與資源快照。
+- 輪調、RST、MNT 與主持人觀察筆記。
+
+完成後可下載 `OWM_PLAYTEST_SESSION` v1 JSON。這些紀錄只保存 stable IDs 與遊戲狀態，不應輸入姓名、Email、學號或其他個資。完整真人測試流程見 [PLAYTEST_PROTOCOL_2026-07-27.md](PLAYTEST_PROTOCOL_2026-07-27.md)。
+
+將 3–5 份 export 放入 `playtest-results/` 後執行 `pnpm playtest:summary`，可產生 evidence summary。只有人數、跨裝置、完成狀態、觀察欄位與匿名代碼唯一性全部通過時才標記 `ANALYSIS READY`；事件不會被自動解讀成玩家理解。
+
+新手練習導覽的每一步都包含「目的、現在請做、完成條件、名詞速查」，並明確標示為不記入正式測試。正式測試頁則列出三個觀察目標、至少三關的流程，以及完成前應取得的四類證據。
+
+閱讀說明後可按「縮小後操作」將浮動卡完全收起；底層畫面不再保留遮擋物。需要再次查看時，按頂部「導覽 n/5」即可在原進度展開，不會重設教學。
+
+快速驗證：
+
+```powershell
+pnpm test -- src/domain/playtest.test.ts
+pnpm smoke:playtest
+pnpm playtest:summary
+```
