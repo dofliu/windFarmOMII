@@ -1,10 +1,12 @@
 # Offshore Wind Masters Web
 
-> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-07-27.md](NEXT_SESSION_HANDOFF_2026-07-27.md)。目前主線是 Playtest v1，不是繼續增加圖片或直接再調整平衡數值。
+> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-07-27.md](NEXT_SESSION_HANDOFF_2026-07-27.md)。目前主線是執行 3–5 位真人 Playtest 並彙整匿名證據，不是繼續增加圖片或直接再調整平衡數值。
 
-## Current verification snapshot — 2026-07-26
+## Current verification snapshot — 2026-07-30
 
+- 現行版本：`3.57.1-guided-practice-overlay-fix`。
 - Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
+- Playtest observation、JSON export、evidence summary 與不記錄正式資料的新手練習導覽已整合；導覽可完全收起，Desktop／Mobile 底層操作均已驗證。
 - 策略平衡 v1 已套用：15 關輪調路線消耗 `2 RST`、最高持續疲勞 `76%`、結束保有 `6 RST`；完整裝備維修後保有 `55 MNT`。
 - Boss counter 為 `×1.35`；100 Boss 推薦由 6 組提高為 18 組，單隊最多重複由 70 次降為 12 次，並維持 `100/100` 可完成。
 - 最新驗證結果以 `balance/campaign-balance-report.md`、`balance/boss-challenge-balance-report.md` 與 `GAMEPLAY_EXPERIENCE_AUDIT_2026-07-26.md` 為準。
@@ -13,7 +15,7 @@
 - 目前 P01 production queue 為 `210 Upscale Pending / 90 Production QA Pending / 0 Production Approved`；4096x6144 staging 檔案不冒充 final AI upscale。
 - 審查與追蹤入口：[SCENE_VISUAL_APPROVAL_PACKET.md](SCENE_VISUAL_APPROVAL_PACKET.md)、[P01 production review sheet](assets/source-art/qa/production-p01-2026-07-24/production-contact-sheet-all-v001.png)、[approval ledger](assets/source-art/qa/visual-approval-ledger-2026-07-24.json)、[release-gate audit](assets/source-art/qa/release-gate-audit-2026-07-24.json)。
 
-下方的 `2026-07-19` 與更早段落是歷史開發紀錄；若與本節數值不同，以本節及 `RELEASE_READINESS.md` 為準。
+下方的歷史 milestone 保留當時版本與數值；若與本節不同，以本節及 `RELEASE_READINESS.md` 為準。
 
 ## Current clean status - 2026-07-19
 

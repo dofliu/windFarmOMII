@@ -1168,3 +1168,13 @@
 - `pnpm smoke:playtest` 新增練習不產生正式資料、導覽關鍵教學內容、桌機／手機無水平溢位與截圖驗證。
 - 驗證通過：`pnpm validate`（23 files／150 tests、資料／Scene／Art、Campaign／Challenge balance、production build）、Onboarding、Campaign gameplay、1440×900 layout、390×844 mobile flow 與 Playtest smoke。
 - Usability 修正：完整導覽新增「縮小後操作」；縮小後浮動框完全退出畫面，底層資訊與控制項均可見、可點。頂部「導覽 n/5」改為原進度展開，不再誤觸重設；Desktop／Mobile smoke 均實際點擊底層 Deployment tabs 與 readiness controls。
+
+## Current increment - 2026-07-30（本機分支、遠端整合與版本統一）
+
+- 現行版本統一為 `3.57.1-guided-practice-overlay-fix`；`package.json`、README current snapshot、Release Readiness、Playtest Protocol 與 handoff 文件一致。
+- 已 fetch／prune `origin`；遠端 `main` 的更新是 draft PR #1 合併結果，整合基準為 `de4d77c`。
+- 本機 Playtest／導覽成果已保存於 `codex/playtest-guided-practice-v3.57.1`，並成功 rebase 到最新 `origin/main`。
+- 本機 `main` 已快轉至 `de4d77c` 並追蹤 `origin/main`；已合併的本機 `agent/session-handoff-strategy-balance-v1` 已安全刪除。
+- `NEXT_SESSION_HANDOFF_2026-07-27.md` 已更新：Playtest instrumentation／evidence pipeline 已完成，下一主線改為執行 3–5 位真人測試。
+- 完整驗證通過：`pnpm validate`（23 test files／150 tests、Data／Scene／Art、Campaign／Challenge balance、production build）。
+- 15 組 smoke 全數通過：gameplay、challenge、layout、Deployment compact、Operation compact、390px mobile flow、Playtest、Sandbox、Scene、Fleet、Onboarding、Source Art、visual ledger、release audit、visual dashboard。

@@ -1,10 +1,11 @@
 # OWM Web MVP 需求稽核
 
-## Current verification snapshot — 2026-07-27
+## Current verification snapshot — 2026-07-30
 
 這一節是目前狀態的唯一摘要；下方較早日期的 increment 保留作為歷史證據，不應覆蓋本節數值。
 
-- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing、Collection 與 Playtest evidence pipeline 已完成自動驗證；最新測試數與 build 結果以 `task_progress.md` 為準。
+- 現行版本為 `3.57.1-guided-practice-overlay-fix`。
+- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing、Collection 與 Playtest evidence pipeline 已完成自動驗證；`pnpm validate` 為 23 test files／150 tests，完整 15 組 smoke 均通過。
 - 300/300 P01 active preview 已同步；300 張均通過 2:3 runtime contract 與 Source Art smoke。
 - 150 個 Scene ID 均已具備 explicit route 或 documented shared fallback：148 integrated、146 dedicated runtime files（1915×821 RGB）、2 fallback（SCN035、SCN041）。
 - 119 個新場景候選已由使用者全量核准並完成 promotion；目前 `0` Scene visual review required。

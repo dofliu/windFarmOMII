@@ -1,9 +1,10 @@
 # OWM Web MVP Release Readiness
 
-## Current project increment - 2026-07-27
+## Current project increment - 2026-07-30
 
 - Current version：`3.57.1-guided-practice-overlay-fix`。
 - Gameplay、策略平衡 v1、分離式新手練習導覽與 Playtest observation／evidence pipeline 已完成自動驗證。
+- 2026-07-30 重跑 `pnpm validate`：23 test files／150 tests、Data／Scene／Art、Campaign／Challenge balance、production build 全部通過；15 組 browser smoke 全部通過。
 - Playtest 尚未取得真人資料，因此不宣稱玩家已理解 Crew rotation、RST 或 MNT；這不改寫既有 production art gate。
 - Production release 的主要非真人工作仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
 

@@ -1,10 +1,13 @@
 # OWM 下一個 Session 交接
 
-日期：2026-07-27
+建立日期：2026-07-27
+更新日期：2026-07-30
 
-穩定版本：`3.54.0-strategy-balance-v1`
+現行版本：`3.57.1-guided-practice-overlay-fix`
 
-基準 commit：`0067b1f`
+策略平衡基準：`3.54.0-strategy-balance-v1`
+
+遠端整合基準：`origin/main` commit `de4d77c`
 
 ## 已完成
 
@@ -19,18 +22,21 @@
   - Boss 推薦隊伍共 18 組，單隊最多重複 12 次；100/100 Boss 可完成。
 - `pnpm validate` 通過：21 個測試檔、143 項測試、資料／Scene／Art gate、Campaign／Boss balance 與 production build。
 - Gameplay、Challenge、1440×900 layout、390×844 mobile flow smoke 通過。
+- Playtest observation 已完成：匿名 participant session、Campaign 決策事件、四個主持人觀察欄與 JSON export。
+- Evidence pipeline 已完成：`pnpm playtest:summary` 驗證 3–5 人、Desktop／Mobile 覆蓋、完成狀態、匿名代碼唯一性與四個觀察欄。
+- 新手練習與正式測試已分流；練習不寫入正式 Playtest session。
+- 導覽卡可完全收起，頂部「導覽 n/5」會從原進度展開；底層 Deployment tabs 與 Readiness controls 在 Desktop／Mobile 均可操作。
+- 最新完整驗證基準為 23 個測試檔、150 項測試；仍不得把自動驗證宣稱為玩家理解。
 
 ## 下一個 Session 從這裡開始
 
-主線進入「Playtest v1」，先驗證玩家是否理解目前策略，而不是立即再調數值。
+系統與記錄工具已完成，主線是執行「Playtest v1」真人測試，先驗證玩家是否理解目前策略，而不是立即再調數值。
 
-1. 建立三段短測試流程：
-   - Campaign 前三關：理解 Deployment、技能與任務階段。
-   - 疲勞／維修情境：判斷何時輪調、使用 RST 或保留 MNT。
-   - Boss Challenge：依 6/6 stage coverage 與 counter 選擇隊伍。
-2. 建立可記錄的觀察表：完成時間、錯誤操作、求助次數、RST/MNT 決策與主觀難度。
-3. 先用 3–5 位玩家測試桌機與手機。
-4. 有行為資料後才進入「策略平衡 v2」；模擬結果不得冒充人因測試結果。
+1. 依 `PLAYTEST_PROTOCOL_2026-07-27.md` 讓每位新手先完成標準化練習。
+2. 使用匿名代碼啟動正式測試，至少完成三關並記錄 Rotation、RST、MNT 與理解障礙。
+3. 收集 3–5 位玩家，且至少包含 1 位 Desktop、1 位 Mobile。
+4. 將完成 JSON 放入 `playtest-results/`，執行 `pnpm playtest:summary`。
+5. Summary 達到 `ANALYSIS READY` 後才討論教學調整或策略平衡 v2；未觀察項目維持 `NA`。
 
 ## 開始前檢查
 
@@ -39,6 +45,8 @@ pnpm validate
 pnpm smoke:gameplay
 pnpm smoke:challenge
 pnpm smoke:mobile:flow
+pnpm smoke:onboarding
+pnpm smoke:playtest
 ```
 
 平衡數值來源：
