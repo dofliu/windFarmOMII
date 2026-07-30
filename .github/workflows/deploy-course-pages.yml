@@ -1,0 +1,70 @@
+name: Deploy Course Mode to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm validate:teaching-deployment
+      - name: Desktop and mobile Course Mode smoke
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+          COURSE_BASE_URL: http://127.0.0.1:4174/windFarmOMII/
+        run: |
+          pnpm exec vite preview --host 127.0.0.1 --port 4174 --base /windFarmOMII/ > /tmp/owm-course-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4174/windFarmOMII/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          pnpm smoke:course
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - run: pnpm build:offline
+      - name: Package offline backup
+        run: |
+          mkdir -p offline-package/www
+          cp -R dist-offline/. offline-package/www/
+          cp offline/START_OFFLINE.bat offline/START_OFFLINE.ps1 offline/README.txt offline/serve_course.py offline-package/
+          cd offline-package
+          zip -r ../OWM_COURSE_OFFLINE_3.57.1.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OWM_COURSE_OFFLINE_3.57.1
+          path: OWM_COURSE_OFFLINE_3.57.1.zip
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

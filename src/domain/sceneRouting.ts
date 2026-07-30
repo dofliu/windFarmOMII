@@ -1,4 +1,5 @@
 import type { Language, SceneAssetIndexData, SceneData } from './types';
+import { publicAssetUrl } from './assets';
 
 export type SceneAssetAvailability = 'INTEGRATED' | 'FALLBACK';
 
@@ -32,8 +33,8 @@ export function resolveSceneRoute(
     requestedScene,
     sourceScene,
     availability: directAsset ? 'INTEGRATED' : 'FALLBACK',
-    assetUrl: selectedAsset.file,
-    fallbackUrl: assetIndex.fallback.file,
+    assetUrl: publicAssetUrl(selectedAsset.file),
+    fallbackUrl: publicAssetUrl(assetIndex.fallback.file),
     version: selectedAsset.version,
     qaStatus: selectedAsset.qaStatus,
     provenanceZh: directAsset

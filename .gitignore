@@ -3,6 +3,9 @@
 .codex/
 node_modules/
 dist/
+dist-offline/
+offline-package/
+OWM_COURSE_OFFLINE_*.zip
 coverage/
 public/data/
 tmp/
@@ -20,4 +23,12 @@ playtest-results/PLAYTEST_SUMMARY.md
 *.tiff
 public/assets/
 assets/source-art/
+
+# GitHub Pages / offline teaching deployment uses a deliberately small tracked asset pack.
+!course-deployment-assets/
+!course-deployment-assets/manifest.json
+!course-deployment-assets/portraits/
+!course-deployment-assets/portraits/*.webp
+!course-deployment-assets/scenes/
+!course-deployment-assets/scenes/*.webp
 

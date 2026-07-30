@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.57.1-guided-practice-overlay-fix",
+  "version": "3.57.1-course-mode-p0",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",
@@ -37,6 +37,7 @@
     "smoke:operation:compact": "node tools/smoke-operation-compact.mjs",
     "smoke:mobile:flow": "node tools/smoke-mobile-flow.mjs",
     "smoke:playtest": "node tools/smoke-playtest.mjs",
+    "smoke:course": "node tools/smoke-course-mode.mjs",
     "playtest:summary": "node tools/summarize-playtests.mjs",
     "smoke:sandbox": "node tools/smoke-sandbox-scenario.mjs",
     "smoke:scene": "node tools/smoke-scene-routing.mjs",
@@ -47,12 +48,19 @@
     "smoke:release-audit": "node tools/smoke-release-gate-audit.mjs",
     "smoke:visual-dashboard": "node tools/smoke-visual-approval-dashboard.mjs",
     "build": "pnpm sync:data && pnpm sync:art && tsc --noEmit && vite build",
+    "build:course-assets": "python tools/build-course-deployment-assets.py",
+    "build:pages": "pnpm sync:data && pnpm sync:art && tsc --noEmit && vite build --mode github-pages && node tools/prepare-course-deployment.mjs --dir dist",
+    "build:offline": "pnpm sync:data && pnpm sync:art && tsc --noEmit && vite build --base=./ --outDir dist-offline && node tools/prepare-course-deployment.mjs --dir dist-offline",
+    "package:offline": "powershell -ExecutionPolicy Bypass -File tools/package-course-offline.ps1",
     "preview": "vite preview --host 127.0.0.1",
     "validate:data": "python tools/validate_owm_data.py",
     "validate:scene": "python tools/validate-scene-assets.py",
     "validate:art": "node tools/validate-art-prompts.mjs",
     "validate:production-art": "node tools/validate-production-art.mjs",
-    "validate": "pnpm simulate:challenge && pnpm sync:data && pnpm validate:data && pnpm validate:scene && pnpm validate:art && pnpm test && pnpm simulate:balance && pnpm build"
+    "validate:course": "node tools/validate-course-config.mjs",
+    "validate:teaching-deployment": "pnpm simulate:challenge && pnpm sync:data && pnpm validate:data && pnpm validate:course && pnpm test && pnpm simulate:balance && pnpm build:pages",
+    "course:unlock": "node tools/set-course-unlocks.mjs",
+    "validate": "pnpm simulate:challenge && pnpm sync:data && pnpm validate:data && pnpm validate:scene && pnpm validate:art && pnpm validate:course && pnpm test && pnpm simulate:balance && pnpm build"
   },
   "dependencies": {
     "phaser": "4.2.1",

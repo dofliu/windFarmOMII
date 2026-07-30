@@ -16,9 +16,10 @@ import type {
   TurbineData,
   VesselData,
 } from './types';
+import { publicAssetUrl } from './assets';
 
 async function fetchJson<T>(fileName: string): Promise<T> {
-  const response = await fetch(`/data/${fileName}`);
+  const response = await fetch(publicAssetUrl(`data/${fileName}`));
   if (!response.ok) {
     throw new Error(`資料檔載入失敗：${fileName} (${response.status})`);
   }
@@ -26,7 +27,7 @@ async function fetchJson<T>(fileName: string): Promise<T> {
 }
 
 async function fetchSourceArtIndex(): Promise<SourceArtIndexData> {
-  const response = await fetch('/assets/source-art/p01/index.json');
+  const response = await fetch(publicAssetUrl('assets/source-art/p01/index.json'));
   if (!response.ok) {
     throw new Error(`角色原畫索引載入失敗 (${response.status})`);
   }
@@ -35,7 +36,7 @@ async function fetchSourceArtIndex(): Promise<SourceArtIndexData> {
 
 async function fetchShinkaiArtIndex(): Promise<SourceArtIndexData | undefined> {
   try {
-    const response = await fetch('/assets/source-art/v2-shinkai/index.json');
+    const response = await fetch(publicAssetUrl('assets/source-art/v2-shinkai/index.json'));
     if (!response.ok) return undefined;
     return (await response.json()) as SourceArtIndexData;
   } catch {

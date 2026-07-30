@@ -3,14 +3,17 @@
 建立日期：2026-07-27
 更新日期：2026-07-30
 
-現行版本：`3.57.1-guided-practice-overlay-fix`
+現行版本：`3.57.1-course-mode-p0`
 
 策略平衡基準：`3.54.0-strategy-balance-v1`
 
-遠端整合基準：`origin/main` commit `de4d77c`
+遠端整合基準：本次完成後 `origin/main` 與本地 `main` 同步
 
 ## 已完成
 
+- Course Mode P0 已完成：Guided Practice／Assessment 分流、REC／GUIDE 停用、15 個固定任務、24 人職業角色池、教師手動週次發布、匿名 Learning Record、一鍵重設、GitHub Pages 與離線 ZIP。
+- Course Mode P1／P2 課程層已完成：每任務 SCADA／CMS data pack、可靠度／OPEX 計算、五步 LOTO、六階段 Work Order、Alarm／Interlock tester、Debrief 四項必填與 12 個 elective case packs；Campaign 平衡未更動。
+- 2026-07-30 驗證：25 test files／159 tests、完整 `pnpm validate`、16 組 browser smoke、Pages build 與離線包流程均通過。
 - Web MVP 已完成 Campaign、Boss Challenge、Sandbox、Fleet、Deployment、Operation、Debrief、Collection 與存檔流程。
 - Deployment 使用五個逐步畫面；Operation 使用三個聚焦畫面，桌機與 390×844 手機流程均已驗證。
 - 300/300 名角色已有可用 P01 Source Art；目前主線不再是繼續生圖。

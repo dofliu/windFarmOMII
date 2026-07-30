@@ -10,7 +10,11 @@ const parseJson = (text) => JSON.parse(text.replace(/^\uFEFF/, ''));
 
 await mkdir(destination, { recursive: true });
 
-const files = (await readdir(source)).filter((name) => name.endsWith('.png'));
+const files = (await readdir(source).catch((error) => {
+  // GitHub Pages 使用已追蹤的精簡課程素材包；完整本機原畫不存在時仍可建立索引。 CI fallback.
+  if (error?.code === 'ENOENT') return [];
+  throw error;
+})).filter((name) => name.endsWith('.png'));
 for (const file of files) {
   await copyFile(path.join(source, file), path.join(destination, file));
 }

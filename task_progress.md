@@ -1178,3 +1178,18 @@
 - `NEXT_SESSION_HANDOFF_2026-07-27.md` 已更新：Playtest instrumentation／evidence pipeline 已完成，下一主線改為執行 3–5 位真人測試。
 - 完整驗證通過：`pnpm validate`（23 test files／150 tests、Data／Scene／Art、Campaign／Challenge balance、production build）。
 - 15 組 smoke 全數通過：gameplay、challenge、layout、Deployment compact、Operation compact、390px mobile flow、Playtest、Sandbox、Scene、Fleet、Onboarding、Source Art、visual ledger、release audit、visual dashboard。
+
+## Current increment - 2026-07-30（Course Mode 課程整合）
+
+- Git branch 已整理為本地／遠端只保留 `main`；功能分支 fast-forward 合併後推送，已合併的遠端舊分支已刪除。
+- 現行版本統一為 `3.57.1-course-mode-p0`；Course Mode 將 Guided Practice 與 Assessment 完全分流，Assessment 停用 REC／GUIDE 並固定任務、三人隊伍、裝備、備品、船舶與 random seed。
+- 教師只透過 `public/course/course-config.json` 的 `unlockedWeekIds` 或 `pnpm course:unlock` 手動發布週次，不存在日期或學生進度自動解鎖。
+- 匿名 Course Record 已加入指定 Learning Record events、嘗試次數、決策順序、提示使用、分項分數與學生說明；不收集姓名、學號或 Email。
+- 15 個任務各有 deterministic SCADA／CMS data pack，含 timestamp、load、temperature、vibration、Alarm／Event 與 missing value；Availability、MTBF、MTTR、Downtime、OPEX 皆顯示輸入與公式。
+- LOTO 強制依序完成 Shutdown → Isolate → Lock/Tag → Residual energy control → Zero-energy verification；Work Order 強制 Trigger → Acknowledge → Dispatch → Execute → Verify → Close-out。
+- Alarm／Interlock tester 支援 Threshold、Hysteresis、Delay、Persistence 與 Interlock，並輸出 IEC 61131-3 ST reference logic。
+- Debrief 固定要求結論、證據、不確定性與殘餘風險；四欄完成後才可匯出已結算 Course Record。
+- P2 以 12 個 elective case packs 加入 Sensor drift、PLC／SCADA、Historian、Alarm flood、Gearbox oil、Brake、Converter、Subsea cable、marine logistics、WO automation 與 Interlock；不調整已驗證的 Campaign 平衡。
+- Course Mode 使用 24 個職業角色、隱藏收藏入口，並將 Boss Challenge 改稱「重大事故演練／Critical Incident Exercise」。
+- GitHub Pages build 使用 `/windFarmOMII/`，課程部署素材由約 1.07 GiB 完整本機素材精簡為 10.1 MiB；離線 ZIP 約 2.58 MiB，附 Windows 一鍵啟動與正確 module MIME server。
+- 驗證通過：`pnpm validate`（25 test files／159 tests）、`pnpm validate:teaching-deployment`、16 組 browser smoke、GitHub Pages base-path smoke、離線 Desktop／Mobile smoke。

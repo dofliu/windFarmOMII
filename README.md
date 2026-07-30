@@ -4,7 +4,13 @@
 
 ## Current verification snapshot — 2026-07-30
 
-- 現行版本：`3.57.1-guided-practice-overlay-fix`。
+- 現行版本：`3.57.1-course-mode-p0`。
+- Course Mode 已分離 Guided Practice 與 Assessment；Assessment 固定任務／24 人職業角色池／裝備／船舶／seed，停用 REC／GUIDE，並輸出匿名 `OWM_COURSE_RECORD`。
+- 每週任務只由 `public/course/course-config.json` 的 `unlockedWeekIds` 手動發布，不使用日期或學生進度自動解鎖；操作見 `COURSE_MODE_GUIDE.md`。
+- 15 個任務皆具固定 SCADA／CMS data pack、Availability／MTBF／MTTR／Downtime／OPEX 推導頁；LOTO、Work Order lifecycle 與 Threshold／Hysteresis／Delay／Persistence／Interlock tester 已整合。
+- Debrief 強制要求「結論／證據／不確定性／殘餘風險」；Course Mode 另提供 12 個 P2 elective case packs，課程脈絡以「重大事故演練」取代 Boss Challenge。
+- 教學部署使用 `https://dofliu.github.io/windFarmOMII/`；10.1 MiB 精簡素材包保留課程 roster／核心場景，GitHub Actions 同步產生約 2.58 MiB 離線 ZIP。
+- 2026-07-30 完整 `pnpm validate` 為 25 test files／159 tests；16 組 browser smoke、Pages base-path build 與離線啟動流程均通過。
 - Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
 - Playtest observation、JSON export、evidence summary 與不記錄正式資料的新手練習導覽已整合；導覽可完全收起，Desktop／Mobile 底層操作均已驗證。
 - 策略平衡 v1 已套用：15 關輪調路線消耗 `2 RST`、最高持續疲勞 `76%`、結束保有 `6 RST`；完整裝備維修後保有 `55 MNT`。

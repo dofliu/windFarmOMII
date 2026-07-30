@@ -1,7 +1,7 @@
 # OWM 策略決策 Playtest Protocol v1
 
 日期：2026-07-27
-適用版本：`3.57.1-guided-practice-overlay-fix`
+適用版本：`3.57.1-course-mode-p0`
 目標人數：3–5 位未參與開發的玩家
 裝置配置：至少 1 位桌機、1 位手機
 
@@ -17,7 +17,7 @@
 
 ## 測試前準備
 
-1. 啟動 Web MVP，確認版本為 `3.57.1-guided-practice-overlay-fix`。
+1. 啟動 Web MVP，確認版本為 `3.57.1-course-mode-p0`。
 2. 每位參與者使用獨立瀏覽器 profile，或在開始前清除 OWM localStorage。
 3. 由頂部「測試」進入 Playtest 頁面，先按「第一次玩：開始練習導覽」；此階段不輸入參與者代碼，也不記錄正式事件。
 4. 依畫面完成一次 Deployment、Event Deck、Reactive window、Diagnosis gate 與 Debrief。主持人可以協助閱讀操作指示，但不補充畫面未提供的最佳策略。

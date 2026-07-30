@@ -2,8 +2,29 @@ import { lazy, Suspense, useEffect, useMemo, useState, type KeyboardEvent } from
 import { audioEngine } from './domain/audio';
 import { OnboardingGuide, type OnboardingSurface } from './components/OnboardingGuide';
 import { PlaytestPanel } from './components/PlaytestPanel';
+import { CourseModePanel } from './components/CourseModePanel';
+import { publicAssetUrl } from './domain/assets';
 import { characterSkillIds, loadGameDatabase } from './domain/data';
 import { bossName, characterName, professionName, skillName } from './domain/localization';
+import {
+  appendCourseEvent,
+  completeCourseAttempt,
+  createCourseRecord,
+  isCourseDebriefComplete,
+  loadCourseConfig,
+  loadCourseRecord,
+  saveCourseRecord,
+  serializeCourseRecord,
+  startCourseAttempt,
+  updateCourseExplanation,
+  type CourseAssignment,
+  type CourseComponentScores,
+  type CourseConfig,
+  type CourseEventKind,
+  type CoursePlatform,
+  type CourseRecord,
+  type CourseStudentExplanation,
+} from './domain/course';
 import {
   advanceOnboarding,
   completeOnboarding,
@@ -200,6 +221,7 @@ import {
 import { resolveSceneRoute, sceneRouteName, sceneRouteProvenance, type SceneRoute } from './domain/sceneRouting';
 import {
   applyFleetConditionDispatch,
+  createInitialWindFarm,
   createFleetConditionDispatchModifier,
   createFleetDispatchPriority,
   createFleetMaintenancePlan,
@@ -210,6 +232,7 @@ import {
   type FleetMaintenancePlanSettlement,
   type TurbineAvailability,
   type TurbineMaintenanceSettlement,
+  type WindFarmState,
 } from './domain/windFarm';
 import { THREE_BLADE_ANGLES, fleetTurbineIconGeometry, turbineBladePolygon } from './domain/turbineGeometry';
 import {
@@ -244,7 +267,7 @@ const IMPACT_LABELS = {
   zh: { fatigue: '疲勞', safety: '安全', weather: '天候', evidence: '證據', reliability: '可靠度', progress: '進度', cost: '成本', energy: 'Energy' },
   en: { fatigue: 'Fatigue', safety: 'Safety', weather: 'Weather', evidence: 'Evidence', reliability: 'Reliability', progress: 'Progress', cost: 'Cost', energy: 'Energy' },
 } as const;
-type GameView = 'campaign' | 'challenge' | 'sandbox' | 'collection' | 'codex' | 'playtest';
+type GameView = 'course' | 'campaign' | 'challenge' | 'sandbox' | 'collection' | 'codex' | 'playtest';
 const UI = {
   zh: {
     characters: '角色', skills: '技能', bosses: 'Boss', riskEvent: '風險事件', stageNeed: '階段需求', fatigueHit: '疲勞衝擊',
@@ -253,7 +276,7 @@ const UI = {
     deployment: '任務部署', deploymentLead: '先配置跨專業隊伍與任務裝備，再進入風場作業。', team: '三人任務隊伍', equipment: '任務裝備', deploy: '開始任務',
     coverage: '六階段專業涵蓋', counterCoverage: 'Boss 克制人數', roundLimit: '回合上限', weather: '天候窗口', safety: '安全', evidence: '證據', cost: '成本', debrief: '任務結算',
     duplicateTeam: '隊伍角色不可重複', shiftRejected: '該角色已在隊伍中', mission: '教學任務', vessel: '作業船舶', spare: '任務備品', diagnosis: '診斷判斷',
-    campaign: '戰役', challenge: 'Boss 挑戰', sandbox: '沙盒', collection: '收藏', codex: '知識庫', playtest: '測試', mastery: '熟練度', lockedSkill: '熟練度不足',
+    course: '課程', campaign: '戰役', challenge: 'Boss 挑戰', sandbox: '沙盒', collection: '收藏', codex: '知識庫', playtest: '測試', mastery: '熟練度', lockedSkill: '熟練度不足',
   },
   en: {
     characters: 'Characters', skills: 'Skills', bosses: 'Bosses', riskEvent: 'Risk event', stageNeed: 'Stage need', fatigueHit: 'Fatigue hit',
@@ -262,7 +285,7 @@ const UI = {
     deployment: 'Mission deployment', deploymentLead: 'Configure a cross-functional team and mission equipment before offshore operations.', team: 'Three-person team', equipment: 'Mission equipment', deploy: 'Deploy mission',
     coverage: 'Six-stage coverage', counterCoverage: 'Boss counters', roundLimit: 'Round limit', weather: 'Weather window', safety: 'Safety', evidence: 'Evidence', cost: 'Cost', debrief: 'Mission debrief',
     duplicateTeam: 'Team members must be unique', shiftRejected: 'Character is already on the team', mission: 'Training mission', vessel: 'Operation vessel', spare: 'Mission spare', diagnosis: 'Diagnosis decision',
-    campaign: 'Campaign', challenge: 'Boss Challenge', sandbox: 'Sandbox', collection: 'Collection', codex: 'Codex', playtest: 'Playtest', mastery: 'Mastery', lockedSkill: 'Mastery level required',
+    course: 'Course', campaign: 'Campaign', challenge: 'Boss Challenge', sandbox: 'Sandbox', collection: 'Collection', codex: 'Codex', playtest: 'Playtest', mastery: 'Mastery', lockedSkill: 'Mastery level required',
   },
 } as const;
 
@@ -292,8 +315,11 @@ interface ChallengeDraftVerificationUndo {
 }
 
 interface SessionState {
-  mode: 'campaign' | 'challenge' | 'sandbox';
+  mode: 'course' | 'campaign' | 'challenge' | 'sandbox';
   missionId?: string;
+  courseAssignmentId?: string;
+  courseRandomSeed?: number;
+  windFarmSnapshot?: WindFarmState;
   sceneId: string;
   boss: BossData;
   equipmentId: string;
@@ -335,8 +361,11 @@ export default function App() {
   const [challenge, setChallenge] = useState<BossChallengeProgress | null>(null);
   const [view, setView] = useState<GameView>('campaign');
   const [playtest, setPlaytest] = useState<PlaytestSession | null>(() => loadPlaytestSession());
+  const [courseConfig, setCourseConfig] = useState<CourseConfig | null>(null);
+  const [courseRecord, setCourseRecord] = useState<CourseRecord | null>(() => loadCourseRecord());
   const [onboarding, setOnboarding] = useState<OnboardingProgress>(() => resumeOnboardingAtDeployment(loadOnboardingProgress()));
   const [guidedPractice, setGuidedPractice] = useState(false);
+  const [guidedPracticeReturnView, setGuidedPracticeReturnView] = useState<'course' | 'playtest'>('playtest');
   const [guideCollapsed, setGuideCollapsed] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [theme, setTheme] = useState<'daylight' | 'deepops'>(() => {
@@ -360,6 +389,18 @@ export default function App() {
       if (!current || current.status !== 'active') return current;
       const next = appendPlaytestEvent(current, kind, details);
       savePlaytestSession(next);
+      return next;
+    });
+  };
+
+  const recordCourseEvent = (kind: CourseEventKind, details: Record<string, unknown> = {}) => {
+    setCourseRecord((current) => {
+      if (!current) return current;
+      const assignment = typeof details.assignmentId === 'string'
+        ? courseConfig?.assignments.find((item) => item.id === details.assignmentId)
+        : undefined;
+      const next = appendCourseEvent(current, kind, details, new Date(), assignment);
+      saveCourseRecord(next);
       return next;
     });
   };
@@ -408,10 +449,12 @@ export default function App() {
 
   useEffect(() => {
     loadGameDatabase()
-      .then((loaded) => {
+      .then(async (loaded) => {
+        const loadedCourseConfig = await loadCourseConfig(loaded);
         const firstMission = [...loaded.missions].sort((a, b) => a.order - b.order)[0];
         const loadedCampaign = loadCampaignProgress(loaded.missions, loaded.equipment, loaded.characters, loaded.turbines);
         setDatabase(loaded);
+        setCourseConfig(loadedCourseConfig);
         setCampaign(loadedCampaign);
         setChallenge(loadBossChallengeProgress(loaded.bosses, loaded.characters));
         setDeployment({
@@ -476,6 +519,11 @@ export default function App() {
       recoveryTokens: result.progress.recoveryTokens,
       crewFatigue: Object.fromEntries(session.team.map((member) => [member.characterId, member.fatigue])),
     });
+    recordPlaytestEvent('WORK_ORDER_CREATED', {
+      missionId: missionDefinition.id,
+      lifecycle: 'Trigger',
+      source: 'campaign-debrief',
+    });
     setSession((current) => current ? { ...current, settled: true, reward: result.reward } : current);
   }, [campaign, characterMap, database, session]);
 
@@ -495,6 +543,71 @@ export default function App() {
   }, [challenge, characterMap, database, session]);
 
   useEffect(() => {
+    if (!database || !session || session.mode !== 'course' || !session.missionId || session.settled || (!session.mission.complete && !session.mission.failed)) return;
+    const debrief = missionDebrief(session.mission, session.boss, session.team, characterMap);
+    const scores: CourseComponentScores = {
+      completion: debrief.completionScore,
+      safety: debrief.safetyScore,
+      evidence: debrief.evidenceScore,
+      time: debrief.timeScore,
+      fatigue: debrief.fatigueScore,
+      cost: debrief.costScore,
+      total: debrief.totalScore,
+      grade: debrief.grade,
+    };
+    setCourseRecord((current) => {
+      if (!current) return current;
+      const withWorkOrder = appendCourseEvent(current, 'WORK_ORDER_CREATED', {
+        lifecycle: 'Trigger',
+        source: 'assessment-debrief',
+        missionId: session.missionId,
+      });
+      const next = completeCourseAttempt(withWorkOrder, scores, {
+        success: session.mission.complete,
+        round: session.mission.round,
+      });
+      saveCourseRecord(next);
+      return next;
+    });
+    setSession((current) => current?.mode === 'course' ? { ...current, settled: true } : current);
+  }, [characterMap, database, session]);
+
+  useEffect(() => {
+    if (!session || session.mode !== 'course' || session.mission.stageIndex < 3 || !courseRecord?.activeAssignmentId) return;
+    const alreadyRecorded = courseRecord.events.some((event) => (
+      event.kind === 'LOTO_VERIFIED'
+      && event.assignmentId === courseRecord.activeAssignmentId
+      && event.details.attemptNumber === courseRecord.attempts.at(-1)?.attemptNumber
+    ));
+    if (alreadyRecorded) return;
+    const next = appendCourseEvent(courseRecord, 'LOTO_VERIFIED', {
+      attemptNumber: courseRecord.attempts.at(-1)?.attemptNumber,
+      verification: 'isolate-stage-cleared',
+      zeroEnergy: true,
+    });
+    saveCourseRecord(next);
+    setCourseRecord(next);
+  }, [courseRecord, session]);
+
+  useEffect(() => {
+    if (!session || session.mode !== 'campaign' || session.mission.stageIndex < 3 || !session.missionId || !playtest || playtest.status !== 'active') return;
+    const latestDeployment = [...playtest.events].reverse().find((event) => event.kind === 'MISSION_DEPLOYED' && event.details.missionId === session.missionId);
+    const alreadyRecorded = playtest.events.some((event) => (
+      event.kind === 'LOTO_VERIFIED'
+      && event.details.missionId === session.missionId
+      && (!latestDeployment || event.sequence > latestDeployment.sequence)
+    ));
+    if (alreadyRecorded) return;
+    const next = appendPlaytestEvent(playtest, 'LOTO_VERIFIED', {
+      missionId: session.missionId,
+      verification: 'isolate-stage-cleared',
+      zeroEnergy: true,
+    });
+    savePlaytestSession(next);
+    setPlaytest(next);
+  }, [playtest, session]);
+
+  useEffect(() => {
     if (!session || session.mission.complete || session.mission.failed) setOperationAbortConfirm(false);
   }, [session?.mission.complete, session?.mission.failed, session?.missionId, session?.mode]);
 
@@ -509,7 +622,7 @@ export default function App() {
   if (loadError) {
     return <main className="center-state"><h1>資料載入失敗</h1><p>{loadError}</p></main>;
   }
-  if (!database || !deployment || !campaign || !challenge) {
+  if (!database || !deployment || !campaign || !challenge || !courseConfig) {
     return <main className="center-state"><div className="loader" /><p>載入 OWM 資料庫…</p></main>;
   }
 
@@ -529,7 +642,7 @@ export default function App() {
       setGuideCollapsed(false);
       setGuidedPractice(false);
       setSession(null);
-      setView('playtest');
+      setView(guidedPracticeReturnView);
     }
   };
   const skipGuide = () => {
@@ -538,7 +651,7 @@ export default function App() {
       setGuideCollapsed(false);
       setGuidedPractice(false);
       setSession(null);
-      setView('playtest');
+      setView(guidedPracticeReturnView);
     }
   };
   const replayGuide = () => {
@@ -550,12 +663,13 @@ export default function App() {
     setSession(null);
     setView('campaign');
   };
-  const startGuidedPractice = () => {
+  const startGuidedPractice = (returnView: 'course' | 'playtest' = 'playtest') => {
     const next = restartOnboarding();
     saveOnboardingProgress(next);
     setOnboarding(next);
     setGuideCollapsed(false);
     setGuidedPractice(true);
+    setGuidedPracticeReturnView(returnView);
     setSession(null);
     setView('campaign');
   };
@@ -606,6 +720,65 @@ export default function App() {
   const clearPlaytest = () => {
     savePlaytestSession(null);
     setPlaytest(null);
+  };
+  const startCourseAssessment = (learnerCode: string, platform: CoursePlatform, assignment: CourseAssignment) => {
+    const currentRecord = courseRecord
+      && courseRecord.learnerCode === learnerCode
+      && courseRecord.configVersion === courseConfig.configVersion
+      ? { ...courseRecord, platform }
+      : createCourseRecord(courseConfig, learnerCode, platform);
+    const nextRecord = startCourseAttempt(currentRecord, assignment);
+    saveCourseRecord(nextRecord);
+    setCourseRecord(nextRecord);
+    if (onboarding.status === 'active') {
+      const nextOnboarding = skipOnboarding(onboarding);
+      saveOnboardingProgress(nextOnboarding);
+      setOnboarding(nextOnboarding);
+    }
+    setGuidedPractice(false);
+    setGuideCollapsed(true);
+    setOperationReturnNotice(undefined);
+    setOperationInfoTab('summary');
+    setMobileSection('field');
+    setCrewTab('actions');
+    setView('course');
+    setSession(createCourseSession(database, assignment, campaign, language));
+  };
+  const updateCourseReflection = (explanation: Partial<CourseStudentExplanation>) => {
+    setCourseRecord((current) => {
+      if (!current) return current;
+      const next = updateCourseExplanation(current, explanation);
+      saveCourseRecord(next);
+      return next;
+    });
+  };
+  const exportCourseRecord = () => {
+    if (!courseRecord) return;
+    const activeAttempt = [...courseRecord.attempts].reverse().find((attempt) => attempt.assignmentId === courseRecord.activeAssignmentId);
+    if (activeAttempt?.completedAt && !isCourseDebriefComplete(activeAttempt)) return;
+    const next = appendCourseEvent(courseRecord, 'DEBRIEF_EXPORTED', {
+      attemptCount: courseRecord.attempts.length,
+    });
+    saveCourseRecord(next);
+    setCourseRecord(next);
+    const blob = new Blob([serializeCourseRecord(next)], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `OWM_COURSE_RECORD_${next.courseCode}_${next.learnerCode}.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
+  const resetCourseMode = () => {
+    saveCourseRecord(null);
+    setCourseRecord(null);
+    setSession(null);
+    setOperationReturnNotice(undefined);
+    setGuidedPractice(false);
+    const nextOnboarding = restartOnboarding();
+    saveOnboardingProgress(nextOnboarding);
+    setOnboarding(nextOnboarding);
+    setView('course');
   };
   const persistChallengeDraft = (bossId: string, teamIds: [string, string, string]) => {
     const boss = database.bossById.get(bossId);
@@ -671,6 +844,9 @@ export default function App() {
   };
   const routeCampaignMission = (missionId: string) => {
     const mission = requiredMission(database, missionId);
+    if (playtest?.events.some((event) => event.kind === 'MISSION_DEPLOYED' && event.details.missionId === missionId)) {
+      recordPlaytestEvent('MISSION_REPLAYED', { missionId });
+    }
     setDeployment((current) => current ? {
       ...current,
       missionId: mission.id,
@@ -789,9 +965,12 @@ export default function App() {
     if (!bossChanged) persistChallengeDraft(resolved.sandboxBossId, resolved.teamIds);
     setDeployment(resolved);
   };
-  const header = <Topbar database={database} campaign={campaign} view={view} language={language} onboarding={onboarding} reducedMotion={reducedMotion} theme={theme} artPack={artPack} audioMuted={audioMuted} onNavigate={navigate} onReplayOnboarding={showOrReplayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} onToggleAudio={handleToggleAudio} />;
+  const header = <Topbar database={database} campaign={campaign} courseConfig={courseConfig} view={view} language={language} onboarding={onboarding} assessmentMode={session?.mode === 'course'} reducedMotion={reducedMotion} theme={theme} artPack={artPack} audioMuted={audioMuted} onNavigate={navigate} onReplayOnboarding={showOrReplayGuide} onToggleLanguage={toggleLanguage} onToggleMotion={() => setReducedMotion((current) => !current)} onToggleTheme={() => setTheme((current) => (current === 'daylight' ? 'deepops' : 'daylight'))} onToggleArtPack={handleToggleArtPack} onToggleAudio={handleToggleAudio} />;
 
   if (!session) {
+    if (view === 'course') {
+      return <main className="app-shell">{header}<CourseModePanel language={language} database={database} config={courseConfig} record={courseRecord} onStartPractice={() => startGuidedPractice('course')} onStartAssessment={startCourseAssessment} onUpdateExplanation={updateCourseReflection} onExport={exportCourseRecord} onReset={resetCourseMode} onRecordEvent={recordCourseEvent} /></main>;
+    }
     if (view === 'collection') {
       return <main className="app-shell">{header}<CollectionScreen database={database} campaign={campaign} language={language} artPack={artPack} onImportProgress={importCampaign} /><OnboardingGuide progress={onboarding} surface="away" language={language} collapsed={guideCollapsed} onCollapsedChange={setGuideCollapsed} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
     }
@@ -799,7 +978,7 @@ export default function App() {
       return <main className="app-shell">{header}<CodexScreen database={database} campaign={campaign} language={language} /><OnboardingGuide progress={onboarding} surface="away" language={language} collapsed={guideCollapsed} onCollapsedChange={setGuideCollapsed} onAdvance={advanceGuide} onDeploy={returnGuideToCampaign} onComplete={completeGuide} onSkip={skipGuide} onReturnToCampaign={returnGuideToCampaign} /></main>;
     }
     if (view === 'playtest') {
-      return <main className="app-shell">{header}<PlaytestPanel language={language} session={playtest} onboardingStatus={onboarding.status} onStartPractice={startGuidedPractice} onStart={startPlaytest} onUpdateNotes={updatePlaytestObservation} onComplete={finishPlaytest} onClear={clearPlaytest} onOpenCampaign={() => navigate('campaign')} /></main>;
+      return <main className="app-shell">{header}<PlaytestPanel language={language} session={playtest} onboardingStatus={onboarding.status} onStartPractice={() => startGuidedPractice('playtest')} onStart={startPlaytest} onUpdateNotes={updatePlaytestObservation} onComplete={finishPlaytest} onClear={clearPlaytest} onOpenCampaign={() => navigate('campaign')} /></main>;
     }
     const selectedMission = view === 'campaign' ? database.missionById.get(deployment.missionId) : undefined;
     const operationReadiness = selectedMission
@@ -847,6 +1026,10 @@ export default function App() {
       if (!mission || !boss || !campaign.unlockedMissionIds.includes(mission.id) || !operationReadiness?.ready) return;
       if (!deploymentEquipmentReady || !deploymentCrewReady) return;
       const nextSession = createSession(database, mission, boss, deployment, campaign, operationReadiness, language);
+      recordPlaytestEvent('JSA_COMPLETED', {
+        missionId: mission.id,
+        checks: ['permit', 'ppe', 'access', 'vessel', 'qualifiedCrew'],
+      });
       recordPlaytestEvent('MISSION_DEPLOYED', {
         missionId: mission.id,
         teamIds: deployment.teamIds,
@@ -930,11 +1113,12 @@ export default function App() {
     ? bossChallengeVesselProjection(vessel, session.boss)
     : effectiveVessel;
   const missionDefinition = session.missionId ? requiredMission(database, session.missionId) : undefined;
+  const assessmentMode = session.mode === 'course';
   const continueTargets = session.mode === 'campaign' && session.missionId
     ? campaignContinueTargets(database.missions, campaign, session.missionId)
     : undefined;
   const runtimeTurbine = missionDefinition ? database.turbineById.get(missionDefinition.turbineId) : undefined;
-  const runtimeTurbineState = runtimeTurbine ? campaign.windFarm[runtimeTurbine.id] : undefined;
+  const runtimeTurbineState = runtimeTurbine ? (session.windFarmSnapshot ?? campaign.windFarm)[runtimeTurbine.id] : undefined;
   const sceneRoute = resolveSceneRoute(session.sceneId, database.sceneById, database.sceneAssets);
   const shinkaiArt = database.shinkaiArtIndex?.items[selectedCharacter.id];
   const sourceArt = database.sourceArtIndex.items[selectedCharacter.id];
@@ -944,9 +1128,10 @@ export default function App() {
       ? { ...sourceArt, pack: 'classic' as const }
       : undefined;
   const sourceArtUrl = artPack === 'shinkai' && shinkaiArt
-    ? `/assets/source-art/v2-shinkai/${shinkaiArt.file}`
-    : (sourceArt ? `/assets/source-art/p01/${sourceArt.file}` : null);
+    ? publicAssetUrl(`assets/source-art/v2-shinkai/${shinkaiArt.file}`)
+    : (sourceArt ? publicAssetUrl(`assets/source-art/p01/${sourceArt.file}`) : null);
   const sourceArtCharacters = Object.keys(database.sourceArtIndex.items)
+    .filter((characterId) => !assessmentMode || courseConfig.rosterIds.includes(characterId))
     .map((characterId) => requiredCharacter(database, characterId));
   const faction = database.factionById.get(selectedCharacter.factionCode)!;
   const masteryXp = sessionMasteryXp(session.mode, campaign, selectedCharacter.id);
@@ -1027,7 +1212,7 @@ export default function App() {
     ? `Recommended: highest available team power ${selectedSkillForecast.appliedPower}; ${recommendedTeamSkill.actorIndex === session.selectedIndex ? 'selected crew' : `switch to ${characterName(recommendedTeamSkill.character, language)}`}; ${selectedSkillForecast.stageAdvanced ? 'clears this stage' : `${stageRemaining} power remains before action`}`
     : '';
   const availableReactiveCount = reactiveOptions.filter((option) => option.available).length;
-  const operationDecision = session.pendingBranch
+  const guidedOperationDecision = session.pendingBranch
     ? {
         code: 'EVENT',
         action: language === 'zh' ? '先處理分支事件' : 'Resolve branch event first',
@@ -1071,6 +1256,16 @@ export default function App() {
                 : `${characterName(selectedCharacter, language)} has no usable active skill; switch crew, wait for AP/Energy, or end the round.`,
               meta: `AP ${selectedRuntime.actionPoints} · E ${selectedRuntime.energy}`,
             };
+  const operationDecision = assessmentMode
+    ? {
+        code: guidedOperationDecision.code,
+        action: language === 'zh' ? '依目前證據自行選擇下一步' : 'Choose the next action from the available evidence',
+        detail: language === 'zh'
+          ? 'Assessment 不提供最佳技能、正確診斷或建議回合提示。'
+          : 'Assessment does not reveal the best skill, diagnosis answer, or round recommendation.',
+        meta: `ASSESSMENT · ${session.courseRandomSeed ?? 'FIXED'}`,
+      }
+    : guidedOperationDecision;
   const operationDecisionGuide = (() => {
     if (operationDecision.code === 'EVENT') return {
       targetTestId: availableReactiveCount > 0 ? 'branch-reactive-cta' : 'branch-accept',
@@ -1081,6 +1276,18 @@ export default function App() {
     return { targetTestId: 'round-decision-cta', label: operationDecision.code === 'RISK' ? 'ROUND RISK' : 'END ROUND' };
   })();
   const activateOperationDecisionGuide = () => {
+    recordPlaytestEvent('HINT_USED', {
+      missionId: session.missionId,
+      target: operationDecisionGuide.targetTestId,
+      label: operationDecisionGuide.label,
+    });
+    if (!assessmentMode) {
+      recordCourseEvent('HINT_USED', {
+        missionId: session.missionId,
+        target: operationDecisionGuide.targetTestId,
+        label: operationDecisionGuide.label,
+      });
+    }
     setMobileSection(operationDecision.code === 'ACT' ? 'crew' : 'field');
     if (operationDecision.code === 'ACT') setCrewTab('actions');
     const target = document.querySelector<HTMLElement>(`[data-testid="${operationDecisionGuide.targetTestId}"]`);
@@ -1107,6 +1314,14 @@ export default function App() {
       : operationInfoTab === 'objectives'
         ? 'OPERATION OBJECTIVES'
         : 'OPERATION LOG';
+  const selectOperationInfoTab = (tab: OperationInfoTab) => {
+    setOperationInfoTab(tab);
+    if (tab === 'summary' || tab === 'objectives') {
+      const details = { missionId: session.missionId, surface: tab };
+      recordPlaytestEvent('EVIDENCE_VIEWED', details);
+      if (assessmentMode) recordCourseEvent('EVIDENCE_VIEWED', details);
+    }
+  };
   const objectiveChecklist = [
     {
       key: 'stage',
@@ -1181,7 +1396,7 @@ export default function App() {
       if (current.pendingBranch) {
         return { ...current, log: pushLog(current.log, language === 'zh' ? '⛔ 先處理分支事件' : '⛔ Resolve the branch event first') };
       }
-      if (current.mode === 'campaign' && MISSION_STAGES[current.mission.stageIndex] === 'Diagnose' && !current.diagnosisAnswerId) {
+      if ((current.mode === 'campaign' || current.mode === 'course') && MISSION_STAGES[current.mission.stageIndex] === 'Diagnose' && !current.diagnosisAnswerId) {
         return { ...current, log: pushLog(current.log, language === 'zh' ? '⛔ 先完成診斷判斷，再執行 Diagnose 技能' : '⛔ Resolve the diagnosis decision before Diagnose skills') };
       }
       const actorIndex = requestedActorIndex ?? current.selectedIndex;
@@ -1228,6 +1443,14 @@ export default function App() {
     if (!missionDefinition) return;
     const option = missionDefinition.diagnosisOptions.find((item) => item.id === optionId);
     if (!option) return;
+    const diagnosisDetails = {
+      missionId: session.missionId,
+      optionId,
+      correct: option.correct,
+      evidenceBefore: session.mission.evidence,
+    };
+    recordPlaytestEvent('DIAGNOSIS_SELECTED', diagnosisDetails);
+    if (assessmentMode) recordCourseEvent('DIAGNOSIS_SELECTED', diagnosisDetails);
     setSession((current) => {
       if (!current || current.diagnosisAnswerId) return current;
       const resolution = resolveDiagnosisDecision(current.mission, option);
@@ -1298,7 +1521,7 @@ export default function App() {
             : undefined;
     if (!nextTab) return;
     event.preventDefault();
-    setOperationInfoTab(nextTab);
+    selectOperationInfoTab(nextTab);
     window.requestAnimationFrame(() => document.getElementById(`operation-info-tab-${nextTab}-button`)?.focus());
   };
   const confirmOperationAbort = () => {
@@ -1537,8 +1760,8 @@ export default function App() {
 
           <div className="panel event-panel" data-mobile-active={mobileSection === 'field'}>
             <div className="event-title"><span data-testid="operation-info-heading">{operationInfoTitle}</span><strong>{session.mission.complete ? ui.missionComplete : session.mission.failed ? ui.missionFailed : ui.active}</strong></div>
-            {session.pendingBranch && <BranchEventPanel event={session.pendingBranch} options={reactiveOptions} language={language} highlight={onboarding.status === 'active' && onboardingStep === 'REACTIVE_WINDOW'} onReact={(actorIndex, skillId) => resolveBranch(actorIndex, skillId)} onAccept={() => resolveBranch()} />}
-            {diagnosisPending && missionDefinition && <DiagnosisPanel mission={missionDefinition} language={language} highlight={onboarding.status === 'active' && onboardingStep === 'DIAGNOSIS_GATE'} onChoose={chooseDiagnosis} />}
+            {session.pendingBranch && <BranchEventPanel event={session.pendingBranch} options={reactiveOptions} language={language} showRecommendation={!assessmentMode} highlight={onboarding.status === 'active' && onboardingStep === 'REACTIVE_WINDOW'} onReact={(actorIndex, skillId) => resolveBranch(actorIndex, skillId)} onAccept={() => resolveBranch()} />}
+            {diagnosisPending && missionDefinition && <DiagnosisPanel mission={missionDefinition} language={language} showRecommendation={!assessmentMode} highlight={onboarding.status === 'active' && onboardingStep === 'DIAGNOSIS_GATE'} onChoose={chooseDiagnosis} />}
             {session.diagnosisFeedback && !diagnosisPending && <div className="diagnosis-feedback">{session.diagnosisFeedback}</div>}
             {debrief && <DebriefPanel debrief={debrief} failureReason={session.mission.failureReason} reward={session.reward} missions={database.missions} characters={database.characters} codexEntry={session.mission.complete ? database.codex.find((entry) => entry.unlockMissionId === session.missionId) : undefined} completionSummary={session.reward?.campaignCompleted ? campaignCompletionSummary(campaign, database.missions) : undefined} continueTargets={continueTargets} logEntries={session.log} language={language} highlight={onboarding.status === 'active' && onboardingStep === 'DEBRIEF'} onSelectMission={routeCampaignMission} onReturnRoute={returnToCampaignRoute} />}
             {debrief && session.mode === 'challenge' && session.challengeSettlement && <BossChallengeResultPanel settlement={session.challengeSettlement} language={language} />}
@@ -1561,7 +1784,7 @@ export default function App() {
               <small data-testid="operation-decision-detail">{operationDecision.detail}</small>
               <div className="operation-decision-actions">
                 <em>{operationDecision.meta}</em>
-                <button
+                {!assessmentMode && <button
                   type="button"
                   className="decision-guide-cta"
                   data-testid="operation-decision-guide-cta"
@@ -1570,7 +1793,7 @@ export default function App() {
                 >
                   <span>GUIDE</span>
                   <b>{operationDecisionGuide.label}</b>
-                </button>
+                </button>}
                 {(operationDecision.code === 'ROUND' || operationDecision.code === 'RISK') && (
                   <button
                     type="button"
@@ -1580,7 +1803,7 @@ export default function App() {
                     data-round-confirming={operationRoundConfirm ? 'true' : 'false'}
                     onClick={requestNextRound}
                   >
-                    <span>REC</span>
+                    <span>{assessmentMode ? 'ACTION' : 'REC'}</span>
                     <b>{operationRoundConfirm ? 'CONFIRM' : 'END ROUND'}</b>
                   </button>
                 )}
@@ -1603,7 +1826,7 @@ export default function App() {
                 ['log', language === 'zh' ? 'LOG' : 'LOG'],
                 ['summary', language === 'zh' ? 'SUMMARY' : 'SUMMARY'],
                 ['objectives', language === 'zh' ? 'OBJECTIVES' : 'OBJECTIVES'],
-              ] as const).map(([tab, label]) => <button key={tab} id={`operation-info-tab-${tab}-button`} role="tab" type="button" data-testid={`operation-info-tab-${tab}`} aria-selected={operationInfoTab === tab} aria-controls={`operation-info-panel-${tab}`} tabIndex={operationInfoTab === tab ? 0 : -1} className={operationInfoTab === tab ? 'active' : ''} onClick={() => setOperationInfoTab(tab)} onKeyDown={handleOperationInfoTabKey}>{label}</button>)}
+              ] as const).map(([tab, label]) => <button key={tab} id={`operation-info-tab-${tab}-button`} role="tab" type="button" data-testid={`operation-info-tab-${tab}`} aria-selected={operationInfoTab === tab} aria-controls={`operation-info-panel-${tab}`} tabIndex={operationInfoTab === tab ? 0 : -1} className={operationInfoTab === tab ? 'active' : ''} onClick={() => selectOperationInfoTab(tab)} onKeyDown={handleOperationInfoTabKey}>{label}</button>)}
             </div>}
             {!debrief && operationInfoTab === 'log' && <div id="operation-info-panel-log" role="tabpanel" aria-labelledby="operation-info-tab-log-button">
               <div className="log-list" role="log" aria-live="polite" data-testid="operation-log-list">
@@ -1651,7 +1874,7 @@ export default function App() {
               <>
                 <label className="art-preview-select">
                   <span>{ui.shift}</span>
-                  <select data-testid="shift-character" value={selectedCharacter.id} disabled={missionEnded} onChange={(event) => shiftSelectedCharacter(event.target.value)}>
+                  <select data-testid="shift-character" value={selectedCharacter.id} disabled={missionEnded || assessmentMode} onChange={(event) => shiftSelectedCharacter(event.target.value)}>
                     {sourceArtCharacters.map((character) => {
                       const optionShinkaiArt = database.shinkaiArtIndex?.items[character.id];
                       const optionLabel = artPack === 'shinkai' && optionShinkaiArt
@@ -1709,7 +1932,7 @@ export default function App() {
 
             {crewTab === 'actions' && (
               <>
-                {operationDecision.code === 'ACT' && recommendedSkill && selectedSkillForecast?.ok && <button
+                {!assessmentMode && operationDecision.code === 'ACT' && recommendedSkill && selectedSkillForecast?.ok && <button
                   type="button"
                   className="recommended-skill-cta"
                   data-testid="recommended-skill-cta"
@@ -1767,7 +1990,7 @@ export default function App() {
       </section>
       <div className="mobile-nav" data-testid="mobile-nav">
         <button className={mobileSection === 'mission' ? 'active' : ''} onClick={() => setMobileSection('mission')}>01 · {language === 'zh' ? '任務' : 'MISSION'}</button>
-        <button className={mobileSection === 'field' ? 'active' : ''} onClick={() => { setMobileSection('field'); setOperationInfoTab('summary'); }}>02 · {language === 'zh' ? '決策' : 'DECISION'}</button>
+        <button className={mobileSection === 'field' ? 'active' : ''} onClick={() => { setMobileSection('field'); selectOperationInfoTab('summary'); }}>02 · {language === 'zh' ? '決策' : 'DECISION'}</button>
         <button className={mobileSection === 'crew' ? 'active' : ''} onClick={() => { setMobileSection('crew'); setCrewTab('actions'); }}>03 · {language === 'zh' ? '行動' : 'ACTION'}</button>
       </div>
       <div className="mobile-action-dock" data-testid="mobile-action-dock">
@@ -1809,7 +2032,7 @@ export default function App() {
           )}
         </div>
       </div>
-      <OnboardingGuide
+      {!assessmentMode && <OnboardingGuide
         progress={onboarding}
         surface={(session.mode !== 'campaign'
           ? 'away'
@@ -1829,7 +2052,7 @@ export default function App() {
         onComplete={completeGuide}
         onSkip={skipGuide}
         onReturnToCampaign={returnGuideToCampaign}
-      />
+      />}
     </main>
   );
 }
@@ -2071,8 +2294,8 @@ function DeploymentScreen({
   const shinkaiPreviewArt = database.shinkaiArtIndex?.items[previewCharacter.id];
   const previewArt = database.sourceArtIndex.items[previewCharacter.id];
   const previewUrl = artPack === 'shinkai' && shinkaiPreviewArt
-    ? `/assets/source-art/v2-shinkai/${shinkaiPreviewArt.file}`
-    : (previewArt ? `/assets/source-art/p01/${previewArt.file}` : null);
+    ? publicAssetUrl(`assets/source-art/v2-shinkai/${shinkaiPreviewArt.file}`)
+    : (previewArt ? publicAssetUrl(`assets/source-art/p01/${previewArt.file}`) : null);
   const ownedEquipmentIds = new Set(campaign.ownedEquipmentIds);
   const equipmentOwned = mode !== 'campaign' || ownedEquipmentIds.has(deployment.equipmentId);
   const spareOwned = mode !== 'campaign' || ownedEquipmentIds.has(deployment.spareId);
@@ -4545,6 +4768,72 @@ function createSession(
   };
 }
 
+function createCourseSession(
+  database: GameDatabase,
+  assignment: CourseAssignment,
+  campaign: CampaignProgress,
+  language: Language = 'zh',
+): SessionState {
+  const missionDefinition = requiredMission(database, assignment.missionId);
+  const boss = database.bossById.get(missionDefinition.bossId);
+  if (!boss) throw new Error(`Unknown Course Mode Boss: ${missionDefinition.bossId}`);
+  const perks = teamMasteryPerks(assignment.teamIds, campaign, true);
+  const team = assignment.teamIds.map((id) => createCharacterRuntime(
+    requiredCharacter(database, id),
+    perks.byCharacterId[id],
+    0,
+  ));
+  const equipment = requiredEquipment(database, assignment.equipmentId);
+  const spare = requiredEquipment(database, assignment.spareId);
+  const vessel = requiredVessel(database, assignment.vesselId);
+  const loadout = evaluateLoadout(missionDefinition, equipment, spare, vessel);
+  const readiness: OperationReadinessEvaluation = {
+    ready: true,
+    matchedChecks: 5,
+    totalChecks: 5,
+    permitReady: true,
+    ppeReady: true,
+    accessReady: true,
+    vesselReady: true,
+    masteryReady: true,
+    qualifiedMembers: assignment.teamIds.length,
+    requiredQualifiedMembers: missionDefinition.operationProfile.minimumQualifiedMembers,
+    initialWeatherWindow: missionDefinition.operationProfile.initialWeatherWindow,
+    mobilizationCost: missionDefinition.operationProfile.mobilizationCost,
+  };
+  const windFarmSnapshot = createInitialWindFarm(database.turbines);
+  const preparedMission = applyMasteryPerks(applyLoadout(createMission(boss), loadout), perks);
+  const fleetModifier = createFleetConditionDispatchModifier(windFarmSnapshot, missionDefinition.turbineId);
+  const fleetCondition = fleetModifier
+    ? projectFleetConditionDispatch(preparedMission, readiness.mobilizationCost, fleetModifier)
+    : undefined;
+  const readyMission = applyOperationReadiness(preparedMission, readiness);
+  const mission = fleetModifier ? applyFleetConditionDispatch(readyMission, fleetModifier) : readyMission;
+  return {
+    mode: 'course',
+    missionId: missionDefinition.id,
+    courseAssignmentId: assignment.id,
+    courseRandomSeed: assignment.randomSeed,
+    windFarmSnapshot,
+    sceneId: missionDefinition.sceneId,
+    boss,
+    equipmentId: assignment.equipmentId,
+    spareId: assignment.spareId,
+    vesselId: assignment.vesselId,
+    loadout,
+    mission,
+    fleetCondition,
+    team,
+    selectedIndex: 0,
+    eventPulse: 0,
+    settled: false,
+    departedCrewFatigue: {},
+    log: [language === 'zh'
+      ? `Course Assessment ${assignment.weekId} 已部署｜固定任務 ${missionDefinition.id}｜固定角色／裝備／船舶｜Seed ${assignment.randomSeed}｜REC／GUIDE 停用`
+      : `Course Assessment ${assignment.weekId} deployed | Fixed mission ${missionDefinition.id} | Fixed crew/loadout/vessel | Seed ${assignment.randomSeed} | REC/GUIDE disabled`],
+  };
+}
+
 function createSandboxSession(
   database: GameDatabase,
   boss: BossData,
@@ -4620,9 +4909,11 @@ function createBossChallengeSession(
 function Topbar({
   database,
   campaign,
+  courseConfig,
   view,
   language,
   onboarding,
+  assessmentMode,
   reducedMotion,
   theme,
   artPack,
@@ -4637,9 +4928,11 @@ function Topbar({
 }: {
   database: GameDatabase;
   campaign: CampaignProgress;
+  courseConfig: CourseConfig;
   view: GameView;
   language: Language;
   onboarding: OnboardingProgress;
+  assessmentMode: boolean;
   reducedMotion: boolean;
   theme: 'daylight' | 'deepops';
   artPack: 'classic' | 'shinkai';
@@ -4653,6 +4946,10 @@ function Topbar({
   onToggleAudio: () => void;
 }) {
   const ui = UI[language];
+  const courseContext = view === 'course' || assessmentMode;
+  const navigationItems: GameView[] = courseContext
+    ? ['course', 'campaign', 'challenge', 'codex']
+    : ['course', 'campaign', 'challenge', 'sandbox', 'collection', 'codex', 'playtest'];
   return (
     <header className="topbar">
       <div className="brand-block">
@@ -4660,20 +4957,31 @@ function Topbar({
         <div className="brand-line"><span className="brand-mark">OWM</span><h1>Offshore Wind Masters</h1></div>
       </div>
       <nav className="mode-nav" aria-label="Game mode">
-        {(['campaign', 'challenge', 'sandbox', 'collection', 'codex', 'playtest'] as const).map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{ui[item]}</button>)}
-        <button className="onboarding-replay" data-testid="onboarding-replay" onClick={onReplayOnboarding}>
+        {navigationItems.map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} disabled={assessmentMode && item !== 'course'} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{courseContext && item === 'challenge' ? (language === 'zh' ? '重大事故演練' : 'Critical Incident Exercise') : ui[item]}</button>)}
+        {!assessmentMode && <button className="onboarding-replay" data-testid="onboarding-replay" onClick={onReplayOnboarding}>
           {onboarding.status === 'active'
             ? (language === 'zh' ? `導覽 ${onboarding.stepIndex + 1}/5` : `Guide ${onboarding.stepIndex + 1}/5`)
             : (language === 'zh' ? '重播教學' : 'Replay guide')}
-        </button>
+        </button>}
       </nav>
       <div className="dataset-strip" aria-label="資料庫統計">
-        <DataChip value={database.manifest.counts.characters} label={ui.characters} />
-        <DataChip value={database.manifest.counts.skills} label={ui.skills} />
-        <DataChip value={database.manifest.counts.bosses} label={ui.bosses} />
-        <DataChip value={campaign.totalXp} label="XP" />
-        <DataChip value={campaign.maintenanceCredits} label="MNT" />
-        <DataChip value={campaign.recoveryTokens} label="RST" />
+        {courseContext ? (
+          <>
+            <DataChip value={courseConfig.rosterIds.length} label={language === 'zh' ? '職業角色' : 'ROLES'} />
+            <DataChip value={courseConfig.assignments.length} label={language === 'zh' ? '固定任務' : 'MISSIONS'} />
+            <DataChip value={courseConfig.unlockedWeekIds.length} label={language === 'zh' ? '已開放' : 'OPEN'} />
+            <DataChip value={12} label={language === 'zh' ? '延伸案例' : 'CASES'} />
+          </>
+        ) : (
+          <>
+            <DataChip value={database.manifest.counts.characters} label={ui.characters} />
+            <DataChip value={database.manifest.counts.skills} label={ui.skills} />
+            <DataChip value={database.manifest.counts.bosses} label={ui.bosses} />
+            <DataChip value={campaign.totalXp} label="XP" />
+            <DataChip value={campaign.maintenanceCredits} label="MNT" />
+            <DataChip value={campaign.recoveryTokens} label="RST" />
+          </>
+        )}
       </div>
       <div className="header-controls">
         <button className="theme-button audio-button" data-testid="audio-toggle" onClick={onToggleAudio}>
@@ -4851,8 +5159,8 @@ function CollectionScreen({
               ? { ...art, pack: 'classic' as const }
               : undefined;
           const activeArtFile = artPack === 'shinkai' && shinkaiArt
-            ? `/assets/source-art/v2-shinkai/${shinkaiArt.file}`
-            : (art ? `/assets/source-art/p01/${art.file}` : null);
+            ? publicAssetUrl(`assets/source-art/v2-shinkai/${shinkaiArt.file}`)
+            : (art ? publicAssetUrl(`assets/source-art/p01/${art.file}`) : null);
           const activeArtBadge = artPack === 'shinkai' && shinkaiArt
             ? 'V2 SHINKAI'
             : (art ? `P01 ${art.version.toUpperCase()}` : 'PROMPT READY');
@@ -4991,6 +5299,7 @@ function BranchEventPanel({
   event,
   options,
   language,
+  showRecommendation = true,
   highlight = false,
   onReact,
   onAccept,
@@ -4998,6 +5307,7 @@ function BranchEventPanel({
   event: MissionBranchEvent;
   options: Array<{ actorIndex: number; character: CharacterData; skill: SkillData; available: boolean; reason?: string }>;
   language: Language;
+  showRecommendation?: boolean;
   highlight?: boolean;
   onReact: (actorIndex: number, skillId: string) => void;
   onAccept: () => void;
@@ -5019,7 +5329,7 @@ function BranchEventPanel({
       <div className="branch-penalties" aria-label={language === 'zh' ? '完整事件後果' : 'Full event consequence'}>
         {penaltyItems.map((item) => <span key={item}>{item}</span>)}
       </div>
-      {recommendedReactive && (
+      {showRecommendation && recommendedReactive && (
         <button
           type="button"
           className="branch-reactive-cta"
@@ -5059,7 +5369,7 @@ function BranchEventPanel({
   );
 }
 
-function DiagnosisPanel({ mission, language, highlight = false, onChoose }: { mission: MissionData; language: Language; highlight?: boolean; onChoose: (optionId: string) => void }) {
+function DiagnosisPanel({ mission, language, showRecommendation = true, highlight = false, onChoose }: { mission: MissionData; language: Language; showRecommendation?: boolean; highlight?: boolean; onChoose: (optionId: string) => void }) {
   const recommendedDiagnosis = mission.diagnosisOptions.find((option) => option.correct);
   const recommendedDiagnosisReason = recommendedDiagnosis
     ? `Recommended: evidence-backed answer from ${mission.diagnosisOptions.length} diagnosis options`
@@ -5068,7 +5378,7 @@ function DiagnosisPanel({ mission, language, highlight = false, onChoose }: { mi
     <div className={`diagnosis-panel${highlight ? ' onboarding-focus' : ''}`} data-testid="diagnosis-panel">
       <span className="section-kicker">DIAGNOSIS GATE</span>
       <b>{language === 'zh' ? '根據目前證據，下一步應採取什麼判斷？' : 'What decision should follow the available evidence?'}</b>
-      {recommendedDiagnosis && (
+      {showRecommendation && recommendedDiagnosis && (
         <button
           type="button"
           className="diagnosis-rec-cta"
@@ -5312,7 +5622,7 @@ function requiredCharacter(database: GameDatabase, id: string): CharacterData {
 }
 
 function sessionMasteryXp(mode: SessionState['mode'], campaign: CampaignProgress, characterId: string): number {
-  if (mode === 'sandbox') return 900;
+  if (mode === 'sandbox' || mode === 'course') return 900;
   if (mode === 'challenge') return BOSS_CHALLENGE_MASTERY_XP;
   return campaign.characterXp[characterId] ?? 0;
 }

@@ -1,5 +1,5 @@
 export const PLAYTEST_STORAGE_KEY = 'owm.playtest.v1';
-export const PLAYTEST_BUILD = '3.56.0-playtest-analysis-pipeline';
+export const PLAYTEST_BUILD = '3.57.1-course-mode-p0';
 
 export type PlaytestPlatform = 'desktop' | 'mobile';
 export type PlaytestStatus = 'active' | 'completed';
@@ -12,6 +12,14 @@ export type PlaytestEventKind =
   | 'FLEET_MAINTAINED'
   | 'MISSION_DEPLOYED'
   | 'MISSION_SETTLED'
+  | 'DIAGNOSIS_SELECTED'
+  | 'EVIDENCE_VIEWED'
+  | 'HINT_USED'
+  | 'JSA_COMPLETED'
+  | 'LOTO_VERIFIED'
+  | 'WORK_ORDER_CREATED'
+  | 'MISSION_REPLAYED'
+  | 'DEBRIEF_EXPORTED'
   | 'SESSION_COMPLETED';
 
 export interface PlaytestEvent {
@@ -49,6 +57,14 @@ const EVENT_KINDS: PlaytestEventKind[] = [
   'FLEET_MAINTAINED',
   'MISSION_DEPLOYED',
   'MISSION_SETTLED',
+  'DIAGNOSIS_SELECTED',
+  'EVIDENCE_VIEWED',
+  'HINT_USED',
+  'JSA_COMPLETED',
+  'LOTO_VERIFIED',
+  'WORK_ORDER_CREATED',
+  'MISSION_REPLAYED',
+  'DEBRIEF_EXPORTED',
   'SESSION_COMPLETED',
 ];
 

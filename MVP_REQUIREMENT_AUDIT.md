@@ -4,8 +4,11 @@
 
 這一節是目前狀態的唯一摘要；下方較早日期的 increment 保留作為歷史證據，不應覆蓋本節數值。
 
-- 現行版本為 `3.57.1-guided-practice-overlay-fix`。
-- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing、Collection 與 Playtest evidence pipeline 已完成自動驗證；`pnpm validate` 為 23 test files／150 tests，完整 15 組 smoke 均通過。
+- 現行版本為 `3.57.1-course-mode-p0`。
+- Course Mode P0 已加入 Guided Practice／Assessment 分流、教師手動週次發布、固定任務條件、匿名 Course Record、一鍵重設、GitHub Pages 與離線備援。
+- P1 已加入任務級 SCADA／CMS 證據、可靠度與 OPEX 計算、完整 LOTO／Work Order 程序、Alarm／Interlock tester 與 IEC 61131-3 ST reference logic；Debrief 四項工程說明為匯出必要條件。
+- P2 已加入 12 個 elective case packs、24 人職業角色池與「重大事故演練」課程用語；既有 15 關 Campaign 平衡維持凍結。
+- 核心 Web gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing、Collection 與 Playtest evidence pipeline 已完成自動驗證；`pnpm validate` 為 25 test files／159 tests，完整 16 組 smoke 均通過。
 - 300/300 P01 active preview 已同步；300 張均通過 2:3 runtime contract 與 Source Art smoke。
 - 150 個 Scene ID 均已具備 explicit route 或 documented shared fallback：148 integrated、146 dedicated runtime files（1915×821 RGB）、2 fallback（SCN035、SCN041）。
 - 119 個新場景候選已由使用者全量核准並完成 promotion；目前 `0` Scene visual review required。

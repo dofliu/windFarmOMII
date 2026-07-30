@@ -2,9 +2,12 @@
 
 ## Current project increment - 2026-07-30
 
-- Current version：`3.57.1-guided-practice-overlay-fix`。
+- Current version：`3.57.1-course-mode-p0`。
+- Course Mode P0、教師手動週次發布、Assessment 無提示策略、匿名 Learning Record、GitHub Pages workflow 與離線備援已完成。
+- P1 CLO 對齊已加入 15 組 SCADA／CMS data packs、Availability／MTBF／MTTR／Downtime／OPEX、五步 LOTO、六階段 Work Order 與 IEC 61131-3 ST Alarm／Interlock tester。
+- P2 以 12 個 elective case packs 擴充 Sensor drift、PLC／SCADA、Historian、Alarm flood、Gearbox oil、Brake、Converter、Subsea cable、marine logistics、WO automation 與 Interlock；不改動學期凍結版 Campaign 平衡。
 - Gameplay、策略平衡 v1、分離式新手練習導覽與 Playtest observation／evidence pipeline 已完成自動驗證。
-- 2026-07-30 重跑 `pnpm validate`：23 test files／150 tests、Data／Scene／Art、Campaign／Challenge balance、production build 全部通過；15 組 browser smoke 全部通過。
+- 2026-07-30 重跑 `pnpm validate`：25 test files／159 tests、Data／Scene／Art、Campaign／Challenge balance、production build 全部通過；16 組 browser smoke、10.1 MiB Pages build 與約 2.58 MiB 離線 ZIP 流程全部通過。
 - Playtest 尚未取得真人資料，因此不宣稱玩家已理解 Crew rotation、RST 或 MNT；這不改寫既有 production art gate。
 - Production release 的主要非真人工作仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
 
