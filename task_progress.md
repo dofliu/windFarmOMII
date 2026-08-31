@@ -1206,3 +1206,15 @@
 - 所有 smoke 腳本支援 `CHROME_PATH` 環境變數覆寫（先前多數硬編碼 Windows Chrome 路徑，無法在 CI／Linux 驗證）。
 - 驗證：`tsc --noEmit`、25 test files／160 tests（新增 configVersion 快照測試）、`validate:course`、`build:pages`（10.0 MiB）全綠；`smoke:course` 在 W01、W01+W02、NONE 三種解鎖情境全數通過；獨立 E2E 驗證舊版本紀錄在新版本下開始任務時完整保留（attempts 累加、單一 MODE_SELECTED）；鎖定週 devtools 繞過被拒；`smoke:onboarding` 等 campaign 流程回歸通過。
 - Guardrail：本輪不處理 P1（HINT_USED 反向記帳、scores 驗證、record digest、Work Order 事件時機、OPEX 命名、ST 產生器語意等），已列於 review 文件 B／C／D 節。
+
+## Current increment - 2026-08-31（專案介紹影片 3 分鐘完整版）
+
+- 以 `repo-intro-video` 技能產出 `promo/OWM_intro_3min.mp4`：3:00 整、1080p30、5400 格、21 景、含合成氛圍配樂（-22.2 LUFS）。
+- 敘事分章：開場（hook／問題／定位）→ 課程雙軌（練習與評量分流、教師手動解鎖、固定評量條件）→ 工程實作（SCADA／CMS 資料包、五個可靠度 KPI 與推導、五步 LOTO 與六階段派工、IEC 61131-3 ST 產生）→ 運維決策（戰役與六機風場、人員疲勞與資源、裝備配置、重大事故演練）→ 戲劇景（全片唯一）→ 成果（任務軌跡、匿名紀錄、四欄檢討、內容規模、工程品質）→ CTA。
+- 每 3–4 景換一次色調當換章訊號；`fadeblack` 與戲劇景全片各只用一次。
+- 影片數字全部取自實際程式與資料：KPI 取 `courseEngineering.ts` 公式輸出（720−12=708h、700/708=98.87%、MTTR 5.76h、OPEX $80.5k），實體數量取 `json/`（300 角色／500 技能／200 裝備／150 場景／100 事故），測試數為修復後的 160 項。
+- 品質關卡：21 張抽查格逐張檢視；新增 `promo/_measure_bounds.py` 量測 21/21 景在鏡頭推近最大時無切邊；成片另抽 6 個時間點驗證順序與轉場。
+- 修掉一個真缺陷：`scene19_scale` 的 `.sn span` 選到 `<b>` 內的 count-up span，把 76px 大數字壓成 28px；改為 `.sn > span` 後重渲該景。
+- 場景 HTML 與 `storyboard.json` 已進版控，可單景改字重渲；渲染產物與 MP4 由 `.gitignore` 排除。
+- 交付版為母帶（CRF 19、35.2 MiB）重壓至 CRF 23（25.8 MiB）以符合傳輸上限，音軌未重壓。
+- 待辦：若要換成真實免版稅配樂，只需重跑 assemble 一步（`--music`），不必重渲場景。

@@ -13,6 +13,8 @@
 | `_measure_bounds.py` | 版面安全框量測：把動畫快轉到結尾（鏡頭推近至 1.055）後檢查有無切邊 |
 | `_template.html` | 技能原始模板（保留參考） |
 | `work/intro/` | 渲染產物：各景 MP4 與 `check_*.png` 抽查格（已 gitignore） |
+| `OWM_intro_3min.mp4` | 成品：3:00 整、1080p30、5400 格、25.8 MiB（已 gitignore） |
+| `work/OWM_intro_3min_master_crf19.mp4` | CRF 19 母帶（35.2 MiB）；成品是它重壓到 CRF 23 的交付版 |
 
 ## 要改東西時
 
@@ -52,3 +54,29 @@ python3 $SK/scripts/assemble_video.py storyboard.json --workdir work/intro \
 影片中的數字均取自實際程式與資料（`json/`、`courseEngineering.ts` 的公式輸出、測試數）。
 更動平衡數值、資料規模或測試數後，記得同步 `scene08_kpi`（KPI 推導）、
 `scene19_scale`（規模）與 `scene20_quality`（測試數）三景。
+
+## 成品驗收基準（2026-08-31）
+
+| 項目 | 值 |
+|---|---|
+| 時長 | `180.000s`（分鏡表 180.0s，誤差 0） |
+| 影像 | h264 · 1920×1080 · 30fps · 5400 格 |
+| 音訊 | aac 單聲道 · 合成氛圍（暖 pad + 每 2 秒軟心跳） |
+| 整合響度 | `-22.2 LUFS`（`--bed` 目標 -23，刻意安靜） |
+| 檔案大小 | 25.8 MiB（交付版 CRF 23）／35.2 MiB（母帶 CRF 19） |
+
+21 張抽查格已逐張檢視；另以 `_measure_bounds.py` 確認 21/21 景在鏡頭推近至最大時
+均無切邊。成片另抽 6 個時間點（含轉場點、戲劇景、count-up、CTA）確認順序與轉場正確。
+
+### 想換成真實配樂
+
+`--bed` 只是沒有音樂檔時的退路，真實音樂效果好得多。取得免版稅音樂後：
+
+```bash
+SK=<repo-intro-video 技能目錄>
+python3 $SK/scripts/assemble_video.py storyboard.json --workdir work/intro \
+    --out OWM_intro_3min.mp4 --music bgm.mp3 --loudness -20
+```
+
+不需重渲場景，數十秒完成。若成品超過 30 MiB 需要傳輸，用
+`ffmpeg -i <母帶> -c:v libx264 -preset slow -crf 23 -c:a copy -movflags +faststart <輸出>` 重壓。
