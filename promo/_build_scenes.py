@@ -585,7 +585,7 @@ scene("scene19_scale", "S19 內容規模", 9.5, tone="violet", css="""
 .sn{padding:34px 30px;text-align:center}
 .sn b{display:block;font-size:76px;font-weight:900;line-height:1;
  background:linear-gradient(100deg,#f4f8ff 20%,#ddd6fe 55%,#a5b4fc 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.sn span{display:block;font-size:28px;font-weight:700;margin-top:14px;color:rgba(232,238,247,.8)}
+.sn > span{display:block;font-size:28px;font-weight:700;margin-top:14px;color:rgba(232,238,247,.8)}
 .sn small{display:block;font-size:20px;color:rgba(232,238,247,.46);margin-top:6px;letter-spacing:.1em}
 """, content="""
  <div class="kicker in" style="--d:.2s">BY THE NUMBERS</div>
