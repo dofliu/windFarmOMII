@@ -10,6 +10,7 @@
 | `scene01_open.html` … `scene21_cta.html` | 21 個場景（1920×1080，離線、無外部資源） |
 | `storyboard.json` | 分鏡表：每景秒數與轉場刀法（總長 180.0s） |
 | `_build_scenes.py` | 場景產生器（改共用樣式或批次改文案時用） |
+| `_measure_bounds.py` | 版面安全框量測：把動畫快轉到結尾（鏡頭推近至 1.055）後檢查有無切邊 |
 | `_template.html` | 技能原始模板（保留參考） |
 | `work/intro/` | 渲染產物：各景 MP4 與 `check_*.png` 抽查格（已 gitignore） |
 
@@ -18,7 +19,13 @@
 先設 `export CHROMIUM_PATH=/opt/pw-browsers/chromium`，並令
 `SK=<repo-intro-video 技能目錄>`。
 
-**改某一景的文案／版面** → 直接編輯該景 HTML，然後單景重渲 + 重新串接：
+**改某一景的文案／版面** → 直接編輯該景 HTML，先跑版面量測（數秒，比渲染快得多，
+可在渲染前先攔下切邊問題），再單景重渲 + 重新串接：
+
+```bash
+CHROMIUM_PATH=/opt/pw-browsers/chromium python3 _measure_bounds.py   # 應為 0/21 有切邊風險
+```
+
 
 ```bash
 python3 $SK/scripts/render_scenes.py storyboard.json --workdir work/intro --only scene08_kpi
