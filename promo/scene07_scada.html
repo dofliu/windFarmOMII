@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><title>S07 SCADA 資料包</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#070d17}
+body{font-family:"Noto Sans CJK TC","Noto Sans TC","PingFang TC",sans-serif;color:#e8eef7;position:relative}
+.bg{position:absolute;inset:0;background:
+ radial-gradient(1200px 800px at 24% 18%,rgba(45,212,191,.14),transparent 62%),
+ radial-gradient(1100px 760px at 78% 82%,rgba(139,92,246,.15),transparent 60%),
+ linear-gradient(160deg,#0d1b2e 0%,#070d17 58%,#05070d 100%)}
+.aur{position:absolute;width:1500px;height:1500px;border-radius:50%;filter:blur(90px);opacity:.5;mix-blend-mode:screen}
+.aur.a{background:radial-gradient(circle,rgba(45,212,191,.32),transparent 62%);left:-460px;top:-560px;animation:drift1 22s ease-in-out infinite alternate}
+.aur.b{background:radial-gradient(circle,rgba(139,92,246,.30),transparent 62%);right:-520px;bottom:-620px;animation:drift2 26s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(150px,90px) scale(1.12)}}
+@keyframes drift2{to{transform:translate(-130px,-80px) scale(1.08)}}
+.vig{position:absolute;inset:0;background:radial-gradient(1600px 1000px at 50% 46%,transparent 58%,rgba(0,0,0,.5) 100%);pointer-events:none}
+.grid{position:absolute;inset:0;opacity:.05;background-image:linear-gradient(rgba(232,238,247,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(232,238,247,.5) 1px,transparent 1px);background-size:64px 64px}
+.stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ --dur:9s;animation:cam var(--dur) ease-in-out both}
+@keyframes cam{from{transform:scale(1)}to{transform:scale(1.055)}}
+.kicker{font-size:30px;font-weight:700;letter-spacing:.55em;text-indent:.55em;color:#2dd4bf;text-transform:uppercase}
+.h1{font-size:112px;font-weight:900;line-height:1.14;text-align:center;letter-spacing:.01em;
+ background:linear-gradient(100deg,#f4f8ff 20%,#9be8db 50%,#c4b5fd 80%);-webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 8px 40px rgba(45,212,191,.18))}
+.sub{font-size:40px;font-weight:400;color:rgba(232,238,247,.78);text-align:center;line-height:1.6}
+.accent{color:#2dd4bf;font-weight:700}
+.chip{display:inline-flex;align-items:center;gap:16px;padding:20px 38px;border-radius:999px;font-size:36px;font-weight:700;white-space:nowrap;
+ background:rgba(20,32,52,.82);border:1.5px solid rgba(150,200,255,.22);box-shadow:0 14px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.07)}
+.card{background:linear-gradient(165deg,rgba(24,38,62,.92),rgba(12,20,36,.94));border:1.5px solid rgba(150,200,255,.20);
+ border-radius:26px;box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08)}
+.badge{display:inline-block;padding:12px 26px;border-radius:12px;font-size:28px;font-weight:700;white-space:nowrap;
+ background:rgba(45,212,191,.14);border:1.5px solid rgba(45,212,191,.45);color:#7ff0df}
+.in{opacity:0;animation:rise 1s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(56px)}to{opacity:1;transform:none}}
+.pop{opacity:0;animation:pop .8s cubic-bezier(.2,1.4,.35,1) both;animation-delay:var(--d,0s)}
+@keyframes pop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+.glow{animation:glow 2.6s ease-in-out infinite}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 18px rgba(45,212,191,.25))}50%{filter:drop-shadow(0 0 42px rgba(45,212,191,.55))}}
+.in.glow{animation:rise 1s cubic-bezier(.16,1,.3,1) var(--d,0s) both,glow 2.6s ease-in-out infinite}
+.pop.glow{animation:pop .8s cubic-bezier(.2,1.4,.35,1) var(--d,0s) both,glow 2.6s ease-in-out infinite}
+/* ── 共用版面工具 ── */
+.row{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap}
+.col{display:flex;flex-direction:column}
+.mono{font-family:"Noto Sans Mono CJK TC",ui-monospace,"DejaVu Sans Mono",monospace}
+.bar{height:12px;border-radius:99px;background:rgba(150,200,255,.16);overflow:hidden;width:100%}
+.bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#2dd4bf,#7dd3fc);
+ width:0;animation:grow 1.5s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--bd,1s)}
+@keyframes grow{to{width:var(--w,60%)}}
+.lite{opacity:.34}
+.seq{animation:litup .55s ease-out both;animation-delay:var(--d,0s)}
+@keyframes litup{from{opacity:.2;transform:scale(.94)}to{opacity:1;transform:none}}
+.bg{background:
+ radial-gradient(1200px 800px at 24% 18%,rgba(52,211,153,.15),transparent 62%),
+ radial-gradient(1100px 760px at 78% 82%,rgba(20,148,132,.16),transparent 60%),
+ linear-gradient(160deg,#0a1f1b 0%,#061310 58%,#040b09 100%)}
+.aur.a{background:radial-gradient(circle,rgba(52,211,153,.28),transparent 62%)}
+.aur.b{background:radial-gradient(circle,rgba(16,185,129,.24),transparent 62%)}
+.kicker{color:#5eead4}
+
+.tbl{width:1620px;padding:30px 34px 22px}
+.tbl table{width:100%;border-collapse:collapse;font-size:27px}
+.tbl th{text-align:left;font-size:21px;letter-spacing:.16em;color:#5eead4;font-weight:700;
+ padding:0 14px 16px;border-bottom:1.5px solid rgba(94,234,212,.24)}
+.tbl td{padding:13px 14px;border-bottom:1px solid rgba(150,200,255,.07);color:rgba(232,238,247,.86)}
+.tbl tr.bad td{background:rgba(248,113,113,.10);color:#fca5a5}
+.tbl tr.warn td{color:#fcd34d}
+.tbl .mv{color:#f87171;font-weight:800}
+
+</style></head>
+<body>
+<div class="bg"></div><div class="aur a"></div><div class="aur b"></div><div class="grid"></div>
+
+<div class="stage" style="z-index:2">
+
+ <div class="kicker in" style="--d:.2s">SCADA / CMS DATA PACK</div>
+ <div class="h1 in" style="--d:.5s;margin-top:22px;font-size:92px">從訊號裡讀出<br>故障的樣子</div>
+ <div class="tbl card in" style="--d:1.5s;margin-top:40px">
+  <table><thead><tr><th>TIMESTAMP</th><th>LOAD kW</th><th>TEMP °C</th><th>VIB mm/s</th><th>ALARM</th><th>EVENT</th></tr></thead>
+  <tbody class="mono">
+   <tr class="seq" style="--d:1.9s"><td>2026-01-05 00:00</td><td>5020</td><td>69.8</td><td>3.09</td><td>—</td><td>—</td></tr>
+   <tr class="seq" style="--d:2.05s"><td>2026-01-05 00:20</td><td>4817</td><td>69.4</td><td>2.94</td><td>—</td><td>—</td></tr>
+   <tr class="bad seq" style="--d:2.2s"><td>2026-01-05 00:30</td><td>4617</td><td>68.9</td><td class="mv">缺值</td><td>—</td><td>QUALITY_BAD</td></tr>
+   <tr class="seq" style="--d:2.35s"><td>2026-01-05 00:40</td><td>4414</td><td>68.4</td><td>2.86</td><td>—</td><td>—</td></tr>
+   <tr class="warn seq" style="--d:2.5s"><td>2026-01-05 00:50</td><td>4221</td><td>71.6</td><td>3.41</td><td>—</td><td>CONDITION_DEVIATION</td></tr>
+   <tr class="warn seq" style="--d:2.65s"><td>2026-01-05 01:20</td><td>3968</td><td>74.2</td><td>3.88</td><td>DRIVETRAIN_WARNING</td><td>—</td></tr>
+  </tbody></table>
+ </div>
+ <div class="sub in" style="--d:3.1s;margin-top:36px;font-size:33px">每週一份可重現資料包 &middot; 含刻意標示的缺值</div>
+
+</div>
+<div class="vig" style="z-index:3"></div>
+
+</body></html>
