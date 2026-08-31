@@ -8,6 +8,7 @@ import {
   isCourseDebriefComplete,
   loadCourseRecord,
   normalizeCourseConfig,
+  normalizeCourseRecord,
   saveCourseRecord,
   serializeCourseRecord,
   startCourseAttempt,
@@ -88,6 +89,24 @@ describe('Course Mode learning record', () => {
     expect(replay.attempts).toHaveLength(2);
     expect(replay.attempts[1].attemptNumber).toBe(2);
     expect(replay.events.some((event) => event.kind === 'MISSION_REPLAYED')).toBe(true);
+  });
+
+  it('每個 attempt 快照當時的 configVersion，教師每週解鎖改版本不重建紀錄', () => {
+    const first = startCourseAttempt(createCourseRecord(config, 'OWM-A003', 'desktop'), assignment);
+    expect(first.attempts[0].configVersion).toBe('2026-FALL-v1');
+
+    // 模擬教師解鎖下一週後沿用同一份紀錄：只更新版本欄位，不 createCourseRecord。
+    const afterUnlock = startCourseAttempt({ ...first, configVersion: '2026-FALL-W02' }, assignment);
+    expect(afterUnlock.attempts).toHaveLength(2);
+    expect(afterUnlock.attempts[0].configVersion).toBe('2026-FALL-v1');
+    expect(afterUnlock.attempts[1].configVersion).toBe('2026-FALL-W02');
+
+    const restored = normalizeCourseRecord(JSON.parse(JSON.stringify(afterUnlock)));
+    expect(restored?.attempts.map((attempt) => attempt.configVersion)).toEqual(['2026-FALL-v1', '2026-FALL-W02']);
+    expect(normalizeCourseRecord({
+      ...JSON.parse(JSON.stringify(first)),
+      attempts: [{ ...first.attempts[0], configVersion: 42 }],
+    })?.attempts[0].configVersion).toBeUndefined();
   });
 
   it('匿名代碼不包含姓名或學號欄位，並可獨立保存與還原', () => {

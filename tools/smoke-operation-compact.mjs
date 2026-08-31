@@ -3,7 +3,7 @@ import path from 'node:path';
 import { chromium } from 'playwright-core';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
-const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const chromePath = process.env.CHROME_PATH ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const outputDirectory = path.join(projectRoot, '.codex_qa');
 const shot = (name) => path.join(outputDirectory, `owm-operation-compact-${name}.png`);
 

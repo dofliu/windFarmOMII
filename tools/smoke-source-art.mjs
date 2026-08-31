@@ -3,7 +3,7 @@ import path from 'node:path';
 import { chromium } from 'playwright-core';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
-const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const chromePath = process.env.CHROME_PATH ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const outputDirectory = path.join(projectRoot, '.codex_qa');
 const mfgScreenshotPath = path.join(outputDirectory, 'owm-source-art-mfg-v002.png');
 const omiScreenshotPath = path.join(outputDirectory, 'owm-source-art-omi-v002.png');

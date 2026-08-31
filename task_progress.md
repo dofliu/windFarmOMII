@@ -1193,3 +1193,16 @@
 - Course Mode 使用 24 個職業角色、隱藏收藏入口，並將 Boss Challenge 改稱「重大事故演練／Critical Incident Exercise」。
 - GitHub Pages build 使用 `/windFarmOMII/`，課程部署素材由約 1.07 GiB 完整本機素材精簡為 10.1 MiB；離線 ZIP 約 2.58 MiB，附 Windows 一鍵啟動與正確 module MIME server。
 - 驗證通過：`pnpm validate`（25 test files／159 tests）、`pnpm validate:teaching-deployment`、16 組 browser smoke、GitHub Pages base-path smoke、離線 Desktop／Mobile smoke。
+
+## Current increment - 2026-08-31（P0 阻斷性修正：課程紀錄保護與 Assessment 防洩題）
+
+- 依 `OPS_SYSTEM_REVIEW_2026-08-31.md` 的 P0 清單完成六項阻斷性修正；版本維持 `3.57.1-course-mode-p0`（學期凍結允許的 bug fix，不動平衡與任務條件）。
+- A1：教師每週解鎖改變 `configVersion` 不再重建（清除）學生 Course Record；沿用既有紀錄並更新版本，每個 attempt 新增 `configVersion` 快照欄位。
+- A2：`smoke:course` 改為讀取部署站上的 `course-config.json` 動態斷言解鎖數、各週狀態、版本與固定配置；解鎖任何週次組合（含 `NONE`）都不會再讓 CI build 失敗、阻斷 Pages 部署。
+- A3：Assessment 的 OBJECTIVES 分頁不再顯示 `SKILL FORECAST`（推薦技能）與 `END ROUND FORECAST`（回合預測）；smoke 增加對應斷言。
+- A4：正確診斷選項不再於 assessment 掛 `diagnosis-choice-correct` testid（僅 `showRecommendation` 時輸出，campaign 導覽不受影響）；decision prompt 在 assessment 不輸出 `data-decision-guide-target/label`。
+- A5：Engineering Lab 只提供已解鎖週次的資料包（空清單有明確 empty state）；資料包改以週次編號為鍵，與 config 順序解耦；鎖定週卡片不再顯示隊伍／裝備／船舶／SEED；`startCourseAssessment` 啟動時 re-check `unlockedWeekIds`（devtools 移除 disabled 也無法啟動）。
+- A6：重設課程進度改為二段式確認（可取消）；更換匿名代碼需二段式確認並自動先匯出舊紀錄再重建。
+- 所有 smoke 腳本支援 `CHROME_PATH` 環境變數覆寫（先前多數硬編碼 Windows Chrome 路徑，無法在 CI／Linux 驗證）。
+- 驗證：`tsc --noEmit`、25 test files／160 tests（新增 configVersion 快照測試）、`validate:course`、`build:pages`（10.0 MiB）全綠；`smoke:course` 在 W01、W01+W02、NONE 三種解鎖情境全數通過；獨立 E2E 驗證舊版本紀錄在新版本下開始任務時完整保留（attempts 累加、單一 MODE_SELECTED）；鎖定週 devtools 繞過被拒；`smoke:onboarding` 等 campaign 流程回歸通過。
+- Guardrail：本輪不處理 P1（HINT_USED 反向記帳、scores 驗證、record digest、Work Order 事件時機、OPEX 命名、ST 產生器語意等），已列於 review 文件 B／C／D 節。
