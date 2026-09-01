@@ -44,11 +44,12 @@ export function CourseEngineeringLab({
   const isZh = language === 'zh';
   const [tab, setTab] = useState<LabTab>('data');
   const [selectedAssignmentId, setSelectedAssignmentId] = useState(assignments[0]?.id ?? '');
-  const assignmentIndex = Math.max(0, assignments.findIndex((item) => item.id === selectedAssignmentId));
-  const assignment = assignments[assignmentIndex] ?? assignments[0];
+  const assignment = assignments.find((item) => item.id === selectedAssignmentId) ?? assignments[0];
+  // 資料包內容以週次編號為鍵，不用陣列位置：教師只解鎖部分週次或調整 config 順序時，各週答案不變。
+  const packIndex = assignment ? Math.max(0, Number.parseInt(assignment.weekId.slice(1), 10) - 1) : 0;
   const pack = useMemo(
-    () => assignment ? createMissionEngineeringPack(assignment, assignmentIndex) : null,
-    [assignment, assignmentIndex],
+    () => assignment ? createMissionEngineeringPack(assignment, packIndex) : null,
+    [assignment, packIndex],
   );
   const kpis = useMemo(
     () => pack ? calculateReliabilityKpis(pack.reliabilityInput) : null,
@@ -59,7 +60,21 @@ export function CourseEngineeringLab({
   const [alarmConfig, setAlarmConfig] = useState(defaultAlarmConfig);
   const alarmResult = useMemo(() => runAlarmTest(sampleSignal, alarmConfig), [alarmConfig]);
 
-  if (!assignment || !pack || !kpis) return null;
+  if (!assignment || !pack || !kpis) {
+    return (
+      <section className="course-engineering-lab" data-testid="course-engineering-lab">
+        <header className="course-lab-heading">
+          <div>
+            <span className="section-kicker">ENGINEERING LAB · CLO ALIGNMENT</span>
+            <b>{isZh ? 'SCADA／CMS 證據、可靠度、程序安全與控制邏輯' : 'SCADA/CMS evidence, reliability, procedural safety, and control logic'}</b>
+          </div>
+        </header>
+        <p data-testid="course-lab-empty">
+          {isZh ? '尚未開放任何週次；資料包將於教師解鎖後提供。' : 'No week is unlocked yet; data packs appear after the instructor releases a week.'}
+        </p>
+      </section>
+    );
+  }
 
   const resetProcedures = () => {
     setLoto(createLotoProcedure());

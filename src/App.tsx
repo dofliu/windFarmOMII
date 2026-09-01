@@ -722,10 +722,16 @@ export default function App() {
     setPlaytest(null);
   };
   const startCourseAssessment = (learnerCode: string, platform: CoursePlatform, assignment: CourseAssignment) => {
-    const currentRecord = courseRecord
-      && courseRecord.learnerCode === learnerCode
-      && courseRecord.configVersion === courseConfig.configVersion
-      ? { ...courseRecord, platform }
+    // 週次鎖不只在 UI disabled:啟動時再驗證一次。
+    if (!courseConfig.unlockedWeekIds.includes(assignment.weekId)) return;
+    const sameLearner = courseRecord?.learnerCode === learnerCode;
+    if (courseRecord && !sameLearner) {
+      // 更換匿名代碼會重建紀錄;先自動匯出舊紀錄,避免共機情境靜默銷毀他人成果。
+      downloadCourseRecord(courseRecord);
+    }
+    // configVersion 變更(教師每週解鎖)不重建紀錄:沿用並更新版本,attempt 各自快照當時版本。
+    const currentRecord = courseRecord && sameLearner
+      ? { ...courseRecord, platform, configVersion: courseConfig.configVersion }
       : createCourseRecord(courseConfig, learnerCode, platform);
     const nextRecord = startCourseAttempt(currentRecord, assignment);
     saveCourseRecord(nextRecord);
@@ -752,6 +758,15 @@ export default function App() {
       return next;
     });
   };
+  const downloadCourseRecord = (record: CourseRecord) => {
+    const blob = new Blob([serializeCourseRecord(record)], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `OWM_COURSE_RECORD_${record.courseCode}_${record.learnerCode}.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
   const exportCourseRecord = () => {
     if (!courseRecord) return;
     const activeAttempt = [...courseRecord.attempts].reverse().find((attempt) => attempt.assignmentId === courseRecord.activeAssignmentId);
@@ -761,13 +776,7 @@ export default function App() {
     });
     saveCourseRecord(next);
     setCourseRecord(next);
-    const blob = new Blob([serializeCourseRecord(next)], { type: 'application/json;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `OWM_COURSE_RECORD_${next.courseCode}_${next.learnerCode}.json`;
-    anchor.click();
-    URL.revokeObjectURL(url);
+    downloadCourseRecord(next);
   };
   const resetCourseMode = () => {
     saveCourseRecord(null);
@@ -1330,6 +1339,8 @@ export default function App() {
       value: `${currentStage.toUpperCase()} ${session.mission.progress}/${session.mission.requirement}`,
       note: stageRemaining <= 0 ? 'Stage threshold reached' : `${stageRemaining} power still required`,
     },
+    // Assessment 不得洩漏推薦技能與回合預測:這兩列只在非評量模式提供。
+    ...(assessmentMode ? [] : [
     {
       key: 'skill',
       state: selectedSkillForecast?.ok ? (selectedSkillForecast.stageAdvanced ? 'done' : 'active') : 'waiting',
@@ -1358,6 +1369,7 @@ export default function App() {
           ? `Triggers ${forecastBranchEvent.code}`
           : `Next R${endRoundForecast.nextRound}`,
     },
+    ]),
     {
       key: 'learning',
       state: missionDefinition ? 'active' : 'done',
@@ -1772,8 +1784,8 @@ export default function App() {
               data-decision-action={operationDecision.action}
               data-decision-reason={operationDecision.detail}
               data-decision-meta={operationDecision.meta}
-              data-decision-guide-target={operationDecisionGuide.targetTestId}
-              data-decision-guide-label={operationDecisionGuide.label}
+              data-decision-guide-target={assessmentMode ? undefined : operationDecisionGuide.targetTestId}
+              data-decision-guide-label={assessmentMode ? undefined : operationDecisionGuide.label}
               data-decision-guide-active={operationGuideNotice ? 'true' : 'false'}
               data-decision-guide-active-target={operationGuideNotice?.targetTestId ?? ''}
               data-decision-guide-active-label={operationGuideNotice?.label ?? ''}
@@ -5397,7 +5409,7 @@ function DiagnosisPanel({ mission, language, showRecommendation = true, highligh
           <button
             key={option.id}
             className="diagnosis-choice"
-            data-testid={option.correct ? 'diagnosis-choice-correct' : `diagnosis-choice-${option.id}`}
+            data-testid={showRecommendation && option.correct ? 'diagnosis-choice-correct' : `diagnosis-choice-${option.id}`}
             onClick={() => onChoose(option.id)}
           >{language === 'zh' ? option.labelZh : option.labelEn}</button>
         ))}

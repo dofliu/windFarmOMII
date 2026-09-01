@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.57.1-course-mode-p0 - 2026-08-31 (P0 blocking fixes, in-place semester hotfix)
+
+- Weekly unlock no longer destroys learner records: a `configVersion` change reuses the existing Course Record (each attempt now snapshots the `configVersion` it ran under), instead of silently rebuilding the record from scratch.
+- Switching to a different anonymous learner code now requires a second confirming click and automatically exports the previous record before rebuilding, protecting shared-machine classrooms.
+- Course reset is now two-step (`course-reset` → `course-reset-confirm`, with a cancel action) instead of a single destructive click.
+- Assessment no longer leaks recommendations: the OBJECTIVES tab hides the SKILL FORECAST and END ROUND FORECAST rows in assessment mode, the correct diagnosis option is no longer tagged `diagnosis-choice-correct` in the DOM when recommendations are hidden, and the decision prompt no longer emits `data-decision-guide-target/label` attributes during assessment.
+- The Engineering Lab now only offers data packs for teacher-unlocked weeks (with an explicit empty state when nothing is unlocked), locked week cards no longer reveal crew/equipment/vessel/seed details, and `startCourseAssessment` re-checks `unlockedWeekIds` so a devtools-enabled locked button cannot start a session.
+- Engineering Lab pack content is now keyed to the week number instead of the array position, so partial unlocks or config reordering can no longer change SCADA timestamps or KPI answers (current 15-week content is unchanged).
+- `smoke:course` now reads the deployed `course-config.json` and asserts against it, so teacher week unlocks (including a full pause) no longer fail CI and block the GitHub Pages deploy; it also covers the new confirmation flows and the assessment leak regressions.
+
 ## 3.54.0-strategy-balance-v1 - 2026-07-26
 
 - Added inter-mission operational fatigue, reduced transit/reserve recovery, and limited RST rewards to completed SOV supply milestones every third mission.

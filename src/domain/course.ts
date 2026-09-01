@@ -76,6 +76,8 @@ export interface CourseAttempt {
   missionId: string;
   attemptNumber: number;
   randomSeed: number;
+  // 每個 attempt 快照當下的 configVersion:教師每週解鎖會改版本,紀錄不因此重建。
+  configVersion?: string;
   startedAt: string;
   completedAt?: string;
   decisionOrder: CourseEventKind[];
@@ -263,6 +265,7 @@ export function startCourseAttempt(
     missionId: assignment.missionId,
     attemptNumber,
     randomSeed: assignment.randomSeed,
+    configVersion: record.configVersion,
     startedAt: now.toISOString(),
     decisionOrder: [],
     hintUsedCount: 0,
@@ -414,6 +417,7 @@ export function normalizeCourseRecord(value: unknown): CourseRecord | null {
       missionId: attempt.missionId,
       attemptNumber: attempt.attemptNumber!,
       randomSeed: attempt.randomSeed!,
+      configVersion: typeof attempt.configVersion === 'string' ? attempt.configVersion : undefined,
       startedAt: attempt.startedAt,
       completedAt: typeof attempt.completedAt === 'string' ? attempt.completedAt : undefined,
       decisionOrder: Array.isArray(attempt.decisionOrder)

@@ -6,7 +6,7 @@
 - 課程代碼：`NCUT-OWM-2026`
 - 課程設定：`public/course/course-config.json`
 - 正式網址：`https://dofliu.github.io/windFarmOMII/`
-- Assessment 不顯示 `REC`、`GUIDE` 或正確診斷提示。
+- Assessment 不顯示 `REC`、`GUIDE` 或正確診斷提示；OBJECTIVES 分頁也不顯示技能建議與回合預測，僅保留階段目標、學習目標與現況資訊。
 - Course Record 僅使用匿名 learner code，不設姓名、Email、學號欄位。
 
 ## 手動解鎖週次
@@ -24,7 +24,9 @@ pnpm validate:course
 pnpm course:unlock -- --weeks NONE --version 2026-FALL-PAUSED
 ```
 
-更新後提交並推送 `main`，GitHub Actions 會重新執行 validation、建立 GitHub Pages 與離線 ZIP。
+更新後提交並推送 `main`，GitHub Actions 會重新執行 validation、建立 GitHub Pages 與離線 ZIP。`smoke:course` 以部署站上的 `course-config.json` 為準做動態斷言，因此解鎖任何週次組合（含 `NONE` 暫停）都不會使 CI 失敗。
+
+每週解鎖改變 `configVersion` **不會**清除學生瀏覽器中的 Course Record：既有紀錄會沿用，且每個 attempt 都記錄它執行當下的 `configVersion`，評分時可據此比對週次發布狀態。
 
 ## Assessment 固定條件
 
@@ -59,9 +61,15 @@ Assessment 匯出 `OWM_COURSE_RECORD` JSON，至少包含：
 - `MISSION_REPLAYED`
 - `DEBRIEF_EXPORTED`
 
+紀錄保護：
+
+- 「重設課程進度」需要第二次點擊確認才會刪除，並可取消；刪除前請先匯出。
+- 在同一瀏覽器輸入**不同的匿名代碼**開始 Assessment 需要第二次點擊確認，且會先自動下載既有代碼的 Course Record，再重建新紀錄（共機教室換人使用時的保護）。
+- Course Record 僅存在該瀏覽器的 localStorage：每次課堂結束前請學生匯出 JSON。
+
 ## CLO 工程學習頁
 
-Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，15 個固定任務各自提供可重現的 SCADA／CMS 資料包：
+Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，只顯示**已解鎖週次**的資料包（資料包內容以週次編號為鍵，與解鎖組合、config 順序無關），每個固定任務各自提供可重現的 SCADA／CMS 資料包：
 
 - Timestamp、Load、Temperature、Vibration
 - Alarm／Event sequence

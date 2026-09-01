@@ -4,7 +4,7 @@ import { chromium } from 'playwright-core';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const outputDirectory = path.join(projectRoot, '.codex_qa');
-const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const chromePath = process.env.CHROME_PATH ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 
 await mkdir(outputDirectory, { recursive: true });
 
