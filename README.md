@@ -738,6 +738,8 @@ pnpm simulate:challenge
 
 完成後可下載 `OWM_PLAYTEST_SESSION` v1 JSON。這些紀錄只保存 stable IDs 與遊戲狀態，不應輸入姓名、Email、學號或其他個資。完整真人測試流程見 [PLAYTEST_PROTOCOL_2026-07-27.md](PLAYTEST_PROTOCOL_2026-07-27.md)。
 
+Course Mode 的匯出檔則放入 `course-results/` 後執行 `pnpm course:summary`：工具重算 `recordDigest` 與分項總分、核對摘要與內嵌 record 一致，並輸出學生 × 週次 × 嘗試的彙整表（見 [COURSE_MODE_GUIDE.md](COURSE_MODE_GUIDE.md)）。
+
 將 3–5 份 export 放入 `playtest-results/` 後執行 `pnpm playtest:summary`，可產生 evidence summary。只有人數、跨裝置、完成狀態、觀察欄位與匿名代碼唯一性全部通過時才標記 `ANALYSIS READY`；事件不會被自動解讀成玩家理解。
 
 新手練習導覽的每一步都包含「目的、現在請做、完成條件、名詞速查」，並明確標示為不記入正式測試。正式測試頁則列出三個觀察目標、至少三關的流程，以及完成前應取得的四類證據。

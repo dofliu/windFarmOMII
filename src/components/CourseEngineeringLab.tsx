@@ -12,7 +12,9 @@ import {
   runAlarmTest,
   WORK_ORDER_STEPS,
   type AlarmTesterConfig,
+  type LotoProcedureState,
   type LotoStep,
+  type WorkOrderState,
   type WorkOrderStep,
 } from '../domain/courseEngineering';
 import type { Language } from '../domain/types';
@@ -38,8 +40,8 @@ export function CourseEngineeringLab({
 }: {
   language: Language;
   assignments: CourseAssignment[];
-  onLotoVerified?: (assignment: CourseAssignment) => void;
-  onWorkOrderCreated?: (assignment: CourseAssignment) => void;
+  onLotoVerified?: (assignment: CourseAssignment, state: LotoProcedureState) => void;
+  onWorkOrderCreated?: (assignment: CourseAssignment, state: WorkOrderState) => void;
 }) {
   const isZh = language === 'zh';
   const [tab, setTab] = useState<LabTab>('data');
@@ -86,22 +88,18 @@ export function CourseEngineeringLab({
     resetProcedures();
   };
 
+  // 事件在 updater 之外觸發：StrictMode 重複執行 updater 時不會重複記錄。
   const applyLoto = (step: LotoStep) => {
-    setLoto((current) => {
-      const next = performLotoStep(current, step);
-      if (!current.verified && next.verified) onLotoVerified?.(assignment);
-      return next;
-    });
+    const next = performLotoStep(loto, step);
+    setLoto(next);
+    if (!loto.verified && next.verified) onLotoVerified?.(assignment, next);
   };
 
+  // Work Order 事件只在 CLOSE_OUT 完成時寫入，並帶實際完成步驟與違序次數（不再於 TRIGGER 就記成完整六階段）。
   const applyWorkOrder = (step: WorkOrderStep) => {
-    setWorkOrder((current) => {
-      const next = performWorkOrderStep(current, step);
-      if (step === 'TRIGGER' && !current.completedSteps.length && next.completedSteps.length === 1) {
-        onWorkOrderCreated?.(assignment);
-      }
-      return next;
-    });
+    const next = performWorkOrderStep(workOrder, step);
+    setWorkOrder(next);
+    if (!workOrder.closed && next.closed) onWorkOrderCreated?.(assignment, next);
   };
 
   return (

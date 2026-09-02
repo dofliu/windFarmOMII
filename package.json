@@ -39,6 +39,7 @@
     "smoke:playtest": "node tools/smoke-playtest.mjs",
     "smoke:course": "node tools/smoke-course-mode.mjs",
     "playtest:summary": "node tools/summarize-playtests.mjs",
+    "course:summary": "node tools/summarize-course-records.mjs",
     "smoke:sandbox": "node tools/smoke-sandbox-scenario.mjs",
     "smoke:scene": "node tools/smoke-scene-routing.mjs",
     "smoke:fleet": "node tools/smoke-fleet-maintenance.mjs",

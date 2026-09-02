@@ -210,17 +210,21 @@ export function CourseModePanel({
       <CourseEngineeringLab
         language={language}
         assignments={availableAssignments}
-        onLotoVerified={(assignment) => onRecordEvent('LOTO_VERIFIED', {
+        onLotoVerified={(assignment, state) => onRecordEvent('LOTO_VERIFIED', {
           assignmentId: assignment.id,
           missionId: assignment.missionId,
           source: 'COURSE_ENGINEERING_LAB',
-          procedure: ['SHUTDOWN', 'ISOLATE', 'LOCK_TAG', 'CONTROL_RESIDUAL_ENERGY', 'VERIFY_ZERO_ENERGY'],
+          procedure: [...state.completedSteps],
+          rejectedActions: state.rejectedActions,
+          zeroEnergy: state.verified,
         })}
-        onWorkOrderCreated={(assignment) => onRecordEvent('WORK_ORDER_CREATED', {
+        onWorkOrderCreated={(assignment, state) => onRecordEvent('WORK_ORDER_CREATED', {
           assignmentId: assignment.id,
           missionId: assignment.missionId,
           source: 'COURSE_ENGINEERING_LAB',
-          lifecycle: ['TRIGGER', 'ACKNOWLEDGE', 'DISPATCH', 'EXECUTE', 'VERIFY', 'CLOSE_OUT'],
+          lifecycle: [...state.completedSteps],
+          rejectedActions: state.rejectedActions,
+          closed: state.closed,
         })}
       />
 

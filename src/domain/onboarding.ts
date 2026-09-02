@@ -1,3 +1,4 @@
+import { writeLocalStorage } from './storage.ts';
 export const ONBOARDING_STORAGE_KEY = 'owm.onboarding.v1';
 
 export const ONBOARDING_STEPS = [
@@ -76,7 +77,6 @@ export function loadOnboardingProgress(): OnboardingProgress {
   }
 }
 
-export function saveOnboardingProgress(progress: OnboardingProgress): void {
-  if (typeof localStorage === 'undefined') return;
-  localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(progress));
+export function saveOnboardingProgress(progress: OnboardingProgress): boolean {
+  return writeLocalStorage(ONBOARDING_STORAGE_KEY, JSON.stringify(progress));
 }

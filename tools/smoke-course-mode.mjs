@@ -1,7 +1,8 @@
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
+import { parseCourseExport } from './summarize-course-records.mjs';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const chromePath = process.env.CHROME_PATH
@@ -167,9 +168,44 @@ try {
     await page.getByTestId('course-record-panel').waitFor();
     const download = page.waitForEvent('download');
     await page.getByTestId('course-export-record').click();
-    await download;
+    const exportedFile = await (await download).path();
     const exportedRecord = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
     if (exportedRecord.events.at(-1)?.kind !== 'DEBRIEF_EXPORTED') throw new Error('Course export event was not recorded.');
+    // 匯出檔必須能通過教師端核對：digest 可重算、摘要與 record 一致、週次與解鎖快照存在。
+    const exportedJson = JSON.parse(await readFile(exportedFile, 'utf8'));
+    const verified = parseCourseExport(exportedJson, 'smoke-export.json', { unlockedWeekIds: courseConfig.unlockedWeekIds, assignments: courseConfig.assignments });
+    if (!verified.ok || verified.export.digestStatus !== 'VERIFIED') {
+      throw new Error(`Exported Course Record failed teacher verification: ${JSON.stringify(verified.errors)}`);
+    }
+    if (verified.export.attempts[0]?.weekId !== targetAssignment.weekId || JSON.stringify(exportedJson.unlockedWeekIdsAtExport) !== JSON.stringify(courseConfig.unlockedWeekIds)) {
+      throw new Error('Exported Course Record is missing the week or unlock snapshot.');
+    }
+    if (!/^[0-9a-f]{64}$/.test(exportedJson.recordDigest)) throw new Error('Exported Course Record has no SHA-256 recordDigest.');
+
+    // Engineering Lab 事件必須反映實際操作：LOTO 帶違序次數，Work Order 只在 CLOSE_OUT 才記錄。
+    await page.getByTestId('course-lab-tab-procedures').click();
+    await page.getByTestId('course-procedure-loto-isolate').click(); // 違序：應被拒絕並計數
+    for (const step of ['shutdown', 'isolate', 'lock-tag', 'control-residual-energy', 'verify-zero-energy']) {
+      await page.getByTestId(`course-procedure-loto-${step}`).click();
+    }
+    await page.getByTestId('course-procedure-work-order-trigger').click();
+    const afterTrigger = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
+    if (afterTrigger.events.some((event) => event.kind === 'WORK_ORDER_CREATED' && event.details?.source === 'COURSE_ENGINEERING_LAB')) {
+      throw new Error('Work Order event was recorded at TRIGGER instead of CLOSE_OUT.');
+    }
+    for (const step of ['acknowledge', 'dispatch', 'execute', 'verify', 'close-out']) {
+      await page.getByTestId(`course-procedure-work-order-${step}`).click();
+    }
+    const afterLab = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
+    const labLoto = afterLab.events.find((event) => event.kind === 'LOTO_VERIFIED' && event.details?.source === 'COURSE_ENGINEERING_LAB');
+    const labWorkOrder = afterLab.events.find((event) => event.kind === 'WORK_ORDER_CREATED' && event.details?.source === 'COURSE_ENGINEERING_LAB');
+    if (labLoto?.details?.rejectedActions !== 1 || labLoto?.details?.zeroEnergy !== true || labLoto?.details?.procedure?.length !== 5) {
+      throw new Error(`Lab LOTO event does not carry the actual procedure evidence: ${JSON.stringify(labLoto?.details)}`);
+    }
+    if (labWorkOrder?.details?.closed !== true || labWorkOrder?.details?.rejectedActions !== 0 || labWorkOrder?.details?.lifecycle?.length !== 6) {
+      throw new Error(`Lab Work Order event does not carry the actual lifecycle evidence: ${JSON.stringify(labWorkOrder?.details)}`);
+    }
+    await page.getByTestId('course-lab-tab-data').click();
 
     // 更換匿名代碼需要二次確認，且會先匯出既有紀錄再重建。
     await page.getByTestId('course-learner-code').fill('OWM-SWAP-TEST');
@@ -203,6 +239,20 @@ try {
   }
 
   if (errors.length) throw new Error(`Browser errors:\n${errors.join('\n')}`);
+
+  // course-config.json 載入失敗只降級隱藏課程分頁，戰役／演練必須照常可用（不得整站死路）。
+  const degraded = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  const degradedErrors = [];
+  degraded.on('pageerror', (error) => degradedErrors.push(error.message));
+  await degraded.route('**/course/course-config.json', (route) => route.fulfill({ status: 500, body: 'unavailable' }));
+  await degraded.goto(courseBaseUrl, { waitUntil: 'networkidle' });
+  await degraded.getByTestId('nav-campaign').waitFor({ timeout: 30_000 });
+  if (await degraded.getByTestId('nav-course').count()) throw new Error('Course tab is still offered while the course config failed to load.');
+  if (await degraded.locator('.center-state h1').count()) throw new Error('Course config failure blocked the whole app.');
+  await degraded.getByTestId('nav-challenge').click();
+  if (degradedErrors.length) throw new Error(`Degraded-mode page errors:\n${degradedErrors.join('\n')}`);
+  await degraded.close();
+
   console.log(`Course Mode smoke passed (${unlockedAssignments.length}/${courseConfig.assignments.length} unlocked). Screenshots: ${shot('desktop')}, ${shot('mobile')}${unlockedAssignments.length ? `, ${shot('assessment-no-hints')}` : ''}`);
 } finally {
   await browser.close();
