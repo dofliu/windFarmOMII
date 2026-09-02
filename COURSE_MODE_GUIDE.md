@@ -65,7 +65,45 @@ Assessment 匯出 `OWM_COURSE_RECORD` JSON，至少包含：
 
 - 「重設課程進度」需要第二次點擊確認才會刪除，並可取消；刪除前請先匯出。
 - 在同一瀏覽器輸入**不同的匿名代碼**開始 Assessment 需要第二次點擊確認，且會先自動下載既有代碼的 Course Record，再重建新紀錄（共機教室換人使用時的保護）。
-- Course Record 僅存在該瀏覽器的 localStorage：每次課堂結束前請學生匯出 JSON。
+- Course Record 僅存在該瀏覽器的 localStorage：每次課堂結束前請學生匯出 JSON（見下方課堂 SOP）。
+- 匯出檔含 `recordDigest` 與 `unlockedWeekIdsAtExport`，教師以 `pnpm course:summary` 核對；分項分數在載入與匯出時都由六個分項重算。
+- 課程設定（`course-config.json`）載入失敗時只隱藏課程分頁，戰役／演練照常可用；瀏覽器封鎖儲存時不會白屏。
+
+## 課堂 SOP：每堂課結束前先匯出
+
+Course Record 只存在該瀏覽器的 localStorage（`owm.course.v1`）：共機、換裝置、隱私模式、清除網站資料都會遺失；線上版與離線包是不同 origin，紀錄不互通。因此：
+
+1. 每堂課結束前，每位學生按「匯出 Course Record」下載 JSON，並上傳至教師指定位置。
+2. 重做任務之前也先匯出；`attemptCount` 會因重設或換瀏覽器歸零，教師保留匯出序列才能還原重試次數。
+3. 若瀏覽器封鎖儲存（例如嵌入 LMS iframe），系統不會崩潰，但紀錄可能無法保存；請改用獨立分頁開啟正式網址。
+
+## 教師端彙整與核對：`pnpm course:summary`
+
+把全班的 `OWM_COURSE_RECORD_<課程代碼>_<匿名代碼>.json` 放進 `course-results/`，執行：
+
+```powershell
+pnpm course:summary
+```
+
+工具會產生 `course-results/COURSE_SUMMARY.md` 與 `.json`，並：
+
+- 重算每份匯出的 `recordDigest`（SHA-256 over canonical `record`）；匯出後被改過的檔案標記 `MISMATCH`。
+- 由六個分項重算 total／grade，並核對摘要欄位（attemptCount、componentScores、studentExplanations、decisionOrder、hintUsage）與內嵌 `record` 一致。
+- 以「學生 × 週次 × 嘗試」列出結算時間、分數、四欄 Debrief 完成度、提示數、決策數、Engineering Lab 的 LOTO／Work Order 完成數與違序次數。
+- 依 `public/course/course-config.json`（可用 `--config <path>` 覆寫）標記超前解鎖週次的嘗試；同一代碼多份匯出時以 `exportedAt` 最新者為準，並警告不符合 `OWM-XXXX-XXXX` 格式的代碼（可能是姓名或學號）。
+
+## 哪些欄位可信、哪些不可信
+
+| 欄位 | 可信度 | 說明 |
+|---|---|---|
+| `studentExplanations`（結論／證據／不確定性／殘餘風險） | **主要評分物** | 學生自己寫的工程說明；digest 保證匯出後未被改動。 |
+| `componentScores`、`recordDigest`、`configVersion`、`releaseVersion` | 可核對 | 分項分數由 `course:summary` 重算；digest 對不上即視為匯出後竄改。 |
+| `hintUsage` | 應恆為 0 | Assessment 完全停用 REC／GUIDE；出現非零值請視為異常。 |
+| `decisionOrder`／DECISIONS 數 | 僅佐證 | 含系統自動蓋章的 `JSA_COMPLETED`、階段代理的 `LOTO_VERIFIED` 與結算附加的 `WORK_ORDER_CREATED`，不是能力量測。 |
+| Engineering Lab 的 `LOTO_VERIFIED`／`WORK_ORDER_CREATED` | 僅佐證 | 程序練習的完成與違序次數，不代表 Assessment 任務中的實際操作。 |
+| `attemptCount` | 不可作為評分依據 | 一鍵重設、清除網站資料、換瀏覽器都會歸零且不留痕跡。 |
+
+靜態網站加 localStorage 的架構無法阻止有腳本能力的偽造（`missions.json` 本身含正確診斷選項）；digest 只是把門檻從「記事本」提高到「要會寫腳本」。重要考核請搭配現場監考或口試。
 
 ## CLO 工程學習頁
 

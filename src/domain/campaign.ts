@@ -1,4 +1,5 @@
 import type { MissionDebrief, MissionState } from './runtime';
+import { writeLocalStorage } from './storage.ts';
 import type { CharacterData, CodexEntryData, DiagnosisOptionData, EquipmentData, EquipmentTier, MissionData, TurbineData, VesselData } from './types';
 import { careerTrackRewardUpdates, type CareerTrackRewardUpdate } from './careerTrack.ts';
 import { FIVE_LEVEL_XP_THRESHOLDS } from './progression.ts';
@@ -572,9 +573,8 @@ export function loadCampaignProgress(missions: MissionData[], equipment: Equipme
   return createInitialCampaign(missions, equipment, turbines);
 }
 
-export function saveCampaignProgress(progress: CampaignProgress): void {
-  if (typeof localStorage === 'undefined') return;
-  localStorage.setItem(CAMPAIGN_STORAGE_KEY, JSON.stringify(progress));
+export function saveCampaignProgress(progress: CampaignProgress): boolean {
+  return writeLocalStorage(CAMPAIGN_STORAGE_KEY, JSON.stringify(progress));
 }
 
 export function serializeCampaignSave(progress: CampaignProgress): string {

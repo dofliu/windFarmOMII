@@ -2,19 +2,23 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   COURSE_STORAGE_KEY,
   appendCourseEvent,
+  buildCourseExport,
   completeCourseAttempt,
+  courseRecordDigest,
   createCourseRecord,
   generateAnonymousLearnerCode,
   isCourseDebriefComplete,
   loadCourseRecord,
   normalizeCourseConfig,
   normalizeCourseRecord,
+  normalizeCourseScores,
   saveCourseRecord,
   serializeCourseRecord,
   startCourseAttempt,
   updateCourseExplanation,
   type CourseConfig,
 } from './course';
+import { digestCanonical } from './digest';
 
 const assignment = {
   id: 'COURSE-W01',
@@ -68,11 +72,13 @@ describe('Course Mode learning record', () => {
     const exported = JSON.parse(serializeCourseRecord(explained, new Date('2026-09-01T00:04:00.000Z')));
 
     expect(explained.learnerCode).toBe('OWM-A001');
+    // 傳入的 total 78／B 與分項不一致：結算時一律由六個分項重算（90×.25+100×.3+80×.15+70×.1+60×.1+50×.1 = 82.5 → 83／A）。
     expect(explained.attempts[0]).toMatchObject({
+      weekId: 'W01',
       randomSeed: 357101,
       decisionOrder: ['JSA_COMPLETED', 'DIAGNOSIS_SELECTED'],
       hintUsedCount: 0,
-      scores: { total: 78, grade: 'B' },
+      scores: { total: 83, grade: 'A' },
     });
     expect(exported).toMatchObject({
       format: 'OWM_COURSE_RECORD',
@@ -80,7 +86,44 @@ describe('Course Mode learning record', () => {
       attemptCount: 1,
       hintUsage: { total: 0, assessmentPolicy: 'REC_AND_GUIDE_DISABLED' },
     });
-    expect(exported.studentExplanations[0].conclusion).toBe('需停機檢查主軸承。');
+    expect(exported.studentExplanations[0]).toMatchObject({ assignmentId: 'COURSE-W01', weekId: 'W01', conclusion: '需停機檢查主軸承。' });
+    expect(exported.weeks).toEqual(['W01']);
+    expect(exported.recordDigest).toMatch(/^[0-9a-f]{64}$/);
+    expect(exported.recordDigest).toBe(digestCanonical(exported.record));
+    expect(exported.unlockedWeekIdsAtExport).toBeNull();
+    expect(buildCourseExport(explained, new Date(), { unlockedWeekIds: ['W01', 'W02'] }).unlockedWeekIdsAtExport).toEqual(['W01', 'W02']);
+  });
+
+  it('scores 由六個分項重算 total／grade，DevTools 竄改的 total 或越界分項不會存活', () => {
+    expect(normalizeCourseScores({ completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 100, grade: 'S' }))
+      .toEqual({ completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 83, grade: 'A' });
+    expect(normalizeCourseScores({ completion: 100, safety: 100, evidence: 100, time: 100, fatigue: 100, cost: 100 })).toMatchObject({ total: 100, grade: 'S' });
+    expect(normalizeCourseScores({ completion: 101, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50 })).toBeUndefined();
+    expect(normalizeCourseScores({ completion: 100, safety: '90', evidence: 80, time: 70, fatigue: 60, cost: 50 })).toBeUndefined();
+    expect(normalizeCourseScores({ total: 100, grade: 'S' })).toBeUndefined();
+
+    const now = new Date('2026-09-01T00:00:00.000Z');
+    const settled = completeCourseAttempt(
+      startCourseAttempt(createCourseRecord(config, 'OWM-B001', 'desktop', now), assignment, now),
+      { completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 78, grade: 'B' },
+      {},
+      now,
+    );
+    const tampered = JSON.parse(JSON.stringify(settled));
+    tampered.attempts[0].scores.total = 100;
+    tampered.attempts[0].scores.grade = 'S';
+    expect(normalizeCourseRecord(tampered)?.attempts[0].scores).toMatchObject({ total: 83, grade: 'A' });
+    tampered.attempts[0].scores.completion = 999;
+    expect(normalizeCourseRecord(tampered)?.attempts[0].scores).toBeUndefined();
+  });
+
+  it('recordDigest 對 record 任一欄位改動都敏感，且與 canonical JSON 規則一致', () => {
+    const now = new Date('2026-09-01T00:00:00.000Z');
+    const record = startCourseAttempt(createCourseRecord(config, 'OWM-C001', 'desktop', now), assignment, now);
+    const digest = courseRecordDigest(record);
+    expect(digest).toBe(digestCanonical(JSON.parse(JSON.stringify(record))));
+    expect(courseRecordDigest({ ...record, learnerCode: 'OWM-C002' })).not.toBe(digest);
+    expect(courseRecordDigest(updateCourseExplanation(record, { conclusion: 'x' }, now))).not.toBe(digest);
   });
 
   it('重玩任務增加 attempt 並加入 MISSION_REPLAYED', () => {

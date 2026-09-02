@@ -24,6 +24,8 @@ FILES = {
 }
 AUDIT_FILE = "bossChallengeAudit.json"
 SCENE_ASSET_FILE = "sceneAssets.json"
+# 只供離線工具使用、不得進入 public/data 部署包的資料檔（與 tools/sync-data.mjs 白名單一致）。
+OFFLINE_ONLY_FILES = {"prompts.json", "character_skills.json"}
 
 
 def load_json(path: Path):
@@ -340,7 +342,13 @@ def main() -> int:
 
     errors = validate(source)
     for filename in ["manifest.json", *FILES.values(), AUDIT_FILE, SCENE_ASSET_FILE]:
-        if (source / filename).read_bytes() != (web_data / filename).read_bytes():
+        if filename in OFFLINE_ONLY_FILES:
+            if (web_data / filename).exists():
+                errors.append(f"Offline-only data must not be deployed to public/data: {filename}")
+            continue
+        if not (web_data / filename).exists():
+            errors.append(f"Web public/data copy missing (run pnpm sync:data): {filename}")
+        elif (source / filename).read_bytes() != (web_data / filename).read_bytes():
             errors.append(f"Web public/data copy differs: {filename}")
 
     scene_assets = load_json(source / SCENE_ASSET_FILE)

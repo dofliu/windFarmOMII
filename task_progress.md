@@ -1218,3 +1218,18 @@
 - 場景 HTML 與 `storyboard.json` 已進版控，可單景改字重渲；渲染產物與 MP4 由 `.gitignore` 排除。
 - 交付版為母帶（CRF 19、35.2 MiB）重壓至 CRF 23（25.8 MiB）以符合傳輸上限，音軌未重壓。
 - 待辦：若要換成真實免版稅配樂，只需重跑 assemble 一步（`--music`），不必重渲場景。
+
+## Current increment - 2026-09-02（P1：成績證據可信度、穩定性與教師端核對工具）
+
+- 依 `OPS_SYSTEM_REVIEW_2026-08-31.md` H 節第 5–8 步與第 10 步的教師端工具完成 P1 修正；版本維持 `3.57.1-course-mode-p0`（學期凍結允許的 bug fix，不動平衡、任務條件與教學內容 D 節）。
+- B1：戰役／演練／練習點 GUIDE 不再把 `HINT_USED` 反向記入最後一次 Assessment attempt；Course Record 的 `hintUsage` 應恆為 0。
+- B2：`normalizeCourseScores` 驗證六個分項範圍並一律由分項重算 total／grade（與 `missionDebrief` 共用 `scoring.ts` 公式）；匯出加入 `recordDigest`（SHA-256 over canonical record，純 TS 實作 `digest.ts`，測試對照 Web Crypto）；新增教師端 `pnpm course:summary`（`tools/summarize-course-records.mjs`）重算 digest／分數、核對摘要與 record 一致、輸出學生 × 週次 × 嘗試表與 integrity 旗標。
+- B4：Engineering Lab 的 `WORK_ORDER_CREATED` 改在 CLOSE_OUT 才記錄並帶實際 `lifecycle`／`closed`／`rejectedActions`；`LOTO_VERIFIED` 帶 `procedure`／`zeroEnergy`／`rejectedActions`；事件改在 updater 之外觸發避免 StrictMode 重複記錄。
+- B8：attempt 快照 `weekId`，匯出摘要每列含 `assignmentId`／`weekId`／`configVersion`，並加 `unlockedWeekIdsAtExport` 供教師偵測超前解鎖的嘗試。
+- C1：`course-config.json` 載入失敗或無效改為降級：隱藏課程分頁、戰役／演練／知識庫照常，課程頁顯示原因與重新載入／回到戰役。
+- C2：新增 `storage.ts` 安全層，所有 `localStorage` 寫入（course、campaign、onboarding、playtest、boss challenge、theme、art pack、audio mute）包 try/catch；audio engine 建構子不再於 module load 直接讀 storage；合併 `App.tsx` 重複的 theme effect。
+- C3：`sync-data.mjs` 改白名單只複製瀏覽器實際 fetch 的 14 個檔；`prompts.json`／`character_skills.json` 不再進部署包，`validate_owm_data.py` 若在 `public/data` 看到它們會失敗；Pages build 由 10.0 MiB 降為 5.1 MiB（68 檔）。
+- 文件：`COURSE_MODE_GUIDE.md` 新增「每堂課先匯出」SOP、`course:summary` 用法與「欄位可信度」表；`course-results/README.md`；CHANGELOG 與 OPS review 修復狀態同步。
+- 驗證：`tsc --noEmit`、27 test files／168 tests（新增 digest、scores、summary tool 測試）、`validate:teaching-deployment` 全綠；`smoke:course` 對 `/windFarmOMII/` Pages build 通過（新增匯出檔教師核對、Lab 證據、config 500 降級斷言）。
+- Guardrail：本輪不處理 B3（Debrief 閘門只看最新 attempt）、B5–B7、C4（Phaser 重建）、C5（CI 結構）、C6、D 節教學內容與 F 其餘項目。
+

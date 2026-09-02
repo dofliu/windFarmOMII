@@ -1,4 +1,5 @@
 import type { CampaignProgress } from './campaign';
+import { writeLocalStorage } from './storage.ts';
 import type { CharacterRuntimeState, MissionDebrief, MissionState } from './runtime';
 import type { BossChallengeAuditItemData, BossData, CharacterData, VesselData } from './types';
 import type { BossChallengeDraftVerification } from './bossChallengeVerification';
@@ -244,9 +245,8 @@ export function seedBossChallengeSquadDraftFromAudit(
   return recordBossChallengeSquadDraft(current, boss, teamIds, updatedAt);
 }
 
-export function saveBossChallengeProgress(progress: BossChallengeProgress): void {
-  if (typeof localStorage === 'undefined') return;
-  localStorage.setItem(BOSS_CHALLENGE_STORAGE_KEY, JSON.stringify(progress));
+export function saveBossChallengeProgress(progress: BossChallengeProgress): boolean {
+  return writeLocalStorage(BOSS_CHALLENGE_STORAGE_KEY, JSON.stringify(progress));
 }
 
 export function serializeBossChallengeSave(progress: BossChallengeProgress): string {

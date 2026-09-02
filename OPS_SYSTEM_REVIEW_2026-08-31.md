@@ -5,6 +5,8 @@
 檢視目的:以「與課程連結的運維教學系統」角度,確認上線前需要注意的事項、未完成的功能與 bug。
 
 > **修復狀態(2026-08-31 更新)**:A 節六項 P0 已全部修復並驗證(見 CHANGELOG `3.57.1-course-mode-p0 - 2026-08-31` 條目與 `task_progress.md` 同日 increment);B/C/D/E/F 節維持待辦。A 節以下內容保留為當時的檢視紀錄。
+>
+> **修復狀態(2026-09-02 更新)**:依 H 節順序完成第 5–8 步與第 10 步的教師端工具:**B1**(移除非 assessment 的 `HINT_USED` 寫入)、**B2**(scores 驗證與重算、`recordDigest`、教師核對腳本 `pnpm course:summary`)、**B4**(Work Order 改 `closed` 觸發並記錄 `rejectedActions`)、**B8**(匯出摘要加 `weekId`/`assignmentId` 與 `unlockedWeekIdsAtExport`)、**C1**(course-config soft-fail)、**C2**(所有 `localStorage` 寫入包 try/catch、audio constructor 防禦、重複 theme effect 合併)、**C3**(sync-data 白名單)、**F**「教師端 Course Record 彙整/核對工具」。仍待辦:B3/B5/B6/B7、C4/C5/C6、D 節、F 其餘項目。見 CHANGELOG `3.57.1-course-mode-p0 - 2026-09-02`。
 
 ---
 
