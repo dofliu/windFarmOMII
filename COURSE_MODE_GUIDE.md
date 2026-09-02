@@ -1,5 +1,7 @@
 # OWM Course Mode 教師操作指南
 
+> 開發與驗證操作見 [`DEVELOPMENT.md`](DEVELOPMENT.md)；待辦與優先序見 [`ROADMAP.md`](ROADMAP.md)。
+
 ## 固定版本
 
 - 遊戲版本：`3.57.1-course-mode-p0`

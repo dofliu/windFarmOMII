@@ -16,6 +16,7 @@
 - 候選數量：`119`，全部已完成視覺核准與 Scene promotion。
 - 119 個候選均已完成 `1915x821 RGB` runtime 尺寸檢查；本文件不會自動改寫 QA status。
 - 主要總覽：[scene-pack-contact-sheet-all-v018.png](assets/source-art/qa/scene-pack-2026-07-24/scene-pack-contact-sheet-all-v018.png)。
+  （`assets/source-art/` 未進版控；乾淨 clone 沒有這些檔案，需用 `pnpm scene:generate` 等指令在本機重建。）
 - 完整機器清單：[scene-pack-manifest.json](assets/source-art/qa/scene-pack-2026-07-24/scene-pack-manifest.json)。
 
 ## 建議審查順序

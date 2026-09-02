@@ -1,6 +1,32 @@
 # Offshore Wind Masters Web
 
-> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-07-27.md](NEXT_SESSION_HANDOFF_2026-07-27.md)。目前主線是執行 3–5 位真人 Playtest 並彙整匿名證據，不是繼續增加圖片或直接再調整平衡數值。
+> **下一個開發 session 請先讀 [NEXT_SESSION_HANDOFF_2026-09-02.md](NEXT_SESSION_HANDOFF_2026-09-02.md)。**
+>
+> 文件入口：[開發與操作說明](DEVELOPMENT.md) · [開發規劃](ROADMAP.md) ·
+> [教師操作指南](COURSE_MODE_GUIDE.md) · [運維系統檢視](OPS_SYSTEM_REVIEW_2026-08-31.md) ·
+> [發布就緒狀態](RELEASE_READINESS.md)
+>
+> 目前主線是 **P1 成績證據可信度**（見 ROADMAP）。真人 Playtest 與 P01 production art 維持既有狀態；
+> 兩者都不是「繼續生圖」或「直接再調平衡數值」。
+
+## Current verification snapshot — 2026-09-02
+
+- 現行版本：`3.57.1-course-mode-p0`；`main` @ `488ee4a`（PR #2 已合併），GitHub Actions run #3 部署成功。
+- 本輪修完 [`OPS_SYSTEM_REVIEW_2026-08-31.md`](OPS_SYSTEM_REVIEW_2026-08-31.md) A 節的六項 P0 阻斷性問題：
+  - 教師每週解鎖改變 `configVersion` **不再清除**學生 Course Record；每個 attempt 快照自己的 `configVersion`。
+  - 更換匿名代碼需二次確認並自動先匯出舊紀錄；重設課程進度改為二段式（可取消）。
+  - Assessment 不再從 OBJECTIVES 分頁（`SKILL FORECAST`／`END ROUND FORECAST`）或 DOM
+    （`diagnosis-choice-correct`、`data-decision-guide-*`）洩漏建議與正確答案。
+  - Engineering Lab 只提供已解鎖週次且資料包改以週次編號為鍵；`startCourseAssessment` 啟動時再驗一次週次鎖。
+  - `smoke:course` 改為讀部署站上的 `course-config.json` 動態斷言 —— 教師解鎖任何週次組合（含 `NONE`）都不會再讓 CI 失敗、阻斷部署。
+- 驗證：`tsc`、25 test files／**160 tests**、`validate:course`、`validate:teaching-deployment`、
+  `build:pages`（10.0 MiB）全綠；`smoke:course` 在 W01／W01+W02／NONE 三種解鎖情境均通過；
+  另以獨立 E2E 驗證紀錄跨 `configVersion` 保留、鎖定週 devtools 繞過被拒。
+- 尚未處理（依序見 [`ROADMAP.md`](ROADMAP.md)）：P1 成績證據可信度（`HINT_USED` 反向記帳、`scores` 未驗證、
+  Work Order 事件時機與 `rejectedActions` 未記錄）、P2 教學內容正確性（OPEX 定義、ST 時序語意、KPI 零故障）、
+  P3 穩定性（course-config soft-fail、`localStorage` 寫入防護、部署包瘦身）。
+- 真人 Playtest 仍為 **0 筆**；P01 production queue 仍為 `210 / 90 / 0`。兩者未被本輪修復改動。
+- 專案介紹影片（3:00、1080p30）場景與分鏡在 [`promo/`](promo/README.md)。
 
 ## Current verification snapshot — 2026-07-30
 
@@ -20,6 +46,7 @@
 - 使用者已全量核准 `119` 個 Scene 與 `90` 個 P01 production candidates；Scene 已完成 promotion，P01 仍待 final AI upscale 與 production promotion。
 - 目前 P01 production queue 為 `210 Upscale Pending / 90 Production QA Pending / 0 Production Approved`；4096x6144 staging 檔案不冒充 final AI upscale。
 - 審查與追蹤入口：[SCENE_VISUAL_APPROVAL_PACKET.md](SCENE_VISUAL_APPROVAL_PACKET.md)、[P01 production review sheet](assets/source-art/qa/production-p01-2026-07-24/production-contact-sheet-all-v001.png)、[approval ledger](assets/source-art/qa/visual-approval-ledger-2026-07-24.json)、[release-gate audit](assets/source-art/qa/release-gate-audit-2026-07-24.json)。
+  （`assets/source-art/` 在 `.gitignore` 內，這些 QA 產物只存在維護者本機；乾淨 clone 看到的是失效連結，屬預期，可用 `pnpm qa:visual-ledger`、`pnpm qa:release-audit` 等指令重建。）
 
 下方的歷史 milestone 保留當時版本與數值；若與本節不同，以本節及 `RELEASE_READINESS.md` 為準。
 

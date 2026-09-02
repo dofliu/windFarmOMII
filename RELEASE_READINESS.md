@@ -1,5 +1,18 @@
 # OWM Web MVP Release Readiness
 
+## Current project increment - 2026-09-02
+
+- `main` @ `488ee4a`；GitHub Actions run #3 驗證與部署成功，線上版已帶本輪修正。
+- 修完運維檢視 A 節的六項 P0 阻斷性問題（紀錄保留、二段式確認、Assessment 防洩題、週次鎖執行、
+  CI 動態斷言）；詳見 CHANGELOG `3.57.1-course-mode-p0 - 2026-08-31` 與 [`ROADMAP.md`](ROADMAP.md)。
+- 驗證基準更新為 25 test files／**160 tests**；`validate:teaching-deployment` 與
+  `smoke:course`（W01／W01+W02／NONE 三情境）全綠。
+- **教學部署可用性判斷**：課程模式本身可用於 `2026-FALL` 上課；但成績證據欄位
+  （`attemptCount`、`hintUsage`、`componentScores`、`decisionOrder`）在 ROADMAP 的 P1 修完前
+  不可作為評分依據，評分應以四欄 Debrief 為主。
+- Production art gate 與 Playtest 狀態**未變**：queue 仍 `210 / 90 / 0`，真人資料仍為 0 筆。
+- 新增 3 分鐘專案介紹影片（`promo/`），不影響任何 release gate。
+
 ## Current project increment - 2026-07-30
 
 - Current version：`3.57.1-course-mode-p0`。
