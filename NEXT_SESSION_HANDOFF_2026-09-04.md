@@ -25,6 +25,8 @@
 - `pnpm smoke:course`：W01-only、Desktop／390px Mobile、Assessment no-hints、v2 export、teacher summary、Lab provenance、config failure degradation 全數通過。
 - `pnpm smoke:onboarding`、`smoke:mobile:flow`、`smoke:layout`、`smoke:deployment:compact`、`smoke:operation:compact`、`smoke:gameplay`：全數通過。
 - Balance 保持：Campaign L1 6/6、L3 12/12、L5 15/15 required missions；Boss 100/100；MNT 55；最大持續疲勞 76%；未依 automated evidence 調整難度。
+- GitHub `main` 已更新；Actions run `33829151062` 的 build／Desktop-Mobile Course smoke／offline backup／Pages deploy 全數成功。
+- 公開站 `https://dofliu.github.io/windFarmOMII/` 回應 HTTP 200；公開 CourseConfig 已回讀為 `3.58.0-course-record-integrity`。
 
 ## 學生體驗觀察
 

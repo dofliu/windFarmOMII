@@ -2,7 +2,7 @@
 
 ## Integrated candidate - 2026-09-04
 
-- Version：`3.58.0-course-record-integrity`；已整合本地 v2 integrity gate 與遠端 P0/P1 hotfix，待 GitHub Actions 完成本次 Pages deployment 後才視為公開版更新。
+- Version：`3.58.0-course-record-integrity`；已整合本地 v2 integrity gate 與遠端 P0/P1 hotfix，並由 GitHub Actions run `33829151062` 完成 build、Course smoke、offline backup 與 Pages deployment；公開 CourseConfig 已回讀確認版本一致。
 - Course Record schema v2 已要求 event `context`／`actor`／`attemptNumber`；只有 `learner + assessment_runtime` 可進入正式 `decisionOrder`。
 - Guided Practice 不再修改既有 Assessment record；system-derived JSA／LOTO／Work Order 與 Engineering Lab events 僅保留為 audit log。
 - Export gate 在 UI 與 serializer 均採 fail closed：所有 attempts 必須結算、具 scores 且四欄 Debrief 完整。
