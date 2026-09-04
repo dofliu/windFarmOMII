@@ -1198,7 +1198,7 @@
 
 - Version：`3.58.0-course-record-integrity`；CourseConfig 保留 `2026-FALL-manual-release-v1`、`frozen=true`、W01-only，不修改任務數值或評分平衡。
 - Course Record 升級為 schema v2；event 必須具有 `context`／`actor` provenance，可定位 Assessment attempt 時另含 `attemptNumber`。
-- 此版本尚未 commit／push／deploy；正式 `origin/main` 仍為 `3.57.1-course-mode-p0`。
+- 當時此版本尚未 commit／push／deploy；此歷史狀態已由 2026-09-04 整合增量取代。
 - `decisionOrder` 與 `hintUsedCount` 只接受 `learner + assessment_runtime`；system-derived JSA／LOTO／Work Order、Guided Practice 與 Practice Lab 不再污染正式決策。
 - Guided Practice 已移除對既有 Course Record 寫入 `HINT_USED` 的錯誤路徑。
 - Export gate 改為檢查所有 attempts：必須結算、具 component scores、四欄 Debrief 完整；UI 與 serializer 都 fail closed。
@@ -1210,3 +1210,51 @@
 - 本增量沒有真人學生資料；automated flow、unit test、smoke 與 simulation 不作學習成效宣稱。
 - 文件已同步 README、CHANGELOG、Release Readiness、Course Guide、Requirement Audit、Scene Roadmap、新 handoff、Web／Course Addendum 與 reports evidence index。
 - 下一主線：依正式課綱建立 18 週 CLO evidence matrix 與 Course-specific pilot protocol，再執行 3–5 位真人學生 W09→W10 pilot；真人證據前不調整 frozen balance。
+
+## Current increment - 2026-08-31（P0 阻斷性修正：課程紀錄保護與 Assessment 防洩題）
+
+- 依 `OPS_SYSTEM_REVIEW_2026-08-31.md` 的 P0 清單完成六項阻斷性修正；版本維持 `3.57.1-course-mode-p0`（學期凍結允許的 bug fix，不動平衡與任務條件）。
+- A1：教師每週解鎖改變 `configVersion` 不再重建（清除）學生 Course Record；沿用既有紀錄並更新版本，每個 attempt 新增 `configVersion` 快照欄位。
+- A2：`smoke:course` 改為讀取部署站上的 `course-config.json` 動態斷言解鎖數、各週狀態、版本與固定配置；解鎖任何週次組合（含 `NONE`）都不會再讓 CI build 失敗、阻斷 Pages 部署。
+- A3：Assessment 的 OBJECTIVES 分頁不再顯示 `SKILL FORECAST`（推薦技能）與 `END ROUND FORECAST`（回合預測）；smoke 增加對應斷言。
+- A4：正確診斷選項不再於 assessment 掛 `diagnosis-choice-correct` testid（僅 `showRecommendation` 時輸出，campaign 導覽不受影響）；decision prompt 在 assessment 不輸出 `data-decision-guide-target/label`。
+- A5：Engineering Lab 只提供已解鎖週次的資料包（空清單有明確 empty state）；資料包改以週次編號為鍵，與 config 順序解耦；鎖定週卡片不再顯示隊伍／裝備／船舶／SEED；`startCourseAssessment` 啟動時 re-check `unlockedWeekIds`（devtools 移除 disabled 也無法啟動）。
+- A6：重設課程進度改為二段式確認（可取消）；更換匿名代碼需二段式確認並自動先匯出舊紀錄再重建。
+- 所有 smoke 腳本支援 `CHROME_PATH` 環境變數覆寫（先前多數硬編碼 Windows Chrome 路徑，無法在 CI／Linux 驗證）。
+- 驗證：`tsc --noEmit`、25 test files／160 tests（新增 configVersion 快照測試）、`validate:course`、`build:pages`（10.0 MiB）全綠；`smoke:course` 在 W01、W01+W02、NONE 三種解鎖情境全數通過；獨立 E2E 驗證舊版本紀錄在新版本下開始任務時完整保留（attempts 累加、單一 MODE_SELECTED）；鎖定週 devtools 繞過被拒；`smoke:onboarding` 等 campaign 流程回歸通過。
+- Guardrail：本輪不處理 P1（HINT_USED 反向記帳、scores 驗證、record digest、Work Order 事件時機、OPEX 命名、ST 產生器語意等），已列於 review 文件 B／C／D 節。
+
+## Current increment - 2026-08-31（專案介紹影片 3 分鐘完整版）
+
+- 以 `repo-intro-video` 技能產出 `promo/OWM_intro_3min.mp4`：3:00 整、1080p30、5400 格、21 景、含合成氛圍配樂（-22.2 LUFS）。
+- 敘事分章：開場（hook／問題／定位）→ 課程雙軌（練習與評量分流、教師手動解鎖、固定評量條件）→ 工程實作（SCADA／CMS 資料包、五個可靠度 KPI 與推導、五步 LOTO 與六階段派工、IEC 61131-3 ST 產生）→ 運維決策（戰役與六機風場、人員疲勞與資源、裝備配置、重大事故演練）→ 戲劇景（全片唯一）→ 成果（任務軌跡、匿名紀錄、四欄檢討、內容規模、工程品質）→ CTA。
+- 每 3–4 景換一次色調當換章訊號；`fadeblack` 與戲劇景全片各只用一次。
+- 影片數字全部取自實際程式與資料：KPI 取 `courseEngineering.ts` 公式輸出（720−12=708h、700/708=98.87%、MTTR 5.76h、OPEX $80.5k），實體數量取 `json/`（300 角色／500 技能／200 裝備／150 場景／100 事故），測試數為修復後的 160 項。
+- 品質關卡：21 張抽查格逐張檢視；新增 `promo/_measure_bounds.py` 量測 21/21 景在鏡頭推近最大時無切邊；成片另抽 6 個時間點驗證順序與轉場。
+- 修掉一個真缺陷：`scene19_scale` 的 `.sn span` 選到 `<b>` 內的 count-up span，把 76px 大數字壓成 28px；改為 `.sn > span` 後重渲該景。
+- 場景 HTML 與 `storyboard.json` 已進版控，可單景改字重渲；渲染產物與 MP4 由 `.gitignore` 排除。
+- 交付版為母帶（CRF 19、35.2 MiB）重壓至 CRF 23（25.8 MiB）以符合傳輸上限，音軌未重壓。
+- 待辦：若要換成真實免版稅配樂，只需重跑 assemble 一步（`--music`），不必重渲場景。
+
+## Current increment - 2026-09-02（P1：成績證據可信度、穩定性與教師端核對工具）
+
+- 依 `OPS_SYSTEM_REVIEW_2026-08-31.md` H 節第 5–8 步與第 10 步的教師端工具完成 P1 修正；版本維持 `3.57.1-course-mode-p0`（學期凍結允許的 bug fix，不動平衡、任務條件與教學內容 D 節）。
+- B1：戰役／演練／練習點 GUIDE 不再把 `HINT_USED` 反向記入最後一次 Assessment attempt；Course Record 的 `hintUsage` 應恆為 0。
+- B2：`normalizeCourseScores` 驗證六個分項範圍並一律由分項重算 total／grade（與 `missionDebrief` 共用 `scoring.ts` 公式）；匯出加入 `recordDigest`（SHA-256 over canonical record，純 TS 實作 `digest.ts`，測試對照 Web Crypto）；新增教師端 `pnpm course:summary`（`tools/summarize-course-records.mjs`）重算 digest／分數、核對摘要與 record 一致、輸出學生 × 週次 × 嘗試表與 integrity 旗標。
+- B4：Engineering Lab 的 `WORK_ORDER_CREATED` 改在 CLOSE_OUT 才記錄並帶實際 `lifecycle`／`closed`／`rejectedActions`；`LOTO_VERIFIED` 帶 `procedure`／`zeroEnergy`／`rejectedActions`；事件改在 updater 之外觸發避免 StrictMode 重複記錄。
+- B8：attempt 快照 `weekId`，匯出摘要每列含 `assignmentId`／`weekId`／`configVersion`，並加 `unlockedWeekIdsAtExport` 供教師偵測超前解鎖的嘗試。
+- C1：`course-config.json` 載入失敗或無效改為降級：隱藏課程分頁、戰役／演練／知識庫照常，課程頁顯示原因與重新載入／回到戰役。
+- C2：新增 `storage.ts` 安全層，所有 `localStorage` 寫入（course、campaign、onboarding、playtest、boss challenge、theme、art pack、audio mute）包 try/catch；audio engine 建構子不再於 module load 直接讀 storage；合併 `App.tsx` 重複的 theme effect。
+- C3：`sync-data.mjs` 改白名單只複製瀏覽器實際 fetch 的 14 個檔；`prompts.json`／`character_skills.json` 不再進部署包，`validate_owm_data.py` 若在 `public/data` 看到它們會失敗；Pages build 由 10.0 MiB 降為 5.1 MiB（68 檔）。
+- 文件：`COURSE_MODE_GUIDE.md` 新增「每堂課先匯出」SOP、`course:summary` 用法與「欄位可信度」表；`course-results/README.md`；CHANGELOG 與 OPS review 修復狀態同步。
+- 驗證：`tsc --noEmit`、27 test files／168 tests（新增 digest、scores、summary tool 測試）、`validate:teaching-deployment` 全綠；`smoke:course` 對 `/windFarmOMII/` Pages build 通過（新增匯出檔教師核對、Lab 證據、config 500 降級斷言）。
+- Guardrail：本輪不處理 B3（Debrief 閘門只看最新 attempt）、B5–B7、C4（Phaser 重建）、C5（CI 結構）、C6、D 節教學內容與 F 其餘項目。
+
+## Current increment - 2026-09-04（本地／雲端整合與學生體驗健檢）
+
+- 將本地 `3.58.0-course-record-integrity` 與遠端 2026-08-31／09-02 P0/P1 commits 整合至同一 `main`，保留 Course Record v2 fail-closed gate。
+- 統一 Course Record 工具：`pnpm course:summary` 彙整班級資料夾；`pnpm course:inspect-legacy -- <file>` 檢查 2026-08-03 legacy v1 單檔。
+- Assessment OBJECTIVES 不再顯示 skill／end-round forecast；decision prompt 不輸出 guide target；system-derived JSA／LOTO／Work Order 只留 audit provenance，不進正式 `decisionOrder`。
+- 新 Assessment 入口只接受 `OWM-XXXX-XXXX`；換匿名代碼須目前紀錄 export-ready 並經第二次確認，自動匯出舊紀錄後才建立新紀錄。
+- 驗證：`pnpm validate` 通過 28 test files／183 tests；Course、Onboarding、390px Mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 全數通過。
+- 人因證據仍未取得；Mobile Course 首頁長度與資訊密度是下一個 UI 優先項，不以 automated smoke 宣稱學生吸引力或學習成效。

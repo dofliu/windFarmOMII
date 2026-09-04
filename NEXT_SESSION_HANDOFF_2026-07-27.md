@@ -33,6 +33,8 @@
 - 導覽卡可完全收起，頂部「導覽 n/5」會從原進度展開；底層 Deployment tabs 與 Readiness controls 在 Desktop／Mobile 均可操作。
 - 最新完整驗證基準為 23 個測試檔、150 項測試；仍不得把自動驗證宣稱為玩家理解。
 
+- 2026-08-31／09-02 課程系統審查修正：P0 六項（紀錄保護、防洩題、週次鎖、CI 動態斷言）與 P1 的 B1／B2／B4／B8／C1／C2／C3 已完成；匯出檔含 `recordDigest`，教師以 `pnpm course:summary` 核對全班紀錄。尚待辦項目見 `OPS_SYSTEM_REVIEW_2026-08-31.md` 頂部修復狀態。
+
 ## 下一個 Session 從這裡開始
 
 系統與記錄工具已完成，主線是執行「Playtest v1」真人測試，先驗證玩家是否理解目前策略，而不是立即再調數值。

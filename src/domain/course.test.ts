@@ -2,8 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   COURSE_STORAGE_KEY,
   appendCourseEvent,
+  buildCourseExport,
   canStartCourseAttempt,
   completeCourseAttempt,
+  courseRecordDigest,
   courseRecordExportBlockReason,
   createCourseRecord,
   generateAnonymousLearnerCode,
@@ -12,12 +14,14 @@ import {
   loadCourseRecord,
   normalizeCourseConfig,
   normalizeCourseRecord,
+  normalizeCourseScores,
   saveCourseRecord,
   serializeCourseRecord,
   startCourseAttempt,
   updateCourseExplanation,
   type CourseConfig,
 } from './course';
+import { digestCanonical } from './digest';
 
 const assignment = {
   id: 'COURSE-W01',
@@ -91,11 +95,13 @@ describe('Course Mode learning record', () => {
       actor: 'system',
       attemptNumber: 1,
     });
+    // 傳入的 total 78／B 與分項不一致：結算時一律由六個分項重算（90×.25+100×.3+80×.15+70×.1+60×.1+50×.1 = 82.5 → 83／A）。
     expect(explained.attempts[0]).toMatchObject({
+      weekId: 'W01',
       randomSeed: 357101,
       decisionOrder: ['DIAGNOSIS_SELECTED'],
       hintUsedCount: 0,
-      scores: { total: 78, grade: 'B' },
+      scores: { total: 83, grade: 'A' },
     });
     expect(exported).toMatchObject({
       format: 'OWM_COURSE_RECORD',
@@ -111,6 +117,11 @@ describe('Course Mode learning record', () => {
     });
     expect(exported.integrityPolicy).not.toHaveProperty('formalEvidenceEligible');
     expect(exported.studentExplanations[0].conclusion).toBe(fullExplanation.conclusion);
+    expect(exported.weeks).toEqual(['W01']);
+    expect(exported.recordDigest).toMatch(/^[0-9a-f]{64}$/);
+    expect(exported.recordDigest).toBe(digestCanonical(exported.record));
+    expect(exported.unlockedWeekIdsAtExport).toBeNull();
+    expect(buildCourseExport(explained, new Date(), { unlockedWeekIds: ['W01', 'W02'] }).unlockedWeekIdsAtExport).toEqual(['W01', 'W02']);
   });
 
   it('保留 Practice、Guided 與 system audit events，但不污染 decisionOrder', () => {
@@ -137,6 +148,38 @@ describe('Course Mode learning record', () => {
     expect(record.attempts[0].hintUsedCount).toBe(0);
   });
 
+  it('scores 由六個分項重算 total／grade，DevTools 竄改的 total 或越界分項不會存活', () => {
+    expect(normalizeCourseScores({ completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 100, grade: 'S' }))
+      .toEqual({ completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 83, grade: 'A' });
+    expect(normalizeCourseScores({ completion: 100, safety: 100, evidence: 100, time: 100, fatigue: 100, cost: 100 })).toMatchObject({ total: 100, grade: 'S' });
+    expect(normalizeCourseScores({ completion: 101, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50 })).toBeUndefined();
+    expect(normalizeCourseScores({ completion: 100, safety: '90', evidence: 80, time: 70, fatigue: 60, cost: 50 })).toBeUndefined();
+    expect(normalizeCourseScores({ total: 100, grade: 'S' })).toBeUndefined();
+
+    const now = new Date('2026-09-01T00:00:00.000Z');
+    const settled = completeCourseAttempt(
+      startCourseAttempt(createCourseRecord(config, 'OWM-B001', 'desktop', now), assignment, now),
+      { completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 78, grade: 'B' },
+      settleDetails,
+      now,
+    );
+    const tampered = JSON.parse(JSON.stringify(settled));
+    tampered.attempts[0].scores.total = 100;
+    tampered.attempts[0].scores.grade = 'S';
+    expect(normalizeCourseRecord(tampered)?.attempts[0].scores).toMatchObject({ total: 83, grade: 'A' });
+    tampered.attempts[0].scores.completion = 999;
+    expect(normalizeCourseRecord(tampered)?.attempts[0].scores).toBeUndefined();
+  });
+
+  it('recordDigest 對 record 任一欄位改動都敏感，且與 canonical JSON 規則一致', () => {
+    const now = new Date('2026-09-01T00:00:00.000Z');
+    const record = startCourseAttempt(createCourseRecord(config, 'OWM-C001', 'desktop', now), assignment, now);
+    const digest = courseRecordDigest(record);
+    expect(digest).toBe(digestCanonical(JSON.parse(JSON.stringify(record))));
+    expect(courseRecordDigest({ ...record, learnerCode: 'OWM-C002' })).not.toBe(digest);
+    expect(courseRecordDigest(updateCourseExplanation(record, { conclusion: 'x' }, now))).not.toBe(digest);
+  });
+
   it('重玩任務增加 attempt 並加入 MISSION_REPLAYED', () => {
     const first = startCourseAttempt(createCourseRecord(config, 'OWM-A002', 'mobile'), assignment);
     const completed = updateCourseExplanation(completeCourseAttempt(first, scores, settleDetails), fullExplanation);
@@ -144,6 +187,25 @@ describe('Course Mode learning record', () => {
     expect(replay.attempts).toHaveLength(2);
     expect(replay.attempts[1].attemptNumber).toBe(2);
     expect(replay.events.some((event) => event.kind === 'MISSION_REPLAYED')).toBe(true);
+  });
+
+  it('每個 attempt 快照當時的 configVersion，教師每週解鎖改版本不重建紀錄', () => {
+    const firstStarted = startCourseAttempt(createCourseRecord(config, 'OWM-A003', 'desktop'), assignment);
+    const first = updateCourseExplanation(completeCourseAttempt(firstStarted, scores, settleDetails), fullExplanation);
+    expect(first.attempts[0].configVersion).toBe('2026-FALL-v1');
+
+    // 模擬教師解鎖下一週後沿用同一份紀錄：只更新版本欄位，不 createCourseRecord。
+    const afterUnlock = startCourseAttempt({ ...first, configVersion: '2026-FALL-W02' }, assignment);
+    expect(afterUnlock.attempts).toHaveLength(2);
+    expect(afterUnlock.attempts[0].configVersion).toBe('2026-FALL-v1');
+    expect(afterUnlock.attempts[1].configVersion).toBe('2026-FALL-W02');
+
+    const restored = normalizeCourseRecord(JSON.parse(JSON.stringify(afterUnlock)));
+    expect(restored?.attempts.map((attempt) => attempt.configVersion)).toEqual(['2026-FALL-v1', '2026-FALL-W02']);
+    expect(normalizeCourseRecord({
+      ...JSON.parse(JSON.stringify(first)),
+      attempts: [{ ...first.attempts[0], configVersion: 42 }],
+    })?.attempts[0].configVersion).toBeUndefined();
   });
 
   it('匿名代碼不包含姓名或學號欄位，並可獨立保存與還原', () => {
@@ -188,7 +250,7 @@ describe('Course Mode learning record', () => {
 
   it('拒絕無效 settlement，且重複結算不會新增第二筆事件', () => {
     const started = startCourseAttempt(createCourseRecord(config, 'OWM-SETTLE-1', 'desktop'), assignment);
-    const invalidScores = { ...scores, grade: '' };
+    const invalidScores = { ...scores, safety: 101 };
     expect(completeCourseAttempt(started, invalidScores, settleDetails)).toBe(started);
     expect(completeCourseAttempt(started, scores, { success: true, round: 0 })).toBe(started);
 

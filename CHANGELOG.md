@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.58.0-course-record-integrity - 2026-08-13 (working candidate)
+## 3.58.0-course-record-integrity - 2026-09-04
 
 - Upgraded Course Record to schema v2 with required event `context`／`actor` provenance and `attemptNumber` when an Assessment attempt is addressable.
 - Restricted formal `decisionOrder` and hint counts to learner actions from `assessment_runtime`; system-derived JSA／LOTO／Work Order and Practice Lab events remain audit-only.
@@ -11,12 +11,36 @@
 - Added a tracked `course:summary` tool that reconstructs `success`／`round` from `MISSION_SETTLED` instead of the nonexistent `attempt.outcome`.
 - Reversed the Course smoke export contract: incomplete attempts remain blocked; completed v2 records download successfully; Practice Lab events do not alter formal decisions.
 - Verified `pnpm validate` with 26 test files／174 tests and the updated Course browser smoke. Campaign／Challenge balance values remain frozen and unchanged.
+- Integrated the 2026-08-31／09-02 P0/P1 hotfixes: Assessment leak prevention, config-version record preservation, two-step reset／learner switch, safe storage, score recomputation, digest and teacher summary verification.
+- Revalidated the merged baseline with 28 test files／183 tests plus Course、Onboarding、390px Mobile、Layout、Deployment compact、Operation compact and Gameplay browser smokes.
 
 ## 3.57.1-course-mode-p0 - 2026-07-30
 
 - Added Course Mode with Guided Practice／Assessment separation, manual weekly release, fixed assignment conditions, anonymous Course Record, SCADA／CMS engineering activities, Debrief, GitHub Pages, and offline deployment.
 - Historical validation baseline: 25 test files／159 tests and 16 browser smoke groups.
 - Subsequent automated full-flow evidence exposed record-context and export-gate defects; those findings are addressed in `3.58.0-course-record-integrity`.
+
+## 3.57.1-course-mode-p0 - 2026-09-02 (P1 evidence-credibility and stability fixes, in-place semester hotfix)
+
+- Course Record scores are now verified on load and at settlement: each of the six component scores must be within 0-100 and `total`/`grade` are always recomputed from the components (shared `scoring.ts` formula with `missionDebrief`), so a DevTools edit to `{ total: 100, grade: 'S' }` no longer survives a reload or an export.
+- Exports carry a `recordDigest` (SHA-256 over the canonical, key-sorted `record`), an `unlockedWeekIdsAtExport` snapshot, and `assignmentId`/`weekId`/`configVersion` on every summary row; attempts snapshot their `weekId` at start.
+- New teacher-side tool `pnpm course:summary` (`tools/summarize-course-records.mjs`) reads a folder of `OWM_COURSE_RECORD` exports, recomputes digests and scores, checks the summary fields against the embedded record, and writes a learner × week × attempt Markdown/JSON summary with integrity flags (digest mismatch, score mismatch, incomplete debrief, hints, ahead-of-release weeks, non-standard learner codes).
+- Campaign/exercise/practice GUIDE clicks no longer write `HINT_USED` into the Course Record (they were being attributed to the last Assessment attempt, contradicting `REC_AND_GUIDE_DISABLED`).
+- Engineering Lab Work Order events are recorded only when the lifecycle reaches CLOSE_OUT and now carry the actual `lifecycle` steps, `closed`, and `rejectedActions`; LOTO events carry `procedure`, `zeroEnergy`, and `rejectedActions`. Events are emitted outside React state updaters so StrictMode cannot double-record them.
+- A failed or invalid `course-config.json` no longer blocks the whole app: the course tab is hidden, Campaign/Critical Incident Exercise/Codex stay available, and the course view shows the reason with reload/back actions.
+- All `localStorage` writes (course, campaign, onboarding, playtest, boss challenge, theme, art pack, audio mute) go through a try/catch storage layer; the audio engine no longer touches storage at module load, so blocked-storage environments (LMS iframes, Safari with all cookies blocked) cannot white-screen the app before React mounts. The duplicated theme effect in `App.tsx` was merged.
+- `pnpm sync:data` copies only the 14 runtime JSON files the browser fetches; `prompts.json` (about 5 MB of AI art prompts) and `character_skills.json` stay offline-only, and `validate_owm_data.py` now fails if they appear in `public/data`. GitHub Pages build shrinks from 10.0 MiB to about 5 MiB.
+- `smoke:course` additionally verifies the downloaded export with the teacher tool, the Lab LOTO/Work Order evidence, and the degraded mode when `course-config.json` returns 500.
+
+## 3.57.1-course-mode-p0 - 2026-08-31 (P0 blocking fixes, in-place semester hotfix)
+
+- Weekly unlock no longer destroys learner records: a `configVersion` change reuses the existing Course Record (each attempt now snapshots the `configVersion` it ran under), instead of silently rebuilding the record from scratch.
+- Switching to a different anonymous learner code now requires a second confirming click and automatically exports the previous record before rebuilding, protecting shared-machine classrooms.
+- Course reset is now two-step (`course-reset` → `course-reset-confirm`, with a cancel action) instead of a single destructive click.
+- Assessment no longer leaks recommendations: the OBJECTIVES tab hides the SKILL FORECAST and END ROUND FORECAST rows in assessment mode, the correct diagnosis option is no longer tagged `diagnosis-choice-correct` in the DOM when recommendations are hidden, and the decision prompt no longer emits `data-decision-guide-target/label` attributes during assessment.
+- The Engineering Lab now only offers data packs for teacher-unlocked weeks (with an explicit empty state when nothing is unlocked), locked week cards no longer reveal crew/equipment/vessel/seed details, and `startCourseAssessment` re-checks `unlockedWeekIds` so a devtools-enabled locked button cannot start a session.
+- Engineering Lab pack content is now keyed to the week number instead of the array position, so partial unlocks or config reordering can no longer change SCADA timestamps or KPI answers (current 15-week content is unchanged).
+- `smoke:course` now reads the deployed `course-config.json` and asserts against it, so teacher week unlocks (including a full pause) no longer fail CI and block the GitHub Pages deploy; it also covers the new confirmation flows and the assessment leak regressions.
 
 ## 3.54.0-strategy-balance-v1 - 2026-07-26
 

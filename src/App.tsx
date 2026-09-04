@@ -28,6 +28,7 @@ import {
   type CourseRecord,
   type CourseStudentExplanation,
 } from './domain/course';
+import { readLocalStorage, writeLocalStorage } from './domain/storage.ts';
 import {
   advanceOnboarding,
   completeOnboarding,
@@ -365,6 +366,8 @@ export default function App() {
   const [view, setView] = useState<GameView>('campaign');
   const [playtest, setPlaytest] = useState<PlaytestSession | null>(() => loadPlaytestSession());
   const [courseConfig, setCourseConfig] = useState<CourseConfig | null>(null);
+  // 課程設定載入失敗只降級隱藏課程模式，不得拖垮戰役／演練（OPS review C1）。
+  const [courseConfigError, setCourseConfigError] = useState<string | null>(null);
   const [courseRecord, setCourseRecord] = useState<CourseRecord | null>(() => loadCourseRecord());
   const diagnosisSelectionLock = useRef(false);
   const [onboarding, setOnboarding] = useState<OnboardingProgress>(() => resumeOnboardingAtDeployment(loadOnboardingProgress()));
@@ -373,18 +376,12 @@ export default function App() {
   const [guideCollapsed, setGuideCollapsed] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [theme, setTheme] = useState<'daylight' | 'deepops'>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('owm-theme');
-      if (saved === 'deepops' || saved === 'daylight') return saved;
-    }
-    return 'daylight';
+    const saved = readLocalStorage('owm-theme');
+    return saved === 'deepops' || saved === 'daylight' ? saved : 'daylight';
   });
   const [artPack, setArtPack] = useState<'classic' | 'shinkai'>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('owm-art-pack');
-      if (saved === 'shinkai' || saved === 'classic') return saved;
-    }
-    return 'classic';
+    const saved = readLocalStorage('owm-art-pack');
+    return saved === 'shinkai' || saved === 'classic' ? saved : 'classic';
   });
   const [audioMuted, setAudioMuted] = useState(() => audioEngine.getMuted());
 
@@ -408,13 +405,15 @@ export default function App() {
         || !courseConfig
         || current.integrityOrigin !== 'native_v2'
         || current.releaseVersion !== courseConfig.releaseVersion
-        || current.configVersion !== courseConfig.configVersion
         || current.courseCode !== courseConfig.courseCode
       ) return current;
+      const currentConfigRecord = current.configVersion === courseConfig.configVersion
+        ? current
+        : { ...current, configVersion: courseConfig.configVersion };
       const assignment = typeof details.assignmentId === 'string'
         ? courseConfig?.assignments.find((item) => item.id === details.assignmentId)
         : undefined;
-      const next = appendCourseEvent(current, kind, details, {
+      const next = appendCourseEvent(currentConfigRecord, kind, details, {
         ...provenance,
         now: new Date(),
         assignment,
@@ -428,7 +427,7 @@ export default function App() {
     audioEngine.playSfx('artpack');
     setArtPack((prev) => {
       const next = prev === 'classic' ? 'shinkai' : 'classic';
-      if (typeof window !== 'undefined') localStorage.setItem('owm-art-pack', next);
+      writeLocalStorage('owm-art-pack', next);
       return next;
     });
   };
@@ -441,9 +440,7 @@ export default function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     audioEngine.setTheme(theme);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('owm-theme', theme);
-    }
+    writeLocalStorage('owm-theme', theme);
   }, [theme]);
   const [operationAbortConfirm, setOperationAbortConfirm] = useState(false);
   const [operationRoundConfirm, setOperationRoundConfirm] = useState(false);
@@ -455,13 +452,6 @@ export default function App() {
   const [mobileSection, setMobileSection] = useState<'mission' | 'field' | 'crew'>('field');
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('owm-theme', theme);
-    }
-  }, [theme]);
-
-  useEffect(() => {
     // 同步 CSS 與 Phaser 的動態偏好，讓高對比事件不會只在其中一層被關閉。
     document.documentElement.dataset.motion = reducedMotion ? 'reduced' : 'full';
   }, [reducedMotion]);
@@ -469,7 +459,10 @@ export default function App() {
   useEffect(() => {
     loadGameDatabase()
       .then(async (loaded) => {
-        const loadedCourseConfig = await loadCourseConfig(loaded);
+        const loadedCourseConfig = await loadCourseConfig(loaded).catch((error: unknown) => {
+          setCourseConfigError(error instanceof Error ? error.message : String(error));
+          return null;
+        });
         const firstMission = [...loaded.missions].sort((a, b) => a.order - b.order)[0];
         const loadedCampaign = loadCampaignProgress(loaded.missions, loaded.equipment, loaded.characters, loaded.turbines);
         setDatabase(loaded);
@@ -669,7 +662,7 @@ export default function App() {
   if (loadError) {
     return <main className="center-state"><h1>資料載入失敗</h1><p>{loadError}</p></main>;
   }
-  if (!database || !deployment || !campaign || !challenge || !courseConfig) {
+  if (!database || !deployment || !campaign || !challenge) {
     return <main className="center-state"><div className="loader" /><p>載入 OWM 資料庫…</p></main>;
   }
 
@@ -769,17 +762,24 @@ export default function App() {
     setPlaytest(null);
   };
   const startCourseAssessment = (learnerCode: string, platform: CoursePlatform, assignment: CourseAssignment) => {
-    if (!canStartCourseAttempt(courseRecord)) return;
-    const reusableRecord = courseRecord
-      && courseRecord.integrityOrigin === 'native_v2'
+    // 週次鎖不只在 UI disabled:啟動時再驗證一次。
+    if (!courseConfig || !courseConfig.unlockedWeekIds.includes(assignment.weekId)) return;
+    const recordLineageValid = !courseRecord || (
+      courseRecord.integrityOrigin === 'native_v2'
       && courseRecord.releaseVersion === courseConfig.releaseVersion
       && courseRecord.courseCode === courseConfig.courseCode
-      && courseRecord.learnerCode === learnerCode
-      && courseRecord.configVersion === courseConfig.configVersion
-      && courseRecord.platform === platform;
-    if (courseRecord && !reusableRecord) return;
-    const currentRecord = reusableRecord
-      ? courseRecord
+    );
+    if (!recordLineageValid) return;
+    const sameLearner = courseRecord?.learnerCode === learnerCode;
+    if (courseRecord && !sameLearner) {
+      // 更換匿名代碼會重建紀錄;先自動匯出舊紀錄,避免共機情境靜默銷毀他人成果。
+      if (!isCourseRecordExportReady(courseRecord)) return;
+      downloadCourseRecord(courseRecord);
+    }
+    if (courseRecord && sameLearner && !canStartCourseAttempt(courseRecord)) return;
+    // configVersion 變更(教師每週解鎖)不重建紀錄:沿用並更新版本,attempt 各自快照當時版本。
+    const currentRecord = courseRecord && sameLearner
+      ? { ...courseRecord, platform, configVersion: courseConfig.configVersion }
       : createCourseRecord(courseConfig, learnerCode, platform);
     const nextRecord = startCourseAttempt(currentRecord, assignment);
     saveCourseRecord(nextRecord);
@@ -799,28 +799,47 @@ export default function App() {
     setSession(createCourseSession(database, assignment, campaign, language));
   };
   const updateCourseReflection = (explanation: Partial<CourseStudentExplanation>) => {
+    if (!courseConfig) return;
+    const activeCourseConfig = courseConfig;
     setCourseRecord((current) => {
       if (
         !current
         || current.integrityOrigin !== 'native_v2'
-        || current.releaseVersion !== courseConfig.releaseVersion
-        || current.configVersion !== courseConfig.configVersion
-        || current.courseCode !== courseConfig.courseCode
+        || current.releaseVersion !== activeCourseConfig.releaseVersion
+        || current.courseCode !== activeCourseConfig.courseCode
       ) return current;
-      const next = updateCourseExplanation(current, explanation);
+      const currentConfigRecord = current.configVersion === activeCourseConfig.configVersion
+        ? current
+        : { ...current, configVersion: activeCourseConfig.configVersion };
+      const next = updateCourseExplanation(currentConfigRecord, explanation);
       saveCourseRecord(next);
       return next;
     });
   };
+  const downloadCourseRecord = (record: CourseRecord) => {
+    const blob = new Blob([serializeCourseRecord(record, new Date(), {
+      unlockedWeekIds: courseConfig?.unlockedWeekIds,
+      assignments: courseConfig?.assignments,
+    })], { type: 'application/json;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `OWM_COURSE_RECORD_${record.courseCode}_${record.learnerCode}.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  };
   const exportCourseRecord = () => {
+    if (!courseConfig) return;
     if (
       !isCourseRecordExportReady(courseRecord)
       || courseRecord.integrityOrigin !== 'native_v2'
       || courseRecord.releaseVersion !== courseConfig.releaseVersion
-      || courseRecord.configVersion !== courseConfig.configVersion
       || courseRecord.courseCode !== courseConfig.courseCode
     ) return;
-    const next = appendCourseEvent(courseRecord, 'DEBRIEF_EXPORTED', {
+    const currentConfigRecord = courseRecord.configVersion === courseConfig.configVersion
+      ? courseRecord
+      : { ...courseRecord, configVersion: courseConfig.configVersion };
+    const next = appendCourseEvent(currentConfigRecord, 'DEBRIEF_EXPORTED', {
       attemptCount: courseRecord.attempts.length,
     }, {
       context: 'system',
@@ -828,13 +847,7 @@ export default function App() {
     });
     saveCourseRecord(next);
     setCourseRecord(next);
-    const blob = new Blob([serializeCourseRecord(next)], { type: 'application/json;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.download = `OWM_COURSE_RECORD_${next.courseCode}_${next.learnerCode}.json`;
-    anchor.click();
-    URL.revokeObjectURL(url);
+    downloadCourseRecord(next);
   };
   const resetCourseMode = () => {
     saveCourseRecord(null);
@@ -1037,6 +1050,22 @@ export default function App() {
 
   if (!session) {
     if (view === 'course') {
+      if (!courseConfig) return (
+        <main className="app-shell">{header}
+          <section className="course-mode-shell course-config-error" data-testid="course-config-error">
+            <span className="section-kicker">COURSE MODE</span>
+            <h2>{language === 'zh' ? '課程設定暫時無法載入' : 'Course configuration is temporarily unavailable'}</h2>
+            <p>{language === 'zh'
+              ? '戰役、重大事故演練與知識庫仍可使用；請稍後重新整理，或通知授課教師檢查 course-config.json。'
+              : 'Campaign, Critical Incident Exercise, and Codex remain available. Reload later or ask the instructor to check course-config.json.'}</p>
+            <code>{courseConfigError ?? 'course-config.json unavailable'}</code>
+            <div>
+              <button type="button" data-testid="course-config-retry" onClick={() => window.location.reload()}>{language === 'zh' ? '重新載入' : 'Reload'}</button>
+              <button type="button" data-testid="course-config-back" onClick={() => navigate('campaign')}>{language === 'zh' ? '回到戰役' : 'Back to campaign'}</button>
+            </div>
+          </section>
+        </main>
+      );
       return <main className="app-shell">{header}<CourseModePanel language={language} database={database} config={courseConfig} record={courseRecord} onStartPractice={() => startGuidedPractice('course')} onStartAssessment={startCourseAssessment} onUpdateExplanation={updateCourseReflection} onExport={exportCourseRecord} onReset={resetCourseMode} onRecordEvent={recordCourseEvent} /></main>;
     }
     if (view === 'collection') {
@@ -1199,7 +1228,7 @@ export default function App() {
     ? publicAssetUrl(`assets/source-art/v2-shinkai/${shinkaiArt.file}`)
     : (sourceArt ? publicAssetUrl(`assets/source-art/p01/${sourceArt.file}`) : null);
   const sourceArtCharacters = Object.keys(database.sourceArtIndex.items)
-    .filter((characterId) => !assessmentMode || courseConfig.rosterIds.includes(characterId))
+    .filter((characterId) => !assessmentMode || (courseConfig?.rosterIds.includes(characterId) ?? false))
     .map((characterId) => requiredCharacter(database, characterId));
   const faction = database.factionById.get(selectedCharacter.factionCode)!;
   const masteryXp = sessionMasteryXp(session.mode, campaign, selectedCharacter.id);
@@ -1349,6 +1378,7 @@ export default function App() {
       target: operationDecisionGuide.targetTestId,
       label: operationDecisionGuide.label,
     });
+    // HINT_USED 只屬於 Playtest：戰役／演練／練習的 GUIDE 不得反向記到最後一次 Assessment attempt（OPS review B1）。
     setMobileSection(operationDecision.code === 'ACT' ? 'crew' : 'field');
     if (operationDecision.code === 'ACT') setCrewTab('actions');
     const target = document.querySelector<HTMLElement>(`[data-testid="${operationDecisionGuide.targetTestId}"]`);
@@ -1394,6 +1424,8 @@ export default function App() {
       value: `${currentStage.toUpperCase()} ${session.mission.progress}/${session.mission.requirement}`,
       note: stageRemaining <= 0 ? 'Stage threshold reached' : `${stageRemaining} power still required`,
     },
+    // Assessment 不得洩漏推薦技能與回合預測:這兩列只在非評量模式提供。
+    ...(assessmentMode ? [] : [
     {
       key: 'skill',
       state: selectedSkillForecast?.ok ? (selectedSkillForecast.stageAdvanced ? 'done' : 'active') : 'waiting',
@@ -1422,6 +1454,7 @@ export default function App() {
           ? `Triggers ${forecastBranchEvent.code}`
           : `Next R${endRoundForecast.nextRound}`,
     },
+    ]),
     {
       key: 'learning',
       state: missionDefinition ? 'active' : 'done',
@@ -1840,8 +1873,8 @@ export default function App() {
               data-decision-action={operationDecision.action}
               data-decision-reason={operationDecision.detail}
               data-decision-meta={operationDecision.meta}
-              data-decision-guide-target={operationDecisionGuide.targetTestId}
-              data-decision-guide-label={operationDecisionGuide.label}
+              data-decision-guide-target={assessmentMode ? undefined : operationDecisionGuide.targetTestId}
+              data-decision-guide-label={assessmentMode ? undefined : operationDecisionGuide.label}
               data-decision-guide-active={operationGuideNotice ? 'true' : 'false'}
               data-decision-guide-active-target={operationGuideNotice?.targetTestId ?? ''}
               data-decision-guide-active-label={operationGuideNotice?.label ?? ''}
@@ -4996,7 +5029,7 @@ function Topbar({
 }: {
   database: GameDatabase;
   campaign: CampaignProgress;
-  courseConfig: CourseConfig;
+  courseConfig: CourseConfig | null;
   view: GameView;
   language: Language;
   onboarding: OnboardingProgress;
@@ -5015,9 +5048,10 @@ function Topbar({
 }) {
   const ui = UI[language];
   const courseContext = view === 'course' || assessmentMode;
-  const navigationItems: GameView[] = courseContext
-    ? ['course', 'campaign', 'challenge', 'codex']
-    : ['course', 'campaign', 'challenge', 'sandbox', 'collection', 'codex', 'playtest'];
+  const navigationItems: GameView[] = (courseContext
+    ? ['course', 'campaign', 'challenge', 'codex'] as GameView[]
+    : ['course', 'campaign', 'challenge', 'sandbox', 'collection', 'codex', 'playtest'] as GameView[]
+  ).filter((item) => item !== 'course' || courseConfig !== null);
   return (
     <header className="topbar">
       <div className="brand-block">
@@ -5033,7 +5067,7 @@ function Topbar({
         </button>}
       </nav>
       <div className="dataset-strip" aria-label="資料庫統計">
-        {courseContext ? (
+        {courseContext && courseConfig ? (
           <>
             <DataChip value={courseConfig.rosterIds.length} label={language === 'zh' ? '職業角色' : 'ROLES'} />
             <DataChip value={courseConfig.assignments.length} label={language === 'zh' ? '固定任務' : 'MISSIONS'} />
@@ -5465,7 +5499,7 @@ function DiagnosisPanel({ mission, language, showRecommendation = true, highligh
           <button
             key={option.id}
             className="diagnosis-choice"
-            data-testid={option.correct ? 'diagnosis-choice-correct' : `diagnosis-choice-${option.id}`}
+            data-testid={showRecommendation && option.correct ? 'diagnosis-choice-correct' : `diagnosis-choice-${option.id}`}
             onClick={() => onChoose(option.id)}
           >{language === 'zh' ? option.labelZh : option.labelEn}</button>
         ))}

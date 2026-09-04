@@ -50,7 +50,7 @@ Desktop / Mobile / Assessment / export-integrity smoke passed
 Legacy evidence 可執行：
 
 ```powershell
-pnpm course:summary -- reports/OWM_COURSE_RECORD_STUDENT_FULL_RUN.json
+pnpm course:inspect-legacy -- reports/OWM_COURSE_RECORD_STUDENT_FULL_RUN.json
 ```
 
 可重建 16 attempts、15 missions 的 outcome；工具會明列 `LEGACY_PROVENANCE_UNVERIFIED` warning。

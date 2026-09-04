@@ -10,7 +10,7 @@
 摘要指令：
 
 ```powershell
-pnpm course:summary -- reports/OWM_COURSE_RECORD_STUDENT_FULL_RUN.json
+pnpm course:inspect-legacy -- reports/OWM_COURSE_RECORD_STUDENT_FULL_RUN.json
 ```
 
 工具會從 `MISSION_SETTLED` 重建 `success`／`round`，並將 legacy provenance 標成 warning，不再讀取不存在的 `attempt.outcome`。

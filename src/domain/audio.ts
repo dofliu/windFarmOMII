@@ -1,4 +1,5 @@
 // Web Audio API Synthesizer and Sound Effects Engine for Offshore Wind Masters (OWM)
+import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 class OWMAudioEngine {
   private ctx: AudioContext | null = null;
@@ -10,10 +11,8 @@ class OWMAudioEngine {
   private bgmInterval: number | null = null;
 
   constructor() {
-    if (typeof window !== 'undefined') {
-      const savedMute = localStorage.getItem('owm-audio-muted');
-      this.isMuted = savedMute === 'true';
-    }
+    // module-scope 即時實例化：封鎖儲存的環境（LMS iframe、Safari 全面封鎖）不得在 React mount 前 throw。
+    this.isMuted = readLocalStorage('owm-audio-muted') === 'true';
   }
 
   private ensureContext() {
@@ -34,9 +33,7 @@ class OWMAudioEngine {
 
   public setMuted(muted: boolean): void {
     this.isMuted = muted;
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('owm-audio-muted', String(muted));
-    }
+    writeLocalStorage('owm-audio-muted', String(muted));
     if (muted) {
       this.stopBgm();
     } else {

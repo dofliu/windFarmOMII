@@ -12,6 +12,8 @@ tmp/
 *.log
 playtest-results/*.json
 playtest-results/PLAYTEST_SUMMARY.md
+course-results/*.json
+course-results/COURSE_SUMMARY.md
 
 # Image assets & heavy media
 *.png
@@ -32,3 +34,8 @@ assets/source-art/
 !course-deployment-assets/scenes/
 !course-deployment-assets/scenes/*.webp
 
+
+# 介紹影片的渲染產物（場景 HTML 與 storyboard.json 保留，影格/影片不進版控）
+promo/work/
+promo/*.mp4
+promo/storyboard_rest.json

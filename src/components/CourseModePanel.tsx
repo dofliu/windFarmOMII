@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   type CourseEventKind,
+  LEARNER_CODE_PATTERN,
   canStartCourseAttempt,
   courseRecordBlockingAttempt,
   generateAnonymousLearnerCode,
@@ -48,26 +49,33 @@ export function CourseModePanel({
   const isZh = language === 'zh';
   const [learnerCode, setLearnerCode] = useState(record?.learnerCode ?? '');
   const [platform, setPlatform] = useState<CoursePlatform>(record?.platform ?? 'desktop');
+  const [resetArmed, setResetArmed] = useState(false);
+  const [codeSwitchArmedId, setCodeSwitchArmedId] = useState<string | null>(null);
   const availableAssignments = useMemo(() => unlockedCourseAssignments(config), [config]);
   const activeAttempt = courseRecordBlockingAttempt(record) ?? record?.attempts.at(-1);
   const activeAssignment = config.assignments.find((assignment) => assignment.id === activeAttempt?.assignmentId);
   const normalizedCode = normalizeLearnerCode(learnerCode);
-  const recordReusable = !record || (
+  const recordLineageValid = !record || (
     record.integrityOrigin === 'native_v2'
     && record.releaseVersion === config.releaseVersion
-    && record.configVersion === config.configVersion
     && record.courseCode === config.courseCode
-    && record.learnerCode === normalizedCode
-    && record.platform === platform
   );
-  const exportReady = isCourseRecordExportReady(record) && recordReusable;
-  const assessmentStartReady = canStartCourseAttempt(record) && recordReusable;
-  const recordWritable = Boolean(record && recordReusable);
+  const codeMismatch = Boolean(record && normalizedCode && record.learnerCode !== normalizedCode);
+  const learnerCodeValid = LEARNER_CODE_PATTERN.test(normalizedCode);
+  const exportReady = isCourseRecordExportReady(record) && recordLineageValid;
+  const assessmentStartReady = recordLineageValid && (
+    !record || (codeMismatch ? exportReady : canStartCourseAttempt(record))
+  );
+  const recordWritable = Boolean(record && recordLineageValid && !codeMismatch);
 
   useEffect(() => {
     if (record?.learnerCode) setLearnerCode(record.learnerCode);
     if (record?.platform) setPlatform(record.platform);
   }, [record?.learnerCode, record?.platform]);
+
+  useEffect(() => {
+    setCodeSwitchArmedId(null);
+  }, [normalizedCode]);
 
   return (
     <section
@@ -128,7 +136,6 @@ export function CourseModePanel({
             data-testid="course-learner-code"
             value={learnerCode}
             maxLength={24}
-            disabled={Boolean(record)}
             onChange={(event) => setLearnerCode(event.target.value)}
             placeholder="OWM-7A2C-91F0"
           />
@@ -137,14 +144,13 @@ export function CourseModePanel({
           type="button"
           className="course-generate-code"
           data-testid="course-generate-code"
-          disabled={Boolean(record)}
           onClick={() => setLearnerCode(generateAnonymousLearnerCode())}
         >
           {isZh ? '一鍵產生匿名代碼' : 'Generate anonymous code'}
         </button>
         <label>
           <span>{isZh ? '裝置' : 'Device'}</span>
-          <select data-testid="course-platform" value={platform} disabled={Boolean(record)} onChange={(event) => setPlatform(event.target.value as CoursePlatform)}>
+          <select data-testid="course-platform" value={platform} onChange={(event) => setPlatform(event.target.value as CoursePlatform)}>
             <option value="desktop">Desktop</option>
             <option value="mobile">Mobile</option>
           </select>
@@ -176,30 +182,48 @@ export function CourseModePanel({
                 data-course-unlocked={unlocked ? 'true' : 'false'}
               >
                 <div>
-                  <span>{assignment.weekId} · {assignment.missionId}</span>
+                  <span>{unlocked ? `${assignment.weekId} · ${assignment.missionId}` : assignment.weekId}</span>
                   <b>{isZh ? assignment.titleZh : assignment.titleEn}</b>
-                  <small>{mission ? (isZh ? mission.titleZh : mission.titleEn) : assignment.missionId}</small>
+                  {unlocked && <small>{mission ? (isZh ? mission.titleZh : mission.titleEn) : assignment.missionId}</small>}
                 </div>
-                <ul>
-                  <li>{team.map((character) => isZh ? character!.professionZh : character!.professionEn).join(' · ')}</li>
-                  <li>{equipment ? (isZh ? equipment.nameZh : equipment.nameEn) : assignment.equipmentId}</li>
-                  <li>{spare ? (isZh ? spare.nameZh : spare.nameEn) : assignment.spareId} · {vessel ? vessel.class : assignment.vesselId}</li>
-                  <li>SEED {assignment.randomSeed} · {isZh ? `嘗試 ${attempts}` : `${attempts} ATTEMPTS`}</li>
-                </ul>
+                {unlocked ? (
+                  <ul>
+                    <li>{team.map((character) => isZh ? character!.professionZh : character!.professionEn).join(' · ')}</li>
+                    <li>{equipment ? (isZh ? equipment.nameZh : equipment.nameEn) : assignment.equipmentId}</li>
+                    <li>{spare ? (isZh ? spare.nameZh : spare.nameEn) : assignment.spareId} · {vessel ? vessel.class : assignment.vesselId}</li>
+                    <li>SEED {assignment.randomSeed} · {isZh ? `嘗試 ${attempts}` : `${attempts} ATTEMPTS`}</li>
+                  </ul>
+                ) : (
+                  <ul>
+                    <li>{isZh ? '任務配置與資料包於教師解鎖後公布' : 'Loadout and data pack are revealed after the instructor unlocks this week'}</li>
+                  </ul>
+                )}
                 <button
                   type="button"
                   data-testid={`course-start-assessment-${assignment.weekId}`}
-                  disabled={!unlocked || !normalizedCode || !assessmentStartReady}
+                  data-course-code-switch={!unlocked || !codeMismatch ? 'none' : codeSwitchArmedId === assignment.id ? 'armed' : 'required'}
+                  disabled={!unlocked || !learnerCodeValid || !assessmentStartReady}
                   title={!assessmentStartReady
                     ? (isZh ? '請先完成目前 Assessment 與四欄 Debrief，或重設未完成紀錄。' : 'Complete the current Assessment and four-field Debrief, or reset the incomplete record.')
                     : undefined}
-                  onClick={() => onStartAssessment(normalizedCode, platform, assignment)}
+                  onClick={() => {
+                    if (codeMismatch && codeSwitchArmedId !== assignment.id) {
+                      setCodeSwitchArmedId(assignment.id);
+                      return;
+                    }
+                    setCodeSwitchArmedId(null);
+                    onStartAssessment(normalizedCode, platform, assignment);
+                  }}
                 >
-                  {unlocked && !assessmentStartReady
+                  {!unlocked
+                    ? (isZh ? '尚未開放' : 'LOCKED')
+                    : !assessmentStartReady
                     ? (isZh ? '先完成目前 Assessment' : 'FINISH CURRENT ASSESSMENT')
-                    : unlocked
-                    ? (attempts > 0 ? (isZh ? '重做 Assessment' : 'Replay Assessment') : (isZh ? '開始 Assessment' : 'Start Assessment'))
-                    : (isZh ? '尚未開放' : 'LOCKED')}
+                    : codeMismatch && codeSwitchArmedId === assignment.id
+                      ? (isZh ? '再按一次：匯出舊紀錄並以新代碼開始' : 'Press again: export the old record and restart with the new code')
+                    : codeMismatch
+                      ? (isZh ? '代碼與既有紀錄不同（按下確認）' : 'Code differs from the saved record (press to confirm)')
+                      : attempts > 0 ? (isZh ? '重做 Assessment' : 'Replay Assessment') : (isZh ? '開始 Assessment' : 'Start Assessment')}
                 </button>
               </article>
             );
@@ -210,18 +234,21 @@ export function CourseModePanel({
       <CourseEngineeringLab
         language={language}
         assignments={availableAssignments}
-        onLotoVerified={(assignment) => onRecordEvent('LOTO_VERIFIED', {
+        onLotoVerified={(assignment, state) => onRecordEvent('LOTO_VERIFIED', {
           assignmentId: assignment.id,
           missionId: assignment.missionId,
           source: 'COURSE_ENGINEERING_LAB',
-          procedure: ['SHUTDOWN', 'ISOLATE', 'LOCK_TAG', 'CONTROL_RESIDUAL_ENERGY', 'VERIFY_ZERO_ENERGY'],
+          procedure: [...state.completedSteps],
+          rejectedActions: state.rejectedActions,
+          zeroEnergy: state.verified,
         }, { context: 'practice_lab', actor: 'learner' })}
-        onWorkOrderCreated={(assignment) => onRecordEvent('WORK_ORDER_CREATED', {
+        onWorkOrderCreated={(assignment, state) => onRecordEvent('WORK_ORDER_CREATED', {
           assignmentId: assignment.id,
           missionId: assignment.missionId,
           source: 'COURSE_ENGINEERING_LAB',
-          trigger: 'TRIGGER',
-          procedureReference: ['TRIGGER', 'ACKNOWLEDGE', 'DISPATCH', 'EXECUTE', 'VERIFY', 'CLOSE_OUT'],
+          lifecycle: [...state.completedSteps],
+          rejectedActions: state.rejectedActions,
+          closed: state.closed,
         }, { context: 'practice_lab', actor: 'learner' })}
       />
 
@@ -247,7 +274,22 @@ export function CourseModePanel({
                   ? (isZh ? '完成 Assessment 與 Debrief 後匯出' : 'Complete Assessment and Debrief to export')
                   : (isZh ? '匯出 Course Record' : 'Export Course Record')}
               </button>
-              <button type="button" className="course-reset-button" data-testid="course-reset" onClick={onReset}>{isZh ? '一鍵重設課程進度' : 'One-click course reset'}</button>
+              {resetArmed ? (
+                <>
+                  <button type="button" data-testid="course-reset-cancel" onClick={() => setResetArmed(false)}>{isZh ? '取消' : 'Cancel'}</button>
+                  <button
+                    type="button"
+                    className="course-reset-button"
+                    data-testid="course-reset-confirm"
+                    title={isZh ? '刪除前請先匯出 Course Record；此動作無法復原。' : 'Export the Course Record before deleting; this cannot be undone.'}
+                    onClick={() => { setResetArmed(false); onReset(); }}
+                  >
+                    {isZh ? `確認刪除 ${record.attempts.length} 次嘗試紀錄` : `Confirm: delete ${record.attempts.length} attempts`}
+                  </button>
+                </>
+              ) : (
+                <button type="button" className="course-reset-button" data-testid="course-reset" onClick={() => setResetArmed(true)}>{isZh ? '重設課程進度…' : 'Reset course progress…'}</button>
+              )}
             </div>
           </header>
           <div className="course-record-grid">

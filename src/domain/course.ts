@@ -1,4 +1,7 @@
 import { publicAssetUrl } from './assets';
+import { digestCanonical } from './digest.ts';
+import { DEBRIEF_SCORE_COMPONENTS, debriefGrade, debriefTotalScore } from './scoring.ts';
+import { readLocalStorage, removeLocalStorage, writeLocalStorage } from './storage.ts';
 import type { GameDatabase } from './types';
 
 export const COURSE_STORAGE_KEY = 'owm.course.v1';
@@ -78,9 +81,13 @@ export interface CourseStudentExplanation {
 
 export interface CourseAttempt {
   assignmentId: string;
+  // 週次快照：匯出摘要不必再由教師以 assignmentId 反查 config。
+  weekId?: string;
   missionId: string;
   attemptNumber: number;
   randomSeed: number;
+  // 每個 attempt 快照當下的 configVersion:教師每週解鎖會改版本,紀錄不因此重建。
+  configVersion?: string;
   startedAt: string;
   completedAt?: string;
   decisionOrder: CourseEventKind[];
@@ -174,40 +181,35 @@ const legacyEventProvenance = (
   return { context: 'legacy_unknown', actor: 'unknown' };
 };
 
+export const LEARNER_CODE_PATTERN = /^OWM-[A-Z0-9]{4}-[A-Z0-9]{4}$/;
+
+/**
+ * scores 是 normalize 時唯一不驗證的欄位（OPS review B2）：六個分項各自檢查範圍，
+ * total 與 grade 一律由分項重算，DevTools 改成 `{ total: 100, grade: 'S' }` 不會存活。
+ */
+export function normalizeCourseScores(value: unknown): CourseComponentScores | undefined {
+  if (!value || typeof value !== 'object') return undefined;
+  const candidate = value as Record<string, unknown>;
+  const components = {} as Record<(typeof DEBRIEF_SCORE_COMPONENTS)[number], number>;
+  for (const key of DEBRIEF_SCORE_COMPONENTS) {
+    const component = candidate[key];
+    if (typeof component !== 'number' || !Number.isFinite(component) || component < 0 || component > 100) return undefined;
+    components[key] = component;
+  }
+  const total = debriefTotalScore(components);
+  return { ...components, total, grade: debriefGrade(total) };
+}
+
+export function courseRecordDigest(record: CourseRecord): string {
+  return digestCanonical(record);
+}
+
 const emptyExplanation = (): CourseStudentExplanation => ({
   conclusion: '',
   evidence: '',
   uncertainty: '',
   residualRisk: '',
 });
-
-const isFiniteNumber = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
-
-const normalizeCourseScores = (value: unknown): CourseComponentScores | undefined => {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
-  const scores = value as Partial<CourseComponentScores>;
-  if (
-    !isFiniteNumber(scores.completion)
-    || !isFiniteNumber(scores.safety)
-    || !isFiniteNumber(scores.evidence)
-    || !isFiniteNumber(scores.time)
-    || !isFiniteNumber(scores.fatigue)
-    || !isFiniteNumber(scores.cost)
-    || !isFiniteNumber(scores.total)
-    || typeof scores.grade !== 'string'
-    || !scores.grade.trim()
-  ) return undefined;
-  return {
-    completion: scores.completion,
-    safety: scores.safety,
-    evidence: scores.evidence,
-    time: scores.time,
-    fatigue: scores.fatigue,
-    cost: scores.cost,
-    total: scores.total,
-    grade: scores.grade.slice(0, 8),
-  };
-};
 
 const hasValidAttemptIdentitySequence = (attempts: CourseAttempt[]): boolean => {
   const seen = new Set<string>();
@@ -390,9 +392,11 @@ export function startCourseAttempt(
   const attemptNumber = record.attempts.filter((attempt) => attempt.assignmentId === assignment.id).length + 1;
   const attempt: CourseAttempt = {
     assignmentId: assignment.id,
+    weekId: assignment.weekId,
     missionId: assignment.missionId,
     attemptNumber,
     randomSeed: assignment.randomSeed,
+    configVersion: record.configVersion,
     startedAt: now.toISOString(),
     decisionOrder: [],
     hintUsedCount: 0,
@@ -688,9 +692,11 @@ export function normalizeCourseRecord(value: unknown): CourseRecord | null {
     if (sourceSchemaVersion === 2 && attempt.scores !== undefined && !normalizedScores) invalidAttemptCount += 1;
     return [{
       assignmentId: attempt.assignmentId,
+      weekId: typeof attempt.weekId === 'string' && /^W\d{2}$/.test(attempt.weekId) ? attempt.weekId : undefined,
       missionId: attempt.missionId,
       attemptNumber: attempt.attemptNumber!,
       randomSeed: attempt.randomSeed!,
+      configVersion: typeof attempt.configVersion === 'string' ? attempt.configVersion : undefined,
       startedAt: attempt.startedAt,
       completedAt: typeof attempt.completedAt === 'string' ? attempt.completedAt : undefined,
       // v2 一律由具 provenance 的 event log 重建；舊 v1 decisionOrder 不具可驗證來源，因此不沿用。
@@ -756,28 +762,45 @@ export function normalizeCourseRecord(value: unknown): CourseRecord | null {
 }
 
 export function loadCourseRecord(): CourseRecord | null {
-  if (typeof localStorage === 'undefined') return null;
   try {
-    const raw = localStorage.getItem(COURSE_STORAGE_KEY);
+    const raw = readLocalStorage(COURSE_STORAGE_KEY);
     return normalizeCourseRecord(raw ? JSON.parse(raw) : null);
   } catch {
     return null;
   }
 }
 
-export function saveCourseRecord(record: CourseRecord | null): void {
-  if (typeof localStorage === 'undefined') return;
-  if (!record) {
-    localStorage.removeItem(COURSE_STORAGE_KEY);
-    return;
-  }
-  localStorage.setItem(COURSE_STORAGE_KEY, JSON.stringify(record));
+/** 寫入失敗（儲存被封鎖、配額用盡）回傳 false，呼叫端據此提醒學生立即匯出。 */
+export function saveCourseRecord(record: CourseRecord | null): boolean {
+  if (!record) return removeLocalStorage(COURSE_STORAGE_KEY);
+  return writeLocalStorage(COURSE_STORAGE_KEY, JSON.stringify(record));
 }
 
-export function serializeCourseRecord(record: CourseRecord, now = new Date()): string {
+export interface CourseExportContext {
+  /** 匯出當下教師已解鎖的週次；教師端據此偵測「超前進度」的嘗試。 */
+  unlockedWeekIds?: string[];
+  assignments?: Pick<CourseAssignment, 'id' | 'weekId'>[];
+}
+
+export const COURSE_DIGEST_SPEC = {
+  algorithm: 'SHA-256',
+  canonicalization: 'sorted-keys-json',
+  scope: 'record',
+} as const;
+
+export function buildCourseExport(record: CourseRecord, now = new Date(), context: CourseExportContext = {}) {
   const blockedBy = courseRecordExportBlockReason(record);
   if (blockedBy) throw new Error(`Course Record is not export-ready: ${blockedBy}`);
-  return JSON.stringify({
+  const weekById = new Map((context.assignments ?? []).map((assignment) => [assignment.id, assignment.weekId]));
+  const weekOf = (attempt: CourseAttempt) => attempt.weekId ?? weekById.get(attempt.assignmentId) ?? null;
+  const attemptKey = (attempt: CourseAttempt) => ({
+    assignmentId: attempt.assignmentId,
+    weekId: weekOf(attempt),
+    missionId: attempt.missionId,
+    attemptNumber: attempt.attemptNumber,
+    configVersion: attempt.configVersion ?? null,
+  });
+  return {
     format: COURSE_RECORD_FORMAT,
     schemaVersion: 2,
     exportedAt: now.toISOString(),
@@ -786,6 +809,7 @@ export function serializeCourseRecord(record: CourseRecord, now = new Date()): s
     learnerCode: record.learnerCode,
     mode: record.mode,
     configVersion: record.configVersion,
+    unlockedWeekIdsAtExport: context.unlockedWeekIds ? [...context.unlockedWeekIds] : null,
     integrityPolicy: {
       decisionOrder: 'LEARNER_ASSESSMENT_RUNTIME_ONLY',
       exportGate: 'ALL_ATTEMPTS_SETTLED_AND_DEBRIEF_COMPLETE',
@@ -795,10 +819,10 @@ export function serializeCourseRecord(record: CourseRecord, now = new Date()): s
       authenticity: 'CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT',
     },
     missions: [...new Set(record.attempts.map((attempt) => attempt.missionId))],
+    weeks: [...new Set(record.attempts.map(weekOf).filter((weekId): weekId is string => typeof weekId === 'string'))],
     attemptCount: record.attempts.length,
     decisionOrder: record.attempts.map((attempt) => ({
-      missionId: attempt.missionId,
-      attemptNumber: attempt.attemptNumber,
+      ...attemptKey(attempt),
       decisions: attempt.decisionOrder,
     })),
     hintUsage: {
@@ -806,15 +830,19 @@ export function serializeCourseRecord(record: CourseRecord, now = new Date()): s
       assessmentPolicy: 'REC_AND_GUIDE_DISABLED',
     },
     componentScores: record.attempts.map((attempt) => ({
-      missionId: attempt.missionId,
-      attemptNumber: attempt.attemptNumber,
+      ...attemptKey(attempt),
       scores: attempt.scores ?? null,
     })),
     studentExplanations: record.attempts.map((attempt) => ({
-      missionId: attempt.missionId,
-      attemptNumber: attempt.attemptNumber,
+      ...attemptKey(attempt),
       ...attempt.studentExplanation,
     })),
+    digest: COURSE_DIGEST_SPEC,
+    recordDigest: courseRecordDigest(record),
     record,
-  }, null, 2);
+  };
+}
+
+export function serializeCourseRecord(record: CourseRecord, now = new Date(), context: CourseExportContext = {}): string {
+  return JSON.stringify(buildCourseExport(record, now, context), null, 2);
 }

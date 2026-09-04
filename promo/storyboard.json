@@ -1,0 +1,112 @@
+{
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "xfade": 0.6,
+  "scenes": [
+    {
+      "file": "scene01_open.html",
+      "duration": 9,
+      "transition": "fade"
+    },
+    {
+      "file": "scene02_problem.html",
+      "duration": 9,
+      "transition": "smoothleft"
+    },
+    {
+      "file": "scene03_position.html",
+      "duration": 9,
+      "transition": "circleopen"
+    },
+    {
+      "file": "scene04_twotrack.html",
+      "duration": 9,
+      "transition": "fade"
+    },
+    {
+      "file": "scene05_weeks.html",
+      "duration": 9,
+      "transition": "circleopen"
+    },
+    {
+      "file": "scene06_fixed.html",
+      "duration": 9,
+      "transition": "smoothup"
+    },
+    {
+      "file": "scene07_scada.html",
+      "duration": 9,
+      "transition": "fade"
+    },
+    {
+      "file": "scene08_kpi.html",
+      "duration": 9,
+      "transition": "circleopen"
+    },
+    {
+      "file": "scene09_loto.html",
+      "duration": 9,
+      "transition": "smoothleft"
+    },
+    {
+      "file": "scene10_interlock.html",
+      "duration": 9,
+      "transition": "fade"
+    },
+    {
+      "file": "scene11_campaign.html",
+      "duration": 9,
+      "transition": "circleopen"
+    },
+    {
+      "file": "scene12_crew.html",
+      "duration": 9,
+      "transition": "smoothup"
+    },
+    {
+      "file": "scene13_loadout.html",
+      "duration": 9,
+      "transition": "fade"
+    },
+    {
+      "file": "scene14_incident.html",
+      "duration": 9,
+      "transition": "fadeblack"
+    },
+    {
+      "file": "scene15_climax.html",
+      "duration": 10,
+      "transition": "fade"
+    },
+    {
+      "file": "scene16_pipeline.html",
+      "duration": 9,
+      "transition": "smoothleft"
+    },
+    {
+      "file": "scene17_record.html",
+      "duration": 9,
+      "transition": "circleopen"
+    },
+    {
+      "file": "scene18_debrief.html",
+      "duration": 9,
+      "transition": "fade"
+    },
+    {
+      "file": "scene19_scale.html",
+      "duration": 9.5,
+      "transition": "smoothup"
+    },
+    {
+      "file": "scene20_quality.html",
+      "duration": 9.5,
+      "transition": "fade"
+    },
+    {
+      "file": "scene21_cta.html",
+      "duration": 10
+    }
+  ]
+}

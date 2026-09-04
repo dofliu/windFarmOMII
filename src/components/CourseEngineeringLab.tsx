@@ -12,7 +12,9 @@ import {
   runAlarmTest,
   WORK_ORDER_STEPS,
   type AlarmTesterConfig,
+  type LotoProcedureState,
   type LotoStep,
+  type WorkOrderState,
   type WorkOrderStep,
 } from '../domain/courseEngineering';
 import type { Language } from '../domain/types';
@@ -38,17 +40,18 @@ export function CourseEngineeringLab({
 }: {
   language: Language;
   assignments: CourseAssignment[];
-  onLotoVerified?: (assignment: CourseAssignment) => void;
-  onWorkOrderCreated?: (assignment: CourseAssignment) => void;
+  onLotoVerified?: (assignment: CourseAssignment, state: LotoProcedureState) => void;
+  onWorkOrderCreated?: (assignment: CourseAssignment, state: WorkOrderState) => void;
 }) {
   const isZh = language === 'zh';
   const [tab, setTab] = useState<LabTab>('data');
   const [selectedAssignmentId, setSelectedAssignmentId] = useState(assignments[0]?.id ?? '');
-  const assignmentIndex = Math.max(0, assignments.findIndex((item) => item.id === selectedAssignmentId));
-  const assignment = assignments[assignmentIndex] ?? assignments[0];
+  const assignment = assignments.find((item) => item.id === selectedAssignmentId) ?? assignments[0];
+  // 資料包內容以週次編號為鍵，不用陣列位置：教師只解鎖部分週次或調整 config 順序時，各週答案不變。
+  const packIndex = assignment ? Math.max(0, Number.parseInt(assignment.weekId.slice(1), 10) - 1) : 0;
   const pack = useMemo(
-    () => assignment ? createMissionEngineeringPack(assignment, assignmentIndex) : null,
-    [assignment, assignmentIndex],
+    () => assignment ? createMissionEngineeringPack(assignment, packIndex) : null,
+    [assignment, packIndex],
   );
   const kpis = useMemo(
     () => pack ? calculateReliabilityKpis(pack.reliabilityInput) : null,
@@ -59,7 +62,21 @@ export function CourseEngineeringLab({
   const [alarmConfig, setAlarmConfig] = useState(defaultAlarmConfig);
   const alarmResult = useMemo(() => runAlarmTest(sampleSignal, alarmConfig), [alarmConfig]);
 
-  if (!assignment || !pack || !kpis) return null;
+  if (!assignment || !pack || !kpis) {
+    return (
+      <section className="course-engineering-lab" data-testid="course-engineering-lab">
+        <header className="course-lab-heading">
+          <div>
+            <span className="section-kicker">ENGINEERING LAB · CLO ALIGNMENT</span>
+            <b>{isZh ? 'SCADA／CMS 證據、可靠度、程序安全與控制邏輯' : 'SCADA/CMS evidence, reliability, procedural safety, and control logic'}</b>
+          </div>
+        </header>
+        <p data-testid="course-lab-empty">
+          {isZh ? '尚未開放任何週次；資料包將於教師解鎖後提供。' : 'No week is unlocked yet; data packs appear after the instructor releases a week.'}
+        </p>
+      </section>
+    );
+  }
 
   const resetProcedures = () => {
     setLoto(createLotoProcedure());
@@ -71,22 +88,18 @@ export function CourseEngineeringLab({
     resetProcedures();
   };
 
+  // 事件在 updater 之外觸發：StrictMode 重複執行 updater 時不會重複記錄。
   const applyLoto = (step: LotoStep) => {
-    setLoto((current) => {
-      const next = performLotoStep(current, step);
-      if (!current.verified && next.verified) onLotoVerified?.(assignment);
-      return next;
-    });
+    const next = performLotoStep(loto, step);
+    setLoto(next);
+    if (!loto.verified && next.verified) onLotoVerified?.(assignment, next);
   };
 
+  // Work Order 事件只在 CLOSE_OUT 完成時寫入，並帶實際完成步驟與違序次數（不再於 TRIGGER 就記成完整六階段）。
   const applyWorkOrder = (step: WorkOrderStep) => {
-    setWorkOrder((current) => {
-      const next = performWorkOrderStep(current, step);
-      if (step === 'TRIGGER' && !current.completedSteps.length && next.completedSteps.length === 1) {
-        onWorkOrderCreated?.(assignment);
-      }
-      return next;
-    });
+    const next = performWorkOrderStep(workOrder, step);
+    setWorkOrder(next);
+    if (!workOrder.closed && next.closed) onWorkOrderCreated?.(assignment, next);
   };
 
   return (

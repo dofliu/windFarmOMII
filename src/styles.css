@@ -898,6 +898,13 @@ html[data-motion="reduced"] .fleet-turbine-rotor { animation: none !important; }
   .header-controls > button { flex: none; }
 }
 
+/* 課程設定載入失敗的降級畫面：其餘模式照常可用，只有課程分頁顯示原因與重試。 */
+.course-config-error { height: auto; min-height: 240px; align-content: center; justify-items: start; }
+.course-config-error h2 { margin: 0; font-size: 1.3rem; }
+.course-config-error p { margin: 0; max-width: 60ch; color: var(--muted, inherit); }
+.course-config-error code { font-size: 0.8rem; opacity: 0.8; word-break: break-word; }
+.course-config-error div { display: flex; gap: 10px; flex-wrap: wrap; }
+
 /* Course Mode 將教師發布、匿名身分與學習紀錄集中在同一工作區，避免 Assessment 與一般戰役狀態互相污染。 */
 .course-mode-shell {
   height: calc(100vh - 106px);

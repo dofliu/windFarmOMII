@@ -1,4 +1,5 @@
 import type { BossData, CharacterData, EquipmentData, MissionBranchCode, MissionData, SkillData, VesselData } from './types';
+import { debriefGrade, debriefTotalScore } from './scoring.ts';
 
 export type { MissionBranchCode } from './types';
 
@@ -689,18 +690,18 @@ export function missionDebrief(
   const fatigueScore = Math.round(clamp(100 - averageFatigue * 100, 0, 100));
   const costBudget = 40 + boss.phases * 10 + severityRank(boss.severity) * 5;
   const costScore = Math.round(clamp(100 - (mission.cost / costBudget) * 100, 0, 100));
-  const totalScore = Math.round(
-    mission.safety * 0.25
-    + completionScore * 0.3
-    + mission.evidence * 0.15
-    + timeScore * 0.1
-    + fatigueScore * 0.1
-    + costScore * 0.1,
-  );
+  const totalScore = debriefTotalScore({
+    safety: mission.safety,
+    completion: completionScore,
+    evidence: mission.evidence,
+    time: timeScore,
+    fatigue: fatigueScore,
+    cost: costScore,
+  });
 
   return {
     totalScore,
-    grade: totalScore >= 90 ? 'S' : totalScore >= 80 ? 'A' : totalScore >= 70 ? 'B' : totalScore >= 60 ? 'C' : 'D',
+    grade: debriefGrade(totalScore),
     safetyScore: mission.safety,
     completionScore,
     evidenceScore: mission.evidence,

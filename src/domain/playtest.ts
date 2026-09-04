@@ -1,3 +1,4 @@
+import { removeLocalStorage, writeLocalStorage } from './storage.ts';
 export const PLAYTEST_STORAGE_KEY = 'owm.playtest.v1';
 export const PLAYTEST_BUILD = '3.58.0-course-record-integrity';
 
@@ -196,13 +197,9 @@ export function loadPlaytestSession(): PlaytestSession | null {
   }
 }
 
-export function savePlaytestSession(session: PlaytestSession | null): void {
-  if (typeof localStorage === 'undefined') return;
-  if (!session) {
-    localStorage.removeItem(PLAYTEST_STORAGE_KEY);
-    return;
-  }
-  localStorage.setItem(PLAYTEST_STORAGE_KEY, JSON.stringify(session));
+export function savePlaytestSession(session: PlaytestSession | null): boolean {
+  if (!session) return removeLocalStorage(PLAYTEST_STORAGE_KEY);
+  return writeLocalStorage(PLAYTEST_STORAGE_KEY, JSON.stringify(session));
 }
 
 export function serializePlaytestSession(session: PlaytestSession, now = new Date()): string {
