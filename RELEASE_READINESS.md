@@ -1,8 +1,8 @@
 # OWM Web MVP Release Readiness
 
-## Student Quick Start candidate - 2026-09-04
+## Student Quick Start deployed release - 2026-09-04
 
-- Version：`3.59.0-student-quick-start`；保留 v2 integrity gate 與 P0/P1 hotfix，新增 Course 首屏資訊架構，待本次 GitHub Actions 與公開 CourseConfig 回讀通過後成為公開版。
+- Version：`3.59.0-student-quick-start`；保留 v2 integrity gate 與 P0/P1 hotfix，新增 Course 首屏資訊架構。GitHub Actions run `33831521060` 的 validation、Course smoke、offline backup 與 Pages deployment 全數成功，公開 CourseConfig 回讀版本一致。
 - Student Quick Start 將最新已解鎖週次設為單一任務焦點，提供三步進度、匿名代碼、單一 Assessment 主 CTA 與 local-only 週任務狀態回饋。
 - 15 週完整卡片改為不洩漏 Locked 任務內容的緊湊進度列；其他已解鎖週次仍可切換，教師 `unlockedWeekIds` 契約不變。
 - Engineering Lab 預設收合並按需求展開；390px Mobile Course 首頁完整高度由約 2724px 降為 1668px（約減少 39%），主 CTA 通過第一個 844px viewport gate。

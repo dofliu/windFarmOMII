@@ -4,7 +4,7 @@
 
 這一節是目前狀態的唯一摘要；下方較早日期的 increment 保留作為歷史證據，不應覆蓋本節數值。
 
-- 現行候選版本為 `3.59.0-student-quick-start`；保留 Course Record v2 integrity 與 frozen balance，新增 Course 首屏 Quick Start、週次進度列、local-only 完成狀態與預設收合的 Engineering Lab。
+- 現行公開版本為 `3.59.0-student-quick-start`；保留 Course Record v2 integrity 與 frozen balance，新增 Course 首屏 Quick Start、週次進度列、local-only 完成狀態與預設收合的 Engineering Lab；GitHub Actions run `33831521060` 與公開 CourseConfig 回讀均通過。
 - Course Record 已升級為 schema v2；每個 event 明列 `context`／`actor`，可定位時另含 `attemptNumber`；正式 `decisionOrder` 僅接受 `learner + assessment_runtime`。
 - Guided Practice 不寫入既有 Assessment record；system-derived JSA／LOTO／Work Order 與 Practice Lab events 可留在 audit log，但不當作學生正式決策。
 - 匯出 gate 要求所有 attempts 均已結算、具分項 scores，且四欄 Debrief 全部完整；domain serializer 同樣 fail closed。
