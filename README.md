@@ -1,10 +1,11 @@
 # Offshore Wind Masters Web
 
-> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-09-04.md](NEXT_SESSION_HANDOFF_2026-09-04.md)。目前主線是縮短學生進入任務的路徑，並以 3–5 位真人學生驗證 W09→W10 的吸引力與順暢性；真人證據前不調整 frozen balance。
+> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-09-04.md](NEXT_SESSION_HANDOFF_2026-09-04.md)。Student Quick Start 與 W09→W10 真人 pilot 就緒包已完成；下一步是由教師核准獨立 staging candidate，再執行 3–5 位 Desktop／Mobile think-aloud pilot。公開站仍維持 W01-only，真人證據前不調整 frozen balance。
 
 ## Current verification snapshot — 2026-09-04
 
 - 現行版本：`3.59.0-student-quick-start`；Course 首屏已改為本週任務單一焦點、三步進度、匿名 Assessment 主 CTA、週次進度列及預設收合的 Engineering Lab。
+- Course-specific pilot 已具備可直接使用的 [W09→W10 Protocol](outputs/01a06a22-3799-7441-bebb-b11b0e2d7382/COURSE_MODE_PILOT_PROTOCOL_v1.0.docx) 與 [匿名 observation workbook](outputs/01a06a22-3799-7441-bebb-b11b0e2d7382/COURSE_MODE_PILOT_OBSERVATION_v1.0.xlsx)。兩者均為空白 protocol/template，尚無真人結果；實際填寫前先複製到已忽略的 `pilot-results-private/`，不得把真人資料推送到公開 repository。
 - Course Record 已升級為 schema v2；events 明列 `context`／`actor`／`attemptNumber`，正式 `decisionOrder` 僅包含 `learner + assessment_runtime`。
 - `integrityOrigin=native_v2` 與 export 中的 `integrityPolicy.schemaEvidenceEligible=true` 只代表這份 client-local record 通過 schema、provenance 與 export gate 檢查；export 會明列 `authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它不具 tamper evidence、身分綁定或可信任的送件收據，因此不可直接視為正式成績真實性證明。正式評量必須另採 instructor-controlled receipt，或 cryptographically signed／server-side collection。
 - Guided Practice 不寫入 Assessment record；自動 JSA／LOTO／Work Order 與 Practice Lab events 保留 audit provenance，但不冒充學生正式決策。

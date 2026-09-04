@@ -27,11 +27,21 @@
 4. Guided Practice 降為次要入口；Engineering Lab 預設收合，需要 SCADA／CMS 或程序練習時再展開。
 5. 390px Mobile 首頁完整高度由變更前約 2724px 降為 1668px（約減少 39%）；Assessment 主 CTA 位於第一個 844px viewport 內。
 
+## 2026-09-04 W09 至 W10 真人 pilot 就緒包
+
+1. 新增 9 頁 `COURSE_MODE_PILOT_PROTOCOL_v1.0.docx`，定義 3–5 位、Desktop／Mobile、W09→W10 think-aloud 流程與中性主持話術。
+2. 新增 `COURSE_MODE_PILOT_OBSERVATION_v1.0.xlsx`，包含 Instructions、Participants、Task Log、Observations、Summary 五個工作表。
+3. Workbook 只收匿名代碼、手動 observation、time-to-first-action、completion time、Assistance／Backtrack／Mistap／Stuck、severity 與 1–5 吸引力／順暢性。
+4. Summary 會檢查 sample/device/task rows，並以 P0/P1、80% completion 與 smoothness median 4 產生 `INCOMPLETE`／`REVISE`／`GO` decision aid；小樣本仍不作學習成效或統計推論。
+5. `.gitignore` 新增 `pilot-results-private/`；真人資料必須複製到該資料夾後填寫，不得改寫已追蹤的空白 template。
+
 ## 驗證結果
 
 - `pnpm validate`：28 test files／183 tests；Data／Scene／Art／Course、Campaign／Challenge balance、production build 全數通過。
 - `pnpm smoke:course`：W01-only、Desktop／390px Mobile、Assessment no-hints、v2 export、teacher summary、Lab provenance、config failure degradation 全數通過。
 - `pnpm smoke:onboarding`、`smoke:mobile:flow`、`smoke:layout`、`smoke:deployment:compact`、`smoke:operation:compact`、`smoke:gameplay`：全數通過。
+- Pilot Protocol：DOCX 9 頁逐頁 render 無裁切／重疊；accessibility audit 為 0 finding。
+- Pilot workbook：5 sheets 全數 render；初始狀態為 `INCOMPLETE`，synthetic QA 的完整 3 人案例為 `GO`，加入 P1 後為 `REVISE`，formula error scan 為 0。Synthetic QA 未寫入交付檔，也不是學生資料。
 - Balance 保持：Campaign L1 6/6、L3 12/12、L5 15/15 required missions；Boss 100/100；MNT 55；最大持續疲勞 76%；未依 automated evidence 調整難度。
 - GitHub `main` 已更新；Actions run `33829151062` 的 build／Desktop-Mobile Course smoke／offline backup／Pages deploy 全數成功。
 - GitHub Actions run `33831521060` 的 validation、Desktop／Mobile Course smoke、offline backup 與 Pages deployment 全數成功；公開 CourseConfig 已回讀為 `3.59.0-student-quick-start`。
@@ -46,8 +56,8 @@
 
 ## 下一個建議增量
 
-`Student Quick Start` UI 已完成；下一步以真人 pilot 驗證，不先調整 frozen balance：
+`Student Quick Start` UI 與空白 pilot kit 已完成；下一步以真人 pilot 驗證，不先調整 frozen balance：
 
-1. 執行 3–5 位真人學生 W09→W10 Desktop／Mobile think-aloud pilot。
-2. 量測首次操作時間、完成時間、返回／誤觸次數、卡關點與 1–5 吸引力評分。
-3. 依真人證據決定是否調整 Guided Practice 因果回饋、教學訊息或遊戲平衡。
+1. 由教師核准獨立 staging/local pilot candidate 與日期，只在該 candidate 解鎖 W09/W10；公開 W01-only 不變。
+2. 複製空白 workbook 到 `pilot-results-private/`，執行 3–5 位真人學生 Desktop／Mobile think-aloud pilot。
+3. 依真人 evidence 決定是否調整 Guided Practice 因果回饋、教學訊息或下一版遊戲節奏；任何 scoring/balance 變更另建 release。

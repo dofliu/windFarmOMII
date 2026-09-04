@@ -176,10 +176,26 @@ GitHub Actions 每次正式發布也會附加同名 workflow artifact。
 
 數值平衡變更應另開下一個 release version，不能覆寫本學期 Course Record 的版本語意。
 
+## W09 至 W10 真人 pilot 就緒包
+
+Course-specific usability pilot 使用下列空白檔案：
+
+- [COURSE_MODE_PILOT_PROTOCOL_v1.0.docx](outputs/01a06a22-3799-7441-bebb-b11b0e2d7382/COURSE_MODE_PILOT_PROTOCOL_v1.0.docx)：3–5 位、Desktop／Mobile、W09→W10 think-aloud 流程、量測定義、severity 與 pilot gate。
+- [COURSE_MODE_PILOT_OBSERVATION_v1.0.xlsx](outputs/01a06a22-3799-7441-bebb-b11b0e2d7382/COURSE_MODE_PILOT_OBSERVATION_v1.0.xlsx)：Participants、Task Log、Observations 與 formula-driven Summary。
+
+執行時遵守以下順序：
+
+1. 教師先核准獨立 staging 或 local pilot candidate，只在該 candidate 解鎖 W09/W10；公開站仍維持 W01-only。
+2. 把空白 workbook 複製到 `pilot-results-private/` 後再輸入真人資料；此資料夾已由 Git 忽略。
+3. 只使用匿名代碼與手動 observation，不收姓名、學號、Email，也不開 continuous telemetry。
+4. 依 protocol 完成 3–5 位真人 session，再使用 Summary 判斷 `INCOMPLETE`、`REVISE` 或 `GO`；任何結論仍需回看原始 observation。
+
+目前只有經過結構、公式與視覺 QA 的空白就緒包，尚未執行真人 pilot，也沒有吸引力、順暢性或學習成效結果。
+
 ## 目前課程範圍與證據限制
 
 - 現行 config 定義 W01–W15；W16–W18 尚未由正式課綱定義。
 - 尚未完成 CLO→週次→活動→評量證據→rubric 的 18 週矩陣。
 - Automated flow、smoke 與 simulation 只證明軟體行為，不代表學生理解。
-- 下一個教學 gate 是 Course-specific W09→W10 真人 pilot；取得證據前不調整 frozen balance。
+- Course-specific W09→W10 protocol 與匿名 observation workbook 已完成；下一個教學 gate 是教師核准 pilot candidate 並執行真人 pilot。取得證據前不調整 frozen balance。
 - 平台與證據權責詳見 `OWM_WEB_COURSE_MODE_ADDENDUM_v1.0.md`。

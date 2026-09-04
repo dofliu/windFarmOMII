@@ -14,6 +14,7 @@ playtest-results/*.json
 playtest-results/PLAYTEST_SUMMARY.md
 course-results/*.json
 course-results/COURSE_SUMMARY.md
+pilot-results-private/
 
 # Image assets & heavy media
 *.png

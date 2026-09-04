@@ -1,5 +1,13 @@
 # OWM 專案進度
 
+## Current increment - 2026-09-04 (Course W09 to W10 human pilot kit)
+
+- 建立 Course-specific `COURSE_MODE_PILOT_PROTOCOL_v1.0.docx`：3–5 位真人、Desktop／Mobile、W09→W10 think-aloud、量測定義、中性主持話術、severity 與 `INCOMPLETE`／`REVISE`／`GO` gate。
+- 建立 formula-driven `COURSE_MODE_PILOT_OBSERVATION_v1.0.xlsx`：Instructions、Participants、Task Log、Observations、Summary 五個 sheets，只收匿名代碼與手動 observation。
+- DOCX 9 頁逐頁 render 與 accessibility audit 通過；XLSX 初始空白、synthetic `GO`、P1 `REVISE` 與 formula error scan 通過。
+- `.gitignore` 新增 `pilot-results-private/`，避免真人 pilot 資料誤入公開 repository。
+- 未修改 release version、公開 W01-only、`frozen=true`、任務 seed、評分或 balance；目前仍無真人學生結果。
+
 ## Current increment - 2026-09-04 (Student Quick Start)
 
 - 將 Course 首屏重整為最新已解鎖週次的單一任務焦點、三步進度、匿名 Assessment 主 CTA 與 local-only 任務狀態。

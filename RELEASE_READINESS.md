@@ -16,6 +16,7 @@
 - Assessment OBJECTIVES 已移除 skill／end-round forecast，diagnosis 正解與 guide target 不再暴露於 Assessment DOM；Course reset 與共機更換匿名代碼採二段式保護。
 - Course Record 分項 score 由共同公式重算，export 加入 `recordDigest` 與週次／config snapshot；班級彙整使用 `pnpm course:summary`，legacy 單檔診斷使用 `pnpm course:inspect-legacy -- <file>`。
 - 2026-08-03 automated flow 為 legacy v1 診斷證據，不是學生學習成效。Course-specific 真人 pilot 尚未執行。
+- W09→W10 真人 pilot 就緒包已完成：9 頁 Protocol 經逐頁 render 與 accessibility audit，匿名 workbook 的空白狀態、`GO`／`P1→REVISE` 代表案例及 formula error scan 均通過。這是 protocol/template readiness，不是 human evidence。
 - 現有 15 assignments 尚未構成完整 18 週 CLO matrix；W16–W18 需由正式課綱決定。
 - Production art 的獨立主線仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
 
@@ -69,7 +70,8 @@ Production art gate baseline：`3.53.0-batch030-production-qa`
 
 ## Course Mode 下一主線
 
-- 先建立 18 週 CLO evidence matrix 與 Course-specific pilot protocol，再執行 3–5 位真人學生 W09→W10 pilot。
+- Course-specific pilot protocol 與匿名 observation workbook 已完成；先由教師核准獨立 W09/W10 staging candidate，再執行 3–5 位真人學生 Desktop／Mobile pilot。
+- 完整學期 readiness 仍需 18 週 CLO evidence matrix 與 W16–W18 正式課綱定義；這不以空白 pilot template 取代。
 - 真人證據完成前，不調整 frozen Course balance。
 
 ## Production-art workstream 下一步
