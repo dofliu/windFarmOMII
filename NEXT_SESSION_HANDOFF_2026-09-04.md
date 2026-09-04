@@ -42,6 +42,7 @@
 - `pnpm smoke:onboarding`、`smoke:mobile:flow`、`smoke:layout`、`smoke:deployment:compact`、`smoke:operation:compact`、`smoke:gameplay`：全數通過。
 - Pilot Protocol：DOCX 9 頁逐頁 render 無裁切／重疊；accessibility audit 為 0 finding。
 - Pilot workbook：5 sheets 全數 render；初始狀態為 `INCOMPLETE`，synthetic QA 的完整 3 人案例為 `GO`，加入 P1 後為 `REVISE`，formula error scan 為 0。Synthetic QA 未寫入交付檔，也不是學生資料。
+- Pilot-kit commit `b0ba990` 已推送 `main`；GitHub Actions run `33833318924` 的 teaching deployment validation、Desktop／Mobile Course smoke、offline backup 與 Pages deploy 全數成功。公開 CourseConfig 回讀仍為 `3.59.0-student-quick-start`、`frozen=true`、W01-only。
 - Balance 保持：Campaign L1 6/6、L3 12/12、L5 15/15 required missions；Boss 100/100；MNT 55；最大持續疲勞 76%；未依 automated evidence 調整難度。
 - GitHub `main` 已更新；Actions run `33829151062` 的 build／Desktop-Mobile Course smoke／offline backup／Pages deploy 全數成功。
 - GitHub Actions run `33831521060` 的 validation、Desktop／Mobile Course smoke、offline backup 與 Pages deployment 全數成功；公開 CourseConfig 已回讀為 `3.59.0-student-quick-start`。

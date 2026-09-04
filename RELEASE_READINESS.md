@@ -17,6 +17,7 @@
 - Course Record 分項 score 由共同公式重算，export 加入 `recordDigest` 與週次／config snapshot；班級彙整使用 `pnpm course:summary`，legacy 單檔診斷使用 `pnpm course:inspect-legacy -- <file>`。
 - 2026-08-03 automated flow 為 legacy v1 診斷證據，不是學生學習成效。Course-specific 真人 pilot 尚未執行。
 - W09→W10 真人 pilot 就緒包已完成：9 頁 Protocol 經逐頁 render 與 accessibility audit，匿名 workbook 的空白狀態、`GO`／`P1→REVISE` 代表案例及 formula error scan 均通過。這是 protocol/template readiness，不是 human evidence。
+- Pilot-kit commit `b0ba990` 已推送 `main`；GitHub Actions run `33833318924` 的 teaching deployment validation、Desktop／Mobile Course smoke、offline backup 與 Pages deploy 全數成功。公開 CourseConfig 回讀仍為 `3.59.0-student-quick-start`、`frozen=true`、W01-only。
 - 現有 15 assignments 尚未構成完整 18 週 CLO matrix；W16–W18 需由正式課綱決定。
 - Production art 的獨立主線仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
 

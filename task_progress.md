@@ -7,6 +7,7 @@
 - DOCX 9 頁逐頁 render 與 accessibility audit 通過；XLSX 初始空白、synthetic `GO`、P1 `REVISE` 與 formula error scan 通過。
 - `.gitignore` 新增 `pilot-results-private/`，避免真人 pilot 資料誤入公開 repository。
 - 未修改 release version、公開 W01-only、`frozen=true`、任務 seed、評分或 balance；目前仍無真人學生結果。
+- Pilot-kit commit `b0ba990` 已同步 GitHub；Actions run `33833318924` 的 teaching deployment、Desktop／Mobile Course smoke、offline backup 與 Pages deploy 全數成功。
 
 ## Current increment - 2026-09-04 (Student Quick Start)
 
