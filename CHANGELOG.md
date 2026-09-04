@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.59.0-student-quick-start - 2026-09-04
+
+- Replaced the Course landing-page card stack with a Student Quick Start flow focused on the latest instructor-unlocked week.
+- Added a three-step progress indicator, consolidated anonymous access, and one primary Assessment CTA; Guided Practice remains a secondary no-record path.
+- Replaced full Locked-week cards with a compact teacher-controlled week rail that does not reveal locked mission details and still allows switching among released weeks.
+- Collapsed Engineering Lab by default while preserving on-demand SCADA／CMS, LOTO／Work Order, Alarm／Interlock, and case-library functionality.
+- Added local-only weekly mission status feedback without accounts, gradebook, leaderboard, or continuous telemetry.
+- Reduced the verified 390px Mobile Course page from about 2724px to 1668px (about 39%) and added a smoke gate requiring the primary CTA inside the first 844px viewport.
+- Kept Course Record v2 provenance, Assessment no-hints, manual `unlockedWeekIds`, W01-only release, and frozen Campaign／Challenge balance unchanged.
+
 ## 3.58.0-course-record-integrity - 2026-09-04
 
 - Upgraded Course Record to schema v2 with required event `context`／`actor` provenance and `attemptNumber` when an Assessment attempt is addressable.

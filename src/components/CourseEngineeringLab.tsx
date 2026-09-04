@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { CourseAssignment } from '../domain/course';
 import {
   calculateReliabilityKpis,
@@ -35,17 +35,19 @@ const sampleSignal = [68, 71, 72.5, 74, 76, 75, 73, 70, 68];
 export function CourseEngineeringLab({
   language,
   assignments,
+  activeAssignmentId,
   onLotoVerified,
   onWorkOrderCreated,
 }: {
   language: Language;
   assignments: CourseAssignment[];
+  activeAssignmentId?: string;
   onLotoVerified?: (assignment: CourseAssignment, state: LotoProcedureState) => void;
   onWorkOrderCreated?: (assignment: CourseAssignment, state: WorkOrderState) => void;
 }) {
   const isZh = language === 'zh';
   const [tab, setTab] = useState<LabTab>('data');
-  const [selectedAssignmentId, setSelectedAssignmentId] = useState(assignments[0]?.id ?? '');
+  const [selectedAssignmentId, setSelectedAssignmentId] = useState(activeAssignmentId ?? assignments.at(-1)?.id ?? '');
   const assignment = assignments.find((item) => item.id === selectedAssignmentId) ?? assignments[0];
   // 資料包內容以週次編號為鍵，不用陣列位置：教師只解鎖部分週次或調整 config 順序時，各週答案不變。
   const packIndex = assignment ? Math.max(0, Number.parseInt(assignment.weekId.slice(1), 10) - 1) : 0;
@@ -61,6 +63,14 @@ export function CourseEngineeringLab({
   const [workOrder, setWorkOrder] = useState(createWorkOrder);
   const [alarmConfig, setAlarmConfig] = useState(defaultAlarmConfig);
   const alarmResult = useMemo(() => runAlarmTest(sampleSignal, alarmConfig), [alarmConfig]);
+
+  useEffect(() => {
+    if (activeAssignmentId && assignments.some((item) => item.id === activeAssignmentId)) {
+      setSelectedAssignmentId(activeAssignmentId);
+      setLoto(createLotoProcedure());
+      setWorkOrder(createWorkOrder());
+    }
+  }, [activeAssignmentId, assignments]);
 
   if (!assignment || !pack || !kpis) {
     return (

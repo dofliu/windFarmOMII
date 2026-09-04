@@ -1,6 +1,6 @@
 import { removeLocalStorage, writeLocalStorage } from './storage.ts';
 export const PLAYTEST_STORAGE_KEY = 'owm.playtest.v1';
-export const PLAYTEST_BUILD = '3.58.0-course-record-integrity';
+export const PLAYTEST_BUILD = '3.59.0-student-quick-start';
 
 export type PlaytestPlatform = 'desktop' | 'mobile';
 export type PlaytestStatus = 'active' | 'completed';

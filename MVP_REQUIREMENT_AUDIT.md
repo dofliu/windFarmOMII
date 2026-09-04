@@ -1,17 +1,17 @@
 # OWM Web MVP 需求稽核
 
-## Working candidate verification snapshot — 2026-08-13
+## Current verification snapshot — 2026-09-04
 
 這一節是目前狀態的唯一摘要；下方較早日期的 increment 保留作為歷史證據，不應覆蓋本節數值。
 
-- 本機候選版本為 `3.58.0-course-record-integrity`；尚未 commit／push／發布，正式 `origin/main` 仍為 `3.57.1-course-mode-p0`。
+- 現行候選版本為 `3.59.0-student-quick-start`；保留 Course Record v2 integrity 與 frozen balance，新增 Course 首屏 Quick Start、週次進度列、local-only 完成狀態與預設收合的 Engineering Lab。
 - Course Record 已升級為 schema v2；每個 event 明列 `context`／`actor`，可定位時另含 `attemptNumber`；正式 `decisionOrder` 僅接受 `learner + assessment_runtime`。
 - Guided Practice 不寫入既有 Assessment record；system-derived JSA／LOTO／Work Order 與 Practice Lab events 可留在 audit log，但不當作學生正式決策。
 - 匯出 gate 要求所有 attempts 均已結算、具分項 scores，且四欄 Debrief 全部完整；domain serializer 同樣 fail closed。
 - Engineering Lab 僅顯示 `unlockedWeekIds`，SCADA／CMS data pack 明標 `SYNTHETIC / GAMEPLAY ABSTRACTION`。
 - P1 Practice Lab 已加入任務級 SCADA／CMS 證據、可靠度與 OPEX 計算、完整 LOTO／Work Order 程序練習、Alarm／Interlock tester 與 IEC 61131-3 ST reference logic；Assessment 中 system-derived 程序事件尚非學生正式操作證據。
 - P2 已加入 12 個 elective case packs、24 人職業角色池與「重大事故演練」課程用語；既有 15 關 Campaign 平衡維持凍結。
-- 2026-08-13 `pnpm validate` 通過 26 test files／174 tests、Data／Scene／Art／Course、Campaign／Challenge balance 與 production build；更新後 `pnpm smoke:course` 亦通過。完整 16 組 smoke 的最近全量基準仍是 2026-07-30，不改寫為本輪結果。
+- 2026-09-04 `pnpm validate` 通過 28 test files／183 tests、Data／Scene／Art／Course、Campaign／Challenge balance 與 production build；`pnpm smoke:course` 另通過 Student Quick Start、Lab disclosure、Assessment no-hints、Course Record v2 與 390px Mobile 首屏 CTA gate。
 - 300/300 P01 active preview 已同步；300 張均通過 2:3 runtime contract 與 Source Art smoke。
 - 150 個 Scene ID 均已具備 explicit route 或 documented shared fallback：148 integrated、146 dedicated runtime files（1915×821 RGB）、2 fallback（SCN035、SCN041）。
 - 119 個新場景候選已由使用者全量核准並完成 promotion；目前 `0` Scene visual review required。

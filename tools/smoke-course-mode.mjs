@@ -59,6 +59,24 @@ try {
       throw new Error(`Manual weekly unlock state is incorrect for ${assignment.weekId}.`);
     }
   }
+  if ((await page.getByTestId('course-quick-progress').locator('span').count()) !== 3) {
+    throw new Error('Student Quick Start must expose exactly three progress steps.');
+  }
+  const selectedAssignment = unlockedAssignments.at(-1);
+  const currentAssignmentText = await page.getByTestId('course-current-assignment').innerText();
+  if (selectedAssignment && (!currentAssignmentText.includes(selectedAssignment.weekId) || !currentAssignmentText.includes(selectedAssignment.missionId))) {
+    throw new Error(`Student Quick Start did not focus the latest unlocked week: ${currentAssignmentText}`);
+  }
+  if (!selectedAssignment && !currentAssignmentText.includes('目前沒有已開放的週次')) {
+    throw new Error(`Student Quick Start did not expose the no-release state: ${currentAssignmentText}`);
+  }
+  if ((await page.getByTestId('course-lab-toggle').getAttribute('aria-expanded')) !== 'false' || await page.getByTestId('course-lab-content').isVisible()) {
+    throw new Error('Engineering Lab must be collapsed on initial Course entry.');
+  }
+  await page.getByTestId('course-lab-toggle').click();
+  if ((await page.getByTestId('course-lab-toggle').getAttribute('aria-expanded')) !== 'true' || !(await page.getByTestId('course-lab-content').isVisible())) {
+    throw new Error('Engineering Lab disclosure did not expand on demand.');
+  }
   const courseNavChallenge = await page.getByTestId('nav-challenge').innerText();
   if (!courseNavChallenge.includes('重大事故演練')) {
     throw new Error(`Course Mode did not rename Boss Challenge: ${courseNavChallenge}`);
@@ -107,6 +125,11 @@ try {
     await page.getByTestId('course-lab-tab-data').click();
   }
 
+  await page.getByTestId('course-lab-toggle').click();
+  if (await page.getByTestId('course-lab-content').isVisible()) {
+    throw new Error('Engineering Lab disclosure did not collapse after use.');
+  }
+
   await page.getByTestId('course-generate-code').click();
   const learnerCode = await page.getByTestId('course-learner-code').inputValue();
   if (!/^OWM-[A-F0-9]{4}-[A-F0-9]{4}$/.test(learnerCode)) throw new Error(`Anonymous learner code is invalid: ${learnerCode}`);
@@ -114,12 +137,20 @@ try {
   await page.screenshot({ path: shot('desktop'), fullPage: true });
 
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.evaluate(() => window.scrollTo(0, 0));
   await assertNoHorizontalOverflow('Mobile Course Mode');
+  if ((await page.locator('.course-primary-cta').count()) !== (selectedAssignment ? 1 : 0)) {
+    throw new Error('Mobile Course Mode lost the single primary Assessment CTA.');
+  }
+  const primaryCtaBox = selectedAssignment ? await page.locator('.course-primary-cta').boundingBox() : null;
+  if (primaryCtaBox && primaryCtaBox.y + primaryCtaBox.height > 844) {
+    throw new Error(`Mobile primary Assessment CTA is below the first viewport: ${JSON.stringify(primaryCtaBox)}`);
+  }
   await page.screenshot({ path: shot('mobile'), fullPage: true });
   await page.setViewportSize({ width: 1440, height: 900 });
 
   if (unlockedAssignments.length > 0) {
-    const targetAssignment = unlockedAssignments[0];
+    const targetAssignment = unlockedAssignments.at(-1);
     await page.getByTestId(`course-start-assessment-${targetAssignment.weekId}`).click();
     await page.getByTestId('operation-decision-prompt').waitFor();
     if (await page.getByTestId('operation-decision-guide-cta').count()) throw new Error('Assessment still exposes GUIDE.');
@@ -195,6 +226,7 @@ try {
 
     // Engineering Lab 事件必須反映實際操作：LOTO 帶違序次數，Work Order 只在 CLOSE_OUT 才記錄。
     const beforeLabRecord = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
+    await page.getByTestId('course-lab-toggle').click();
     await page.getByTestId('course-lab-tab-procedures').click();
     await page.getByTestId('course-procedure-loto-isolate').click(); // 違序：應被拒絕並計數
     for (const step of ['shutdown', 'isolate', 'lock-tag', 'control-residual-energy', 'verify-zero-energy']) {

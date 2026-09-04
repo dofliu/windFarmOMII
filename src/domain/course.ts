@@ -6,7 +6,7 @@ import type { GameDatabase } from './types';
 
 export const COURSE_STORAGE_KEY = 'owm.course.v1';
 export const COURSE_RECORD_FORMAT = 'OWM_COURSE_RECORD';
-export const COURSE_RELEASE = '3.58.0-course-record-integrity';
+export const COURSE_RELEASE = '3.59.0-student-quick-start';
 
 export type CoursePlatform = 'desktop' | 'mobile';
 export type CourseEventContext = 'assessment_runtime' | 'practice_lab' | 'guided_practice' | 'system' | 'legacy_unknown';

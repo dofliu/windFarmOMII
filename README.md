@@ -4,12 +4,13 @@
 
 ## Current verification snapshot — 2026-09-04
 
-- 現行版本：`3.58.0-course-record-integrity`；已整合本地 Course Record v2 與遠端 2026-08-31／09-02 P0/P1 修正。
+- 現行版本：`3.59.0-student-quick-start`；Course 首屏已改為本週任務單一焦點、三步進度、匿名 Assessment 主 CTA、週次進度列及預設收合的 Engineering Lab。
 - Course Record 已升級為 schema v2；events 明列 `context`／`actor`／`attemptNumber`，正式 `decisionOrder` 僅包含 `learner + assessment_runtime`。
 - `integrityOrigin=native_v2` 與 export 中的 `integrityPolicy.schemaEvidenceEligible=true` 只代表這份 client-local record 通過 schema、provenance 與 export gate 檢查；export 會明列 `authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它不具 tamper evidence、身分綁定或可信任的送件收據，因此不可直接視為正式成績真實性證明。正式評量必須另採 instructor-controlled receipt，或 cryptographically signed／server-side collection。
 - Guided Practice 不寫入 Assessment record；自動 JSA／LOTO／Work Order 與 Practice Lab events 保留 audit provenance，但不冒充學生正式決策。
 - 所有 attempts 均須結算、具 scores 並完成「結論／證據／不確定性／殘餘風險」，UI 與 serializer 才允許匯出。
 - Assessment 與 Engineering Lab 均只使用 `unlockedWeekIds`；目前正式設定 `frozen=true`、僅 W01 解鎖。
+- 390px Mobile 的 Course 首頁完整高度由本次變更前約 2724px 降為 1668px（約減少 39%），Assessment 主 CTA 位於第一個 844px viewport 內；這是版面與流程證據，不是學生吸引力或學習成效證據。
 - 15 組固定 SCADA／CMS data packs 已明標 `SYNTHETIC / GAMEPLAY ABSTRACTION`；Availability／MTBF／MTTR／Downtime／OPEX、LOTO、Work Order 與 Alarm／Interlock tester 維持可操作。
 - 教學部署使用 `https://dofliu.github.io/windFarmOMII/`；`sync:data` 僅發布 14 個 runtime JSON，排除離線用 prompt 資料，Pages build 約 5 MiB。
 - 2026-09-04 `pnpm validate` 通過 28 test files／183 tests、Data／Scene／Art／Course、Campaign／Challenge balance與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 均通過。

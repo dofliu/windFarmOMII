@@ -1,8 +1,11 @@
 # OWM Web MVP Release Readiness
 
-## Integrated candidate - 2026-09-04
+## Student Quick Start candidate - 2026-09-04
 
-- Version：`3.58.0-course-record-integrity`；已整合本地 v2 integrity gate 與遠端 P0/P1 hotfix，並由 GitHub Actions run `33829151062` 完成 build、Course smoke、offline backup 與 Pages deployment；公開 CourseConfig 已回讀確認版本一致。
+- Version：`3.59.0-student-quick-start`；保留 v2 integrity gate 與 P0/P1 hotfix，新增 Course 首屏資訊架構，待本次 GitHub Actions 與公開 CourseConfig 回讀通過後成為公開版。
+- Student Quick Start 將最新已解鎖週次設為單一任務焦點，提供三步進度、匿名代碼、單一 Assessment 主 CTA 與 local-only 週任務狀態回饋。
+- 15 週完整卡片改為不洩漏 Locked 任務內容的緊湊進度列；其他已解鎖週次仍可切換，教師 `unlockedWeekIds` 契約不變。
+- Engineering Lab 預設收合並按需求展開；390px Mobile Course 首頁完整高度由約 2724px 降為 1668px（約減少 39%），主 CTA 通過第一個 844px viewport gate。
 - Course Record schema v2 已要求 event `context`／`actor`／`attemptNumber`；只有 `learner + assessment_runtime` 可進入正式 `decisionOrder`。
 - Guided Practice 不再修改既有 Assessment record；system-derived JSA／LOTO／Work Order 與 Engineering Lab events 僅保留為 audit log。
 - Export gate 在 UI 與 serializer 均採 fail closed：所有 attempts 必須結算、具 scores 且四欄 Debrief 完整。

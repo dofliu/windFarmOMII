@@ -39,7 +39,7 @@ const assignment = {
 const config: CourseConfig = {
   schemaVersion: 1,
   configVersion: '2026-FALL-v1',
-  releaseVersion: '3.58.0-course-record-integrity',
+  releaseVersion: '3.59.0-student-quick-start',
   frozen: true,
   courseCode: 'NCUT-OWM-2026',
   term: '2026-FALL',
@@ -106,7 +106,7 @@ describe('Course Mode learning record', () => {
     expect(exported).toMatchObject({
       format: 'OWM_COURSE_RECORD',
       schemaVersion: 2,
-      version: '3.58.0-course-record-integrity',
+      version: '3.59.0-student-quick-start',
       attemptCount: 1,
       hintUsage: { total: 0, assessmentPolicy: 'REC_AND_GUIDE_DISABLED' },
       integrityPolicy: {

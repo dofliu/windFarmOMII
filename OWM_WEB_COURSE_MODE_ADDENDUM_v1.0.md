@@ -2,7 +2,7 @@
 
 狀態：Draft implementation clarification（待劉老師核准並發布）  
 生效日期：2026-08-13  
-適用版本：`3.58.0-course-record-integrity`
+適用版本：`3.59.0-student-quick-start`
 
 ## 1. 目的與權責
 

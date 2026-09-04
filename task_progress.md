@@ -1,5 +1,13 @@
 # OWM 專案進度
 
+## Current increment - 2026-09-04 (Student Quick Start)
+
+- 將 Course 首屏重整為最新已解鎖週次的單一任務焦點、三步進度、匿名 Assessment 主 CTA 與 local-only 任務狀態。
+- 將 15 週完整卡片收斂為 teacher-controlled 進度列；Locked weeks 不公開配置，其他已開放週次仍可切換。
+- Engineering Lab 預設收合但保留所有工程功能；Guided Practice 改為次要入口且不寫入 Assessment record。
+- 390px Mobile 首頁完整高度由約 2724px 降為 1668px（約減少 39%）；自動 gate 驗證主 CTA 位於第一個 844px viewport 內。
+- 未修改 W01-only、`frozen=true`、任務 seed、評分、Campaign／Challenge balance 或資料蒐集政策；真人學生吸引力與順暢性仍需 pilot 驗證。
+
 ## Current increment - 2026-07-24 (scene background coverage)
 
 - Added five versioned AI scene-feed candidates for SCN006, SCN017, SCN021, SCN027, and SCN031.

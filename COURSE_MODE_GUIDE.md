@@ -2,13 +2,14 @@
 
 ## Working candidate 版本
 
-- 現行版本：`3.58.0-course-record-integrity`
+- 現行版本：`3.59.0-student-quick-start`
 - 課程來源與公開部署均由 `main` 維護；發布狀態以 GitHub Actions 最新 successful deployment 為準。
 - 課程代碼：`NCUT-OWM-2026`
 - 課程設定：`public/course/course-config.json`
 - 正式網址：`https://dofliu.github.io/windFarmOMII/`
 - Assessment 不顯示 `REC`、`GUIDE` 或正確診斷提示；OBJECTIVES 分頁也不顯示技能建議與回合預測，僅保留階段目標、學習目標與現況資訊。
 - Course Record 僅使用匿名 learner code，不設姓名、Email、學號欄位。
+- Course 首頁預設聚焦最新已解鎖週次；其他已解鎖週次可由週次進度列切換，Locked weeks 不會提前公開任務配置。Engineering Lab 預設收合，學生需要資料或程序練習時再展開。
 
 ## 手動解鎖週次
 
