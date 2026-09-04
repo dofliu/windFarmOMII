@@ -3,9 +3,11 @@ import type { GameDatabase } from './types';
 
 export const COURSE_STORAGE_KEY = 'owm.course.v1';
 export const COURSE_RECORD_FORMAT = 'OWM_COURSE_RECORD';
-export const COURSE_RELEASE = '3.57.1-course-mode-p0';
+export const COURSE_RELEASE = '3.58.0-course-record-integrity';
 
 export type CoursePlatform = 'desktop' | 'mobile';
+export type CourseEventContext = 'assessment_runtime' | 'practice_lab' | 'guided_practice' | 'system' | 'legacy_unknown';
+export type CourseEventActor = 'learner' | 'system' | 'instructor' | 'unknown';
 export type CourseEventKind =
   | 'MODE_SELECTED'
   | 'MISSION_DEPLOYED'
@@ -48,8 +50,11 @@ export interface CourseEvent {
   sequence: number;
   recordedAt: string;
   kind: CourseEventKind;
+  context: CourseEventContext;
+  actor: CourseEventActor;
   assignmentId?: string;
   missionId?: string;
+  attemptNumber?: number;
   details: Record<string, unknown>;
 }
 
@@ -85,7 +90,8 @@ export interface CourseAttempt {
 }
 
 export interface CourseRecord {
-  schemaVersion: 1;
+  schemaVersion: 2;
+  integrityOrigin: 'native_v2' | 'migrated_v1' | 'invalid_v2' | 'unknown';
   releaseVersion: string;
   configVersion: string;
   courseCode: string;
@@ -113,6 +119,16 @@ const EVENT_KINDS: CourseEventKind[] = [
   'DEBRIEF_EXPORTED',
 ];
 
+const EVENT_CONTEXTS: CourseEventContext[] = [
+  'assessment_runtime',
+  'practice_lab',
+  'guided_practice',
+  'system',
+  'legacy_unknown',
+];
+
+const EVENT_ACTORS: CourseEventActor[] = ['learner', 'system', 'instructor', 'unknown'];
+
 const DECISION_KINDS = new Set<CourseEventKind>([
   'DIAGNOSIS_SELECTED',
   'EVIDENCE_VIEWED',
@@ -122,12 +138,120 @@ const DECISION_KINDS = new Set<CourseEventKind>([
   'WORK_ORDER_CREATED',
 ]);
 
+export interface AppendCourseEventOptions {
+  context: CourseEventContext;
+  actor: CourseEventActor;
+  now?: Date;
+  assignment?: CourseAssignment;
+}
+
+export type CourseExportBlockReason = 'NO_ATTEMPTS' | 'ATTEMPT_ID_INVALID' | 'DECISION_PROVENANCE_INVALID' | 'ATTEMPT_NOT_SETTLED' | 'DEBRIEF_INCOMPLETE';
+
+const isFormalAssessmentDecision = (
+  kind: CourseEventKind,
+  context: CourseEventContext,
+  actor: CourseEventActor,
+): boolean => DECISION_KINDS.has(kind) && context === 'assessment_runtime' && actor === 'learner';
+
+const legacyEventProvenance = (
+  kind: CourseEventKind,
+  details: Record<string, unknown>,
+): Pick<CourseEvent, 'context' | 'actor'> => {
+  if (kind === 'DIAGNOSIS_SELECTED' || kind === 'EVIDENCE_VIEWED') {
+    return { context: 'assessment_runtime', actor: 'learner' };
+  }
+  if (kind === 'HINT_USED') return { context: 'guided_practice', actor: 'learner' };
+  if (kind === 'LOTO_VERIFIED' || kind === 'WORK_ORDER_CREATED') {
+    return details.source === 'COURSE_ENGINEERING_LAB'
+      ? { context: 'practice_lab', actor: 'learner' }
+      : { context: 'assessment_runtime', actor: 'system' };
+  }
+  if (kind === 'JSA_COMPLETED' || kind === 'MISSION_DEPLOYED' || kind === 'MISSION_REPLAYED' || kind === 'MISSION_SETTLED') {
+    return { context: 'assessment_runtime', actor: 'system' };
+  }
+  if (kind === 'DEBRIEF_EXPORTED') return { context: 'system', actor: 'learner' };
+  if (kind === 'MODE_SELECTED') return { context: 'system', actor: 'system' };
+  return { context: 'legacy_unknown', actor: 'unknown' };
+};
+
 const emptyExplanation = (): CourseStudentExplanation => ({
   conclusion: '',
   evidence: '',
   uncertainty: '',
   residualRisk: '',
 });
+
+const isFiniteNumber = (value: unknown): value is number => typeof value === 'number' && Number.isFinite(value);
+
+const normalizeCourseScores = (value: unknown): CourseComponentScores | undefined => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  const scores = value as Partial<CourseComponentScores>;
+  if (
+    !isFiniteNumber(scores.completion)
+    || !isFiniteNumber(scores.safety)
+    || !isFiniteNumber(scores.evidence)
+    || !isFiniteNumber(scores.time)
+    || !isFiniteNumber(scores.fatigue)
+    || !isFiniteNumber(scores.cost)
+    || !isFiniteNumber(scores.total)
+    || typeof scores.grade !== 'string'
+    || !scores.grade.trim()
+  ) return undefined;
+  return {
+    completion: scores.completion,
+    safety: scores.safety,
+    evidence: scores.evidence,
+    time: scores.time,
+    fatigue: scores.fatigue,
+    cost: scores.cost,
+    total: scores.total,
+    grade: scores.grade.slice(0, 8),
+  };
+};
+
+const hasValidAttemptIdentitySequence = (attempts: CourseAttempt[]): boolean => {
+  const seen = new Set<string>();
+  const latestByAssignment = new Map<string, number>();
+  for (const attempt of attempts) {
+    if (
+      !attempt.assignmentId.trim()
+      || !attempt.missionId.trim()
+      || !Number.isInteger(attempt.attemptNumber)
+      || attempt.attemptNumber <= 0
+    ) return false;
+    const key = `${attempt.assignmentId}::${attempt.attemptNumber}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    const expected = (latestByAssignment.get(attempt.assignmentId) ?? 0) + 1;
+    if (attempt.attemptNumber !== expected) return false;
+    latestByAssignment.set(attempt.assignmentId, attempt.attemptNumber);
+  }
+  return true;
+};
+
+const hasValidDecisionProvenance = (record: CourseRecord): boolean => {
+  const formalEvents = record.events.filter((event) => (
+    isFormalAssessmentDecision(event.kind, event.context, event.actor)
+  ));
+  if (formalEvents.some((event) => record.attempts.filter((attempt) => (
+    event.assignmentId === attempt.assignmentId
+    && event.missionId === attempt.missionId
+    && event.attemptNumber === attempt.attemptNumber
+  )).length !== 1)) return false;
+  return record.attempts.every((attempt) => {
+    const attemptEvents = formalEvents.filter((event) => (
+      event.assignmentId === attempt.assignmentId
+      && event.missionId === attempt.missionId
+      && event.attemptNumber === attempt.attemptNumber
+    ));
+    const expectedOrder = attemptEvents.map((event) => event.kind);
+    const expectedHints = attemptEvents.filter((event) => event.kind === 'HINT_USED').length;
+    return attemptEvents.filter((event) => event.kind === 'DIAGNOSIS_SELECTED').length <= 1
+      && JSON.stringify(attempt.decisionOrder) === JSON.stringify(expectedOrder)
+      && Number.isInteger(attempt.hintUsedCount)
+      && attempt.hintUsedCount === expectedHints;
+  });
+};
 
 export function normalizeCourseCode(value: string): string {
   return value.trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 32);
@@ -238,7 +362,8 @@ export function createCourseRecord(
   if (!normalized) throw new Error('Anonymous learner code is required.');
   const timestamp = now.toISOString();
   return appendCourseEvent({
-    schemaVersion: 1,
+    schemaVersion: 2,
+    integrityOrigin: 'native_v2',
     releaseVersion: config.releaseVersion,
     configVersion: config.configVersion,
     courseCode: config.courseCode,
@@ -249,7 +374,11 @@ export function createCourseRecord(
     updatedAt: timestamp,
     events: [],
     attempts: [],
-  }, 'MODE_SELECTED', { mode: 'assessment', hints: 'disabled' }, now);
+  }, 'MODE_SELECTED', { mode: 'assessment', hints: 'disabled' }, {
+    context: 'system',
+    actor: 'system',
+    now,
+  });
 }
 
 export function startCourseAttempt(
@@ -257,6 +386,7 @@ export function startCourseAttempt(
   assignment: CourseAssignment,
   now = new Date(),
 ): CourseRecord {
+  if (!canStartCourseAttempt(record)) return record;
   const attemptNumber = record.attempts.filter((attempt) => attempt.assignmentId === assignment.id).length + 1;
   const attempt: CourseAttempt = {
     assignmentId: assignment.id,
@@ -275,12 +405,24 @@ export function startCourseAttempt(
     updatedAt: now.toISOString(),
   };
   if (attemptNumber > 1) {
-    next = appendCourseEvent(next, 'MISSION_REPLAYED', { attemptNumber }, now, assignment);
+    next = appendCourseEvent(next, 'MISSION_REPLAYED', { attemptNumber }, {
+      context: 'assessment_runtime',
+      actor: 'system',
+      now,
+      assignment,
+    });
   }
   next = appendCourseEvent(next, 'JSA_COMPLETED', {
     fixedPreflight: true,
+    completionBasis: 'SYSTEM_FIXED_PRECHECK',
+    learnerAction: false,
     checks: ['permit', 'ppe', 'access', 'vessel', 'qualifiedCrew'],
-  }, now, assignment);
+  }, {
+    context: 'assessment_runtime',
+    actor: 'system',
+    now,
+    assignment,
+  });
   return appendCourseEvent(next, 'MISSION_DEPLOYED', {
     attemptNumber,
     teamIds: assignment.teamIds,
@@ -288,16 +430,22 @@ export function startCourseAttempt(
     spareId: assignment.spareId,
     vesselId: assignment.vesselId,
     randomSeed: assignment.randomSeed,
-  }, now, assignment);
+  }, {
+    context: 'assessment_runtime',
+    actor: 'system',
+    now,
+    assignment,
+  });
 }
 
 export function appendCourseEvent(
   record: CourseRecord,
   kind: CourseEventKind,
   details: Record<string, unknown> = {},
-  now = new Date(),
-  assignment?: CourseAssignment,
+  options: AppendCourseEventOptions,
 ): CourseRecord {
+  const now = options.now ?? new Date();
+  const assignment = options.assignment;
   const activeAssignmentId = assignment?.id ?? record.activeAssignmentId;
   const activeAttemptIndex = [...record.attempts].reverse().findIndex((attempt) => attempt.assignmentId === activeAssignmentId);
   const resolvedAttemptIndex = activeAttemptIndex < 0 ? -1 : record.attempts.length - 1 - activeAttemptIndex;
@@ -305,16 +453,24 @@ export function appendCourseEvent(
     if (index !== resolvedAttemptIndex) return attempt;
     return {
       ...attempt,
-      decisionOrder: DECISION_KINDS.has(kind) ? [...attempt.decisionOrder, kind] : attempt.decisionOrder,
-      hintUsedCount: kind === 'HINT_USED' ? attempt.hintUsedCount + 1 : attempt.hintUsedCount,
+      decisionOrder: isFormalAssessmentDecision(kind, options.context, options.actor)
+        ? [...attempt.decisionOrder, kind]
+        : attempt.decisionOrder,
+      hintUsedCount: kind === 'HINT_USED' && options.context === 'assessment_runtime' && options.actor === 'learner'
+        ? attempt.hintUsedCount + 1
+        : attempt.hintUsedCount,
     };
   });
+  const activeAttempt = attempts[resolvedAttemptIndex];
   const event: CourseEvent = {
     sequence: record.events.length + 1,
     recordedAt: now.toISOString(),
     kind,
+    context: options.context,
+    actor: options.actor,
     assignmentId: assignment?.id ?? activeAssignmentId,
-    missionId: assignment?.missionId ?? attempts[resolvedAttemptIndex]?.missionId,
+    missionId: assignment?.missionId ?? activeAttempt?.missionId,
+    attemptNumber: options.context === 'assessment_runtime' ? activeAttempt?.attemptNumber : undefined,
     details,
   };
   return {
@@ -331,13 +487,31 @@ export function completeCourseAttempt(
   details: Record<string, unknown> = {},
   now = new Date(),
 ): CourseRecord {
+  const normalizedScores = normalizeCourseScores(scores);
+  if (
+    !normalizedScores
+    || typeof details.success !== 'boolean'
+    || !Number.isInteger(details.round)
+    || Number(details.round) <= 0
+  ) return record;
   const index = [...record.attempts].reverse().findIndex((attempt) => attempt.assignmentId === record.activeAssignmentId);
   if (index < 0) return record;
   const attemptIndex = record.attempts.length - 1 - index;
+  const activeAttempt = record.attempts[attemptIndex];
+  if (activeAttempt.completedAt || record.events.some((event) => (
+    event.kind === 'MISSION_SETTLED'
+    && event.assignmentId === activeAttempt.assignmentId
+    && event.attemptNumber === activeAttempt.attemptNumber
+    && event.context === 'assessment_runtime'
+  ))) return record;
   const attempts = record.attempts.map((attempt, currentIndex) => currentIndex === attemptIndex
-    ? { ...attempt, completedAt: now.toISOString(), scores }
+    ? { ...attempt, completedAt: now.toISOString(), scores: normalizedScores }
     : attempt);
-  return appendCourseEvent({ ...record, attempts }, 'MISSION_SETTLED', { ...details, scores }, now);
+  return appendCourseEvent({ ...record, attempts }, 'MISSION_SETTLED', { ...details, scores: normalizedScores }, {
+    context: 'assessment_runtime',
+    actor: 'system',
+    now,
+  });
 }
 
 export function updateCourseExplanation(
@@ -345,9 +519,16 @@ export function updateCourseExplanation(
   explanation: Partial<CourseStudentExplanation>,
   now = new Date(),
 ): CourseRecord {
-  const index = [...record.attempts].reverse().findIndex((attempt) => attempt.assignmentId === record.activeAssignmentId);
-  if (index < 0) return record;
-  const attemptIndex = record.attempts.length - 1 - index;
+  const blockingDebriefIndex = record.attempts.findIndex((attempt) => (
+    Boolean(attempt.completedAt && attempt.scores) && !isCourseDebriefComplete(attempt)
+  ));
+  const activeIndex = [...record.attempts].reverse().findIndex((attempt) => attempt.assignmentId === record.activeAssignmentId);
+  const attemptIndex = blockingDebriefIndex >= 0
+    ? blockingDebriefIndex
+    : activeIndex < 0
+      ? -1
+      : record.attempts.length - 1 - activeIndex;
+  if (attemptIndex < 0) return record;
   return {
     ...record,
     updatedAt: now.toISOString(),
@@ -368,11 +549,57 @@ export function isCourseDebriefComplete(attempt: CourseAttempt | undefined): boo
   return Object.values(attempt.studentExplanation).every((value) => value.trim().length > 0);
 }
 
+export function courseRecordBlockingAttempt(record: CourseRecord | null | undefined): CourseAttempt | undefined {
+  return record?.attempts.find((attempt) => (
+    !attempt.completedAt || !normalizeCourseScores(attempt.scores) || !isCourseDebriefComplete(attempt)
+  ));
+}
+
+export function courseRecordExportBlockReason(record: CourseRecord): CourseExportBlockReason | null {
+  if (!record.attempts.length) return 'NO_ATTEMPTS';
+  if (!hasValidAttemptIdentitySequence(record.attempts)) return 'ATTEMPT_ID_INVALID';
+  if (!hasValidDecisionProvenance(record)) return 'DECISION_PROVENANCE_INVALID';
+  const allSettlementsValid = record.events
+    .filter((event) => event.kind === 'MISSION_SETTLED')
+    .every((event) => record.attempts.filter((attempt) => (
+      event.assignmentId === attempt.assignmentId
+      && event.missionId === attempt.missionId
+      && event.attemptNumber === attempt.attemptNumber
+      && event.context === 'assessment_runtime'
+      && event.actor === 'system'
+    )).length === 1);
+  if (!allSettlementsValid) return 'ATTEMPT_NOT_SETTLED';
+  if (record.attempts.some((attempt) => {
+    if (!attempt.completedAt || !normalizeCourseScores(attempt.scores)) return true;
+    const settlements = record.events.filter((event) => (
+      event.kind === 'MISSION_SETTLED'
+      && event.assignmentId === attempt.assignmentId
+      && event.missionId === attempt.missionId
+      && event.attemptNumber === attempt.attemptNumber
+      && event.context === 'assessment_runtime'
+      && event.actor === 'system'
+    ));
+    if (settlements.length !== 1) return true;
+    const details = settlements[0].details;
+    return typeof details.success !== 'boolean' || !Number.isInteger(details.round) || Number(details.round) <= 0;
+  })) return 'ATTEMPT_NOT_SETTLED';
+  if (record.attempts.some((attempt) => !isCourseDebriefComplete(attempt))) return 'DEBRIEF_INCOMPLETE';
+  return null;
+}
+
+export function isCourseRecordExportReady(record: CourseRecord | null | undefined): record is CourseRecord {
+  return Boolean(record) && courseRecordExportBlockReason(record!) === null;
+}
+
+export function canStartCourseAttempt(record: CourseRecord | null | undefined): boolean {
+  return !record?.attempts.length || isCourseRecordExportReady(record);
+}
+
 export function normalizeCourseRecord(value: unknown): CourseRecord | null {
   if (!value || typeof value !== 'object') return null;
-  const candidate = value as Partial<CourseRecord>;
+  const candidate = value as Omit<Partial<CourseRecord>, 'schemaVersion'> & { schemaVersion?: number };
   if (
-    candidate.schemaVersion !== 1
+    (candidate.schemaVersion !== 1 && candidate.schemaVersion !== 2)
     || candidate.mode !== 'assessment'
     || (candidate.platform !== 'desktop' && candidate.platform !== 'mobile')
     || typeof candidate.createdAt !== 'string'
@@ -380,35 +607,85 @@ export function normalizeCourseRecord(value: unknown): CourseRecord | null {
     || !Array.isArray(candidate.events)
     || !Array.isArray(candidate.attempts)
   ) return null;
+  const sourceSchemaVersion = candidate.schemaVersion;
   const learnerCode = normalizeLearnerCode(candidate.learnerCode ?? '');
   const courseCode = normalizeCourseCode(candidate.courseCode ?? '');
   if (!learnerCode || !courseCode) return null;
-  const events = candidate.events.slice(0, 5000).flatMap((item, index): CourseEvent[] => {
-    if (!item || typeof item !== 'object') return [];
+  let invalidEventCount = Math.max(0, candidate.events.length - 5000);
+  const parsedEvents = candidate.events.slice(0, 5000).flatMap((item): CourseEvent[] => {
+    if (!item || typeof item !== 'object') {
+      invalidEventCount += 1;
+      return [];
+    }
     const event = item as Partial<CourseEvent>;
-    if (!EVENT_KINDS.includes(event.kind as CourseEventKind) || typeof event.recordedAt !== 'string') return [];
+    if (!EVENT_KINDS.includes(event.kind as CourseEventKind) || typeof event.recordedAt !== 'string') {
+      invalidEventCount += 1;
+      return [];
+    }
+    const kind = event.kind as CourseEventKind;
+    const details = event.details && typeof event.details === 'object' && !Array.isArray(event.details)
+      ? event.details as Record<string, unknown>
+      : {};
+    const legacyProvenance = legacyEventProvenance(kind, details);
+    const v2ProvenanceValid = EVENT_CONTEXTS.includes(event.context as CourseEventContext)
+      && EVENT_ACTORS.includes(event.actor as CourseEventActor);
+    if (sourceSchemaVersion === 2 && !v2ProvenanceValid) invalidEventCount += 1;
+    const context = sourceSchemaVersion === 2
+      ? (EVENT_CONTEXTS.includes(event.context as CourseEventContext) ? event.context as CourseEventContext : 'legacy_unknown')
+      : legacyProvenance.context;
+    const actor = sourceSchemaVersion === 2
+      ? (EVENT_ACTORS.includes(event.actor as CourseEventActor) ? event.actor as CourseEventActor : 'unknown')
+      : legacyProvenance.actor;
     return [{
-      sequence: index + 1,
+      sequence: 0,
       recordedAt: event.recordedAt,
-      kind: event.kind as CourseEventKind,
+      kind,
+      context,
+      actor,
       assignmentId: typeof event.assignmentId === 'string' ? event.assignmentId : undefined,
       missionId: typeof event.missionId === 'string' ? event.missionId : undefined,
-      details: event.details && typeof event.details === 'object' && !Array.isArray(event.details)
-        ? event.details as Record<string, unknown>
-        : {},
+      attemptNumber: Number.isInteger(event.attemptNumber) && event.attemptNumber! > 0
+        ? event.attemptNumber
+        : undefined,
+      details,
     }];
   });
-  const attempts = candidate.attempts.flatMap((item): CourseAttempt[] => {
-    if (!item || typeof item !== 'object') return [];
+  const normalizedEvents = parsedEvents.map((event, index) => ({ ...event, sequence: index + 1 }));
+  const legacyActiveAttemptByAssignment = new Map<string, number>();
+  const events = normalizedEvents.map((event) => {
+    if (sourceSchemaVersion === 2 || !event.assignmentId) return event;
+    const detailAttemptNumber = Number.isInteger(event.details.attemptNumber) && Number(event.details.attemptNumber) > 0
+      ? Number(event.details.attemptNumber)
+      : undefined;
+    if (detailAttemptNumber) legacyActiveAttemptByAssignment.set(event.assignmentId, detailAttemptNumber);
+    return {
+      ...event,
+      attemptNumber: detailAttemptNumber ?? legacyActiveAttemptByAssignment.get(event.assignmentId),
+    };
+  });
+  let invalidAttemptCount = 0;
+  const normalizedAttempts = candidate.attempts.flatMap((item): CourseAttempt[] => {
+    if (!item || typeof item !== 'object') {
+      invalidAttemptCount += 1;
+      return [];
+    }
     const attempt = item as Partial<CourseAttempt>;
     if (
       typeof attempt.assignmentId !== 'string'
+      || !attempt.assignmentId.trim()
       || typeof attempt.missionId !== 'string'
+      || !attempt.missionId.trim()
       || !Number.isInteger(attempt.attemptNumber)
+      || attempt.attemptNumber! <= 0
       || !Number.isSafeInteger(attempt.randomSeed)
       || typeof attempt.startedAt !== 'string'
-    ) return [];
+    ) {
+      invalidAttemptCount += 1;
+      return [];
+    }
     const rawExplanation = attempt.studentExplanation ?? emptyExplanation();
+    const normalizedScores = normalizeCourseScores(attempt.scores);
+    if (sourceSchemaVersion === 2 && attempt.scores !== undefined && !normalizedScores) invalidAttemptCount += 1;
     return [{
       assignmentId: attempt.assignmentId,
       missionId: attempt.missionId,
@@ -416,11 +693,10 @@ export function normalizeCourseRecord(value: unknown): CourseRecord | null {
       randomSeed: attempt.randomSeed!,
       startedAt: attempt.startedAt,
       completedAt: typeof attempt.completedAt === 'string' ? attempt.completedAt : undefined,
-      decisionOrder: Array.isArray(attempt.decisionOrder)
-        ? attempt.decisionOrder.filter((kind): kind is CourseEventKind => EVENT_KINDS.includes(kind as CourseEventKind))
-        : [],
-      hintUsedCount: Number.isInteger(attempt.hintUsedCount) ? Math.max(0, attempt.hintUsedCount!) : 0,
-      scores: attempt.scores,
+      // v2 一律由具 provenance 的 event log 重建；舊 v1 decisionOrder 不具可驗證來源，因此不沿用。
+      decisionOrder: [],
+      hintUsedCount: 0,
+      scores: normalizedScores,
       studentExplanation: {
         conclusion: String(rawExplanation.conclusion ?? '').slice(0, 4000),
         evidence: String(rawExplanation.evidence ?? '').slice(0, 4000),
@@ -429,8 +705,42 @@ export function normalizeCourseRecord(value: unknown): CourseRecord | null {
       },
     }];
   });
+  const rawAttemptsStructurallyAligned = invalidAttemptCount === 0
+    && normalizedAttempts.length === candidate.attempts.length;
+  if (sourceSchemaVersion === 2 && !hasValidAttemptIdentitySequence(normalizedAttempts)) invalidAttemptCount += 1;
+  const attempts = normalizedAttempts.map((attempt, index) => {
+    const formalEvents = events.filter((event) => (
+      event.assignmentId === attempt.assignmentId
+      && event.missionId === attempt.missionId
+      && event.attemptNumber === attempt.attemptNumber
+      && isFormalAssessmentDecision(event.kind, event.context, event.actor)
+    ));
+    const decisionOrder = formalEvents.map((event) => event.kind);
+    const hintUsedCount = formalEvents.filter((event) => event.kind === 'HINT_USED').length;
+    if (sourceSchemaVersion === 2 && rawAttemptsStructurallyAligned) {
+      const rawAttempt = candidate.attempts![index] as Partial<CourseAttempt>;
+      if (
+        !Array.isArray(rawAttempt.decisionOrder)
+        || JSON.stringify(rawAttempt.decisionOrder) !== JSON.stringify(decisionOrder)
+        || rawAttempt.hintUsedCount !== hintUsedCount
+      ) invalidAttemptCount += 1;
+    }
+    return {
+      ...attempt,
+      decisionOrder,
+      hintUsedCount,
+    };
+  });
+  const normalizedIntegrityOrigin = sourceSchemaVersion === 1
+    ? 'migrated_v1'
+    : invalidEventCount > 0 || invalidAttemptCount > 0
+      ? 'invalid_v2'
+      : candidate.integrityOrigin === 'native_v2' || candidate.integrityOrigin === 'migrated_v1' || candidate.integrityOrigin === 'invalid_v2'
+        ? candidate.integrityOrigin
+        : 'unknown';
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
+    integrityOrigin: normalizedIntegrityOrigin,
     releaseVersion: typeof candidate.releaseVersion === 'string' ? candidate.releaseVersion : COURSE_RELEASE,
     configVersion: typeof candidate.configVersion === 'string' ? candidate.configVersion : 'unknown',
     courseCode,
@@ -465,15 +775,25 @@ export function saveCourseRecord(record: CourseRecord | null): void {
 }
 
 export function serializeCourseRecord(record: CourseRecord, now = new Date()): string {
+  const blockedBy = courseRecordExportBlockReason(record);
+  if (blockedBy) throw new Error(`Course Record is not export-ready: ${blockedBy}`);
   return JSON.stringify({
     format: COURSE_RECORD_FORMAT,
-    schemaVersion: 1,
+    schemaVersion: 2,
     exportedAt: now.toISOString(),
     version: record.releaseVersion,
     courseCode: record.courseCode,
     learnerCode: record.learnerCode,
     mode: record.mode,
     configVersion: record.configVersion,
+    integrityPolicy: {
+      decisionOrder: 'LEARNER_ASSESSMENT_RUNTIME_ONLY',
+      exportGate: 'ALL_ATTEMPTS_SETTLED_AND_DEBRIEF_COMPLETE',
+      legacyV1: 'AUDIT_EVENTS_PRESERVED_UNVERIFIED_DECISIONS_EXCLUDED',
+      origin: record.integrityOrigin,
+      schemaEvidenceEligible: record.integrityOrigin === 'native_v2',
+      authenticity: 'CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT',
+    },
     missions: [...new Set(record.attempts.map((attempt) => attempt.missionId))],
     attemptCount: record.attempts.length,
     decisionOrder: record.attempts.map((attempt) => ({

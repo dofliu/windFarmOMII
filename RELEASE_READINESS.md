@@ -1,15 +1,18 @@
 # OWM Web MVP Release Readiness
 
-## Current project increment - 2026-07-30
+## Working candidate increment - 2026-08-13
 
-- Current version：`3.57.1-course-mode-p0`。
-- Course Mode P0、教師手動週次發布、Assessment 無提示策略、匿名 Learning Record、GitHub Pages workflow 與離線備援已完成。
-- P1 CLO 對齊已加入 15 組 SCADA／CMS data packs、Availability／MTBF／MTTR／Downtime／OPEX、五步 LOTO、六階段 Work Order 與 IEC 61131-3 ST Alarm／Interlock tester。
-- P2 以 12 個 elective case packs 擴充 Sensor drift、PLC／SCADA、Historian、Alarm flood、Gearbox oil、Brake、Converter、Subsea cable、marine logistics、WO automation 與 Interlock；不改動學期凍結版 Campaign 平衡。
-- Gameplay、策略平衡 v1、分離式新手練習導覽與 Playtest observation／evidence pipeline 已完成自動驗證。
-- 2026-07-30 重跑 `pnpm validate`：25 test files／159 tests、Data／Scene／Art、Campaign／Challenge balance、production build 全部通過；16 組 browser smoke、10.1 MiB Pages build 與約 2.58 MiB 離線 ZIP 流程全部通過。
-- Playtest 尚未取得真人資料，因此不宣稱玩家已理解 Crew rotation、RST 或 MNT；這不改寫既有 production art gate。
-- Production release 的主要非真人工作仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
+- Local candidate：`3.58.0-course-record-integrity`；尚未 commit／push／deploy。Current published baseline 仍為 `3.57.1-course-mode-p0`。
+- Course Record schema v2 已要求 event `context`／`actor`／`attemptNumber`；只有 `learner + assessment_runtime` 可進入正式 `decisionOrder`。
+- Guided Practice 不再修改既有 Assessment record；system-derived JSA／LOTO／Work Order 與 Engineering Lab events 僅保留為 audit log。
+- Export gate 在 UI 與 serializer 均採 fail closed：所有 attempts 必須結算、具 scores 且四欄 Debrief 完整。
+- Engineering Lab 已遵守 `unlockedWeekIds`，固定 seed SCADA／CMS packs 已標示 `SYNTHETIC / GAMEPLAY ABSTRACTION`。
+- Legacy v1 record 可讀取但標示 `migrated_v1`／historical only，不自動升格成 native v2 schema evidence。
+- `native_v2`／`integrityPolicy.schemaEvidenceEligible=true` 只代表 client-local schema、provenance 與 export gate 一致；export 會明列 `authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它不具 tamper evidence、身分綁定或可信任收件證明；正式成績仍須 instructor-controlled receipt 或 signed/server-side collection。
+- `pnpm validate` 通過 26 test files／174 tests、Data／Scene／Art／Course、Campaign／Challenge balance 與 production build；更新後 Course browser smoke 通過。
+- 2026-08-03 automated flow 為 legacy v1 診斷證據，不是學生學習成效。Course-specific 真人 pilot 尚未執行。
+- 現有 15 assignments 尚未構成完整 18 週 CLO matrix；W16–W18 需由正式課綱決定。
+- Production art 的獨立主線仍是 90 個已核准 P01 IDs 的 final AI upscale、full-resolution QA 與通過後 promotion。
 
 ## Current increment - 2026-07-24 (user full visual approval)
 
@@ -59,7 +62,12 @@ Production art gate baseline：`3.53.0-batch030-production-qa`
 1. 依已記錄的全量核准結果執行 90 張 P01 production candidates 的最終 AI upscale；目前的 `4096x6144` staging 檔案是 deterministic resize，不冒充 final AI upscale。
 2. 對 upscale 結果執行 full-resolution QA，確認無誤後才將 production 狀態由 `Production QA Pending` 改為 `Production Approved`。
 
-## 下一次工作起點
+## Course Mode 下一主線
+
+- 先建立 18 週 CLO evidence matrix 與 Course-specific pilot protocol，再執行 3–5 位真人學生 W09→W10 pilot。
+- 真人證據完成前，不調整 frozen Course balance。
+
+## Production-art workstream 下一步
 
 - 直接以 ledger 的 90 個 approved P01 IDs 執行 final AI upscale 與 full-resolution QA，不需重複人工點選。
 - 若發現錯誤，只替換對應 batch 的 production candidate，不回退已通過的 active preview。

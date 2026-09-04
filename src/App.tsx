@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState, type KeyboardEvent } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { audioEngine } from './domain/audio';
 import { OnboardingGuide, type OnboardingSurface } from './components/OnboardingGuide';
 import { PlaytestPanel } from './components/PlaytestPanel';
@@ -8,9 +8,10 @@ import { characterSkillIds, loadGameDatabase } from './domain/data';
 import { bossName, characterName, professionName, skillName } from './domain/localization';
 import {
   appendCourseEvent,
+  canStartCourseAttempt,
   completeCourseAttempt,
   createCourseRecord,
-  isCourseDebriefComplete,
+  isCourseRecordExportReady,
   loadCourseConfig,
   loadCourseRecord,
   saveCourseRecord,
@@ -20,6 +21,8 @@ import {
   type CourseAssignment,
   type CourseComponentScores,
   type CourseConfig,
+  type CourseEventActor,
+  type CourseEventContext,
   type CourseEventKind,
   type CoursePlatform,
   type CourseRecord,
@@ -363,6 +366,7 @@ export default function App() {
   const [playtest, setPlaytest] = useState<PlaytestSession | null>(() => loadPlaytestSession());
   const [courseConfig, setCourseConfig] = useState<CourseConfig | null>(null);
   const [courseRecord, setCourseRecord] = useState<CourseRecord | null>(() => loadCourseRecord());
+  const diagnosisSelectionLock = useRef(false);
   const [onboarding, setOnboarding] = useState<OnboardingProgress>(() => resumeOnboardingAtDeployment(loadOnboardingProgress()));
   const [guidedPractice, setGuidedPractice] = useState(false);
   const [guidedPracticeReturnView, setGuidedPracticeReturnView] = useState<'course' | 'playtest'>('playtest');
@@ -393,13 +397,28 @@ export default function App() {
     });
   };
 
-  const recordCourseEvent = (kind: CourseEventKind, details: Record<string, unknown> = {}) => {
+  const recordCourseEvent = (
+    kind: CourseEventKind,
+    details: Record<string, unknown>,
+    provenance: { context: CourseEventContext; actor: CourseEventActor },
+  ) => {
     setCourseRecord((current) => {
-      if (!current) return current;
+      if (
+        !current
+        || !courseConfig
+        || current.integrityOrigin !== 'native_v2'
+        || current.releaseVersion !== courseConfig.releaseVersion
+        || current.configVersion !== courseConfig.configVersion
+        || current.courseCode !== courseConfig.courseCode
+      ) return current;
       const assignment = typeof details.assignmentId === 'string'
         ? courseConfig?.assignments.find((item) => item.id === details.assignmentId)
         : undefined;
-      const next = appendCourseEvent(current, kind, details, new Date(), assignment);
+      const next = appendCourseEvent(current, kind, details, {
+        ...provenance,
+        now: new Date(),
+        assignment,
+      });
       saveCourseRecord(next);
       return next;
     });
@@ -528,6 +547,10 @@ export default function App() {
   }, [campaign, characterMap, database, session]);
 
   useEffect(() => {
+    if (!session?.diagnosisAnswerId) diagnosisSelectionLock.current = false;
+  }, [session?.missionId, session?.diagnosisAnswerId]);
+
+  useEffect(() => {
     if (!database || !challenge || !session || session.mode !== 'challenge' || session.settled || (!session.mission.complete && !session.mission.failed)) return;
     const debrief = missionDebrief(session.mission, session.boss, session.team, characterMap);
     const result = recordBossChallenge(
@@ -556,12 +579,27 @@ export default function App() {
       grade: debrief.grade,
     };
     setCourseRecord((current) => {
-      if (!current) return current;
-      const withWorkOrder = appendCourseEvent(current, 'WORK_ORDER_CREATED', {
-        lifecycle: 'Trigger',
-        source: 'assessment-debrief',
-        missionId: session.missionId,
-      });
+      if (!current?.activeAssignmentId) return current;
+      const activeAttempt = [...current.attempts].reverse().find((attempt) => (
+        attempt.assignmentId === current.activeAssignmentId
+      ));
+      if (!activeAttempt || activeAttempt.completedAt || activeAttempt.missionId !== session.missionId) return current;
+      const workOrderRecorded = current.events.some((event) => (
+        event.kind === 'WORK_ORDER_CREATED'
+        && event.assignmentId === activeAttempt.assignmentId
+        && event.attemptNumber === activeAttempt.attemptNumber
+        && event.context === 'assessment_runtime'
+        && event.actor === 'system'
+      ));
+      const withWorkOrder = workOrderRecorded ? current : appendCourseEvent(current, 'WORK_ORDER_CREATED', {
+          lifecycle: 'Trigger',
+          source: 'assessment-debrief',
+          missionId: session.missionId,
+          learnerAction: false,
+        }, {
+          context: 'assessment_runtime',
+          actor: 'system',
+        });
       const next = completeCourseAttempt(withWorkOrder, scores, {
         success: session.mission.complete,
         round: session.mission.round,
@@ -573,21 +611,30 @@ export default function App() {
   }, [characterMap, database, session]);
 
   useEffect(() => {
-    if (!session || session.mode !== 'course' || session.mission.stageIndex < 3 || !courseRecord?.activeAssignmentId) return;
-    const alreadyRecorded = courseRecord.events.some((event) => (
-      event.kind === 'LOTO_VERIFIED'
-      && event.assignmentId === courseRecord.activeAssignmentId
-      && event.details.attemptNumber === courseRecord.attempts.at(-1)?.attemptNumber
-    ));
-    if (alreadyRecorded) return;
-    const next = appendCourseEvent(courseRecord, 'LOTO_VERIFIED', {
-      attemptNumber: courseRecord.attempts.at(-1)?.attemptNumber,
-      verification: 'isolate-stage-cleared',
-      zeroEnergy: true,
+    if (!session || session.mode !== 'course' || session.mission.stageIndex < 3) return;
+    setCourseRecord((current) => {
+      if (!current?.activeAssignmentId) return current;
+      const attemptNumber = current.attempts.at(-1)?.attemptNumber;
+      const alreadyRecorded = current.events.some((event) => (
+        event.kind === 'LOTO_VERIFIED'
+        && event.assignmentId === current.activeAssignmentId
+        && event.attemptNumber === attemptNumber
+        && event.context === 'assessment_runtime'
+      ));
+      if (alreadyRecorded) return current;
+      const next = appendCourseEvent(current, 'LOTO_VERIFIED', {
+        attemptNumber,
+        verification: 'isolate-stage-cleared',
+        zeroEnergy: true,
+        learnerAction: false,
+      }, {
+        context: 'assessment_runtime',
+        actor: 'system',
+      });
+      saveCourseRecord(next);
+      return next;
     });
-    saveCourseRecord(next);
-    setCourseRecord(next);
-  }, [courseRecord, session]);
+  }, [session?.mission.stageIndex, session?.mode]);
 
   useEffect(() => {
     if (!session || session.mode !== 'campaign' || session.mission.stageIndex < 3 || !session.missionId || !playtest || playtest.status !== 'active') return;
@@ -722,10 +769,17 @@ export default function App() {
     setPlaytest(null);
   };
   const startCourseAssessment = (learnerCode: string, platform: CoursePlatform, assignment: CourseAssignment) => {
-    const currentRecord = courseRecord
+    if (!canStartCourseAttempt(courseRecord)) return;
+    const reusableRecord = courseRecord
+      && courseRecord.integrityOrigin === 'native_v2'
+      && courseRecord.releaseVersion === courseConfig.releaseVersion
+      && courseRecord.courseCode === courseConfig.courseCode
       && courseRecord.learnerCode === learnerCode
       && courseRecord.configVersion === courseConfig.configVersion
-      ? { ...courseRecord, platform }
+      && courseRecord.platform === platform;
+    if (courseRecord && !reusableRecord) return;
+    const currentRecord = reusableRecord
+      ? courseRecord
       : createCourseRecord(courseConfig, learnerCode, platform);
     const nextRecord = startCourseAttempt(currentRecord, assignment);
     saveCourseRecord(nextRecord);
@@ -746,18 +800,31 @@ export default function App() {
   };
   const updateCourseReflection = (explanation: Partial<CourseStudentExplanation>) => {
     setCourseRecord((current) => {
-      if (!current) return current;
+      if (
+        !current
+        || current.integrityOrigin !== 'native_v2'
+        || current.releaseVersion !== courseConfig.releaseVersion
+        || current.configVersion !== courseConfig.configVersion
+        || current.courseCode !== courseConfig.courseCode
+      ) return current;
       const next = updateCourseExplanation(current, explanation);
       saveCourseRecord(next);
       return next;
     });
   };
   const exportCourseRecord = () => {
-    if (!courseRecord) return;
-    const activeAttempt = [...courseRecord.attempts].reverse().find((attempt) => attempt.assignmentId === courseRecord.activeAssignmentId);
-    if (activeAttempt?.completedAt && !isCourseDebriefComplete(activeAttempt)) return;
+    if (
+      !isCourseRecordExportReady(courseRecord)
+      || courseRecord.integrityOrigin !== 'native_v2'
+      || courseRecord.releaseVersion !== courseConfig.releaseVersion
+      || courseRecord.configVersion !== courseConfig.configVersion
+      || courseRecord.courseCode !== courseConfig.courseCode
+    ) return;
     const next = appendCourseEvent(courseRecord, 'DEBRIEF_EXPORTED', {
       attemptCount: courseRecord.attempts.length,
+    }, {
+      context: 'system',
+      actor: 'learner',
     });
     saveCourseRecord(next);
     setCourseRecord(next);
@@ -809,6 +876,7 @@ export default function App() {
     } : current);
   };
   const navigate = (nextView: GameView) => {
+    if (session?.mode === 'course') return;
     if (nextView !== view) recordPlaytestEvent('VIEW_CHANGED', { from: view, to: nextView });
     setSession(null);
     setOperationReturnNotice(undefined);
@@ -1281,13 +1349,6 @@ export default function App() {
       target: operationDecisionGuide.targetTestId,
       label: operationDecisionGuide.label,
     });
-    if (!assessmentMode) {
-      recordCourseEvent('HINT_USED', {
-        missionId: session.missionId,
-        target: operationDecisionGuide.targetTestId,
-        label: operationDecisionGuide.label,
-      });
-    }
     setMobileSection(operationDecision.code === 'ACT' ? 'crew' : 'field');
     if (operationDecision.code === 'ACT') setCrewTab('actions');
     const target = document.querySelector<HTMLElement>(`[data-testid="${operationDecisionGuide.targetTestId}"]`);
@@ -1319,7 +1380,10 @@ export default function App() {
     if (tab === 'summary' || tab === 'objectives') {
       const details = { missionId: session.missionId, surface: tab };
       recordPlaytestEvent('EVIDENCE_VIEWED', details);
-      if (assessmentMode) recordCourseEvent('EVIDENCE_VIEWED', details);
+      if (assessmentMode) recordCourseEvent('EVIDENCE_VIEWED', details, {
+        context: 'assessment_runtime',
+        actor: 'learner',
+      });
     }
   };
   const objectiveChecklist = [
@@ -1440,9 +1504,10 @@ export default function App() {
   const useSelectedSkill = (skill: SkillData) => useTeamSkill(skill);
 
   const chooseDiagnosis = (optionId: string) => {
-    if (!missionDefinition) return;
+    if (!missionDefinition || session.diagnosisAnswerId || diagnosisSelectionLock.current) return;
     const option = missionDefinition.diagnosisOptions.find((item) => item.id === optionId);
     if (!option) return;
+    diagnosisSelectionLock.current = true;
     const diagnosisDetails = {
       missionId: session.missionId,
       optionId,
@@ -1450,7 +1515,10 @@ export default function App() {
       evidenceBefore: session.mission.evidence,
     };
     recordPlaytestEvent('DIAGNOSIS_SELECTED', diagnosisDetails);
-    if (assessmentMode) recordCourseEvent('DIAGNOSIS_SELECTED', diagnosisDetails);
+    if (assessmentMode) recordCourseEvent('DIAGNOSIS_SELECTED', diagnosisDetails, {
+      context: 'assessment_runtime',
+      actor: 'learner',
+    });
     setSession((current) => {
       if (!current || current.diagnosisAnswerId) return current;
       const resolution = resolveDiagnosisDecision(current.mission, option);
@@ -4957,7 +5025,7 @@ function Topbar({
         <div className="brand-line"><span className="brand-mark">OWM</span><h1>Offshore Wind Masters</h1></div>
       </div>
       <nav className="mode-nav" aria-label="Game mode">
-        {navigationItems.map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} disabled={assessmentMode && item !== 'course'} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{courseContext && item === 'challenge' ? (language === 'zh' ? '重大事故演練' : 'Critical Incident Exercise') : ui[item]}</button>)}
+        {navigationItems.map((item) => <button key={item} data-testid={`nav-${item}`} className={view === item ? 'active' : ''} disabled={assessmentMode} onClick={() => { audioEngine.playSfx('click'); onNavigate(item); }}>{courseContext && item === 'challenge' ? (language === 'zh' ? '重大事故演練' : 'Critical Incident Exercise') : ui[item]}</button>)}
         {!assessmentMode && <button className="onboarding-replay" data-testid="onboarding-replay" onClick={onReplayOnboarding}>
           {onboarding.status === 'active'
             ? (language === 'zh' ? `導覽 ${onboarding.stepIndex + 1}/5` : `Guide ${onboarding.stepIndex + 1}/5`)

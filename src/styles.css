@@ -970,6 +970,7 @@ html[data-motion="reduced"] .fleet-turbine-rotor { animation: none !important; }
 
 .course-path-card button:hover, .course-identity-panel button:hover, .course-assignment-card button:hover, .course-record-panel button:hover { border-color: var(--accent); }
 .course-record-panel button:disabled { cursor: not-allowed; opacity: .48; }
+.course-integrity-warning { margin: 0; padding: 8px 10px; border: 1px solid #d69a35; border-radius: 8px; background: color-mix(in srgb, #d69a35 10%, transparent); color: #9b6512; font: 800 11px/1.4 Consolas, monospace; }
 .course-policy-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .course-policy-chips i { padding: 4px 7px; border: 1px solid color-mix(in srgb, #ffb65c 50%, var(--line)); border-radius: 999px; color: #ffb65c; font-size: 10px; font-style: normal; font-weight: 900; }
 .course-identity-panel { padding: 12px 14px; }
@@ -1068,6 +1069,7 @@ html[data-motion="reduced"] .fleet-turbine-rotor { animation: none !important; }
 }
 
 .course-lab-heading b { font-size: 18px; }
+.course-data-provenance { color: #ffcb88; font: 800 10px/1.35 Consolas, monospace; letter-spacing: .02em; }
 .course-lab-heading label span { color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
 .course-lab-heading select,
 .course-control-inputs input {

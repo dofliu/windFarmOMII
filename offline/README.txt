@@ -1,4 +1,4 @@
-OWM Course Mode 3.57.1 離線備援
+OWM Course Mode 3.58.0 離線備援
 
 Windows：
 1. 解壓縮完整 ZIP。

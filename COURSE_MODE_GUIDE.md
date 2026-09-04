@@ -1,8 +1,9 @@
 # OWM Course Mode 教師操作指南
 
-## 固定版本
+## Working candidate 版本
 
-- 遊戲版本：`3.57.1-course-mode-p0`
+- 本機候選版本：`3.58.0-course-record-integrity`（尚未 commit／push／發布）
+- 目前正式 `origin/main`／公開網址版本：`3.57.1-course-mode-p0`
 - 課程代碼：`NCUT-OWM-2026`
 - 課程設定：`public/course/course-config.json`
 - 正式網址：`https://dofliu.github.io/windFarmOMII/`
@@ -41,7 +42,11 @@ Course Mode 使用 24 個職業角色代表，不使用 300 名角色的收藏�
 
 ## Learning Record
 
-Assessment 匯出 `OWM_COURSE_RECORD` JSON，至少包含：
+候選版 Assessment 匯出 `OWM_COURSE_RECORD` schema v2 JSON。每個 event 明列 `context`、`actor`，可定位時另含 `attemptNumber`。
+
+正式 `decisionOrder` 與提示次數只接受 `context=assessment_runtime`、`actor=learner`。目前自動產生的 fixed preflight JSA、stage-derived LOTO、settlement-derived Work Order 都是 system event；Engineering Lab 是 `practice_lab`，均可留在 audit log，但不能解讀成學生正式決策。
+
+JSON 至少包含：
 
 - release／config version
 - course／learner anonymous code
@@ -53,15 +58,30 @@ Assessment 匯出 `OWM_COURSE_RECORD` JSON，至少包含：
 - `DIAGNOSIS_SELECTED`
 - `EVIDENCE_VIEWED`
 - `HINT_USED`
-- `JSA_COMPLETED`
-- `LOTO_VERIFIED`
-- `WORK_ORDER_CREATED`
+- `JSA_COMPLETED`（目前為 system-derived）
+- `LOTO_VERIFIED`（system 或 practice provenance）
+- `WORK_ORDER_CREATED`（system 或 practice provenance）
 - `MISSION_REPLAYED`
 - `DEBRIEF_EXPORTED`
 
+舊 v1 record 仍可讀取，但會標示 `integrityOrigin=migrated_v1`，只供歷史查閱；要取得正式 v2 evidence，需重設後重新完成 Assessment。
+
+匯出 gate 會檢查所有 attempts，而非只檢查目前一筆：每筆都必須已結算、具 component scores，且四欄 Debrief 完整。Domain serializer 同樣會拒絕不完整資料。
+
+### Authenticity boundary
+
+`integrityOrigin=native_v2` 與 `integrityPolicy.schemaEvidenceEligible=true` 是 client-local 的 schema evidence eligibility：只表示匯出當下的資料結構、event provenance 與 completion／Debrief gate 彼此一致。export 同時固定標示 `integrityPolicy.authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它們不提供 cryptographic signature、tamper evidence、可信任時間戳、學生身分綁定或送件收據；瀏覽器 localStorage 與下載的 JSON 仍可能在裝置端被複製或修改。
+
+因此，native v2 JSON 可作教學診斷、形成性回饋與待收件的 Assessment artifact，但不可單獨證明正式成績的真實性。若要納入正式評量，教師必須使用下列其中一種收件機制：
+
+1. `instructor-controlled receipt`：在教師控制的 Assessment session／裝置或收件流程中接收原始 export，並由教師端保存可追溯的收件紀錄。
+2. `signed/server-side collection`：由受控服務直接接收 record，並產生可驗證的 signature 或 server-side receipt。
+
+在上述機制建立前，指南中的 `schemaEvidenceEligible` 只能解讀為「本機 schema/provenance/gate 合格」，不能解讀為「已驗證學生本人完成」或「可直接登錄正式成績」。
+
 ## CLO 工程學習頁
 
-Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，15 個固定任務各自提供可重現的 SCADA／CMS 資料包：
+Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，只顯示教師已列入 `unlockedWeekIds` 的 assignments。每個資料包均是固定 seed 產生的教學資料，UI 明標 `SYNTHETIC / GAMEPLAY ABSTRACTION`，不是現場量測資料。
 
 - Timestamp、Load、Temperature、Vibration
 - Alarm／Event sequence
@@ -75,7 +95,7 @@ Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，15 個固定
 
 Alarm／Interlock tester 支援 Threshold、Hysteresis、Delay、Persistence 與 Interlock，並同步產生 IEC 61131-3 ST reference logic。
 
-完成 Assessment 後，Debrief 必須填寫「結論／證據／不確定性／殘餘風險」，四欄完整後才可匯出 Course Record。
+完成 Assessment 後，Debrief 必須填寫「結論／證據／不確定性／殘餘風險」；所有嘗試均完成四欄後才可匯出 Course Record。
 
 ## 延伸案例庫
 
@@ -91,7 +111,7 @@ Course Mode 導覽僅顯示 24 個職業角色、固定任務與案例數量；`
 pnpm package:offline
 ```
 
-輸出 `OWM_COURSE_OFFLINE_3.57.1.zip`。解壓縮後執行 `START_OFFLINE.bat`。
+輸出 `OWM_COURSE_OFFLINE_3.58.0.zip`。解壓縮後執行 `START_OFFLINE.bat`。
 
 GitHub Actions 每次正式發布也會附加同名 workflow artifact。
 
@@ -104,3 +124,11 @@ GitHub Actions 每次正式發布也會附加同名 workflow artifact。
 - 不改變分數或任務條件的 accessibility 修正
 
 數值平衡變更應另開下一個 release version，不能覆寫本學期 Course Record 的版本語意。
+
+## 目前課程範圍與證據限制
+
+- 現行 config 定義 W01–W15；W16–W18 尚未由正式課綱定義。
+- 尚未完成 CLO→週次→活動→評量證據→rubric 的 18 週矩陣。
+- Automated flow、smoke 與 simulation 只證明軟體行為，不代表學生理解。
+- 下一個教學 gate 是 Course-specific W09→W10 真人 pilot；取得證據前不調整 frozen balance。
+- 平台與證據權責詳見 `OWM_WEB_COURSE_MODE_ADDENDUM_v1.0.md`。

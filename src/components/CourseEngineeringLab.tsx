@@ -95,6 +95,11 @@ export function CourseEngineeringLab({
         <div>
           <span className="section-kicker">ENGINEERING LAB · CLO ALIGNMENT</span>
           <b>{isZh ? 'SCADA／CMS 證據、可靠度、程序安全與控制邏輯' : 'SCADA/CMS evidence, reliability, procedural safety, and control logic'}</b>
+          <small className="course-data-provenance" data-testid="course-data-provenance">
+            {isZh
+              ? 'SYNTHETIC／GAMEPLAY ABSTRACTION · 固定 seed 產生的教學資料，非現場量測資料'
+              : 'SYNTHETIC / GAMEPLAY ABSTRACTION · Fixed-seed training data, not field measurements'}
+          </small>
         </div>
         <label>
           <span>{isZh ? '固定任務資料包' : 'Fixed mission data pack'}</span>
@@ -197,7 +202,7 @@ export function CourseEngineeringLab({
             finished={workOrder.closed}
             onStep={(step) => applyWorkOrder(step as WorkOrderStep)}
           />
-          <button type="button" className="course-procedure-reset" onClick={resetProcedures}>
+          <button type="button" className="course-procedure-reset" data-testid="course-procedure-reset" onClick={resetProcedures}>
             {isZh ? '重設程序練習' : 'Reset procedure practice'}
           </button>
         </div>

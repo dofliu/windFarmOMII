@@ -1,5 +1,7 @@
 # OWM 下一個 Session 交接
 
+> **SUPERSEDED HISTORICAL SNAPSHOT**：Course Mode 後續工作請改讀 `NEXT_SESSION_HANDOFF_2026-08-13.md`。本文件保留 7 月 27 日決策 provenance，不代表目前主線。
+
 建立日期：2026-07-27
 更新日期：2026-07-30
 

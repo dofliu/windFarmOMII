@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "releaseVersion": "3.57.1-course-mode-p0",
+  "releaseVersion": "3.58.0-course-record-integrity",
   "portraitFallback": "_course_placeholder.webp",
   "sceneFallback": "_course_scene_fallback.webp",
   "portraits": {

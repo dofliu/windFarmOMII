@@ -1,16 +1,19 @@
 # Offshore Wind Masters Web
 
-> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-07-27.md](NEXT_SESSION_HANDOFF_2026-07-27.md)。目前主線是執行 3–5 位真人 Playtest 並彙整匿名證據，不是繼續增加圖片或直接再調整平衡數值。
+> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-08-13.md](NEXT_SESSION_HANDOFF_2026-08-13.md)。Course Record Integrity Gate 已完成；下一主線是建立 18 週 CLO evidence matrix 與 Course-specific pilot protocol，再執行 3–5 位真人學生 W09→W10 pilot。
 
-## Current verification snapshot — 2026-07-30
+## Working candidate verification snapshot — 2026-08-13
 
-- 現行版本：`3.57.1-course-mode-p0`。
-- Course Mode 已分離 Guided Practice 與 Assessment；Assessment 固定任務／24 人職業角色池／裝備／船舶／seed，停用 REC／GUIDE，並輸出匿名 `OWM_COURSE_RECORD`。
-- 每週任務只由 `public/course/course-config.json` 的 `unlockedWeekIds` 手動發布，不使用日期或學生進度自動解鎖；操作見 `COURSE_MODE_GUIDE.md`。
-- 15 個任務皆具固定 SCADA／CMS data pack、Availability／MTBF／MTTR／Downtime／OPEX 推導頁；LOTO、Work Order lifecycle 與 Threshold／Hysteresis／Delay／Persistence／Interlock tester 已整合。
-- Debrief 強制要求「結論／證據／不確定性／殘餘風險」；Course Mode 另提供 12 個 P2 elective case packs，課程脈絡以「重大事故演練」取代 Boss Challenge。
+- 本機 working candidate：`3.58.0-course-record-integrity`；尚未 commit／push／發布，正式 `origin/main` 與公開網址仍是 `3.57.1-course-mode-p0`。
+- Course Record 已升級為 schema v2；events 明列 `context`／`actor`／`attemptNumber`，正式 `decisionOrder` 僅包含 `learner + assessment_runtime`。
+- `integrityOrigin=native_v2` 與 export 中的 `integrityPolicy.schemaEvidenceEligible=true` 只代表這份 client-local record 通過 schema、provenance 與 export gate 檢查；export 會明列 `authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它不具 tamper evidence、身分綁定或可信任的送件收據，因此不可直接視為正式成績真實性證明。正式評量必須另採 instructor-controlled receipt，或 cryptographically signed／server-side collection。
+- Guided Practice 不寫入 Assessment record；自動 JSA／LOTO／Work Order 與 Practice Lab events 保留 audit provenance，但不冒充學生正式決策。
+- 所有 attempts 均須結算、具 scores 並完成「結論／證據／不確定性／殘餘風險」，UI 與 serializer 才允許匯出。
+- Assessment 與 Engineering Lab 均只使用 `unlockedWeekIds`；目前正式設定 `frozen=true`、僅 W01 解鎖。
+- 15 組固定 SCADA／CMS data packs 已明標 `SYNTHETIC / GAMEPLAY ABSTRACTION`；Availability／MTBF／MTTR／Downtime／OPEX、LOTO、Work Order 與 Alarm／Interlock tester 維持可操作。
 - 教學部署使用 `https://dofliu.github.io/windFarmOMII/`；10.1 MiB 精簡素材包保留課程 roster／核心場景，GitHub Actions 同步產生約 2.58 MiB 離線 ZIP。
-- 2026-07-30 完整 `pnpm validate` 為 25 test files／159 tests；16 組 browser smoke、Pages base-path build 與離線啟動流程均通過。
+- 2026-08-13 `pnpm validate` 通過 26 test files／174 tests、Data／Scene／Art／Course、Campaign／Challenge balance 與 production build；更新後 Course browser smoke 通過。完整 16 組 smoke 最近全量基準仍為 2026-07-30。
+- `pnpm course:summary` 已能由 `MISSION_SETTLED` 重建 outcome；8 月 3 日 legacy v1 automated evidence 明確標成歷史診斷資料，不視為真人學習成效。
 - Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
 - Playtest observation、JSON export、evidence summary 與不記錄正式資料的新手練習導覽已整合；導覽可完全收起，Desktop／Mobile 底層操作均已驗證。
 - 策略平衡 v1 已套用：15 關輪調路線消耗 `2 RST`、最高持續疲勞 `76%`、結束保有 `6 RST`；完整裝備維修後保有 `55 MNT`。

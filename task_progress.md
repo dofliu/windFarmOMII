@@ -1193,3 +1193,20 @@
 - Course Mode 使用 24 個職業角色、隱藏收藏入口，並將 Boss Challenge 改稱「重大事故演練／Critical Incident Exercise」。
 - GitHub Pages build 使用 `/windFarmOMII/`，課程部署素材由約 1.07 GiB 完整本機素材精簡為 10.1 MiB；離線 ZIP 約 2.58 MiB，附 Windows 一鍵啟動與正確 module MIME server。
 - 驗證通過：`pnpm validate`（25 test files／159 tests）、`pnpm validate:teaching-deployment`、16 組 browser smoke、GitHub Pages base-path smoke、離線 Desktop／Mobile smoke。
+
+## Working candidate increment - 2026-08-13（Course Record Integrity Gate）
+
+- Version：`3.58.0-course-record-integrity`；CourseConfig 保留 `2026-FALL-manual-release-v1`、`frozen=true`、W01-only，不修改任務數值或評分平衡。
+- Course Record 升級為 schema v2；event 必須具有 `context`／`actor` provenance，可定位 Assessment attempt 時另含 `attemptNumber`。
+- 此版本尚未 commit／push／deploy；正式 `origin/main` 仍為 `3.57.1-course-mode-p0`。
+- `decisionOrder` 與 `hintUsedCount` 只接受 `learner + assessment_runtime`；system-derived JSA／LOTO／Work Order、Guided Practice 與 Practice Lab 不再污染正式決策。
+- Guided Practice 已移除對既有 Course Record 寫入 `HINT_USED` 的錯誤路徑。
+- Export gate 改為檢查所有 attempts：必須結算、具 component scores、四欄 Debrief 完整；UI 與 serializer 都 fail closed。
+- Legacy v1 record 採保守 migration，標示 `integrityOrigin=migrated_v1`；完整 audit events 保留，但不自動宣稱為 native v2 schema evidence。
+- Engineering Lab 改為只接收 `unlockedWeekIds` assignments；SCADA／CMS packs 顯示 `SYNTHETIC / GAMEPLAY ABSTRACTION` provenance。
+- 新增 tracked `pnpm course:summary`；由 `MISSION_SETTLED` 重建 `success`／`round`，不再讀不存在的 `attempt.outcome`。8 月 3 日 legacy record 可完整重建 16 attempts outcome，並產生 provenance warning。
+- Course smoke 已反轉舊錯誤契約：未完成 Assessment 無法匯出；Practice Lab events 不改 decisionOrder；完成且四欄齊全的 v2 record 才能下載。
+- 驗證通過：`pnpm validate`（26 test files／174 tests、Data／Scene／Art／Course、Campaign／Challenge balance、production build）與更新後 `pnpm smoke:course`。
+- 本增量沒有真人學生資料；automated flow、unit test、smoke 與 simulation 不作學習成效宣稱。
+- 文件已同步 README、CHANGELOG、Release Readiness、Course Guide、Requirement Audit、Scene Roadmap、新 handoff、Web／Course Addendum 與 reports evidence index。
+- 下一主線：依正式課綱建立 18 週 CLO evidence matrix 與 Course-specific pilot protocol，再執行 3–5 位真人學生 W09→W10 pilot；真人證據前不調整 frozen balance。

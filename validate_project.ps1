@@ -15,7 +15,13 @@ try {
     & $pnpm validate:data
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+    & $pnpm validate:scene
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
     & $pnpm validate:art
+    if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+    & $pnpm validate:course
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
     & $pnpm test
@@ -31,4 +37,4 @@ finally {
     Pop-Location
 }
 
-Write-Host 'OWM Web data, tests, Campaign/Challenge deterministic balance gates, typecheck, and production build completed.'
+Write-Host 'OWM Web data, Scene, Art, Course, tests, Campaign/Challenge deterministic balance gates, typecheck, and production build completed.'

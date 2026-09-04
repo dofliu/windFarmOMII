@@ -1,5 +1,5 @@
 export const PLAYTEST_STORAGE_KEY = 'owm.playtest.v1';
-export const PLAYTEST_BUILD = '3.57.1-course-mode-p0';
+export const PLAYTEST_BUILD = '3.58.0-course-record-integrity';
 
 export type PlaytestPlatform = 'desktop' | 'mobile';
 export type PlaytestStatus = 'active' | 'completed';

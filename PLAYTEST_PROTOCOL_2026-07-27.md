@@ -1,5 +1,7 @@
 # OWM 策略決策 Playtest Protocol v1
 
+> **CAMPAIGN-ONLY PROTOCOL**：本流程只評估 Crew rotation、RST、MNT 等 Campaign 行為，不能替代 Course Mode 的 SCADA／CMS、LOTO、Work Order、Debrief 與 CLO pilot。
+
 日期：2026-07-27
 適用版本：`3.57.1-course-mode-p0`
 目標人數：3–5 位未參與開發的玩家

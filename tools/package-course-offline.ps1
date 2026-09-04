@@ -2,11 +2,11 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $packageRoot = Join-Path $projectRoot 'offline-package'
 $wwwRoot = Join-Path $packageRoot 'www'
-$archivePath = Join-Path $projectRoot 'OWM_COURSE_OFFLINE_3.57.1.zip'
+$archivePath = Join-Path $projectRoot 'OWM_COURSE_OFFLINE_3.58.0.zip'
 
 # 僅允許清理專案內兩個明確產物，避免路徑解析錯誤時誤刪其他資料。 Safety guard.
 $expectedPackageRoot = [System.IO.Path]::GetFullPath((Join-Path $projectRoot 'offline-package'))
-$expectedArchivePath = [System.IO.Path]::GetFullPath((Join-Path $projectRoot 'OWM_COURSE_OFFLINE_3.57.1.zip'))
+$expectedArchivePath = [System.IO.Path]::GetFullPath((Join-Path $projectRoot 'OWM_COURSE_OFFLINE_3.58.0.zip'))
 if (-not ([System.StringComparer]::OrdinalIgnoreCase.Equals([System.IO.Path]::GetFullPath($packageRoot), $expectedPackageRoot))) {
   throw "Unexpected offline package path: $packageRoot"
 }

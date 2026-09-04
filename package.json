@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.57.1-course-mode-p0",
+  "version": "3.58.0-course-record-integrity",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",
@@ -60,6 +60,7 @@
     "validate:course": "node tools/validate-course-config.mjs",
     "validate:teaching-deployment": "pnpm simulate:challenge && pnpm sync:data && python tools/validate_owm_data.py --course-deployment && pnpm validate:course && pnpm test && pnpm simulate:balance && pnpm build:pages",
     "course:unlock": "node tools/set-course-unlocks.mjs",
+    "course:summary": "node tools/summarize-course-record.mjs",
     "validate": "pnpm simulate:challenge && pnpm sync:data && pnpm validate:data && pnpm validate:scene && pnpm validate:art && pnpm validate:course && pnpm test && pnpm simulate:balance && pnpm build"
   },
   "dependencies": {

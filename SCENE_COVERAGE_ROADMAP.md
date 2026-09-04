@@ -1,6 +1,6 @@
 # Scene Coverage Roadmap
 
-## 2026-07-24 snapshot
+## 2026-08-13 post-approval status
 
 以 `json/scenes.json` 與 `json/sceneAssets.json` 為唯一來源，目前 150 個 Sandbox／Operation Scene 的狀態如下：
 
@@ -9,9 +9,11 @@
 | Integrated route | 148 | 有專屬路由資料，可由 Sandbox Scene selector 選取 |
 | Dedicated runtime file | 146 | 符合 `1915x821 RGB`；其中 SCN002／SCN003 共用既有 fallback 檔案 |
 | Shared fallback | 2 | 明確顯示 fallback provenance，不冒充專屬背景 |
-| Visual review required | 119 | 新增候選，等待人工核准；集中總覽見 `assets/source-art/qa/scene-pack-2026-07-24/scene-pack-contact-sheet-all-v018.png` |
+| Visual review required | 0 | 119 個候選均已人工核准並完成 promotion；接觸表保留為歷史 QA 證據 |
 
-## 下一批優先順序
+## 歷史生成計畫（已完成／superseded）
+
+下列 P1–P4 是 2026-07-24 生成與核准前的計畫，保留作 provenance，不再代表目前下一步。目前 Scene gate 為 `119 approved/promoted`、`0 visual review required`。
 
 ### P1：完成後續視覺核准與 production promotion
 

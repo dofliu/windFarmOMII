@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.58.0-course-record-integrity - 2026-08-13 (working candidate)
+
+- Upgraded Course Record to schema v2 with required event `context`／`actor` provenance and `attemptNumber` when an Assessment attempt is addressable.
+- Restricted formal `decisionOrder` and hint counts to learner actions from `assessment_runtime`; system-derived JSA／LOTO／Work Order and Practice Lab events remain audit-only.
+- Removed the Guided Practice path that could write `HINT_USED` into a stale Assessment record.
+- Made export fail closed in both UI and serializer until every attempt is settled, scored, and has all four Debrief fields.
+- Applied `unlockedWeekIds` to Engineering Lab and labeled fixed-seed SCADA／CMS packs as `SYNTHETIC / GAMEPLAY ABSTRACTION`.
+- Added conservative v1 migration with visible historical-only status; migrated records are not relabeled as native v2 schema evidence.
+- Added a tracked `course:summary` tool that reconstructs `success`／`round` from `MISSION_SETTLED` instead of the nonexistent `attempt.outcome`.
+- Reversed the Course smoke export contract: incomplete attempts remain blocked; completed v2 records download successfully; Practice Lab events do not alter formal decisions.
+- Verified `pnpm validate` with 26 test files／174 tests and the updated Course browser smoke. Campaign／Challenge balance values remain frozen and unchanged.
+
+## 3.57.1-course-mode-p0 - 2026-07-30
+
+- Added Course Mode with Guided Practice／Assessment separation, manual weekly release, fixed assignment conditions, anonymous Course Record, SCADA／CMS engineering activities, Debrief, GitHub Pages, and offline deployment.
+- Historical validation baseline: 25 test files／159 tests and 16 browser smoke groups.
+- Subsequent automated full-flow evidence exposed record-context and export-gate defects; those findings are addressed in `3.58.0-course-record-integrity`.
+
 ## 3.54.0-strategy-balance-v1 - 2026-07-26
 
 - Added inter-mission operational fatigue, reduced transit/reserve recovery, and limited RST rewards to completed SOV supply milestones every third mission.

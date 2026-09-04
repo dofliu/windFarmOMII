@@ -1,5 +1,7 @@
 # OWM Web 架構決議
 
+> **HISTORICAL BASELINE**：本文件保留早期 Web 架構紀錄；目前 Course Mode、Learning Record v2 與發布規則請以 `OWM_WEB_COURSE_MODE_ADDENDUM_v1.0.md`、`COURSE_MODE_GUIDE.md` 及 `NEXT_SESSION_HANDOFF_2026-08-13.md` 為準。
+
 版本：3.27.0-source-art-batch016-r6-active-import  
 日期：2026-07-18
 

@@ -1,4 +1,4 @@
-import { mkdir } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
@@ -38,7 +38,7 @@ try {
   await page.getByTestId('nav-course').click();
   await page.getByTestId('course-mode-screen').waitFor();
 
-  if ((await page.getByTestId('course-mode-screen').getAttribute('data-course-version')) !== '3.57.1-course-mode-p0') {
+  if ((await page.getByTestId('course-mode-screen').getAttribute('data-course-version')) !== '3.58.0-course-record-integrity') {
     throw new Error('Course release version is not synchronized.');
   }
   if ((await page.getByTestId('course-unlocked-count').innerText()).trim() !== '1/15 已開放') {
@@ -65,6 +65,12 @@ try {
   }
   if ((await page.getByTestId('course-kpi-grid').locator('article').count()) !== 5) {
     throw new Error('Availability/MTBF/MTTR/Downtime/OPEX calculations are incomplete.');
+  }
+  if ((await page.getByTestId('course-lab-assignment').locator('option').count()) !== 1) {
+    throw new Error('Engineering Lab bypasses the W01-only teacher release.');
+  }
+  if (!(await page.getByTestId('course-data-provenance').innerText()).includes('SYNTHETIC')) {
+    throw new Error('Synthetic SCADA/CMS provenance is not visible.');
   }
   await page.getByTestId('course-lab-tab-procedures').click();
   for (const step of ['shutdown', 'isolate', 'lock-tag', 'control-residual-energy', 'verify-zero-energy']) {
@@ -101,6 +107,7 @@ try {
   if (await page.getByTestId('recommended-skill-cta').count()) throw new Error('Assessment still exposes a recommended skill.');
   if (await page.getByTestId('onboarding-guide').count()) throw new Error('Assessment still exposes onboarding guidance.');
   if (await page.getByTestId('onboarding-replay').count()) throw new Error('Assessment topbar still exposes guide replay.');
+  if (!(await page.getByTestId('nav-course').isDisabled())) throw new Error('Assessment can still discard its runtime through the active Course navigation button.');
   await page.evaluate(() => document.querySelector('[data-testid="operation-crew-tab-profile"]')?.click());
   if (!(await page.getByTestId('shift-character').isDisabled())) throw new Error('Assessment crew is not fixed.');
   const assessmentPrompt = await page.getByTestId('operation-decision-prompt').innerText();
@@ -115,12 +122,22 @@ try {
     || attempt?.missionId !== 'MSN-TUT-001'
     || attempt?.randomSeed !== 357101
     || JSON.stringify(startedRecord.events.map((event) => event.kind)) !== JSON.stringify(['MODE_SELECTED', 'JSA_COMPLETED', 'MISSION_DEPLOYED'])
+    || attempt?.decisionOrder?.length !== 0
   ) {
     throw new Error(`Course Record start contract is incorrect: ${JSON.stringify(startedRecord)}`);
   }
   const deployed = startedRecord.events.find((event) => event.kind === 'MISSION_DEPLOYED');
+  const fixedPreflight = startedRecord.events.find((event) => event.kind === 'JSA_COMPLETED');
   if (JSON.stringify(deployed?.details?.teamIds) !== JSON.stringify(['CHR-OMI-258', 'CHR-ACA-073', 'CHR-DIG-283'])) {
     throw new Error('Assessment fixed team does not match the teacher manifest.');
+  }
+  if (
+    deployed?.context !== 'assessment_runtime'
+    || deployed?.actor !== 'system'
+    || fixedPreflight?.context !== 'assessment_runtime'
+    || fixedPreflight?.actor !== 'system'
+  ) {
+    throw new Error('System-derived Assessment events lack explicit provenance.');
   }
 
   await page.getByTestId('operation-info-tab-objectives').click();
@@ -131,13 +148,86 @@ try {
   }
   await page.screenshot({ path: shot('assessment-no-hints'), fullPage: true });
 
+  await page.evaluate(() => {
+    const button = document.querySelector('[data-testid="nav-course"]');
+    if (button instanceof HTMLButtonElement) button.disabled = false;
+    button?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+  });
+  if (!(await page.getByTestId('operation-decision-prompt').count())) {
+    throw new Error('Assessment runtime was discarded by navigation.');
+  }
+  await page.evaluate(() => {
+    history.pushState({}, '', `${location.pathname}#course-record-smoke`);
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  });
+  await page.reload({ waitUntil: 'networkidle' });
   await page.getByTestId('nav-course').click();
   await page.getByTestId('course-record-panel').waitFor();
-  const download = page.waitForEvent('download');
+  if (!(await page.getByTestId('course-export-record').isDisabled())) {
+    throw new Error('Incomplete Assessment can still be exported.');
+  }
+  const beforeLabRecord = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
+  await page.getByTestId('course-lab-tab-procedures').click();
+  for (const step of ['shutdown', 'isolate', 'lock-tag', 'control-residual-energy', 'verify-zero-energy']) {
+    await page.getByTestId(`course-procedure-loto-${step}`).click();
+  }
+  await page.getByTestId('course-procedure-work-order-trigger').click();
+  const afterLabRecord = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
+  if (JSON.stringify(afterLabRecord.attempts[0].decisionOrder) !== JSON.stringify(beforeLabRecord.attempts[0].decisionOrder)) {
+    throw new Error('Practice Lab polluted the formal Assessment decisionOrder.');
+  }
+  const labEvents = afterLabRecord.events.filter((event) => event.details?.source === 'COURSE_ENGINEERING_LAB');
+  if (!labEvents.length || labEvents.some((event) => event.context !== 'practice_lab' || event.actor !== 'learner')) {
+    throw new Error(`Practice Lab provenance is incorrect: ${JSON.stringify(labEvents)}`);
+  }
+
+  await page.evaluate(() => {
+    const record = JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null');
+    const attempt = record.attempts.at(-1);
+    const scores = { completion: 100, safety: 90, evidence: 80, time: 70, fatigue: 60, cost: 50, total: 78, grade: 'B' };
+    attempt.completedAt = '2026-08-13T00:00:00.000Z';
+    attempt.scores = scores;
+    attempt.studentExplanation = {
+      conclusion: 'Main bearing anomaly',
+      evidence: 'Temperature and vibration trends',
+      uncertainty: 'One missing vibration sample',
+      residualRisk: 'Confirm with oil debris analysis',
+    };
+    record.events.push({
+      sequence: record.events.length + 1,
+      recordedAt: attempt.completedAt,
+      kind: 'MISSION_SETTLED',
+      context: 'assessment_runtime',
+      actor: 'system',
+      assignmentId: attempt.assignmentId,
+      missionId: attempt.missionId,
+      attemptNumber: attempt.attemptNumber,
+      details: { success: true, round: 1, scores },
+    });
+    record.updatedAt = attempt.completedAt;
+    localStorage.setItem('owm.course.v1', JSON.stringify(record));
+  });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByTestId('nav-course').click();
+  await page.getByTestId('course-record-panel').waitFor();
+  if (await page.getByTestId('course-export-record').isDisabled()) {
+    throw new Error('Completed Assessment with four-field Debrief is not exportable.');
+  }
+  const downloadPromise = page.waitForEvent('download');
   await page.getByTestId('course-export-record').click();
-  await download;
-  const exportedRecord = await page.evaluate(() => JSON.parse(localStorage.getItem('owm.course.v1') ?? 'null'));
-  if (exportedRecord.events.at(-1)?.kind !== 'DEBRIEF_EXPORTED') throw new Error('Course export event was not recorded.');
+  const download = await downloadPromise;
+  const downloadPath = await download.path();
+  if (!downloadPath) throw new Error('Course Record download did not produce a local file.');
+  const exportedRecord = JSON.parse(await readFile(downloadPath, 'utf8'));
+  if (
+    exportedRecord.schemaVersion !== 2
+    || exportedRecord.integrityPolicy?.decisionOrder !== 'LEARNER_ASSESSMENT_RUNTIME_ONLY'
+    || exportedRecord.record?.events?.at(-1)?.kind !== 'DEBRIEF_EXPORTED'
+    || exportedRecord.record?.events?.at(-1)?.context !== 'system'
+    || exportedRecord.record?.events?.at(-1)?.actor !== 'learner'
+  ) {
+    throw new Error(`Course export integrity contract is incorrect: ${JSON.stringify(exportedRecord)}`);
+  }
 
   await page.getByTestId('course-reset').click();
   if ((await page.evaluate(() => localStorage.getItem('owm.course.v1'))) !== null) throw new Error('One-click Course reset did not clear the Course Record.');

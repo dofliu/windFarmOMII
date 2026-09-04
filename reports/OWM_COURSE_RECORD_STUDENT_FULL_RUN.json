@@ -1,0 +1,2846 @@
+{
+  "format": "OWM_COURSE_RECORD",
+  "schemaVersion": 1,
+  "exportedAt": "2026-08-02T17:16:09.401Z",
+  "version": "3.57.1-course-mode-p0",
+  "courseCode": "NCUT-OWM-2026",
+  "learnerCode": "OWM-C6A6-0312",
+  "mode": "assessment",
+  "configVersion": "2026-FALL-student-full-run-20260803",
+  "missions": [
+    "MSN-TUT-001",
+    "MSN-TUT-002",
+    "MSN-TUT-003",
+    "MSN-ADV-004",
+    "MSN-ADV-005",
+    "MSN-ADV-006",
+    "MSN-ELT-007",
+    "MSN-ELT-008",
+    "MSN-ELT-009",
+    "MSN-MST-010",
+    "MSN-MST-011",
+    "MSN-MST-012",
+    "MSN-FNL-013",
+    "MSN-FNL-014",
+    "MSN-FNL-015"
+  ],
+  "attemptCount": 16,
+  "decisionOrder": [
+    {
+      "missionId": "MSN-TUT-001",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-TUT-001",
+      "attemptNumber": 2,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-TUT-002",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-TUT-003",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-ADV-004",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-ADV-005",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-ADV-006",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-ELT-007",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-ELT-008",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-ELT-009",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-MST-010",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-MST-011",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-MST-012",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-FNL-013",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-FNL-014",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    },
+    {
+      "missionId": "MSN-FNL-015",
+      "attemptNumber": 1,
+      "decisions": [
+        "JSA_COMPLETED",
+        "EVIDENCE_VIEWED",
+        "DIAGNOSIS_SELECTED",
+        "LOTO_VERIFIED",
+        "WORK_ORDER_CREATED"
+      ]
+    }
+  ],
+  "hintUsage": {
+    "total": 0,
+    "assessmentPolicy": "REC_AND_GUIDE_DISABLED"
+  },
+  "componentScores": [
+    {
+      "missionId": "MSN-TUT-001",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 92,
+        "evidence": 57,
+        "time": 70,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 79,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-TUT-001",
+      "attemptNumber": 2,
+      "scores": {
+        "completion": 100,
+        "safety": 92,
+        "evidence": 57,
+        "time": 70,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 79,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-TUT-002",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 89,
+        "evidence": 52,
+        "time": 70,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 77,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-TUT-003",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 88,
+        "evidence": 52,
+        "time": 70,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 77,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-ADV-004",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 92,
+        "evidence": 58,
+        "time": 67,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 78,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-ADV-005",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 89,
+        "evidence": 63,
+        "time": 67,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 78,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-ADV-006",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 83,
+        "evidence": 58,
+        "time": 67,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 76,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-ELT-007",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 97,
+        "evidence": 69,
+        "time": 63,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 81,
+        "grade": "A"
+      }
+    },
+    {
+      "missionId": "MSN-ELT-008",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 97,
+        "evidence": 59,
+        "time": 63,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 79,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-ELT-009",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 100,
+        "safety": 76,
+        "evidence": 63,
+        "time": 63,
+        "fatigue": 100,
+        "cost": 0,
+        "total": 75,
+        "grade": "B"
+      }
+    },
+    {
+      "missionId": "MSN-MST-010",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 92,
+        "safety": 73,
+        "evidence": 84,
+        "time": 11,
+        "fatigue": 93,
+        "cost": 0,
+        "total": 69,
+        "grade": "C"
+      }
+    },
+    {
+      "missionId": "MSN-MST-011",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 92,
+        "safety": 68,
+        "evidence": 68,
+        "time": 0,
+        "fatigue": 89,
+        "cost": 0,
+        "total": 64,
+        "grade": "C"
+      }
+    },
+    {
+      "missionId": "MSN-MST-012",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 92,
+        "safety": 38,
+        "evidence": 72,
+        "time": 0,
+        "fatigue": 89,
+        "cost": 0,
+        "total": 57,
+        "grade": "D"
+      }
+    },
+    {
+      "missionId": "MSN-FNL-013",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 50,
+        "safety": 61,
+        "evidence": 71,
+        "time": 30,
+        "fatigue": 71,
+        "cost": 0,
+        "total": 51,
+        "grade": "D"
+      }
+    },
+    {
+      "missionId": "MSN-FNL-014",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 61,
+        "safety": 52,
+        "evidence": 59,
+        "time": 20,
+        "fatigue": 81,
+        "cost": 0,
+        "total": 50,
+        "grade": "D"
+      }
+    },
+    {
+      "missionId": "MSN-FNL-015",
+      "attemptNumber": 1,
+      "scores": {
+        "completion": 50,
+        "safety": 34,
+        "evidence": 71,
+        "time": 30,
+        "fatigue": 78,
+        "cost": 0,
+        "total": 45,
+        "grade": "D"
+      }
+    }
+  ],
+  "studentExplanations": [
+    {
+      "missionId": "MSN-TUT-001",
+      "attemptNumber": 1,
+      "conclusion": "W01：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-TUT-001",
+      "attemptNumber": 2,
+      "conclusion": "W01（重做）：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-TUT-002",
+      "attemptNumber": 1,
+      "conclusion": "W02：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-TUT-003",
+      "attemptNumber": 1,
+      "conclusion": "W03：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-ADV-004",
+      "attemptNumber": 1,
+      "conclusion": "W04：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-ADV-005",
+      "attemptNumber": 1,
+      "conclusion": "W05：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-ADV-006",
+      "attemptNumber": 1,
+      "conclusion": "W06：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-ELT-007",
+      "attemptNumber": 1,
+      "conclusion": "W07：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-ELT-008",
+      "attemptNumber": 1,
+      "conclusion": "W08：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-ELT-009",
+      "attemptNumber": 1,
+      "conclusion": "W09：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-MST-010",
+      "attemptNumber": 1,
+      "conclusion": "W10：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-MST-011",
+      "attemptNumber": 1,
+      "conclusion": "W11：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-MST-012",
+      "attemptNumber": 1,
+      "conclusion": "W12：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-FNL-013",
+      "attemptNumber": 1,
+      "conclusion": "W13：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-FNL-014",
+      "attemptNumber": 1,
+      "conclusion": "W14：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    },
+    {
+      "missionId": "MSN-FNL-015",
+      "attemptNumber": 1,
+      "conclusion": "W15：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+      "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+      "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+      "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+    }
+  ],
+  "record": {
+    "schemaVersion": 1,
+    "releaseVersion": "3.57.1-course-mode-p0",
+    "configVersion": "2026-FALL-student-full-run-20260803",
+    "courseCode": "NCUT-OWM-2026",
+    "learnerCode": "OWM-C6A6-0312",
+    "platform": "desktop",
+    "mode": "assessment",
+    "createdAt": "2026-08-02T17:15:19.035Z",
+    "updatedAt": "2026-08-02T17:16:09.401Z",
+    "events": [
+      {
+        "sequence": 1,
+        "recordedAt": "2026-08-02T17:15:19.035Z",
+        "kind": "MODE_SELECTED",
+        "details": {
+          "mode": "assessment",
+          "hints": "disabled"
+        }
+      },
+      {
+        "sequence": 2,
+        "recordedAt": "2026-08-02T17:15:19.035Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 3,
+        "recordedAt": "2026-08-02T17:15:19.035Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-258",
+            "CHR-ACA-073",
+            "CHR-DIG-283"
+          ],
+          "equipmentId": "EQ0051",
+          "spareId": "EQ0126",
+          "vesselId": "VES002",
+          "randomSeed": 357101
+        }
+      },
+      {
+        "sequence": 4,
+        "recordedAt": "2026-08-02T17:15:19.414Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "missionId": "MSN-TUT-001",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 5,
+        "recordedAt": "2026-08-02T17:15:19.864Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "missionId": "MSN-TUT-001",
+          "optionId": "D1-B",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 6,
+        "recordedAt": "2026-08-02T17:15:20.187Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 7,
+        "recordedAt": "2026-08-02T17:15:21.548Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-TUT-001"
+        }
+      },
+      {
+        "sequence": 8,
+        "recordedAt": "2026-08-02T17:15:21.548Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 92,
+            "evidence": 57,
+            "time": 70,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 79,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 9,
+        "recordedAt": "2026-08-02T17:15:21.913Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "assignmentId": "COURSE-W01-BEARING",
+          "missionId": "MSN-TUT-001",
+          "source": "COURSE_ENGINEERING_LAB",
+          "procedure": [
+            "SHUTDOWN",
+            "ISOLATE",
+            "LOCK_TAG",
+            "CONTROL_RESIDUAL_ENERGY",
+            "VERIFY_ZERO_ENERGY"
+          ]
+        }
+      },
+      {
+        "sequence": 10,
+        "recordedAt": "2026-08-02T17:15:21.925Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "assignmentId": "COURSE-W01-BEARING",
+          "missionId": "MSN-TUT-001",
+          "source": "COURSE_ENGINEERING_LAB",
+          "lifecycle": [
+            "TRIGGER",
+            "ACKNOWLEDGE",
+            "DISPATCH",
+            "EXECUTE",
+            "VERIFY",
+            "CLOSE_OUT"
+          ]
+        }
+      },
+      {
+        "sequence": 11,
+        "recordedAt": "2026-08-02T17:15:22.389Z",
+        "kind": "MISSION_REPLAYED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "attemptNumber": 2
+        }
+      },
+      {
+        "sequence": 12,
+        "recordedAt": "2026-08-02T17:15:22.389Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 13,
+        "recordedAt": "2026-08-02T17:15:22.389Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "attemptNumber": 2,
+          "teamIds": [
+            "CHR-OMI-258",
+            "CHR-ACA-073",
+            "CHR-DIG-283"
+          ],
+          "equipmentId": "EQ0051",
+          "spareId": "EQ0126",
+          "vesselId": "VES002",
+          "randomSeed": 357101
+        }
+      },
+      {
+        "sequence": 14,
+        "recordedAt": "2026-08-02T17:15:22.468Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "missionId": "MSN-TUT-001",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 15,
+        "recordedAt": "2026-08-02T17:15:22.723Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "missionId": "MSN-TUT-001",
+          "optionId": "D1-B",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 16,
+        "recordedAt": "2026-08-02T17:15:23.034Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "attemptNumber": 2,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 17,
+        "recordedAt": "2026-08-02T17:15:24.367Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-TUT-001"
+        }
+      },
+      {
+        "sequence": 18,
+        "recordedAt": "2026-08-02T17:15:24.367Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 92,
+            "evidence": 57,
+            "time": 70,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 79,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 19,
+        "recordedAt": "2026-08-02T17:15:24.471Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 20,
+        "recordedAt": "2026-08-02T17:15:24.471Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-233",
+            "CHR-MFG-163",
+            "CHR-DIG-278"
+          ],
+          "equipmentId": "EQ0026",
+          "spareId": "EQ0136",
+          "vesselId": "VES001",
+          "randomSeed": 357102
+        }
+      },
+      {
+        "sequence": 21,
+        "recordedAt": "2026-08-02T17:15:24.580Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "missionId": "MSN-TUT-002",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 22,
+        "recordedAt": "2026-08-02T17:15:24.897Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "missionId": "MSN-TUT-002",
+          "optionId": "D2-A",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 23,
+        "recordedAt": "2026-08-02T17:15:25.259Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 24,
+        "recordedAt": "2026-08-02T17:15:26.580Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-TUT-002"
+        }
+      },
+      {
+        "sequence": 25,
+        "recordedAt": "2026-08-02T17:15:26.580Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 89,
+            "evidence": 52,
+            "time": 70,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 77,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 26,
+        "recordedAt": "2026-08-02T17:15:26.697Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 27,
+        "recordedAt": "2026-08-02T17:15:26.697Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-228",
+            "CHR-MFG-158",
+            "CHR-ACA-083"
+          ],
+          "equipmentId": "EQ0151",
+          "spareId": "EQ0146",
+          "vesselId": "VES002",
+          "randomSeed": 357103
+        }
+      },
+      {
+        "sequence": 28,
+        "recordedAt": "2026-08-02T17:15:26.787Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "missionId": "MSN-TUT-003",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 29,
+        "recordedAt": "2026-08-02T17:15:27.101Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "missionId": "MSN-TUT-003",
+          "optionId": "D3-A",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 30,
+        "recordedAt": "2026-08-02T17:15:27.474Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 31,
+        "recordedAt": "2026-08-02T17:15:28.788Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-TUT-003"
+        }
+      },
+      {
+        "sequence": 32,
+        "recordedAt": "2026-08-02T17:15:28.788Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 88,
+            "evidence": 52,
+            "time": 70,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 77,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 33,
+        "recordedAt": "2026-08-02T17:15:28.863Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 34,
+        "recordedAt": "2026-08-02T17:15:28.863Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-253",
+            "CHR-MFG-153",
+            "CHR-DIG-283"
+          ],
+          "equipmentId": "EQ0052",
+          "spareId": "EQ0132",
+          "vesselId": "VES002",
+          "randomSeed": 357104
+        }
+      },
+      {
+        "sequence": 35,
+        "recordedAt": "2026-08-02T17:15:28.927Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "missionId": "MSN-ADV-004",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 36,
+        "recordedAt": "2026-08-02T17:15:29.305Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "missionId": "MSN-ADV-004",
+          "optionId": "D4-A",
+          "correct": true,
+          "evidenceBefore": 30
+        }
+      },
+      {
+        "sequence": 37,
+        "recordedAt": "2026-08-02T17:15:29.640Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 38,
+        "recordedAt": "2026-08-02T17:15:30.955Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-ADV-004"
+        }
+      },
+      {
+        "sequence": 39,
+        "recordedAt": "2026-08-02T17:15:30.955Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 92,
+            "evidence": 58,
+            "time": 67,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 78,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 40,
+        "recordedAt": "2026-08-02T17:15:31.034Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 41,
+        "recordedAt": "2026-08-02T17:15:31.034Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-233",
+            "CHR-MFG-163",
+            "CHR-DIG-278"
+          ],
+          "equipmentId": "EQ0027",
+          "spareId": "EQ0137",
+          "vesselId": "VES002",
+          "randomSeed": 357105
+        }
+      },
+      {
+        "sequence": 42,
+        "recordedAt": "2026-08-02T17:15:31.121Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "missionId": "MSN-ADV-005",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 43,
+        "recordedAt": "2026-08-02T17:15:31.422Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "missionId": "MSN-ADV-005",
+          "optionId": "D5-A",
+          "correct": true,
+          "evidenceBefore": 30
+        }
+      },
+      {
+        "sequence": 44,
+        "recordedAt": "2026-08-02T17:15:31.843Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 45,
+        "recordedAt": "2026-08-02T17:15:33.143Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-ADV-005"
+        }
+      },
+      {
+        "sequence": 46,
+        "recordedAt": "2026-08-02T17:15:33.143Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 89,
+            "evidence": 63,
+            "time": 67,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 78,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 47,
+        "recordedAt": "2026-08-02T17:15:33.255Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 48,
+        "recordedAt": "2026-08-02T17:15:33.255Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-228",
+            "CHR-MFG-158",
+            "CHR-ACA-083"
+          ],
+          "equipmentId": "EQ0152",
+          "spareId": "EQ0147",
+          "vesselId": "VES002",
+          "randomSeed": 357106
+        }
+      },
+      {
+        "sequence": 49,
+        "recordedAt": "2026-08-02T17:15:33.349Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "missionId": "MSN-ADV-006",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 50,
+        "recordedAt": "2026-08-02T17:15:33.639Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "missionId": "MSN-ADV-006",
+          "optionId": "D6-A",
+          "correct": true,
+          "evidenceBefore": 30
+        }
+      },
+      {
+        "sequence": 51,
+        "recordedAt": "2026-08-02T17:15:34.030Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 52,
+        "recordedAt": "2026-08-02T17:15:35.312Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-ADV-006"
+        }
+      },
+      {
+        "sequence": 53,
+        "recordedAt": "2026-08-02T17:15:35.312Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 83,
+            "evidence": 58,
+            "time": 67,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 76,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 54,
+        "recordedAt": "2026-08-02T17:15:35.379Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 55,
+        "recordedAt": "2026-08-02T17:15:35.379Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-258",
+            "CHR-ACA-073",
+            "CHR-DIG-283"
+          ],
+          "equipmentId": "EQ0053",
+          "spareId": "EQ0128",
+          "vesselId": "VES002",
+          "randomSeed": 357107
+        }
+      },
+      {
+        "sequence": 56,
+        "recordedAt": "2026-08-02T17:15:35.472Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "missionId": "MSN-ELT-007",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 57,
+        "recordedAt": "2026-08-02T17:15:35.792Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "missionId": "MSN-ELT-007",
+          "optionId": "D7-A",
+          "correct": true,
+          "evidenceBefore": 32
+        }
+      },
+      {
+        "sequence": 58,
+        "recordedAt": "2026-08-02T17:15:36.137Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 59,
+        "recordedAt": "2026-08-02T17:15:37.539Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-ELT-007"
+        }
+      },
+      {
+        "sequence": 60,
+        "recordedAt": "2026-08-02T17:15:37.539Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 97,
+            "evidence": 69,
+            "time": 63,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 81,
+            "grade": "A"
+          }
+        }
+      },
+      {
+        "sequence": 61,
+        "recordedAt": "2026-08-02T17:15:37.629Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 62,
+        "recordedAt": "2026-08-02T17:15:37.629Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-233",
+            "CHR-MFG-168",
+            "CHR-DIG-278"
+          ],
+          "equipmentId": "EQ0028",
+          "spareId": "EQ0143",
+          "vesselId": "VES002",
+          "randomSeed": 357108
+        }
+      },
+      {
+        "sequence": 63,
+        "recordedAt": "2026-08-02T17:15:37.726Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "missionId": "MSN-ELT-008",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 64,
+        "recordedAt": "2026-08-02T17:15:38.142Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "missionId": "MSN-ELT-008",
+          "optionId": "D8-A",
+          "correct": true,
+          "evidenceBefore": 32
+        }
+      },
+      {
+        "sequence": 65,
+        "recordedAt": "2026-08-02T17:15:38.466Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 66,
+        "recordedAt": "2026-08-02T17:15:39.833Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-ELT-008"
+        }
+      },
+      {
+        "sequence": 67,
+        "recordedAt": "2026-08-02T17:15:39.833Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 97,
+            "evidence": 59,
+            "time": 63,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 79,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 68,
+        "recordedAt": "2026-08-02T17:15:39.967Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 69,
+        "recordedAt": "2026-08-02T17:15:39.967Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-243",
+            "CHR-MFG-158",
+            "CHR-ACA-083"
+          ],
+          "equipmentId": "EQ0153",
+          "spareId": "EQ0148",
+          "vesselId": "VES002",
+          "randomSeed": 357109
+        }
+      },
+      {
+        "sequence": 70,
+        "recordedAt": "2026-08-02T17:15:40.097Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "missionId": "MSN-ELT-009",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 71,
+        "recordedAt": "2026-08-02T17:15:40.376Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "missionId": "MSN-ELT-009",
+          "optionId": "D9-A",
+          "correct": true,
+          "evidenceBefore": 32
+        }
+      },
+      {
+        "sequence": 72,
+        "recordedAt": "2026-08-02T17:15:40.767Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 73,
+        "recordedAt": "2026-08-02T17:15:42.214Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-ELT-009"
+        }
+      },
+      {
+        "sequence": 74,
+        "recordedAt": "2026-08-02T17:15:42.214Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "details": {
+          "success": true,
+          "round": 4,
+          "scores": {
+            "completion": 100,
+            "safety": 76,
+            "evidence": 63,
+            "time": 63,
+            "fatigue": 100,
+            "cost": 0,
+            "total": 75,
+            "grade": "B"
+          }
+        }
+      },
+      {
+        "sequence": 75,
+        "recordedAt": "2026-08-02T17:15:42.296Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 76,
+        "recordedAt": "2026-08-02T17:15:42.296Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-258",
+            "CHR-ACA-073",
+            "CHR-DIG-293"
+          ],
+          "equipmentId": "EQ0054",
+          "spareId": "EQ0129",
+          "vesselId": "VES002",
+          "randomSeed": 357110
+        }
+      },
+      {
+        "sequence": 77,
+        "recordedAt": "2026-08-02T17:15:42.378Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "missionId": "MSN-MST-010",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 78,
+        "recordedAt": "2026-08-02T17:15:42.655Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "missionId": "MSN-MST-010",
+          "optionId": "D10-A",
+          "correct": true,
+          "evidenceBefore": 29
+        }
+      },
+      {
+        "sequence": 79,
+        "recordedAt": "2026-08-02T17:15:43.026Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 80,
+        "recordedAt": "2026-08-02T17:15:46.180Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-MST-010"
+        }
+      },
+      {
+        "sequence": 81,
+        "recordedAt": "2026-08-02T17:15:46.181Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "details": {
+          "success": false,
+          "round": 9,
+          "scores": {
+            "completion": 92,
+            "safety": 73,
+            "evidence": 84,
+            "time": 11,
+            "fatigue": 93,
+            "cost": 0,
+            "total": 69,
+            "grade": "C"
+          }
+        }
+      },
+      {
+        "sequence": 82,
+        "recordedAt": "2026-08-02T17:15:46.246Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 83,
+        "recordedAt": "2026-08-02T17:15:46.246Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-233",
+            "CHR-MFG-168",
+            "CHR-DIG-278"
+          ],
+          "equipmentId": "EQ0029",
+          "spareId": "EQ0144",
+          "vesselId": "VES002",
+          "randomSeed": 357111
+        }
+      },
+      {
+        "sequence": 84,
+        "recordedAt": "2026-08-02T17:15:46.341Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "missionId": "MSN-MST-011",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 85,
+        "recordedAt": "2026-08-02T17:15:46.692Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "missionId": "MSN-MST-011",
+          "optionId": "D11-A",
+          "correct": true,
+          "evidenceBefore": 29
+        }
+      },
+      {
+        "sequence": 86,
+        "recordedAt": "2026-08-02T17:15:47.059Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 87,
+        "recordedAt": "2026-08-02T17:15:51.354Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-MST-011"
+        }
+      },
+      {
+        "sequence": 88,
+        "recordedAt": "2026-08-02T17:15:51.354Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "details": {
+          "success": false,
+          "round": 10,
+          "scores": {
+            "completion": 92,
+            "safety": 68,
+            "evidence": 68,
+            "time": 0,
+            "fatigue": 89,
+            "cost": 0,
+            "total": 64,
+            "grade": "C"
+          }
+        }
+      },
+      {
+        "sequence": 89,
+        "recordedAt": "2026-08-02T17:15:51.429Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 90,
+        "recordedAt": "2026-08-02T17:15:51.429Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-243",
+            "CHR-MFG-158",
+            "CHR-ACA-083"
+          ],
+          "equipmentId": "EQ0154",
+          "spareId": "EQ0149",
+          "vesselId": "VES002",
+          "randomSeed": 357112
+        }
+      },
+      {
+        "sequence": 91,
+        "recordedAt": "2026-08-02T17:15:51.514Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "missionId": "MSN-MST-012",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 92,
+        "recordedAt": "2026-08-02T17:15:51.830Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "missionId": "MSN-MST-012",
+          "optionId": "D12-A",
+          "correct": true,
+          "evidenceBefore": 29
+        }
+      },
+      {
+        "sequence": 93,
+        "recordedAt": "2026-08-02T17:15:52.219Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 94,
+        "recordedAt": "2026-08-02T17:15:56.262Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-MST-012"
+        }
+      },
+      {
+        "sequence": 95,
+        "recordedAt": "2026-08-02T17:15:56.263Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "details": {
+          "success": false,
+          "round": 10,
+          "scores": {
+            "completion": 92,
+            "safety": 38,
+            "evidence": 72,
+            "time": 0,
+            "fatigue": 89,
+            "cost": 0,
+            "total": 57,
+            "grade": "D"
+          }
+        }
+      },
+      {
+        "sequence": 96,
+        "recordedAt": "2026-08-02T17:15:56.330Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 97,
+        "recordedAt": "2026-08-02T17:15:56.330Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-258",
+            "CHR-ACA-073",
+            "CHR-DIG-293"
+          ],
+          "equipmentId": "EQ0054",
+          "spareId": "EQ0129",
+          "vesselId": "VES002",
+          "randomSeed": 357113
+        }
+      },
+      {
+        "sequence": 98,
+        "recordedAt": "2026-08-02T17:15:56.391Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "missionId": "MSN-FNL-013",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 99,
+        "recordedAt": "2026-08-02T17:15:56.771Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "missionId": "MSN-FNL-013",
+          "optionId": "D13-A",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 100,
+        "recordedAt": "2026-08-02T17:15:57.168Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 101,
+        "recordedAt": "2026-08-02T17:16:00.029Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-FNL-013"
+        }
+      },
+      {
+        "sequence": 102,
+        "recordedAt": "2026-08-02T17:16:00.029Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "details": {
+          "success": false,
+          "round": 8,
+          "scores": {
+            "completion": 50,
+            "safety": 61,
+            "evidence": 71,
+            "time": 30,
+            "fatigue": 71,
+            "cost": 0,
+            "total": 51,
+            "grade": "D"
+          }
+        }
+      },
+      {
+        "sequence": 103,
+        "recordedAt": "2026-08-02T17:16:00.101Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 104,
+        "recordedAt": "2026-08-02T17:16:00.101Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-233",
+            "CHR-MFG-168",
+            "CHR-DIG-278"
+          ],
+          "equipmentId": "EQ0029",
+          "spareId": "EQ0144",
+          "vesselId": "VES002",
+          "randomSeed": 357114
+        }
+      },
+      {
+        "sequence": 105,
+        "recordedAt": "2026-08-02T17:16:00.199Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "missionId": "MSN-FNL-014",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 106,
+        "recordedAt": "2026-08-02T17:16:00.538Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "missionId": "MSN-FNL-014",
+          "optionId": "D14-A",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 107,
+        "recordedAt": "2026-08-02T17:16:00.880Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 108,
+        "recordedAt": "2026-08-02T17:16:04.263Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-FNL-014"
+        }
+      },
+      {
+        "sequence": 109,
+        "recordedAt": "2026-08-02T17:16:04.263Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "details": {
+          "success": false,
+          "round": 9,
+          "scores": {
+            "completion": 61,
+            "safety": 52,
+            "evidence": 59,
+            "time": 20,
+            "fatigue": 81,
+            "cost": 0,
+            "total": 50,
+            "grade": "D"
+          }
+        }
+      },
+      {
+        "sequence": 110,
+        "recordedAt": "2026-08-02T17:16:04.430Z",
+        "kind": "JSA_COMPLETED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "fixedPreflight": true,
+          "checks": [
+            "permit",
+            "ppe",
+            "access",
+            "vessel",
+            "qualifiedCrew"
+          ]
+        }
+      },
+      {
+        "sequence": 111,
+        "recordedAt": "2026-08-02T17:16:04.430Z",
+        "kind": "MISSION_DEPLOYED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "attemptNumber": 1,
+          "teamIds": [
+            "CHR-OMI-243",
+            "CHR-MFG-158",
+            "CHR-ACA-083"
+          ],
+          "equipmentId": "EQ0154",
+          "spareId": "EQ0149",
+          "vesselId": "VES002",
+          "randomSeed": 357115
+        }
+      },
+      {
+        "sequence": 112,
+        "recordedAt": "2026-08-02T17:16:04.565Z",
+        "kind": "EVIDENCE_VIEWED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "missionId": "MSN-FNL-015",
+          "surface": "objectives"
+        }
+      },
+      {
+        "sequence": 113,
+        "recordedAt": "2026-08-02T17:16:05.112Z",
+        "kind": "DIAGNOSIS_SELECTED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "missionId": "MSN-FNL-015",
+          "optionId": "D15-A",
+          "correct": true,
+          "evidenceBefore": 28
+        }
+      },
+      {
+        "sequence": 114,
+        "recordedAt": "2026-08-02T17:16:05.601Z",
+        "kind": "LOTO_VERIFIED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "attemptNumber": 1,
+          "verification": "isolate-stage-cleared",
+          "zeroEnergy": true
+        }
+      },
+      {
+        "sequence": 115,
+        "recordedAt": "2026-08-02T17:16:09.168Z",
+        "kind": "WORK_ORDER_CREATED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "lifecycle": "Trigger",
+          "source": "assessment-debrief",
+          "missionId": "MSN-FNL-015"
+        }
+      },
+      {
+        "sequence": 116,
+        "recordedAt": "2026-08-02T17:16:09.168Z",
+        "kind": "MISSION_SETTLED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "success": false,
+          "round": 8,
+          "scores": {
+            "completion": 50,
+            "safety": 34,
+            "evidence": 71,
+            "time": 30,
+            "fatigue": 78,
+            "cost": 0,
+            "total": 45,
+            "grade": "D"
+          }
+        }
+      },
+      {
+        "sequence": 117,
+        "recordedAt": "2026-08-02T17:16:09.401Z",
+        "kind": "DEBRIEF_EXPORTED",
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "details": {
+          "attemptCount": 16
+        }
+      }
+    ],
+    "attempts": [
+      {
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "attemptNumber": 1,
+        "randomSeed": 357101,
+        "startedAt": "2026-08-02T17:15:19.035Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W01：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:21.548Z",
+        "scores": {
+          "completion": 100,
+          "safety": 92,
+          "evidence": 57,
+          "time": 70,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 79,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W01-BEARING",
+        "missionId": "MSN-TUT-001",
+        "attemptNumber": 2,
+        "randomSeed": 357101,
+        "startedAt": "2026-08-02T17:15:22.389Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W01（重做）：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:24.367Z",
+        "scores": {
+          "completion": 100,
+          "safety": 92,
+          "evidence": 57,
+          "time": 70,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 79,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W02-PITCH",
+        "missionId": "MSN-TUT-002",
+        "attemptNumber": 1,
+        "randomSeed": 357102,
+        "startedAt": "2026-08-02T17:15:24.471Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W02：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:26.580Z",
+        "scores": {
+          "completion": 100,
+          "safety": 89,
+          "evidence": 52,
+          "time": 70,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 77,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W03-GENERATOR",
+        "missionId": "MSN-TUT-003",
+        "attemptNumber": 1,
+        "randomSeed": 357103,
+        "startedAt": "2026-08-02T17:15:26.697Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W03：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:28.788Z",
+        "scores": {
+          "completion": 100,
+          "safety": 88,
+          "evidence": 52,
+          "time": 70,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 77,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W04-GEARBOX",
+        "missionId": "MSN-ADV-004",
+        "attemptNumber": 1,
+        "randomSeed": 357104,
+        "startedAt": "2026-08-02T17:15:28.863Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W04：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:30.955Z",
+        "scores": {
+          "completion": 100,
+          "safety": 92,
+          "evidence": 58,
+          "time": 67,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 78,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W05-PITCH-ADV",
+        "missionId": "MSN-ADV-005",
+        "attemptNumber": 1,
+        "randomSeed": 357105,
+        "startedAt": "2026-08-02T17:15:31.034Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W05：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:33.143Z",
+        "scores": {
+          "completion": 100,
+          "safety": 89,
+          "evidence": 63,
+          "time": 67,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 78,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W06-GENERATOR-ADV",
+        "missionId": "MSN-ADV-006",
+        "attemptNumber": 1,
+        "randomSeed": 357106,
+        "startedAt": "2026-08-02T17:15:33.255Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W06：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:35.312Z",
+        "scores": {
+          "completion": 100,
+          "safety": 83,
+          "evidence": 58,
+          "time": 67,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 76,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W07-BEARING-ELITE",
+        "missionId": "MSN-ELT-007",
+        "attemptNumber": 1,
+        "randomSeed": 357107,
+        "startedAt": "2026-08-02T17:15:35.379Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W07：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:37.539Z",
+        "scores": {
+          "completion": 100,
+          "safety": 97,
+          "evidence": 69,
+          "time": 63,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 81,
+          "grade": "A"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W08-YAW",
+        "missionId": "MSN-ELT-008",
+        "attemptNumber": 1,
+        "randomSeed": 357108,
+        "startedAt": "2026-08-02T17:15:37.629Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W08：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:39.833Z",
+        "scores": {
+          "completion": 100,
+          "safety": 97,
+          "evidence": 59,
+          "time": 63,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 79,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W09-LOTO",
+        "missionId": "MSN-ELT-009",
+        "attemptNumber": 1,
+        "randomSeed": 357109,
+        "startedAt": "2026-08-02T17:15:39.967Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W09：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:42.214Z",
+        "scores": {
+          "completion": 100,
+          "safety": 76,
+          "evidence": 63,
+          "time": 63,
+          "fatigue": 100,
+          "cost": 0,
+          "total": 75,
+          "grade": "B"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W10-BEARING-INCIDENT",
+        "missionId": "MSN-MST-010",
+        "attemptNumber": 1,
+        "randomSeed": 357110,
+        "startedAt": "2026-08-02T17:15:42.296Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W10：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:46.181Z",
+        "scores": {
+          "completion": 92,
+          "safety": 73,
+          "evidence": 84,
+          "time": 11,
+          "fatigue": 93,
+          "cost": 0,
+          "total": 69,
+          "grade": "C"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W11-YAW-INCIDENT",
+        "missionId": "MSN-MST-011",
+        "attemptNumber": 1,
+        "randomSeed": 357111,
+        "startedAt": "2026-08-02T17:15:46.246Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W11：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:51.354Z",
+        "scores": {
+          "completion": 92,
+          "safety": 68,
+          "evidence": 68,
+          "time": 0,
+          "fatigue": 89,
+          "cost": 0,
+          "total": 64,
+          "grade": "C"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W12-ELECTRICAL-INCIDENT",
+        "missionId": "MSN-MST-012",
+        "attemptNumber": 1,
+        "randomSeed": 357112,
+        "startedAt": "2026-08-02T17:15:51.429Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W12：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:15:56.263Z",
+        "scores": {
+          "completion": 92,
+          "safety": 38,
+          "evidence": 72,
+          "time": 0,
+          "fatigue": 89,
+          "cost": 0,
+          "total": 57,
+          "grade": "D"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W13-BEARING-FINAL",
+        "missionId": "MSN-FNL-013",
+        "attemptNumber": 1,
+        "randomSeed": 357113,
+        "startedAt": "2026-08-02T17:15:56.330Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W13：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:16:00.029Z",
+        "scores": {
+          "completion": 50,
+          "safety": 61,
+          "evidence": 71,
+          "time": 30,
+          "fatigue": 71,
+          "cost": 0,
+          "total": 51,
+          "grade": "D"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W14-YAW-FINAL",
+        "missionId": "MSN-FNL-014",
+        "attemptNumber": 1,
+        "randomSeed": 357114,
+        "startedAt": "2026-08-02T17:16:00.101Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W14：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:16:04.263Z",
+        "scores": {
+          "completion": 61,
+          "safety": 52,
+          "evidence": 59,
+          "time": 20,
+          "fatigue": 81,
+          "cost": 0,
+          "total": 50,
+          "grade": "D"
+        }
+      },
+      {
+        "assignmentId": "COURSE-W15-ELECTRICAL-FINAL",
+        "missionId": "MSN-FNL-015",
+        "attemptNumber": 1,
+        "randomSeed": 357115,
+        "startedAt": "2026-08-02T17:16:04.430Z",
+        "decisionOrder": [
+          "JSA_COMPLETED",
+          "EVIDENCE_VIEWED",
+          "DIAGNOSIS_SELECTED",
+          "LOTO_VERIFIED",
+          "WORK_ORDER_CREATED"
+        ],
+        "hintUsedCount": 0,
+        "studentExplanation": {
+          "conclusion": "W15：依據 SCADA/CMS 趨勢與任務結果，判定應採取固定任務所要求的維護處置。",
+          "evidence": "證據包含溫度、振動、Alarm/Event、缺值標記，以及現場任務各階段回饋。",
+          "uncertainty": "感測器缺值與單次任務樣本有限，仍需比對 Historian、備援感測器及現場檢測。",
+          "residualRisk": "殘餘風險包括故障持續惡化、Weather Window 變化、LOTO 未完整驗證與 Work Order 交接落差。"
+        },
+        "completedAt": "2026-08-02T17:16:09.168Z",
+        "scores": {
+          "completion": 50,
+          "safety": 34,
+          "evidence": 71,
+          "time": 30,
+          "fatigue": 78,
+          "cost": 0,
+          "total": 45,
+          "grade": "D"
+        }
+      }
+    ],
+    "activeAssignmentId": "COURSE-W15-ELECTRICAL-FINAL"
+  }
+}

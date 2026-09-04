@@ -52,11 +52,11 @@ jobs:
           cp -R dist-offline/. offline-package/www/
           cp offline/START_OFFLINE.bat offline/START_OFFLINE.ps1 offline/README.txt offline/serve_course.py offline-package/
           cd offline-package
-          zip -r ../OWM_COURSE_OFFLINE_3.57.1.zip .
+          zip -r ../OWM_COURSE_OFFLINE_3.58.0.zip .
       - uses: actions/upload-artifact@v4
         with:
-          name: OWM_COURSE_OFFLINE_3.57.1
-          path: OWM_COURSE_OFFLINE_3.57.1.zip
+          name: OWM_COURSE_OFFLINE_3.58.0
+          path: OWM_COURSE_OFFLINE_3.58.0.zip
 
   deploy:
     environment:

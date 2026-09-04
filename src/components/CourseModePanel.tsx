@@ -1,12 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
   type CourseEventKind,
+  canStartCourseAttempt,
+  courseRecordBlockingAttempt,
   generateAnonymousLearnerCode,
-  isCourseDebriefComplete,
+  isCourseRecordExportReady,
   normalizeLearnerCode,
   unlockedCourseAssignments,
   type CourseAssignment,
   type CourseConfig,
+  type CourseEventActor,
+  type CourseEventContext,
   type CoursePlatform,
   type CourseRecord,
   type CourseStudentExplanation,
@@ -35,16 +39,30 @@ export function CourseModePanel({
   onUpdateExplanation: (explanation: Partial<CourseStudentExplanation>) => void;
   onExport: () => void;
   onReset: () => void;
-  onRecordEvent: (kind: CourseEventKind, details: Record<string, unknown>) => void;
+  onRecordEvent: (
+    kind: CourseEventKind,
+    details: Record<string, unknown>,
+    provenance: { context: CourseEventContext; actor: CourseEventActor },
+  ) => void;
 }) {
   const isZh = language === 'zh';
   const [learnerCode, setLearnerCode] = useState(record?.learnerCode ?? '');
   const [platform, setPlatform] = useState<CoursePlatform>(record?.platform ?? 'desktop');
   const availableAssignments = useMemo(() => unlockedCourseAssignments(config), [config]);
-  const activeAttempt = record?.attempts.at(-1);
+  const activeAttempt = courseRecordBlockingAttempt(record) ?? record?.attempts.at(-1);
   const activeAssignment = config.assignments.find((assignment) => assignment.id === activeAttempt?.assignmentId);
-  const debriefComplete = isCourseDebriefComplete(activeAttempt);
   const normalizedCode = normalizeLearnerCode(learnerCode);
+  const recordReusable = !record || (
+    record.integrityOrigin === 'native_v2'
+    && record.releaseVersion === config.releaseVersion
+    && record.configVersion === config.configVersion
+    && record.courseCode === config.courseCode
+    && record.learnerCode === normalizedCode
+    && record.platform === platform
+  );
+  const exportReady = isCourseRecordExportReady(record) && recordReusable;
+  const assessmentStartReady = canStartCourseAttempt(record) && recordReusable;
+  const recordWritable = Boolean(record && recordReusable);
 
   useEffect(() => {
     if (record?.learnerCode) setLearnerCode(record.learnerCode);
@@ -110,6 +128,7 @@ export function CourseModePanel({
             data-testid="course-learner-code"
             value={learnerCode}
             maxLength={24}
+            disabled={Boolean(record)}
             onChange={(event) => setLearnerCode(event.target.value)}
             placeholder="OWM-7A2C-91F0"
           />
@@ -118,13 +137,14 @@ export function CourseModePanel({
           type="button"
           className="course-generate-code"
           data-testid="course-generate-code"
+          disabled={Boolean(record)}
           onClick={() => setLearnerCode(generateAnonymousLearnerCode())}
         >
           {isZh ? '一鍵產生匿名代碼' : 'Generate anonymous code'}
         </button>
         <label>
           <span>{isZh ? '裝置' : 'Device'}</span>
-          <select data-testid="course-platform" value={platform} onChange={(event) => setPlatform(event.target.value as CoursePlatform)}>
+          <select data-testid="course-platform" value={platform} disabled={Boolean(record)} onChange={(event) => setPlatform(event.target.value as CoursePlatform)}>
             <option value="desktop">Desktop</option>
             <option value="mobile">Mobile</option>
           </select>
@@ -169,10 +189,15 @@ export function CourseModePanel({
                 <button
                   type="button"
                   data-testid={`course-start-assessment-${assignment.weekId}`}
-                  disabled={!unlocked || !normalizedCode}
+                  disabled={!unlocked || !normalizedCode || !assessmentStartReady}
+                  title={!assessmentStartReady
+                    ? (isZh ? '請先完成目前 Assessment 與四欄 Debrief，或重設未完成紀錄。' : 'Complete the current Assessment and four-field Debrief, or reset the incomplete record.')
+                    : undefined}
                   onClick={() => onStartAssessment(normalizedCode, platform, assignment)}
                 >
-                  {unlocked
+                  {unlocked && !assessmentStartReady
+                    ? (isZh ? '先完成目前 Assessment' : 'FINISH CURRENT ASSESSMENT')
+                    : unlocked
                     ? (attempts > 0 ? (isZh ? '重做 Assessment' : 'Replay Assessment') : (isZh ? '開始 Assessment' : 'Start Assessment'))
                     : (isZh ? '尚未開放' : 'LOCKED')}
                 </button>
@@ -184,19 +209,20 @@ export function CourseModePanel({
 
       <CourseEngineeringLab
         language={language}
-        assignments={config.assignments}
+        assignments={availableAssignments}
         onLotoVerified={(assignment) => onRecordEvent('LOTO_VERIFIED', {
           assignmentId: assignment.id,
           missionId: assignment.missionId,
           source: 'COURSE_ENGINEERING_LAB',
           procedure: ['SHUTDOWN', 'ISOLATE', 'LOCK_TAG', 'CONTROL_RESIDUAL_ENERGY', 'VERIFY_ZERO_ENERGY'],
-        })}
+        }, { context: 'practice_lab', actor: 'learner' })}
         onWorkOrderCreated={(assignment) => onRecordEvent('WORK_ORDER_CREATED', {
           assignmentId: assignment.id,
           missionId: assignment.missionId,
           source: 'COURSE_ENGINEERING_LAB',
-          lifecycle: ['TRIGGER', 'ACKNOWLEDGE', 'DISPATCH', 'EXECUTE', 'VERIFY', 'CLOSE_OUT'],
-        })}
+          trigger: 'TRIGGER',
+          procedureReference: ['TRIGGER', 'ACKNOWLEDGE', 'DISPATCH', 'EXECUTE', 'VERIFY', 'CLOSE_OUT'],
+        }, { context: 'practice_lab', actor: 'learner' })}
       />
 
       {record && (
@@ -211,14 +237,14 @@ export function CourseModePanel({
               <button
                 type="button"
                 data-testid="course-export-record"
-                disabled={Boolean(activeAttempt?.completedAt) && !debriefComplete}
-                title={activeAttempt?.completedAt && !debriefComplete
-                  ? (isZh ? '請先完成結論、證據、不確定性與殘餘風險。' : 'Complete conclusion, evidence, uncertainty, and residual risk first.')
+                disabled={!exportReady}
+                title={!exportReady
+                  ? (isZh ? '所有 Assessment 必須完成結算與四欄 Debrief 後才能匯出。' : 'Complete settlement and all four Debrief fields for every Assessment before export.')
                   : undefined}
                 onClick={onExport}
               >
-                {activeAttempt?.completedAt && !debriefComplete
-                  ? (isZh ? '完成 Debrief 後匯出' : 'Complete debrief to export')
+                {!exportReady
+                  ? (isZh ? '完成 Assessment 與 Debrief 後匯出' : 'Complete Assessment and Debrief to export')
                   : (isZh ? '匯出 Course Record' : 'Export Course Record')}
               </button>
               <button type="button" className="course-reset-button" data-testid="course-reset" onClick={onReset}>{isZh ? '一鍵重設課程進度' : 'One-click course reset'}</button>
@@ -239,13 +265,24 @@ export function CourseModePanel({
               </div>
             )}
           </div>
+          {record.integrityOrigin !== 'native_v2' && (
+            <p className="course-integrity-warning" data-testid="course-integrity-warning">
+              {record.integrityOrigin === 'migrated_v1'
+                ? (isZh
+                    ? 'LEGACY RECORD · 舊 v1 紀錄僅供歷史查閱；請重設並重新完成 Assessment，才能產生 v2 schema 證據。'
+                    : 'LEGACY RECORD · This v1 migration is historical only. Reset and complete a new Assessment for v2 schema evidence.')
+                : (isZh
+                    ? 'INVALID RECORD · provenance 不完整或資料損壞；本紀錄不可作 schema 證據，請重設後重新完成 Assessment。'
+                    : 'INVALID RECORD · Provenance is incomplete or corrupted. Reset and complete a new Assessment for schema evidence.')}
+            </p>
+          )}
           {activeAttempt?.completedAt && (
             <div className="course-reflection" data-testid="course-reflection">
               <b>{isZh ? '學生說明：結論／證據／不確定性／殘餘風險' : 'Student explanation: conclusion / evidence / uncertainty / residual risk'}</b>
-              <ReflectionField testId="course-explanation-conclusion" label={isZh ? '結論' : 'Conclusion'} value={activeAttempt.studentExplanation.conclusion} onChange={(conclusion) => onUpdateExplanation({ conclusion })} />
-              <ReflectionField testId="course-explanation-evidence" label={isZh ? '證據' : 'Evidence'} value={activeAttempt.studentExplanation.evidence} onChange={(evidence) => onUpdateExplanation({ evidence })} />
-              <ReflectionField testId="course-explanation-uncertainty" label={isZh ? '不確定性' : 'Uncertainty'} value={activeAttempt.studentExplanation.uncertainty} onChange={(uncertainty) => onUpdateExplanation({ uncertainty })} />
-              <ReflectionField testId="course-explanation-residual-risk" label={isZh ? '殘餘風險' : 'Residual risk'} value={activeAttempt.studentExplanation.residualRisk} onChange={(residualRisk) => onUpdateExplanation({ residualRisk })} />
+               <ReflectionField testId="course-explanation-conclusion" label={isZh ? '結論' : 'Conclusion'} value={activeAttempt.studentExplanation.conclusion} disabled={!recordWritable} onChange={(conclusion) => onUpdateExplanation({ conclusion })} />
+               <ReflectionField testId="course-explanation-evidence" label={isZh ? '證據' : 'Evidence'} value={activeAttempt.studentExplanation.evidence} disabled={!recordWritable} onChange={(evidence) => onUpdateExplanation({ evidence })} />
+               <ReflectionField testId="course-explanation-uncertainty" label={isZh ? '不確定性' : 'Uncertainty'} value={activeAttempt.studentExplanation.uncertainty} disabled={!recordWritable} onChange={(uncertainty) => onUpdateExplanation({ uncertainty })} />
+               <ReflectionField testId="course-explanation-residual-risk" label={isZh ? '殘餘風險' : 'Residual risk'} value={activeAttempt.studentExplanation.residualRisk} disabled={!recordWritable} onChange={(residualRisk) => onUpdateExplanation({ residualRisk })} />
             </div>
           )}
         </section>
@@ -258,17 +295,19 @@ function ReflectionField({
   testId,
   label,
   value,
+  disabled,
   onChange,
 }: {
   testId: string;
   label: string;
   value: string;
+  disabled?: boolean;
   onChange: (value: string) => void;
 }) {
   return (
     <label>
       <span>{label}</span>
-      <textarea data-testid={testId} value={value} maxLength={4000} onChange={(event) => onChange(event.target.value)} />
+      <textarea data-testid={testId} value={value} maxLength={4000} disabled={disabled} onChange={(event) => onChange(event.target.value)} />
     </label>
   );
 }
