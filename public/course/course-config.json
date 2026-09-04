@@ -1,12 +1,13 @@
 {
   "schemaVersion": 1,
-  "configVersion": "2026-FALL-manual-release-v1",
+  "configVersion": "2026-FALL-PILOT-W09-W10-v1",
   "releaseVersion": "3.59.0-student-quick-start",
   "frozen": true,
   "courseCode": "NCUT-OWM-2026",
   "term": "2026-FALL",
   "unlockedWeekIds": [
-    "W01"
+    "W09",
+    "W10"
   ],
   "rosterIds": [
     "CHR-ACA-063",

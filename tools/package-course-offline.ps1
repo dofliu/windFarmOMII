@@ -2,11 +2,20 @@ $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $packageRoot = Join-Path $projectRoot 'offline-package'
 $wwwRoot = Join-Path $packageRoot 'www'
-$archivePath = Join-Path $projectRoot 'OWM_COURSE_OFFLINE_3.58.0.zip'
+$courseConfigPath = Join-Path $projectRoot 'public\course\course-config.json'
+$courseConfig = Get-Content -LiteralPath $courseConfigPath -Raw -Encoding UTF8 | ConvertFrom-Json
+# 以實際 config 產生檔名，避免候選包與 README／release identity 不一致。
+$releaseSlug = ([string]$courseConfig.PSObject.Properties['releaseVersion'].Value) -replace '[^A-Za-z0-9._-]', '-'
+$configSlug = ([string]$courseConfig.PSObject.Properties['configVersion'].Value) -replace '[^A-Za-z0-9._-]', '-'
+Write-Output "Packaging identity: release=[$releaseSlug] config=[$configSlug]"
+if ($releaseSlug.Length -eq 0 -or $configSlug.Length -eq 0) {
+  throw 'Course releaseVersion and configVersion are required for offline packaging.'
+}
+$archivePath = Join-Path $projectRoot "OWM_COURSE_OFFLINE_$releaseSlug-$configSlug.zip"
 
 # 僅允許清理專案內兩個明確產物，避免路徑解析錯誤時誤刪其他資料。 Safety guard.
 $expectedPackageRoot = [System.IO.Path]::GetFullPath((Join-Path $projectRoot 'offline-package'))
-$expectedArchivePath = [System.IO.Path]::GetFullPath((Join-Path $projectRoot 'OWM_COURSE_OFFLINE_3.58.0.zip'))
+$expectedArchivePath = [System.IO.Path]::GetFullPath((Join-Path $projectRoot "OWM_COURSE_OFFLINE_$releaseSlug-$configSlug.zip"))
 if (-not ([System.StringComparer]::OrdinalIgnoreCase.Equals([System.IO.Path]::GetFullPath($packageRoot), $expectedPackageRoot))) {
   throw "Unexpected offline package path: $packageRoot"
 }
