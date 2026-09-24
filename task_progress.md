@@ -1,5 +1,14 @@
 # OWM 專案進度
 
+## Current increment - 2026-09-24 (D1-D3 教學內容正確性修復)
+
+- **D1 OPEX**：`calculateReliabilityKpis` 的 `opex` 不再併入 lost revenue，改為只算 labor + parts + vessel；新增 `totalDowntimeCost`（lost revenue + OPEX）欄位。Engineering Lab KPI 卡新增「Total downtime cost」，並更新 OPEX 卡片公式文字。
+- **D2 IEC 61131-3 ST 語意**：`generateStructuredText` 的 `AlarmDelay` 改為直接由 `HighCondition` 驅動並與 `PersistCounter` 並行計時（`AND` 判斷），不再是 `PersistCounter.Q` 之後才啟動的串聯語意；修正後與模擬器（`runAlarmTest`）的既有行為一致，預設參數不再有 10 秒落差。原本只 grep 字串的測試已替換為獨立重新解析＋重新模擬產生的 ST 文字、並與模擬器輸出比對的多組參數測試。
+- **D3 KPI 零值語意**：`availabilityPercent`（零觀測時數）、`mtbfHours`／`mttrHours`（零故障）改回傳 `null`（UI 顯示 `N/A`），不再是語意顛倒的 `0`。目前 15 週生成資料的 `failures >= 1`，UI 顯示數字不受影響，此為地雷修復。
+- 新增 2 個 domain test（零值語意、ST/模擬器一致性),測試數由 183 增至 185（仍 28 test files）。
+- 版本號五處同步更新為 `3.60.0-course-content-integrity`；同時修正 `deploy-course-pages.yml` 離線 ZIP 檔名先前停留在 `3.58.0` 的既有落差。
+- 未改動 Course Record 分數、存檔語意或 Campaign／Challenge balance；`pnpm validate:teaching-deployment`、`pnpm smoke:course`（含更新後的 6 張 KPI 卡斷言)全數通過。
+
 ## Current increment - 2026-09-04 (Course W09 to W10 human pilot kit)
 
 - 建立 Course-specific `COURSE_MODE_PILOT_PROTOCOL_v1.0.docx`：3–5 位真人、Desktop／Mobile、W09→W10 think-aloud、量測定義、中性主持話術、severity 與 `INCOMPLETE`／`REVISE`／`GO` gate。

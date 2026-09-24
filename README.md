@@ -1,10 +1,10 @@
 # Offshore Wind Masters Web
 
-> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-09-04.md](NEXT_SESSION_HANDOFF_2026-09-04.md)。Student Quick Start 與 W09→W10 真人 pilot 就緒包已完成；下一步是由教師核准獨立 staging candidate，再執行 3–5 位 Desktop／Mobile think-aloud pilot。公開站仍維持 W01-only，真人證據前不調整 frozen balance。
+> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-09-24.md](NEXT_SESSION_HANDOFF_2026-09-24.md)。專案已轉為關卡模式（不再與學期綁定）；本輪修復了 D 節教學內容正確性 D1–D3（OPEX、IEC ST 語意、KPI 零值語意）。下一步建議是 D4（資料包改由 seed 派生）或關卡模式的 config／validator 重新設計。公開站仍維持 W01-only，真人證據前不調整 frozen balance。
 
-## Current verification snapshot — 2026-09-04
+## Current verification snapshot — 2026-09-24
 
-- 現行版本：`3.59.0-student-quick-start`；Course 首屏已改為本週任務單一焦點、三步進度、匿名 Assessment 主 CTA、週次進度列及預設收合的 Engineering Lab。
+- 現行版本：`3.60.0-course-content-integrity`；Course 首屏維持本週任務單一焦點、三步進度、匿名 Assessment 主 CTA、週次進度列及預設收合的 Engineering Lab；本次修復 Engineering Lab 的 OPEX、IEC 61131-3 ST 產生器、KPI 零值語意。
 - Course-specific pilot 已具備可直接使用的 [W09→W10 Protocol](outputs/01a06a22-3799-7441-bebb-b11b0e2d7382/COURSE_MODE_PILOT_PROTOCOL_v1.0.docx) 與 [匿名 observation workbook](outputs/01a06a22-3799-7441-bebb-b11b0e2d7382/COURSE_MODE_PILOT_OBSERVATION_v1.0.xlsx)。兩者均為空白 protocol/template，尚無真人結果；實際填寫前先複製到已忽略的 `pilot-results-private/`，不得把真人資料推送到公開 repository。
 - Course Record 已升級為 schema v2；events 明列 `context`／`actor`／`attemptNumber`，正式 `decisionOrder` 僅包含 `learner + assessment_runtime`。
 - `integrityOrigin=native_v2` 與 export 中的 `integrityPolicy.schemaEvidenceEligible=true` 只代表這份 client-local record 通過 schema、provenance 與 export gate 檢查；export 會明列 `authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它不具 tamper evidence、身分綁定或可信任的送件收據，因此不可直接視為正式成績真實性證明。正式評量必須另採 instructor-controlled receipt，或 cryptographically signed／server-side collection。
@@ -14,7 +14,7 @@
 - 390px Mobile 的 Course 首頁完整高度由本次變更前約 2724px 降為 1668px（約減少 39%），Assessment 主 CTA 位於第一個 844px viewport 內；這是版面與流程證據，不是學生吸引力或學習成效證據。
 - 15 組固定 SCADA／CMS data packs 已明標 `SYNTHETIC / GAMEPLAY ABSTRACTION`；Availability／MTBF／MTTR／Downtime／OPEX、LOTO、Work Order 與 Alarm／Interlock tester 維持可操作。
 - 教學部署使用 `https://dofliu.github.io/windFarmOMII/`；`sync:data` 僅發布 14 個 runtime JSON，排除離線用 prompt 資料，Pages build 約 5 MiB。
-- 2026-09-04 `pnpm validate` 通過 28 test files／183 tests、Data／Scene／Art／Course、Campaign／Challenge balance與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 均通過。
+- 2026-09-24 `pnpm validate` 通過 28 test files／185 tests、Data／Scene／Art／Course、Campaign／Challenge balance與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 均通過。
 - `pnpm course:summary` 可彙整班級資料夾並核對 digest／score／summary；`pnpm course:inspect-legacy -- <file>` 用於 8 月 3 日 legacy v1 automated evidence。兩者都不是人類學習成效證據。
 - Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
 - Playtest observation、JSON export、evidence summary 與不記錄正式資料的新手練習導覽已整合；導覽可完全收起，Desktop／Mobile 底層操作均已驗證。
