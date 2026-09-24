@@ -2,7 +2,7 @@
 
 ## Working candidate 版本
 
-- 現行版本：`3.59.0-student-quick-start`
+- 現行版本：`3.60.0-course-content-integrity`
 - 課程來源與公開部署均由 `main` 維護；發布狀態以 GitHub Actions 最新 successful deployment 為準。
 - 課程代碼：`NCUT-OWM-2026`
 - 課程設定：`public/course/course-config.json`
@@ -137,7 +137,9 @@ Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，只顯示**�
 - Timestamp、Load、Temperature、Vibration
 - Alarm／Event sequence
 - 明確標示的 missing value
-- Availability、MTBF、MTTR、Downtime、OPEX 輸入、公式與結果
+- Availability、MTBF、MTTR、Downtime、OPEX、Total downtime cost 輸入、公式與結果
+  - `OPEX` 僅為 labor + parts + vessel，不含 lost revenue（那是機會成本）；兩者相加另列為 `Total downtime cost`。
+  - `Availability` 在零觀測時數、`MTBF`／`MTTR` 在零故障時顯示 `N/A`，代表無法計算（零故障是最佳情況），不是數值 `0`（最差情況）。
 
 程序練習會強制依序完成：
 
@@ -162,7 +164,7 @@ Course Mode 導覽僅顯示 24 個職業角色、固定任務與案例數量；`
 pnpm package:offline
 ```
 
-輸出 `OWM_COURSE_OFFLINE_3.58.0.zip`。解壓縮後執行 `START_OFFLINE.bat`。
+輸出 `OWM_COURSE_OFFLINE_3.60.0.zip`。解壓縮後執行 `START_OFFLINE.bat`。
 
 GitHub Actions 每次正式發布也會附加同名 workflow artifact。
 

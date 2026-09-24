@@ -1,7 +1,7 @@
 {
   "name": "offshore-wind-masters-web",
   "private": true,
-  "version": "3.59.0-student-quick-start",
+  "version": "3.60.0-course-content-integrity",
   "type": "module",
   "scripts": {
     "sync:data": "node tools/sync-data.mjs",

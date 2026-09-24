@@ -9,6 +9,8 @@
 > **修復狀態(2026-09-02 更新)**:依 H 節順序完成第 5–8 步與第 10 步的教師端工具:**B1**(移除非 assessment 的 `HINT_USED` 寫入)、**B2**(scores 驗證與重算、`recordDigest`、教師核對腳本 `pnpm course:summary`)、**B4**(Work Order 改 `closed` 觸發並記錄 `rejectedActions`)、**B8**(匯出摘要加 `weekId`/`assignmentId` 與 `unlockedWeekIdsAtExport`)、**C1**(course-config soft-fail)、**C2**(所有 `localStorage` 寫入包 try/catch、audio constructor 防禦、重複 theme effect 合併)、**C3**(sync-data 白名單)、**F**「教師端 Course Record 彙整/核對工具」。仍待辦:B3/B5/B6/B7、C4/C5/C6、D 節、F 其餘項目。見 CHANGELOG `3.57.1-course-mode-p0 - 2026-09-02`。
 >
 > **修復狀態(2026-09-04 更新)**:已將 Course Record v2 integrity gate 與 2026-09-02 P1 修正整合為 `3.58.0-course-record-integrity`。**B3** 改為所有 attempts 均須結算、score 合法且四欄 Debrief 完整才可匯出；**B5** 的 system-derived events 保留 audit provenance，但不再進入正式 `decisionOrder`；**B7** 的新 Assessment 入口強制 `OWM-XXXX-XXXX`。B6、C4/C5/C6、D 節與正式 server-side receipt 仍未完成。
+>
+> **修復狀態(2026-09-24 更新,關卡模式解禁後)**:專案不再學期綁定,D 節「會改變顯示數值」的項目已解禁可做。本次完成 **D1**(OPEX 不再併入 lost revenue,新增 `totalDowntimeCost`)、**D2**(產生的 IEC 61131-3 ST 改為與模擬器一致的並行語意,測試由字串 grep 改為重新解析＋重新模擬比對)、**D3**(MTBF/MTTR/Availability 零故障/零觀測時回傳 `null`/`N/A`,不再是語意顛倒的 `0`),對應 `3.60.0-course-content-integrity`。仍待辦:D4-D9、C 節其餘項目、B6、C4/C5/C6 與正式 server-side receipt。
 
 ---
 
@@ -85,9 +87,9 @@
 
 ## D. 教學內容正確性(P1–P2)
 
-1. **OPEX 把損失電費算進去**(`courseEngineering.ts:321-327`,卡片標籤 "OPEX — Lost revenue + labor + parts + vessel"):lost revenue 是機會成本不是營運支出,學生日後算 margin/LCOE 會重複計算。建議改名 Total downtime cost,OPEX 另列。
-2. **產生的 IEC 61131-3 ST 與模擬器行為不一致**:模擬器(`:405-415`)的 delay 從第一個超限樣本起算、與 persistence **並行**;產生的 ST(`:370-371`)是 `PersistCounter.Q` 之後才啟動 TON 的**串聯**語意。預設參數下兩者警報時間差 10 秒,而 `courseEngineering.test.ts` 只 grep 字串,把錯誤鎖進測試。教 PLC 的頁面給出對不上的參考程式,外審會抓。
-3. **MTBF/MTTR/Availability 在零故障/零觀測時回傳 0**(`:316-318`):語意顛倒(零故障=最好卻顯示 0h=最差)。目前生成資料 `failures >= 1` 不會觸發,屬潛在地雷;建議回 `null` 顯示 `N/A`。
+1. ~~**OPEX 把損失電費算進去**(`courseEngineering.ts:321-327`,卡片標籤 "OPEX — Lost revenue + labor + parts + vessel"):lost revenue 是機會成本不是營運支出,學生日後算 margin/LCOE 會重複計算。建議改名 Total downtime cost,OPEX 另列。~~ **[已修復 2026-09-24 / v3.60.0-course-content-integrity]** `opex` 改為 labor+parts+vessel,新增 `totalDowntimeCost`(lost revenue + opex);UI 新增獨立卡片。
+2. ~~**產生的 IEC 61131-3 ST 與模擬器行為不一致**:模擬器(`:405-415`)的 delay 從第一個超限樣本起算、與 persistence **並行**;產生的 ST(`:370-371`)是 `PersistCounter.Q` 之後才啟動 TON 的**串聯**語意。預設參數下兩者警報時間差 10 秒,而 `courseEngineering.test.ts` 只 grep 字串,把錯誤鎖進測試。教 PLC 的頁面給出對不上的參考程式,外審會抓。~~ **[已修復 2026-09-24 / v3.60.0-course-content-integrity]** `AlarmDelay` 改為直接由 `HighCondition` 驅動、與 `PersistCounter` 並行(`AND` 判斷),與模擬器行為一致;測試改為重新解析並重新模擬產生的 ST 文字,與模擬器輸出比對多組參數。
+3. ~~**MTBF/MTTR/Availability 在零故障/零觀測時回傳 0**(`:316-318`):語意顛倒(零故障=最好卻顯示 0h=最差)。目前生成資料 `failures >= 1` 不會觸發,屬潛在地雷;建議回 `null` 顯示 `N/A`。~~ **[已修復 2026-09-24 / v3.60.0-course-content-integrity]** 三者在零故障/零觀測時改回傳 `null`,UI 顯示 `N/A`;目前 15 週生成資料不受影響。
 4. **資料包以 `assignmentIndex` 為鍵、不是 seed**(`:229-232, 281-302`):在 config 重排/插入一週,會靜默改變之後所有週的時間戳、嚴重度與**全部 KPI 答案**,而 randomSeed 與「可重現」宣稱不變。validator 也沒 pin 順序。建議全部改由 `randomSeed` 派生。
 5. **randomSeed 沒有進入任務模擬**:只有 SCADA pack 用它(相位與缺值位置);任務可重現是因為模擬本身無隨機性,不是 seed 的功勞。UI 的 `FIXED SEED` chip 暗示了不存在的控制;未來若有人在 runtime 加入隨機性,沒有任何測試會抓到重現性破裂。建議加一個「同一 assignment 兩次模擬結果一致」的 domain test 當守門。
 6. **Availability 未標示口徑**(IEC 61400-26 的 time-based/production-based/contractual 未註明,分母排除計畫保養是契約性選擇)、MTBF 的區間慣例(n vs n-1)未標註;`hysteresis=0` 時 set/reset 條件在閾值處重疊會抖動;Alarm tester 用硬編碼 9 點樣本(`CourseEngineeringLab.tsx:31`)而非該週資料包,15 週內容相同。
@@ -150,7 +152,7 @@
 6. **B2 + B4** scores 驗證/重算 + recordDigest + 教師核對腳本;WO 事件改 `closed` 觸發並記錄 `rejectedActions`。
 7. **C1 + C2** course-config soft-fail;`save*` 全包 try/catch;audio constructor 防禦(LMS 內嵌前必修)。
 8. **C3** sync-data 白名單(部署包 -5.1 MB)。
-9. **D1–D4** OPEX 改名、ST 產生器修語意、KPI 零故障回 N/A、資料包改 seed 派生。
+9. ~~**D1–D4** OPEX 改名、ST 產生器修語意、KPI 零故障回 N/A、~~資料包改 seed 派生。D1-D3 已於 2026-09-24(v3.60.0-course-content-integrity)修復;**D4**(資料包以 `assignmentIndex` 為鍵而非 seed 派生)尚未處理。
 10. **F** 新增 `course:summary` 教師端彙整工具;smoke 補完整結算+Debrief 流程;`COURSE_MODE_GUIDE.md` 補「欄位可信度」與「每堂課先匯出」SOP。
 
 ---

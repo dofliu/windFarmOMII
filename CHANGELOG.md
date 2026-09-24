@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.60.0-course-content-integrity - 2026-09-24
+
+- Fixed OPEX to no longer include lost revenue (an opportunity cost, not an operating expense): `opex` is now labor + parts + vessel only, and a new `totalDowntimeCost` field (lost revenue + OPEX) carries the combined figure. The Engineering Lab KPI grid gained a dedicated "Total downtime cost" card and relabeled the OPEX formula.
+- Fixed MTBF, MTTR, and Availability to report `N/A` (`null`) instead of a misleading `0` when there are zero recorded failures or zero observable hours; zero failures is the *best* case, not the worst, and the previous `0h`/`0%` reading was inverted. The current 15-week generated data never triggers this path, so the fix closes a latent land mine rather than changing today's displayed numbers.
+- Fixed the generated IEC 61131-3 ST reference logic to match the alarm-tester simulator: `PersistCounter` and `AlarmDelay` now both start from the same first over-threshold sample and run in parallel (`AlarmActive` sets only once both confirm, via `AND`), instead of the previous series wiring (`AlarmDelay` chained after `PersistCounter.Q`) that set the alarm up to `delaySeconds` later than the trace students actually see. Replaced the test that only grepped for identifier strings with one that independently re-parses and re-simulates the generated ST text and checks it against the simulator's own alarm/interlock timing across several parameter sets.
+- Added two new `courseEngineering.test.ts` cases (zero-failure/zero-observable-hours N/A semantics; ST/simulator parity) — from 183 to 185 tests, still 28 test files.
+- Synced the version bump across all five required points (`package.json`, `course-config.json`, `COURSE_RELEASE`, and the offline ZIP names in `deploy-course-pages.yml`, which had drifted to a stale `3.58.0` since the last release and are now corrected to `3.60.0`).
+- No change to Course Record scoring, save semantics, or Campaign／Challenge balance; this release only affects displayed Engineering Lab teaching content.
+
 ## 3.59.0-student-quick-start - 2026-09-04
 
 - Replaced the Course landing-page card stack with a Student Quick Start flow focused on the latest instructor-unlocked week.

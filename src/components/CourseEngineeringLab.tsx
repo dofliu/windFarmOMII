@@ -32,6 +32,14 @@ const defaultAlarmConfig: AlarmTesterConfig = {
 
 const sampleSignal = [68, 71, 72.5, 74, 76, 75, 73, 70, 68];
 
+function formatHours(value: number | null): string {
+  return value === null ? 'N/A' : `${value} h`;
+}
+
+function formatPercent(value: number | null): string {
+  return value === null ? 'N/A' : `${value}%`;
+}
+
 export function CourseEngineeringLab({
   language,
   assignments,
@@ -187,19 +195,21 @@ export function CourseEngineeringLab({
             </table>
           </div>
           <div className="course-kpi-grid" data-testid="course-kpi-grid">
-            <KpiCard label="Availability" value={`${kpis.availabilityPercent}%`} formula="Uptime ÷ observable hours" />
-            <KpiCard label="MTBF" value={`${kpis.mtbfHours} h`} formula="Uptime ÷ failures" />
-            <KpiCard label="MTTR" value={`${kpis.mttrHours} h`} formula="Repair hours ÷ failures" />
+            <KpiCard label="Availability" value={formatPercent(kpis.availabilityPercent)} formula="Uptime ÷ observable hours (N/A if no observable hours)" />
+            <KpiCard label="MTBF" value={formatHours(kpis.mtbfHours)} formula="Uptime ÷ failures (N/A if zero recorded failures)" />
+            <KpiCard label="MTTR" value={formatHours(kpis.mttrHours)} formula="Repair hours ÷ failures (N/A if zero recorded failures)" />
             <KpiCard label="Downtime" value={`${kpis.downtimeHours} h`} formula="Unplanned unavailable hours" />
-            <KpiCard label="OPEX" value={`$${Math.round(kpis.opex).toLocaleString('en-US')}`} formula="Lost revenue + labor + parts + vessel" />
+            <KpiCard label="OPEX" value={`$${Math.round(kpis.opex).toLocaleString('en-US')}`} formula="Labor + parts + vessel (excludes lost revenue)" />
+            <KpiCard label="Total downtime cost" value={`$${Math.round(kpis.totalDowntimeCost).toLocaleString('en-US')}`} formula="Lost revenue + OPEX" />
           </div>
           <details className="course-kpi-derivation">
             <summary>{isZh ? '顯示計算輸入與推導' : 'Show calculation inputs and derivation'}</summary>
             <code>
               Observable = {pack.reliabilityInput.periodHours} − {pack.reliabilityInput.plannedMaintenanceHours} = {kpis.observableHours} h{'\n'}
               Uptime = {kpis.observableHours} − {pack.reliabilityInput.unplannedDowntimeHours} = {kpis.uptimeHours} h{'\n'}
-              Availability = {kpis.uptimeHours} ÷ {kpis.observableHours} × 100 = {kpis.availabilityPercent}%{'\n'}
-              OPEX = lost revenue {kpis.lostRevenue} + labor {pack.reliabilityInput.laborCost} + parts {pack.reliabilityInput.partsCost} + vessel {pack.reliabilityInput.vesselCost} = {kpis.opex}
+              Availability = {kpis.uptimeHours} ÷ {kpis.observableHours} × 100 = {formatPercent(kpis.availabilityPercent)}{'\n'}
+              OPEX = labor {pack.reliabilityInput.laborCost} + parts {pack.reliabilityInput.partsCost} + vessel {pack.reliabilityInput.vesselCost} = {kpis.opex}{'\n'}
+              Total downtime cost = lost revenue {kpis.lostRevenue} + OPEX {kpis.opex} = {kpis.totalDowntimeCost}
             </code>
           </details>
         </div>

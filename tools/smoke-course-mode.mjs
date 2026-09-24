@@ -96,8 +96,8 @@ try {
     if (!(await page.locator('.course-scada-table tbody tr.missing').count())) {
       throw new Error('The SCADA/CMS pack does not expose missing data.');
     }
-    if ((await page.getByTestId('course-kpi-grid').locator('article').count()) !== 5) {
-      throw new Error('Availability/MTBF/MTTR/Downtime/OPEX calculations are incomplete.');
+    if ((await page.getByTestId('course-kpi-grid').locator('article').count()) !== 6) {
+      throw new Error('Availability/MTBF/MTTR/Downtime/OPEX/Total downtime cost calculations are incomplete.');
     }
     if (!(await page.getByTestId('course-data-provenance').innerText()).includes('SYNTHETIC')) {
       throw new Error('Synthetic SCADA/CMS provenance is not visible.');

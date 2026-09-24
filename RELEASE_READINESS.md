@@ -12,7 +12,7 @@
 - Engineering Lab 已遵守 `unlockedWeekIds`，固定 seed SCADA／CMS packs 已標示 `SYNTHETIC / GAMEPLAY ABSTRACTION`。
 - Legacy v1 record 可讀取但標示 `migrated_v1`／historical only，不自動升格成 native v2 schema evidence。
 - `native_v2`／`integrityPolicy.schemaEvidenceEligible=true` 只代表 client-local schema、provenance 與 export gate 一致；export 會明列 `authenticity=CLIENT_LOCAL_UNVERIFIED_NOT_TAMPER_EVIDENT`。它不具 tamper evidence、身分綁定或可信任收件證明；正式成績仍須 instructor-controlled receipt 或 signed/server-side collection。
-- `pnpm validate` 通過 28 test files／183 tests、Data／Scene／Art／Course、Campaign／Challenge balance 與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 通過。
+- `pnpm validate` 通過 28 test files／185 tests、Data／Scene／Art／Course、Campaign／Challenge balance 與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 通過。
 - Assessment OBJECTIVES 已移除 skill／end-round forecast，diagnosis 正解與 guide target 不再暴露於 Assessment DOM；Course reset 與共機更換匿名代碼採二段式保護。
 - Course Record 分項 score 由共同公式重算，export 加入 `recordDigest` 與週次／config snapshot；班級彙整使用 `pnpm course:summary`，legacy 單檔診斷使用 `pnpm course:inspect-legacy -- <file>`。
 - 2026-08-03 automated flow 為 legacy v1 診斷證據，不是學生學習成效。Course-specific 真人 pilot 尚未執行。
