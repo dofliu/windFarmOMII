@@ -20,6 +20,7 @@ class WindFieldScene extends Phaser.Scene {
   private hazardRing?: Phaser.GameObjects.Arc;
   private hazardSymbol?: Phaser.GameObjects.Text;
   private hazardLabel?: Phaser.GameObjects.Text;
+  private accentBar?: Phaser.GameObjects.Rectangle;
   private rotorTelemetryMeta?: RotorTelemetryGeometry & {
     hubX: number;
     hubY: number;
@@ -106,7 +107,7 @@ class WindFieldScene extends Phaser.Scene {
     }).setOrigin(1, 0).setDepth(6);
 
     const accentValue = Phaser.Display.Color.HexStringToColor(this.initialAccent).color;
-    this.add.rectangle(24, 24, 5, 56, accentValue, 1).setOrigin(0, 0);
+    this.accentBar = this.add.rectangle(24, 24, 5, 56, accentValue, 1).setOrigin(0, 0);
     this.add.text(44, 26, '環海聯盟｜即時作業視窗', {
       color: '#dffbff',
       fontFamily: 'Arial, sans-serif',
@@ -120,6 +121,12 @@ class WindFieldScene extends Phaser.Scene {
       letterSpacing: 1.5,
     });
     this.onReady?.(this);
+  }
+
+  updateAccent(accent: string): void {
+    if (!this.accentBar) return;
+    const accentValue = Phaser.Display.Color.HexStringToColor(accent).color;
+    this.accentBar.setFillStyle(accentValue, 1);
   }
 
   updateTelemetry(stage: string, danger: number): void {
@@ -215,7 +222,7 @@ export function OffshoreScene({ accent, danger, stage, telegraph, eventPulse, re
   const sceneRef = useRef<WindFieldScene | null>(null);
   const telemetryRef = useRef({ danger, stage, telegraph, eventPulse });
 
-  // Scene 可能因陣營色重建；保留最新任務狀態，避免 ready 後退回預設 Detect。
+  // Scene 仍可能因 reducedMotion／sceneRoute 變動重建；保留最新任務狀態，避免 ready 後退回預設 Detect。
   telemetryRef.current = { danger, stage, telegraph, eventPulse };
 
   useEffect(() => {
@@ -295,7 +302,6 @@ export function OffshoreScene({ accent, danger, stage, telegraph, eventPulse, re
       delete host.dataset.rotorTower;
     };
   }, [
-    accent,
     reducedMotion,
     sceneRoute.assetUrl,
     sceneRoute.availability,
@@ -305,6 +311,10 @@ export function OffshoreScene({ accent, danger, stage, telegraph, eventPulse, re
     sceneRoute.sourceScene.id,
     sceneRoute.version,
   ]);
+
+  useEffect(() => {
+    sceneRef.current?.updateAccent(accent);
+  }, [accent]);
 
   useEffect(() => {
     sceneRef.current?.updateTelemetry(stage, danger);

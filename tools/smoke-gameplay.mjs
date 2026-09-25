@@ -376,6 +376,14 @@ try {
     const teamCount = await teamTabs.count();
     if (teamCount !== 3) throw new Error(`Expected 3 team tabs, received ${teamCount}.`);
 
+    if (round === 0) {
+      // 換角色只應更新陣營色 runtime setter，不應銷毀重建 Phaser WebGL canvas（C4）。
+      await page.evaluate(() => {
+        const canvas = document.querySelector('.phaser-host canvas');
+        if (canvas) canvas.dataset.smokeCanvasPersistMarker = 'round0-pre-switch';
+      });
+    }
+
     for (let memberIndex = 0; memberIndex < teamCount && !reachedDebrief; memberIndex += 1) {
       await teamTabs.nth(memberIndex).click();
       for (let action = 0; action < 4; action += 1) {
@@ -385,6 +393,11 @@ try {
         reachedDebrief = await page.getByTestId('mission-debrief').isVisible();
         if (reachedDebrief) break;
       }
+    }
+
+    if (round === 0) {
+      const canvasPersisted = await page.evaluate(() => document.querySelector('.phaser-host canvas')?.dataset.smokeCanvasPersistMarker === 'round0-pre-switch');
+      if (!canvasPersisted) throw new Error('Switching crew member (accent change) destroyed and recreated the Phaser WebGL canvas.');
     }
 
     if (!reachedDebrief) {

@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.60.0-course-content-integrity - 2026-09-25 (C4 WebGL rebuild fix, in-place stability hotfix)
+
+- Fixed `OffshoreScene` recreating the entire Phaser WebGL game (`game.destroy(true)` + `new Phaser.Game(...)`) every time the player switched to a crew member from a different faction, because the faction accent color (`accent`) was in the scene-creation effect's dependency array. On classroom-grade hardware this caused a visible stutter on every crew switch, and browsers cap the number of live WebGL contexts, so repeated switching risked exhausting that budget.
+- Added a `WindFieldScene.updateAccent()` runtime setter (mirroring the existing `updateTelemetry`/`updateHazard` pattern) that repaints the accent bar in place via `setFillStyle`, and removed `accent` from the game-rebuild effect's dependencies. The Phaser game is now only destroyed/recreated when `reducedMotion` or the routed scene asset actually changes.
+- Extended `tools/smoke-gameplay.mjs` to tag the operation canvas element before the first crew-switch round and assert the same DOM node (and therefore the same WebGL context) still carries that tag after cycling through all crew tabs; verified this assertion fails against the pre-fix code and passes against the fix.
+- No change to Course Record scoring, task conditions, save semantics, or Campaign／Challenge balance; version number is unchanged (`3.60.0-course-content-integrity`) per the in-place stability-hotfix pattern used for prior C-section fixes.
+
 ## 3.60.0-course-content-integrity - 2026-09-24
 
 - Fixed OPEX to no longer include lost revenue (an opportunity cost, not an operating expense): `opex` is now labor + parts + vessel only, and a new `totalDowntimeCost` field (lost revenue + OPEX) carries the combined figure. The Engineering Lab KPI grid gained a dedicated "Total downtime cost" card and relabeled the OPEX formula.

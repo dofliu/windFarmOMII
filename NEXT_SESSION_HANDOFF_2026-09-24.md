@@ -1,5 +1,7 @@
 # OWM 下一次工作交接 — 2026-09-24
 
+> **[已取代]** 本檔已由 `NEXT_SESSION_HANDOFF_2026-09-25.md` 取代,請以該檔為準。以下內容保留為當時的交接紀錄。
+
 ## 目前權威狀態
 
 - Version：`3.60.0-course-content-integrity`
