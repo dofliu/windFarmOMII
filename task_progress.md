@@ -1,5 +1,13 @@
 # OWM 專案進度
 
+## Current increment - 2026-09-25 (C4 換角色銷毀重建 Phaser WebGL 修復)
+
+- **C4**：`OffshoreScene.tsx` 的建游戲 effect 原本依賴 `accent`（陣營色,只用來畫一個 5×56px 色條),換陣營隊員就整個 `game.destroy(true)` + `new Phaser.Game(...)`；教室硬體會明顯卡頓,瀏覽器 WebGL context 數量也有上限。
+- 新增 `WindFieldScene.updateAccent()` runtime setter(比照既有 `updateTelemetry`／`updateHazard` 模式),建游戲 effect 移除 `accent` 依賴,改由獨立 `useEffect` 呼叫 runtime setter；現在只有 `reducedMotion` 或 scene route 真的變動時才會重建 Phaser game。
+- `tools/smoke-gameplay.mjs` 新增回合 0 的 canvas DOM 節點持續性斷言(換 3 名隊員前後同一個 canvas 元素應保持不變);已用暫存腳本手動驗證此斷言在修復前會失敗、修復後會通過。
+- 未改動分數、任務條件或存檔語意,版本號維持 `3.60.0-course-content-integrity`(比照既有 in-place stability hotfix 模式,不需五處版本號同步)。
+- 驗證：`pnpm typecheck`、`pnpm test`（28 test files／185 tests,無變動)、`pnpm validate:teaching-deployment` 全綠；`pnpm smoke:course`（Chromium headless)通過。`pnpm smoke:gameplay` 在本環境因缺少完整本機素材庫(`sync:art` 同步 0 個 P01 檔)於較早的 source-art 斷言逾時,屬既有已知環境限制,非本次改動所致；已改用獨立 Playwright 腳本直接驗證本次修復的 canvas 持續性行為。
+
 ## Current increment - 2026-09-24 (D1-D3 教學內容正確性修復)
 
 - **D1 OPEX**：`calculateReliabilityKpis` 的 `opex` 不再併入 lost revenue，改為只算 labor + parts + vessel；新增 `totalDowntimeCost`（lost revenue + OPEX）欄位。Engineering Lab KPI 卡新增「Total downtime cost」，並更新 OPEX 卡片公式文字。
