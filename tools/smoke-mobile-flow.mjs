@@ -1,10 +1,11 @@
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
+import { resolveChromePath } from './lib/chrome-path.mjs';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
 const outputDirectory = path.join(projectRoot, '.codex_qa');
-const chromePath = process.env.CHROME_PATH ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const chromePath = resolveChromePath();
 
 await mkdir(outputDirectory, { recursive: true });
 

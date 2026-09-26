@@ -1,0 +1,43 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.7.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm validate:teaching-deployment
+      - name: Desktop and mobile Course Mode smoke
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+          COURSE_BASE_URL: http://127.0.0.1:4174/windFarmOMII/
+        run: |
+          pnpm exec vite preview --host 127.0.0.1 --port 4174 --base /windFarmOMII/ > /tmp/owm-course-preview.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4174/windFarmOMII/ > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          pnpm smoke:course
+      - name: Verify offline package build
+        run: pnpm build:offline

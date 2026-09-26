@@ -1292,3 +1292,11 @@
 - 新 Assessment 入口只接受 `OWM-XXXX-XXXX`；換匿名代碼須目前紀錄 export-ready 並經第二次確認，自動匯出舊紀錄後才建立新紀錄。
 - 驗證：`pnpm validate` 通過 28 test files／183 tests；Course、Onboarding、390px Mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 全數通過。
 - 人因證據仍未取得；Mobile Course 首頁長度與資訊密度是下一個 UI 優先項，不以 automated smoke 宣稱學生吸引力或學習成效。
+
+## Current increment - 2026-09-26（C5：CI 結構 — PR 驗證、拆分離線打包 job、CHROME_PATH fallback 一致化）
+
+- 新增 `.github/workflows/pr-validation.yml`：`pull_request → main` 觸發與 push 相同的 `validate:teaching-deployment` + Course Mode 瀏覽器 smoke + `build:offline` 驗證，錯誤在合併前就會被抓到（先前只有 push main 觸發，所有問題都是上線後才發現）。
+- `deploy-course-pages.yml` 的 `build` job 拆出獨立 `offline-package` job（`needs: build`）；`deploy` job 改成只 `needs: build`，離線 ZIP 打包步驟失敗不再連帶擋住 Pages 部署。兩個 workflow 的所有 job 都補上 `timeout-minutes`。
+- 新增共用 `tools/lib/chrome-path.mjs`：`CHROME_PATH` 環境變數優先，否則依序偵測 Windows／`/usr/bin/google-chrome`／`google-chrome-stable`／`chromium`／`chromium-browser`；13 支 Playwright smoke 腳本（`smoke-course-mode.mjs` 之外的另外 12 支先前各自硬編碼一個 Windows-only fallback，未設 `CHROME_PATH` 時在 Linux/macOS 直接失敗）全部改用同一個偵測邏輯。
+- 未修復：actions 仍用 mutable major tag（`@v4`/`@v5`），本次自動化 session 的網路存取範圍僅限本 repo，無法連線 `api.github.com` 解析並驗證第三方 action 的 commit SHA（測試連線回傳 403），留給下一個有較廣網路存取的 session。
+- 驗證：`pnpm typecheck`、`pnpm test`（28 test files／185 tests，與基準相同）、`pnpm validate:teaching-deployment` 全綠；`pnpm smoke:course`（用 Playwright 內建 Chromium 執行檔驗證新的 `resolveChromePath()` 路徑）通過；純 Node 腳本驗證 auto-detect fallback 邏輯本身正確；兩份 workflow YAML 經 `yaml.safe_load` 語法檢查。未變動分數、任務條件、存檔語意或平衡數值，版本號維持 `3.60.0-course-content-integrity`。
