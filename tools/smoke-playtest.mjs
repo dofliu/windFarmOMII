@@ -1,9 +1,10 @@
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
+import { resolveChromePath } from './lib/chrome-path.mjs';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
-const chromePath = process.env.CHROME_PATH ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+const chromePath = resolveChromePath();
 const outputDirectory = path.join(projectRoot, '.codex_qa');
 const shot = (name) => path.join(outputDirectory, `owm-playtest-${name}.png`);
 

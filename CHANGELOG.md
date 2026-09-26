@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.60.0-course-content-integrity - 2026-09-26 (C5 CI structure hardening, in-place stability hotfix)
+
+- Added `.github/workflows/pr-validation.yml`: every pull request targeting `main` now runs the same `validate:teaching-deployment` gate, the Course Mode browser smoke, and an offline-package build check, so build/test/smoke failures surface before merge instead of only after a push to `main`.
+- Split the deploy workflow's single `build` job into `build` (validation, smoke, Pages artifact) and a separate `offline-package` job (`build:offline` + zip). The `deploy` job now depends only on `build`, so a failure while packaging the offline ZIP backup no longer blocks the GitHub Pages deploy.
+- Added `timeout-minutes` to every job in both workflows so a hung step (e.g. a stalled dev-server wait loop) fails fast instead of consuming the whole CI budget.
+- Added a shared `tools/lib/chrome-path.mjs` resolver (`CHROME_PATH` env override, else auto-detect the Windows/`google-chrome`/`google-chrome-stable`/`chromium`/`chromium-browser` install paths) and switched all 13 Playwright smoke tools onto it. Twelve of them previously fell back to a single hardcoded Windows path when `CHROME_PATH` was unset, so running them locally on Linux/macOS without the env var failed outright; they now share the same working auto-detect list `smoke-course-mode.mjs` already used.
+- Not fixed this round: GitHub Actions are still referenced by mutable major tag (`@v4`/`@v5`) rather than a pinned commit SHA. This session's network access is scoped to this repository only and could not reach `api.github.com` to resolve and verify the correct upstream commit SHAs, so that part is left for a session with broader network access rather than writing an unverified SHA.
+- No change to Course Record scoring, task conditions, save semantics, or Campaign／Challenge balance; version number is unchanged (`3.60.0-course-content-integrity`) per the in-place stability-hotfix pattern used for prior C-section fixes.
+
 ## 3.60.0-course-content-integrity - 2026-09-25 (C4 WebGL rebuild fix, in-place stability hotfix)
 
 - Fixed `OffshoreScene` recreating the entire Phaser WebGL game (`game.destroy(true)` + `new Phaser.Game(...)`) every time the player switched to a crew member from a different faction, because the faction accent color (`accent`) was in the scene-creation effect's dependency array. On classroom-grade hardware this caused a visible stutter on every crew switch, and browsers cap the number of live WebGL contexts, so repeated switching risked exhausting that budget.

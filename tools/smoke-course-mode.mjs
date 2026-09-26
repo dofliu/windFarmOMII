@@ -1,18 +1,11 @@
 import { mkdir, readFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
 import { parseCourseExport } from './summarize-course-records.mjs';
+import { resolveChromePath } from './lib/chrome-path.mjs';
 
 const projectRoot = path.resolve(import.meta.dirname, '..');
-const chromePath = process.env.CHROME_PATH
-  ?? [
-    'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
-    '/usr/bin/google-chrome',
-    '/usr/bin/google-chrome-stable',
-    '/usr/bin/chromium',
-  ].find((candidate) => existsSync(candidate));
-if (!chromePath) throw new Error('Chrome executable not found. Set CHROME_PATH.');
+const chromePath = resolveChromePath();
 const courseBaseUrl = process.env.COURSE_BASE_URL ?? 'http://127.0.0.1:4173';
 const courseBaseWithSlash = courseBaseUrl.endsWith('/') ? courseBaseUrl : `${courseBaseUrl}/`;
 const outputDirectory = path.join(projectRoot, '.codex_qa');
