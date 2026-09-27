@@ -6,6 +6,7 @@ import {
   createLotoProcedure,
   createMissionEngineeringPack,
   createWorkOrder,
+  deriveAlarmTestSignal,
   LOTO_STEPS,
   performLotoStep,
   performWorkOrderStep,
@@ -20,17 +21,6 @@ import {
 import type { Language } from '../domain/types';
 
 type LabTab = 'data' | 'procedures' | 'control' | 'cases';
-
-const defaultAlarmConfig: AlarmTesterConfig = {
-  threshold: 72,
-  hysteresis: 3,
-  delaySeconds: 10,
-  persistenceSamples: 3,
-  sampleIntervalSeconds: 5,
-  interlockEnabled: true,
-};
-
-const sampleSignal = [68, 71, 72.5, 74, 76, 75, 73, 70, 68];
 
 function formatHours(value: number | null): string {
   return value === null ? 'N/A' : `${value} h`;
@@ -69,8 +59,14 @@ export function CourseEngineeringLab({
   );
   const [loto, setLoto] = useState(createLotoProcedure);
   const [workOrder, setWorkOrder] = useState(createWorkOrder);
-  const [alarmConfig, setAlarmConfig] = useState(defaultAlarmConfig);
-  const alarmResult = useMemo(() => runAlarmTest(sampleSignal, alarmConfig), [alarmConfig]);
+  // Signal and recommended threshold are derived from this week's own data pack, so the
+  // Alarm/Interlock demo differs week to week instead of replaying one shared 9-point sample.
+  const alarmSignal = useMemo(() => (pack ? deriveAlarmTestSignal(pack) : null), [pack]);
+  const [alarmConfig, setAlarmConfig] = useState<AlarmTesterConfig | null>(alarmSignal?.recommendedConfig ?? null);
+  const alarmResult = useMemo(
+    () => (alarmSignal && alarmConfig ? runAlarmTest(alarmSignal.values, alarmConfig) : null),
+    [alarmSignal, alarmConfig],
+  );
 
   useEffect(() => {
     if (activeAssignmentId && assignments.some((item) => item.id === activeAssignmentId)) {
@@ -79,6 +75,10 @@ export function CourseEngineeringLab({
       setWorkOrder(createWorkOrder());
     }
   }, [activeAssignmentId, assignments]);
+
+  useEffect(() => {
+    if (alarmSignal) setAlarmConfig(alarmSignal.recommendedConfig);
+  }, [alarmSignal]);
 
   if (!assignment || !pack || !kpis) {
     return (
@@ -195,8 +195,8 @@ export function CourseEngineeringLab({
             </table>
           </div>
           <div className="course-kpi-grid" data-testid="course-kpi-grid">
-            <KpiCard label="Availability" value={formatPercent(kpis.availabilityPercent)} formula="Uptime ÷ observable hours (N/A if no observable hours)" />
-            <KpiCard label="MTBF" value={formatHours(kpis.mtbfHours)} formula="Uptime ÷ failures (N/A if zero recorded failures)" />
+            <KpiCard label="Availability" value={formatPercent(kpis.availabilityPercent)} formula="Time-based (IEC 61400-26): uptime ÷ observable hours, which excludes planned maintenance — not production-based or contractual availability (N/A if no observable hours)" />
+            <KpiCard label="MTBF" value={formatHours(kpis.mtbfHours)} formula="Uptime ÷ failures, n-based convention (N/A if zero recorded failures)" />
             <KpiCard label="MTTR" value={formatHours(kpis.mttrHours)} formula="Repair hours ÷ failures (N/A if zero recorded failures)" />
             <KpiCard label="Downtime" value={`${kpis.downtimeHours} h`} formula="Unplanned unavailable hours" />
             <KpiCard label="OPEX" value={`$${Math.round(kpis.opex).toLocaleString('en-US')}`} formula="Labor + parts + vessel (excludes lost revenue)" />
@@ -241,18 +241,23 @@ export function CourseEngineeringLab({
         </div>
       )}
 
-      {tab === 'control' && (
+      {tab === 'control' && alarmConfig && alarmResult && (
         <div className="course-control-tester" data-testid="course-control-tester">
+          <small className="course-data-provenance">
+            {isZh
+              ? '訊號取自本週資料包的溫度通道，門檻依故障家族基準推薦；每週不同。'
+              : "Signal is this week's own data-pack temperature channel; the threshold is recommended from its fault family baseline and differs week to week."}
+          </small>
           <div className="course-control-inputs">
-            <NumberControl label="Threshold" value={alarmConfig.threshold} onChange={(threshold) => setAlarmConfig((current) => ({ ...current, threshold }))} />
-            <NumberControl label="Hysteresis" value={alarmConfig.hysteresis} min={0} onChange={(hysteresis) => setAlarmConfig((current) => ({ ...current, hysteresis }))} />
-            <NumberControl label="Delay (s)" value={alarmConfig.delaySeconds} min={0} onChange={(delaySeconds) => setAlarmConfig((current) => ({ ...current, delaySeconds }))} />
-            <NumberControl label="Persistence" value={alarmConfig.persistenceSamples} min={1} onChange={(persistenceSamples) => setAlarmConfig((current) => ({ ...current, persistenceSamples }))} />
+            <NumberControl label="Threshold" value={alarmConfig.threshold} onChange={(threshold) => setAlarmConfig((current) => (current ? { ...current, threshold } : current))} />
+            <NumberControl label="Hysteresis" value={alarmConfig.hysteresis} min={0} onChange={(hysteresis) => setAlarmConfig((current) => (current ? { ...current, hysteresis } : current))} />
+            <NumberControl label="Delay (s)" value={alarmConfig.delaySeconds} min={0} onChange={(delaySeconds) => setAlarmConfig((current) => (current ? { ...current, delaySeconds } : current))} />
+            <NumberControl label="Persistence" value={alarmConfig.persistenceSamples} min={1} onChange={(persistenceSamples) => setAlarmConfig((current) => (current ? { ...current, persistenceSamples } : current))} />
             <label className="course-interlock-toggle">
               <input
                 type="checkbox"
                 checked={alarmConfig.interlockEnabled}
-                onChange={(event) => setAlarmConfig((current) => ({ ...current, interlockEnabled: event.target.checked }))}
+                onChange={(event) => setAlarmConfig((current) => (current ? { ...current, interlockEnabled: event.target.checked } : current))}
               />
               <span>Interlock enabled</span>
             </label>

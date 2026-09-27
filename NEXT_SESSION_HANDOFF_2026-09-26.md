@@ -1,3 +1,5 @@
+> **已取代**：請改讀 [NEXT_SESSION_HANDOFF_2026-09-27.md](NEXT_SESSION_HANDOFF_2026-09-27.md)。
+
 # OWM 下一次工作交接 — 2026-09-26
 
 ## 目前權威狀態

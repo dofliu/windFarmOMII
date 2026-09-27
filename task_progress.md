@@ -1,5 +1,15 @@
 # OWM 專案進度
 
+## Current increment - 2026-09-27 (D6 Availability/MTBF 標示、hysteresis 抖動修復、Alarm tester 改用週資料包)
+
+- **Availability/MTBF 口徑標示**：KPI 卡與 `ReliabilityKpis` JSDoc 加註 Availability 為 time-based(IEC 61400-26)、分母排除計畫保養(契約性選擇,非 production-based／contractual);MTBF 標明為 n-based 慣例(非 n-1)。純標示,數值不變。
+- **hysteresis=0 抖動修復**：`runAlarmTest` 與產生的 IEC 61131-3 ST 的 `ResetCondition` 由 `<=` 改為嚴格 `<`。原本 hysteresis=0 時 set/reset 門檻是同一個值,值held在門檻上會讓警報每個樣本在 ALARM_SET／ALARM_RESET 間抖動;改為嚴格 `<` 後,held-at-threshold 訊號會 latch 在 `HYSTERESIS_HOLD`,不再抖動。
+- **Alarm tester 改用週資料包**:新增 `deriveAlarmTestSignal()`,示範訊號改由該週資料包的溫度通道推導(缺值向前補值),建議門檻依故障家族基準計算;取代先前 15 週共用的同一組硬編碼 9 點樣本。切換週次會自動重設為新週次的建議設定;Control 分頁加註訊號來源說明。
+- 新增 2 個 `courseEngineering.test.ts` 測試(hysteresis=0 latch、每週訊號不同且決定性可重現),測試數由 185 增至 187(仍 28 test files)。
+- 版本號五處同步更新為 `3.61.0-course-content-integrity`:本輪改動了顯示中的教學內容(KPI 卡文字、Alarm tester 示範值),依 2026-09-22 關卡模式決定,此類變動不再受學期凍結限制,故隨手 bump 版本號。
+- 未改動 Course Record 分數、任務條件、存檔語意或 Campaign／Challenge balance;`pnpm validate:teaching-deployment`、`pnpm smoke:course`(含 Control 分頁與產生的 ST 斷言)全數通過。
+- `OPS_SYSTEM_REVIEW_2026-08-31.md` D 節第 6 項標記已修復。
+
 ## Current increment - 2026-09-25 (C4 換角色銷毀重建 Phaser WebGL 修復)
 
 - **C4**：`OffshoreScene.tsx` 的建游戲 effect 原本依賴 `accent`（陣營色,只用來畫一個 5×56px 色條),換陣營隊員就整個 `game.destroy(true)` + `new Phaser.Game(...)`；教室硬體會明顯卡頓,瀏覽器 WebGL context 數量也有上限。

@@ -6,6 +6,7 @@ import {
   createLotoProcedure,
   createMissionEngineeringPack,
   createWorkOrder,
+  deriveAlarmTestSignal,
   LOTO_STEPS,
   performLotoStep,
   performWorkOrderStep,
@@ -130,6 +131,42 @@ describe('Course Engineering Lab', () => {
     expect(COURSE_CASE_LIBRARY).toHaveLength(12);
   });
 
+  // Per the 2026-08-31 ops review: with hysteresis=0 the set and reset points are the same value,
+  // so a "<=" reset would immediately clear an alarm set by that same value, chattering every
+  // sample. A held-at-threshold signal should latch the alarm instead of oscillating.
+  it('does not chatter between ALARM_SET and ALARM_RESET when hysteresis is 0 and the value holds exactly at the threshold', () => {
+    const result = runAlarmTest([72, 72, 72, 72, 72], {
+      threshold: 72,
+      hysteresis: 0,
+      delaySeconds: 0,
+      persistenceSamples: 1,
+      sampleIntervalSeconds: 5,
+      interlockEnabled: false,
+    });
+    expect(result.trace.map((point) => point.reason)).toEqual([
+      'ALARM_SET',
+      'HYSTERESIS_HOLD',
+      'HYSTERESIS_HOLD',
+      'HYSTERESIS_HOLD',
+      'HYSTERESIS_HOLD',
+    ]);
+    expect(result.trace.every((point) => point.alarm)).toBe(true);
+  });
+
+  // Per the 2026-08-31 ops review: the Alarm/Interlock tester previously replayed one hardcoded
+  // 9-point sample for all 15 weeks. The signal and recommended threshold must now come from that
+  // week's own data pack, so different weeks produce different demo traces.
+  it('derives the Alarm/Interlock tester signal and threshold from the week\'s own data pack, deterministically', () => {
+    const packA = createMissionEngineeringPack(assignment(0), 0);
+    const packB = createMissionEngineeringPack(assignment(9), 9);
+    const signalA = deriveAlarmTestSignal(packA);
+    const signalB = deriveAlarmTestSignal(packB);
+    expect(signalA.values).toHaveLength(packA.samples.length);
+    expect(signalA.values.every((value) => Number.isFinite(value))).toBe(true);
+    expect(signalA.values).not.toEqual(signalB.values);
+    expect(deriveAlarmTestSignal(packA)).toEqual(signalA);
+  });
+
   // Independently re-derives the alarm timing from the *generated ST text* itself (not from the
   // trainer's own implementation) so the two can never silently drift apart again, per the
   // 2026-08-31 ops review finding that the previous test only grepped for identifier strings.
@@ -139,7 +176,7 @@ describe('Course Engineering Lab', () => {
     sampleIntervalSeconds: number,
   ): { alarmSetAtSeconds: number | null; interlockTripAtSeconds: number | null } {
     const threshold = Number(structuredText.match(/HighCondition := ProcessValue >= ([\d.]+);/)?.[1]);
-    const resetThreshold = Number(structuredText.match(/ResetCondition := ProcessValue <= (-?[\d.]+);/)?.[1]);
+    const resetThreshold = Number(structuredText.match(/ResetCondition := ProcessValue < (-?[\d.]+);/)?.[1]);
     const persistenceSamples = Number(structuredText.match(/PersistCounter\(IN := HighCondition, PV := (\d+)\);/)?.[1]);
     const delaySeconds = Number(structuredText.match(/AlarmDelay\(IN := HighCondition, PT := T#(\d+)s\);/)?.[1]);
     const interlockEnabled = /InterlockTrip := AlarmActive AND TRUE;/.test(structuredText);
@@ -162,7 +199,7 @@ describe('Course Engineering Lab', () => {
       }
       const persistCounterQ = persistCount >= persistenceSamples;
       const alarmDelayQ = timerStartSeconds !== null && elapsedSeconds - timerStartSeconds >= delaySeconds;
-      if (value <= resetThreshold) {
+      if (value < resetThreshold) {
         alarmActive = false;
       } else if (persistCounterQ && alarmDelayQ) {
         alarmActive = true;
