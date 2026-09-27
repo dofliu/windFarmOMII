@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.61.0-course-content-integrity - 2026-09-27 (D6 Availability/MTBF labeling, hysteresis chatter fix, Alarm tester wired to weekly data pack)
+
+- Labeled the Availability and MTBF KPI cards (and their JSDoc) with the calculation basis the 2026-08-31 ops review flagged as unstated: Availability is time-based per IEC 61400-26 (its denominator excludes planned maintenance, a contractual choice, so it is not production-based or contractual availability), and MTBF uses the n-based convention (divides by failure count, not n−1). No change to the computed numbers, only to how they're labeled.
+- Fixed the Alarm/Interlock tester's `hysteresis=0` chatter: when hysteresis is 0 the set and reset points are the same value, and the previous `ResetCondition := ProcessValue <= threshold` would immediately clear an alarm set by that same value, toggling ALARM_SET/ALARM_RESET every sample a held-at-threshold signal was replayed. `runAlarmTest` and the generated IEC 61131-3 ST now both use a strict `<` for the reset condition, so a value sitting exactly at the threshold now latches the alarm (`HYSTERESIS_HOLD`) instead of chattering.
+- Replaced the Alarm/Interlock tester's single hardcoded 9-point sample (shared, unchanged, across all 15 weeks) with `deriveAlarmTestSignal()`: the demo signal is now that week's own data pack's temperature channel (missing samples forward-filled), and the recommended threshold is derived from the pack's fault-family baseline. Different weeks now show different traces; switching the selected assignment resets the tester to the new week's recommended config. Added a UI note in the Control tab stating the signal's provenance.
+- Added two `courseEngineering.test.ts` cases (hysteresis=0 non-chatter latch; per-week signal differs and is deterministic) — from 185 to 187 tests, still 28 test files.
+- Synced the version bump across all five required points (`package.json`, `course-config.json`, `COURSE_RELEASE`, and the offline ZIP names in `deploy-course-pages.yml`) to `3.61.0-course-content-integrity`, since this round changes displayed teaching content (KPI card labels, Alarm tester demo values), which the level-mode policy (2026-09-22) now permits outside a semester boundary.
+- No change to Course Record scoring, task conditions, save semantics, or Campaign／Challenge balance.
+
 ## 3.60.0-course-content-integrity - 2026-09-26 (C5 CI structure hardening, in-place stability hotfix)
 
 - Added `.github/workflows/pr-validation.yml`: every pull request targeting `main` now runs the same `validate:teaching-deployment` gate, the Course Mode browser smoke, and an offline-package build check, so build/test/smoke failures surface before merge instead of only after a push to `main`.

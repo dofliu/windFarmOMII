@@ -140,13 +140,15 @@ Course Mode 的 `Engineering Lab` 不改動既有 Campaign 平衡，只顯示**�
 - Availability、MTBF、MTTR、Downtime、OPEX、Total downtime cost 輸入、公式與結果
   - `OPEX` 僅為 labor + parts + vessel，不含 lost revenue（那是機會成本）；兩者相加另列為 `Total downtime cost`。
   - `Availability` 在零觀測時數、`MTBF`／`MTTR` 在零故障時顯示 `N/A`，代表無法計算（零故障是最佳情況），不是數值 `0`（最差情況）。
+  - `Availability` 為 time-based 定義（IEC 61400-26）：分母（observable hours）排除計畫保養，是一個契約性選擇，不等同 production-based 或 contractual availability；若要對照其他口徑，需另行換算。
+  - `MTBF` 採 n-based 慣例（uptime hours ÷ failure count），與部分文獻使用的 n-1 慣例不同；引用或比較時請先確認對方採用哪一種慣例。
 
 程序練習會強制依序完成：
 
 - LOTO：Shutdown → Isolate → Lock/Tag → Residual energy control → Zero-energy verification
 - Work Order：Trigger → Acknowledge → Dispatch → Execute → Verify → Close-out
 
-Alarm／Interlock tester 支援 Threshold、Hysteresis、Delay、Persistence 與 Interlock，並同步產生 IEC 61131-3 ST reference logic。
+Alarm／Interlock tester 支援 Threshold、Hysteresis、Delay、Persistence 與 Interlock，並同步產生 IEC 61131-3 ST reference logic；示範訊號與建議門檻自 2026-09-27 起改由**該週資料包自身**的溫度通道與故障家族基準推導，15 週各自不同（先前 15 週共用同一組硬編碼樣本）。
 
 完成 Assessment 後，Debrief 必須填寫「結論／證據／不確定性／殘餘風險」；所有嘗試均完成四欄後才可匯出 Course Record。
 
