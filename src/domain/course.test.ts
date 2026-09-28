@@ -201,7 +201,7 @@ describe('Course Mode learning record', () => {
       const now = new Date('2026-09-28T00:00:00.000Z');
       const run = () => updateCourseExplanation(
         completeCourseAttempt(
-          startCourseAttempt(createCourseRecord(config, 'OWM-D5', 'desktop'), assignment, now),
+          startCourseAttempt(createCourseRecord(config, 'OWM-D5', 'desktop', now), assignment, now),
           scores,
           settleDetails,
           now,
