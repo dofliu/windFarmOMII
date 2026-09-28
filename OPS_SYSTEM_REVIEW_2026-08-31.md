@@ -11,6 +11,10 @@
 > **修復狀態(2026-09-04 更新)**:已將 Course Record v2 integrity gate 與 2026-09-02 P1 修正整合為 `3.58.0-course-record-integrity`。**B3** 改為所有 attempts 均須結算、score 合法且四欄 Debrief 完整才可匯出；**B5** 的 system-derived events 保留 audit provenance，但不再進入正式 `decisionOrder`；**B7** 的新 Assessment 入口強制 `OWM-XXXX-XXXX`。B6、C4/C5/C6、D 節與正式 server-side receipt 仍未完成。
 >
 > **修復狀態(2026-09-24 更新,關卡模式解禁後)**:專案不再學期綁定,D 節「會改變顯示數值」的項目已解禁可做。本次完成 **D1**(OPEX 不再併入 lost revenue,新增 `totalDowntimeCost`)、**D2**(產生的 IEC 61131-3 ST 改為與模擬器一致的並行語意,測試由字串 grep 改為重新解析＋重新模擬比對)、**D3**(MTBF/MTTR/Availability 零故障/零觀測時回傳 `null`/`N/A`,不再是語意顛倒的 `0`),對應 `3.60.0-course-content-integrity`。仍待辦:D4-D9、C 節其餘項目、B6、C4/C5/C6 與正式 server-side receipt。
+>
+> **修復狀態(2026-09-27 更新)**:完成 **D6**(Availability/MTBF 口徑標示、`hysteresis=0` 抖動修復、Alarm tester 改用該週資料包推導訊號),對應 `3.61.0-course-content-integrity`;C 節 C4(WebGL 重建)、C5(CI 結構強化)同輪完成。
+>
+> **修復狀態(2026-09-28 更新)**:完成 **D5**(`randomSeed` 的實際作用範圍加註 JSDoc、`FIXED SEED` 政策徽章改為 `DETERMINISTIC`、新增 `Math.random` mock 守門測試),對應 `3.62.0-course-content-integrity`。仍待辦:D4(資料包改 seed 派生,屬大型項目,建議先出設計草案)、D7-D9(文件性任務／內容缺口)、關卡模式下 `frozen` 語意轉換、C 節其餘項目(actions SHA pinning 仍受限於本 session 網路範圍)。
 
 ---
 
@@ -91,7 +95,7 @@
 2. ~~**產生的 IEC 61131-3 ST 與模擬器行為不一致**:模擬器(`:405-415`)的 delay 從第一個超限樣本起算、與 persistence **並行**;產生的 ST(`:370-371`)是 `PersistCounter.Q` 之後才啟動 TON 的**串聯**語意。預設參數下兩者警報時間差 10 秒,而 `courseEngineering.test.ts` 只 grep 字串,把錯誤鎖進測試。教 PLC 的頁面給出對不上的參考程式,外審會抓。~~ **[已修復 2026-09-24 / v3.60.0-course-content-integrity]** `AlarmDelay` 改為直接由 `HighCondition` 驅動、與 `PersistCounter` 並行(`AND` 判斷),與模擬器行為一致;測試改為重新解析並重新模擬產生的 ST 文字,與模擬器輸出比對多組參數。
 3. ~~**MTBF/MTTR/Availability 在零故障/零觀測時回傳 0**(`:316-318`):語意顛倒(零故障=最好卻顯示 0h=最差)。目前生成資料 `failures >= 1` 不會觸發,屬潛在地雷;建議回 `null` 顯示 `N/A`。~~ **[已修復 2026-09-24 / v3.60.0-course-content-integrity]** 三者在零故障/零觀測時改回傳 `null`,UI 顯示 `N/A`;目前 15 週生成資料不受影響。
 4. **資料包以 `assignmentIndex` 為鍵、不是 seed**(`:229-232, 281-302`):在 config 重排/插入一週,會靜默改變之後所有週的時間戳、嚴重度與**全部 KPI 答案**,而 randomSeed 與「可重現」宣稱不變。validator 也沒 pin 順序。建議全部改由 `randomSeed` 派生。
-5. **randomSeed 沒有進入任務模擬**:只有 SCADA pack 用它(相位與缺值位置);任務可重現是因為模擬本身無隨機性,不是 seed 的功勞。UI 的 `FIXED SEED` chip 暗示了不存在的控制;未來若有人在 runtime 加入隨機性,沒有任何測試會抓到重現性破裂。建議加一個「同一 assignment 兩次模擬結果一致」的 domain test 當守門。
+5. ~~**randomSeed 沒有進入任務模擬**:只有 SCADA pack 用它(相位與缺值位置);任務可重現是因為模擬本身無隨機性,不是 seed 的功勞。UI 的 `FIXED SEED` chip 暗示了不存在的控制;未來若有人在 runtime 加入隨機性,沒有任何測試會抓到重現性破裂。建議加一個「同一 assignment 兩次模擬結果一致」的 domain test 當守門。~~ **[已修復 2026-09-28 / v3.62.0-course-content-integrity]** `CourseAssignment.randomSeed`／`CourseAttempt.randomSeed` 補上 JSDoc，明確標示只餵給 `createMissionEngineeringPack` 的 SCADA/CMS 雜訊，診斷內容與計分不受影響；`CourseModePanel.tsx` 的政策徽章由 `FIXED SEED` 改為 `DETERMINISTIC`，避免暗示可重現性來自 seed 機制而非「任務本身沒有隨機性」；新增 domain test 用 `Math.random` mock 丟例外守住「部署／結算同一 assignment 兩次」全程不呼叫 `Math.random`，未來有人引入未經 seed 的隨機性會立即測試失敗。
 6. ~~**Availability 未標示口徑**(IEC 61400-26 的 time-based/production-based/contractual 未註明,分母排除計畫保養是契約性選擇)、MTBF 的區間慣例(n vs n-1)未標註;`hysteresis=0` 時 set/reset 條件在閾值處重疊會抖動;Alarm tester 用硬編碼 9 點樣本(`CourseEngineeringLab.tsx:31`)而非該週資料包,15 週內容相同。~~ **[已修復 2026-09-27 / v3.61.0-course-content-integrity]** KPI 卡片與 JSDoc 加註 Availability 為 time-based(IEC 61400-26)、分母排除計畫保養非 production-based／contractual,以及 MTBF 為 n-based 慣例(非 n-1);`runAlarmTest` 與產生的 ST 皆將 `ResetCondition` 由 `<=` 改為嚴格 `<`,消除 hysteresis=0 時 set/reset 在同一值重疊造成的抖動;新增 `deriveAlarmTestSignal()`,Alarm/Interlock tester 的示範訊號與建議門檻改由該週資料包的溫度通道與故障家族基準推導,15 週不再共用同一組硬編碼樣本。新增 2 個 domain test(hysteresis=0 不抖動、訊號隨週次不同且決定性可重現)。
 7. **Assessment 的 `LOTO_VERIFIED` 是 stage 代理指標**(`App.tsx:575-590`,過 Isolate 階段即記 `zeroEnergy: true`),不是學生執行了五步 LOTO;評分語意需向教師說明。
 8. `codex.sourceNoteZh/En`(知識庫出處註記)有載入、有驗證、但從未渲染(`App.tsx:5271` 只顯示 safetyNote)——教學工具丟掉出處是內容缺口。
