@@ -14,7 +14,7 @@
 - 390px Mobile 的 Course 首頁完整高度由本次變更前約 2724px 降為 1668px（約減少 39%），Assessment 主 CTA 位於第一個 844px viewport 內；這是版面與流程證據，不是學生吸引力或學習成效證據。
 - 15 組固定 SCADA／CMS data packs 已明標 `SYNTHETIC / GAMEPLAY ABSTRACTION`；Availability／MTBF／MTTR／Downtime／OPEX、LOTO、Work Order 與 Alarm／Interlock tester 維持可操作。
 - 教學部署使用 `https://dofliu.github.io/windFarmOMII/`；`sync:data` 僅發布 14 個 runtime JSON，排除離線用 prompt 資料，Pages build 約 5 MiB。
-- 2026-09-27 `pnpm validate` 通過 28 test files／187 tests、Data／Scene／Art／Course、Campaign／Challenge balance與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 均通過。
+- 2026-09-28 `pnpm validate` 通過 28 test files／188 tests、Data／Scene／Art／Course、Campaign／Challenge balance與 production build；Course、Onboarding、390px mobile、Layout、Deployment compact、Operation compact 與 Gameplay core smoke 均通過。
 - `pnpm course:summary` 可彙整班級資料夾並核對 digest／score／summary；`pnpm course:inspect-legacy -- <file>` 用於 8 月 3 日 legacy v1 automated evidence。兩者都不是人類學習成效證據。
 - Web MVP gameplay、Campaign settlement/persistence、Boss Challenge、Deployment／Operation、Fleet、Onboarding、Sandbox、Scene routing 與 Collection 已整合。
 - Playtest observation、JSON export、evidence summary 與不記錄正式資料的新手練習導覽已整合；導覽可完全收起，Desktop／Mobile 底層操作均已驗證。

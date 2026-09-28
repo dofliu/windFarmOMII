@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-09-28 (D5 randomSeed scope labeling, FIXED SEED badge wording fix, determinism guard test)
+
+- Clarified, via JSDoc on `CourseAssignment.randomSeed` and `CourseAttempt.randomSeed` (`src/domain/course.ts`), that the seed is consumed only by `createMissionEngineeringPack` for the Engineering Lab's SCADA/CMS sample-noise phase and missing-field positions — diagnosis content, correct answers, and scoring all come from static mission data keyed by `missionId` and never read it. An assignment has no runtime randomness to seed in the first place, so its reproducibility comes from that absence, not from the seed "locking in" anything.
+- Fixed the Course landing page's policy-chip row (`CourseModePanel.tsx`), which previously read `FIXED SEED` alongside `NO REC`/`NO GUIDE`/`ANONYMOUS`, implying the whole assignment's determinism is guaranteed by a seed mechanism. It now reads `DETERMINISTIC`. The per-week `FIXED SEED` tag next to each data pack in the Engineering Lab (`CourseEngineeringLab.tsx`) is unchanged and remains accurate — it labels the one place the seed actually does something.
+- Added a `course.test.ts` domain test that mocks `Math.random` to throw, then deploys and settles the same assignment twice: it asserts neither run ever calls `Math.random` and that both runs produce identical `attempts`/`events`. This is the guard the 2026-08-31 ops review asked for — if a future change introduces unseeded runtime randomness into the assignment/attempt pipeline, this test fails immediately instead of silently breaking reproducibility.
+- `COURSE_MODE_GUIDE.md` updated to explain the seed's actual scope and the difference between the two badges.
+- 1 new test (187 → 188, still 28 test files).
+- Synced the version bump across all five required points (`package.json`, `course-config.json`, `COURSE_RELEASE`, and the offline ZIP names in `deploy-course-pages.yml`) to `3.62.0-course-content-integrity`, since this round changes displayed teaching content (the policy chip wording), which the level-mode policy (2026-09-22) permits outside a semester boundary.
+- No change to Course Record scoring, task conditions, save semantics, or Campaign／Challenge balance.
+
 ## 3.61.0-course-content-integrity - 2026-09-27 (D6 Availability/MTBF labeling, hysteresis chatter fix, Alarm tester wired to weekly data pack)
 
 - Labeled the Availability and MTBF KPI cards (and their JSDoc) with the calculation basis the 2026-08-31 ops review flagged as unstated: Availability is time-based per IEC 61400-26 (its denominator excludes planned maintenance, a contractual choice, so it is not production-based or contractual availability), and MTBF uses the n-based convention (divides by failure count, not n−1). No change to the computed numbers, only to how they're labeled.

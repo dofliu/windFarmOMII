@@ -189,6 +189,34 @@ describe('Course Mode learning record', () => {
     expect(replay.events.some((event) => event.kind === 'MISSION_REPLAYED')).toBe(true);
   });
 
+  it('同一 assignment 兩次部署／結算結果一致，且過程不曾呼叫 Math.random（D5 守門）', () => {
+    // OPS_SYSTEM_REVIEW_2026-08-31.md D5：assignment 本身沒有可播種的執行期隨機性——
+    // teamIds/equipmentId/spareId/vesselId 與診斷內容皆為固定資料，randomSeed 只餵給
+    // createMissionEngineeringPack 的 SCADA/CMS 雜訊。用 Math.random 丟例外守住這個事實：
+    // 未來若有人在此路徑加入未經 seed 的隨機性，這裡會立刻失敗，而不是悄悄破壞可重現性。
+    const randomSpy = vi.spyOn(Math, 'random').mockImplementation(() => {
+      throw new Error('assignment deployment/settlement must not call Math.random');
+    });
+    try {
+      const now = new Date('2026-09-28T00:00:00.000Z');
+      const run = () => updateCourseExplanation(
+        completeCourseAttempt(
+          startCourseAttempt(createCourseRecord(config, 'OWM-D5', 'desktop'), assignment, now),
+          scores,
+          settleDetails,
+          now,
+        ),
+        fullExplanation,
+      );
+      const runA = run();
+      const runB = run();
+      expect(runA.attempts).toEqual(runB.attempts);
+      expect(runA.events).toEqual(runB.events);
+    } finally {
+      randomSpy.mockRestore();
+    }
+  });
+
   it('每個 attempt 快照當時的 configVersion，教師每週解鎖改版本不重建紀錄', () => {
     const firstStarted = startCourseAttempt(createCourseRecord(config, 'OWM-A003', 'desktop'), assignment);
     const first = updateCourseExplanation(completeCourseAttempt(firstStarted, scores, settleDetails), fullExplanation);

@@ -207,7 +207,7 @@ export function CourseModePanel({
                 </select>
               </label>
             </div>
-            <div className="course-policy-chips"><i>NO REC</i><i>NO GUIDE</i><i>ANONYMOUS</i><i>FIXED SEED</i></div>
+            <div className="course-policy-chips"><i>NO REC</i><i>NO GUIDE</i><i>ANONYMOUS</i><i>DETERMINISTIC</i></div>
             {selectedAssignment && (
               <button
                 type="button"

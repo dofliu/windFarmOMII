@@ -1,5 +1,18 @@
 # OWM 專案進度
 
+## Current increment - 2026-09-28 (D5 randomSeed 作用範圍標示、FIXED SEED 徽章文案修正、決定性守門測試)
+
+- **問題**（`OPS_SYSTEM_REVIEW_2026-08-31.md` D 節第 5 項）：`randomSeed` 只有 `createMissionEngineeringPack`（SCADA/CMS 雜訊相位與缺值位置）會讀取；assignment 的診斷內容、teamIds／equipmentId／spareId／vesselId、正確答案與計分全部來自以 `missionId` 查詢的固定資料，本身沒有可播種的執行期隨機性。任務可重現是因為「沒有隨機性」，不是「seed 鎖住了隨機性」。`CourseModePanel.tsx` 的政策徽章 `FIXED SEED` 暗示了不存在的機制，且沒有任何測試會在未來有人於此路徑誤植 `Math.random()` 時失敗。
+- **修復**：
+  - `CourseAssignment.randomSeed`／`CourseAttempt.randomSeed`（`src/domain/course.ts`）補上 JSDoc／註解，明確標示只餵給 SCADA/CMS 資料包雜訊，與診斷內容、計分無關。
+  - `CourseModePanel.tsx` 的政策徽章列由 `FIXED SEED` 改為 `DETERMINISTIC`；Engineering Lab 逐週資料包旁原有的 `FIXED SEED`（`CourseEngineeringLab.tsx`，準確標示該週資料包實際使用的 seed 值）維持不變。
+  - `COURSE_MODE_GUIDE.md` 補充說明 `randomSeed` 的實際作用範圍與兩個徽章的差異。
+  - 新增 `course.test.ts` domain test：mock `Math.random` 使其丟出例外，驗證「部署並結算同一 assignment 兩次」全程不呼叫 `Math.random`、且兩次結果（`attempts`／`events`）完全一致；未來若有人引入未經 seed 的隨機性，此測試會立即失敗。
+- **測試**：測試數由 187 增至 188（仍 28 test files）。
+- 版本號五處同步更新為 `3.62.0-course-content-integrity`：本輪改動了顯示中的教學內容（政策徽章文案），依關卡模式決定 bump 版本號。
+- 未改動 Course Record 分數、任務條件、存檔語意或 Campaign／Challenge balance；`pnpm validate:teaching-deployment`、`pnpm smoke:course` 全數通過。
+- `OPS_SYSTEM_REVIEW_2026-08-31.md` D 節第 5 項標記已修復。
+
 ## Current increment - 2026-09-27 (D6 Availability/MTBF 標示、hysteresis 抖動修復、Alarm tester 改用週資料包)
 
 - **Availability/MTBF 口徑標示**：KPI 卡與 `ReliabilityKpis` JSDoc 加註 Availability 為 time-based(IEC 61400-26)、分母排除計畫保養(契約性選擇,非 production-based／contractual);MTBF 標明為 n-based 慣例(非 n-1)。純標示,數值不變。

@@ -41,6 +41,8 @@ pnpm course:unlock -- --weeks NONE --version 2026-FALL-PAUSED
 - `vesselId`
 - `randomSeed`
 
+`randomSeed` 只餵給 Engineering Lab 的 SCADA/CMS 資料包產生器（決定溫度通道雜訊相位與缺值位置），診斷內容、正確答案與計分皆來自以 `missionId` 查詢的固定資料，本身沒有可播種的執行期隨機性。UI 上代表這組固定條件的標籤是 `DETERMINISTIC`（可重現的根本原因是任務內容沒有隨機性，不是「靠 seed 鎖住」），僅 Engineering Lab 每週資料包旁顯示的 `FIXED SEED` 標籤才代表 `randomSeed` 實際發揮作用之處。
+
 Course Mode 使用 24 個職業角色代表，不使用 300 名角色的收藏／稀有度作為 Assessment 決策。
 
 ## Learning Record

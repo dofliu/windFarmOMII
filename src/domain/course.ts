@@ -6,7 +6,7 @@ import type { GameDatabase } from './types';
 
 export const COURSE_STORAGE_KEY = 'owm.course.v1';
 export const COURSE_RECORD_FORMAT = 'OWM_COURSE_RECORD';
-export const COURSE_RELEASE = '3.61.0-course-content-integrity';
+export const COURSE_RELEASE = '3.62.0-course-content-integrity';
 
 export type CoursePlatform = 'desktop' | 'mobile';
 export type CourseEventContext = 'assessment_runtime' | 'practice_lab' | 'guided_practice' | 'system' | 'legacy_unknown';
@@ -34,6 +34,13 @@ export interface CourseAssignment {
   equipmentId: string;
   spareId: string;
   vesselId: string;
+  /**
+   * Consumed only by `createMissionEngineeringPack` (SCADA/CMS sample-noise phase and
+   * missing-field positions). Diagnosis content, correct answers, and scoring come from
+   * static mission data keyed by `missionId` and never read this value, so it does not make
+   * the assignment reproducible by itself — the assignment has no runtime randomness to seed
+   * in the first place.
+   */
   randomSeed: number;
 }
 
@@ -85,6 +92,7 @@ export interface CourseAttempt {
   weekId?: string;
   missionId: string;
   attemptNumber: number;
+  // 快照自 CourseAssignment.randomSeed；僅供工程 SCADA/CMS 資料包重新推導比對用途,與診斷內容、計分無關。
   randomSeed: number;
   // 每個 attempt 快照當下的 configVersion:教師每週解鎖會改版本,紀錄不因此重建。
   configVersion?: string;
