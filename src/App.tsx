@@ -2018,7 +2018,7 @@ export default function App() {
                 <div className="resource-row">
                   <div><span>AP</span><strong data-testid="active-runtime-ap">{selectedRuntime.actionPoints}</strong></div>
                   <div><span>ENERGY</span><strong data-testid="active-runtime-energy">{selectedRuntime.energy}</strong></div>
-                  <div><span>INT</span><strong>{selectedCharacter.intel}</strong></div>
+                  <div title={language === 'zh' ? '僅供平衡設計參考,不影響任務或戰鬥結果' : 'Balance-design reference only; does not affect mission or battle outcomes'}><span>INT*</span><strong>{selectedCharacter.intel}</strong></div>
                 </div>
 
                 <div className={`fatigue-block band-${band.toLowerCase()}`}>
