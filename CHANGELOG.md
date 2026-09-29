@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-09-29 (D9 INT 屬性標示為僅供參考,in-place hotfix)
+
+- 角色卡的 `INT` 屬性在 runtime 沒有任何作用(僅離線平衡工具 `bossChallengeBalance.ts` 讀取),學生會誤以為影響任務或戰鬥。標籤改為 `INT*` 並加上 tooltip「僅供平衡設計參考,不影響任務或戰鬥結果」(中英)。`atk/def/speed` 本來就未顯示於 UI。
+- 無分數、任務條件、存檔語意或平衡變動;版本號不變(沿用 in-place 修正模式)。
+- 驗證:`pnpm typecheck` ✅、`pnpm test` 28 files／188 tests ✅。
+
 ## 3.62.0-course-content-integrity - 2026-09-28 (D5 randomSeed scope labeling, FIXED SEED badge wording fix, determinism guard test)
 
 - Clarified, via JSDoc on `CourseAssignment.randomSeed` and `CourseAttempt.randomSeed` (`src/domain/course.ts`), that the seed is consumed only by `createMissionEngineeringPack` for the Engineering Lab's SCADA/CMS sample-noise phase and missing-field positions — diagnosis content, correct answers, and scoring all come from static mission data keyed by `missionId` and never read it. An assignment has no runtime randomness to seed in the first place, so its reproducibility comes from that absence, not from the seed "locking in" anything.

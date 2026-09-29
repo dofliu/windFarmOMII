@@ -99,7 +99,7 @@
 6. ~~**Availability 未標示口徑**(IEC 61400-26 的 time-based/production-based/contractual 未註明,分母排除計畫保養是契約性選擇)、MTBF 的區間慣例(n vs n-1)未標註;`hysteresis=0` 時 set/reset 條件在閾值處重疊會抖動;Alarm tester 用硬編碼 9 點樣本(`CourseEngineeringLab.tsx:31`)而非該週資料包,15 週內容相同。~~ **[已修復 2026-09-27 / v3.61.0-course-content-integrity]** KPI 卡片與 JSDoc 加註 Availability 為 time-based(IEC 61400-26)、分母排除計畫保養非 production-based／contractual,以及 MTBF 為 n-based 慣例(非 n-1);`runAlarmTest` 與產生的 ST 皆將 `ResetCondition` 由 `<=` 改為嚴格 `<`,消除 hysteresis=0 時 set/reset 在同一值重疊造成的抖動;新增 `deriveAlarmTestSignal()`,Alarm/Interlock tester 的示範訊號與建議門檻改由該週資料包的溫度通道與故障家族基準推導,15 週不再共用同一組硬編碼樣本。新增 2 個 domain test(hysteresis=0 不抖動、訊號隨週次不同且決定性可重現)。
 7. **Assessment 的 `LOTO_VERIFIED` 是 stage 代理指標**(`App.tsx:575-590`,過 Isolate 階段即記 `zeroEnergy: true`),不是學生執行了五步 LOTO;評分語意需向教師說明。
 8. `codex.sourceNoteZh/En`(知識庫出處註記)有載入、有驗證、但從未渲染(`App.tsx:5271` 只顯示 safetyNote)——教學工具丟掉出處是內容缺口。
-9. 角色卡顯示的 `INT` 屬性(`App.tsx:1920`)與 `atk/def/speed` 在 runtime 完全無作用(只有離線平衡工具讀),學生會誤以為有影響。
+9. ~~角色卡顯示的 `INT` 屬性(`App.tsx:1920`)與 `atk/def/speed` 在 runtime 完全無作用(只有離線平衡工具讀),學生會誤以為有影響。~~ **[已修復 2026-09-29 / D9]** INT 標籤改為 `INT*` 並加 tooltip「僅供平衡設計參考,不影響任務或戰鬥結果」(`atk/def/speed` 未在 UI 顯示)。
 
 ---
 

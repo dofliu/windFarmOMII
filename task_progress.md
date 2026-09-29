@@ -1323,3 +1323,6 @@
 - 新增共用 `tools/lib/chrome-path.mjs`：`CHROME_PATH` 環境變數優先，否則依序偵測 Windows／`/usr/bin/google-chrome`／`google-chrome-stable`／`chromium`／`chromium-browser`；13 支 Playwright smoke 腳本（`smoke-course-mode.mjs` 之外的另外 12 支先前各自硬編碼一個 Windows-only fallback，未設 `CHROME_PATH` 時在 Linux/macOS 直接失敗）全部改用同一個偵測邏輯。
 - 未修復：actions 仍用 mutable major tag（`@v4`/`@v5`），本次自動化 session 的網路存取範圍僅限本 repo，無法連線 `api.github.com` 解析並驗證第三方 action 的 commit SHA（測試連線回傳 403），留給下一個有較廣網路存取的 session。
 - 驗證：`pnpm typecheck`、`pnpm test`（28 test files／185 tests，與基準相同）、`pnpm validate:teaching-deployment` 全綠；`pnpm smoke:course`（用 Playwright 內建 Chromium 執行檔驗證新的 `resolveChromePath()` 路徑）通過；純 Node 腳本驗證 auto-detect fallback 邏輯本身正確；兩份 workflow YAML 經 `yaml.safe_load` 語法檢查。未變動分數、任務條件、存檔語意或平衡數值，版本號維持 `3.60.0-course-content-integrity`。
+
+## 2026-09-29
+- D9:角色卡 INT 標示為僅供平衡參考。typecheck/test(188)通過。
