@@ -128,6 +128,7 @@ pnpm course:summary
 | `hintUsage` | 應恆為 0 | Assessment 完全停用 REC／GUIDE；出現非零值請視為異常。 |
 | `decisionOrder`／DECISIONS 數 | 僅佐證 | v2 僅納入 `learner + assessment_runtime`；系統自動 JSA／LOTO／Work Order 不計入，但事件順序仍不是能力量測。 |
 | Engineering Lab 的 `LOTO_VERIFIED`／`WORK_ORDER_CREATED` | 僅佐證 | 程序練習的完成與違序次數，不代表 Assessment 任務中的實際操作。 |
+| Assessment 內的 `LOTO_VERIFIED`（`actor=system`、`verification=isolate-stage-cleared`、`learnerAction=false`） | **stage 代理指標，不計分** | 學生通關 Isolate 階段後由系統自動記錄 `zeroEnergy: true`，並非學生逐步執行五步 LOTO 的證據；請勿解讀為「學生已驗證零能量」。LOTO 程序能力請看 Engineering Lab 的練習紀錄（`practice_lab`，同樣僅佐證）。 |
 | `attemptCount` | 不可作為評分依據 | 一鍵重設、清除網站資料、換瀏覽器都會歸零且不留痕跡。 |
 
 靜態網站加 localStorage 的架構無法阻止有腳本能力的偽造（`missions.json` 本身含正確診斷選項）；digest 只是把門檻從「記事本」提高到「要會寫腳本」。重要考核請搭配現場監考或口試。

@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-09-30 (D7 LOTO_VERIFIED 語意說明、D8 知識庫出處渲染,in-place hotfix)
+
+- D7:`COURSE_MODE_GUIDE.md` 證據表新增專列,說明 Assessment 內的 `LOTO_VERIFIED` 是通關 Isolate 階段後由系統記錄的代理事件(`actor=system`、`learnerAction=false`),不計分,也不是學生執行五步 LOTO 的證據。
+- D8:知識庫卡片在「安全邊界」下方渲染 `sourceNoteZh/En` 出處註記(此前已載入、驗證但從未顯示)。
+- 無分數、任務條件、存檔語意或平衡變動;版本號不變。
+- 驗證:`pnpm typecheck` ✅、`pnpm test` 28 files／188 tests ✅、`pnpm validate:teaching-deployment` ✅。未跑瀏覽器 smoke。
+
 ## 3.62.0-course-content-integrity - 2026-09-29 (D9 INT 屬性標示為僅供參考,in-place hotfix)
 
 - 角色卡的 `INT` 屬性在 runtime 沒有任何作用(僅離線平衡工具 `bossChallengeBalance.ts` 讀取),學生會誤以為影響任務或戰鬥。標籤改為 `INT*` 並加上 tooltip「僅供平衡設計參考,不影響任務或戰鬥結果」(中英)。`atk/def/speed` 本來就未顯示於 UI。

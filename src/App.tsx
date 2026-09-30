@@ -5371,6 +5371,7 @@ function CodexScreen({ database, campaign, language }: { database: GameDatabase;
                   <p>{language === 'zh' ? entry.summaryZh : entry.summaryEn}</p>
                   <ul>{(language === 'zh' ? entry.keyPointsZh : entry.keyPointsEn).map((point) => <li key={point}>{point}</li>)}</ul>
                   <div className="codex-safety"><b>{language === 'zh' ? '安全邊界' : 'Safety boundary'}</b><p>{language === 'zh' ? entry.safetyNoteZh : entry.safetyNoteEn}</p></div>
+                  <p className="codex-source"><b>{language === 'zh' ? '出處：' : 'Source: '}</b>{language === 'zh' ? entry.sourceNoteZh : entry.sourceNoteEn}</p>
                 </>
               ) : (
                 <div className="codex-locked-hint"><b>LOCKED</b><p>{language === 'zh' ? '完成任務後解鎖：' : 'Complete mission to unlock: '}{missionTitle(mission, language)}</p></div>
