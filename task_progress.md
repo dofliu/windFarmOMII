@@ -1326,3 +1326,6 @@
 
 ## 2026-09-29
 - D9:角色卡 INT 標示為僅供平衡參考。typecheck/test(188)通過。
+
+## 2026-09-30
+- D7(LOTO_VERIFIED 語意文件)與 D8(codex 出處渲染)完成;typecheck、188 tests、validate:teaching-deployment 通過。

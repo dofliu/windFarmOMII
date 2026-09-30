@@ -737,6 +737,8 @@ select { width: 100%; margin-top: 6px; background: var(--owm-surface-2); color: 
 .codex-card .codex-safety { padding: 8px 10px; border-left: 2px solid #42dbc8; background: rgba(66,219,200,.06); margin-top: auto; }
 .codex-card .codex-safety b { display: block; font-size: 12px; color: #42dbc8; font-weight: 800; margin-bottom: 3px; }
 .codex-card .codex-safety p { margin: 0; font-size: 13px; color: #a7d7d1; }
+.codex-card .codex-source { margin: 6px 0 0; font-size: 12px; color: #8aa3b5; }
+.codex-card .codex-source b { color: #9fb8c9; font-weight: 700; }
 .codex-card .codex-locked-hint { padding: 10px; border: 1px dashed rgba(141,184,196,.3); margin-top: auto; }
 .codex-card .codex-locked-hint b { color: #5f7981; font-size: 12px; font-weight: 800; letter-spacing: .08em; }
 .codex-card .codex-locked-hint p { margin: 6px 0 0; font-size: 13px; color: var(--owm-muted); }
