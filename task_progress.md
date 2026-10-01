@@ -1,5 +1,10 @@
 # OWM 專案進度
 
+## Current increment - 2026-10-01 (關卡模式轉換 階段 0:設計草案)
+
+- 新增 `LEVEL_MODE_DESIGN_2026-10-01.md`(`frozen` 重新定義為內容/計分鎖版、validator 調整提議、3 個待拍板問題、分階段計畫)。純文件,無版本變動。
+- 交接檔:`NEXT_SESSION_HANDOFF_2026-10-01.md`。
+
 ## Current increment - 2026-09-28 (D5 randomSeed 作用範圍標示、FIXED SEED 徽章文案修正、決定性守門測試)
 
 - **問題**（`OPS_SYSTEM_REVIEW_2026-08-31.md` D 節第 5 項）：`randomSeed` 只有 `createMissionEngineeringPack`（SCADA/CMS 雜訊相位與缺值位置）會讀取；assignment 的診斷內容、teamIds／equipmentId／spareId／vesselId、正確答案與計分全部來自以 `missionId` 查詢的固定資料，本身沒有可播種的執行期隨機性。任務可重現是因為「沒有隨機性」，不是「seed 鎖住了隨機性」。`CourseModePanel.tsx` 的政策徽章 `FIXED SEED` 暗示了不存在的機制，且沒有任何測試會在未來有人於此路徑誤植 `Math.random()` 時失敗。

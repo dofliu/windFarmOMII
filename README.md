@@ -1,6 +1,6 @@
 # Offshore Wind Masters Web
 
-> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-09-27.md](NEXT_SESSION_HANDOFF_2026-09-27.md)。專案已轉為關卡模式（不再與學期綁定）；本輪修復了 D 節教學內容正確性第 6 項（Availability／MTBF 口徑標示、Alarm tester hysteresis=0 抖動、Alarm tester 改用該週資料包）。下一步建議是 D4（資料包改由 seed 派生）或關卡模式的 config／validator 重新設計。公開站仍維持 W01-only，真人證據前不調整 frozen balance。
+> 下一個開發 session 請先讀：[NEXT_SESSION_HANDOFF_2026-10-01.md](NEXT_SESSION_HANDOFF_2026-10-01.md)。專案已轉為關卡模式（不再與學期綁定）；本輪修復了 D 節教學內容正確性第 6 項（Availability／MTBF 口徑標示、Alarm tester hysteresis=0 抖動、Alarm tester 改用該週資料包）。下一步建議是 D4（資料包改由 seed 派生）或關卡模式的 config／validator 重新設計。公開站仍維持 W01-only，真人證據前不調整 frozen balance。
 
 ## Current verification snapshot — 2026-09-27
 
