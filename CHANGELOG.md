@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-10-01 (關卡模式轉換 階段 0:設計草案,僅文件)
+
+- 新增 `LEVEL_MODE_DESIGN_2026-10-01.md`:盤點 `frozen`／`term`／validator 的學期遺留語意並提議新語意與分階段計畫;查證 `unlockedWeekIds` 本就可任意子集。
+- 無程式、分數、任務條件、存檔語意或平衡變動;版本號不變。未跑測試套件(純文件);CI 配額考量,以人工審閱代替。
+
 ## 3.62.0-course-content-integrity - 2026-09-30 (D7 LOTO_VERIFIED 語意說明、D8 知識庫出處渲染,in-place hotfix)
 
 - D7:`COURSE_MODE_GUIDE.md` 證據表新增專列,說明 Assessment 內的 `LOTO_VERIFIED` 是通關 Isolate 階段後由系統記錄的代理事件(`actor=system`、`learnerAction=false`),不計分,也不是學生執行五步 LOTO 的證據。
