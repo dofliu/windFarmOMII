@@ -173,15 +173,25 @@ pnpm package:offline
 
 GitHub Actions 每次正式發布也會附加同名 workflow artifact。
 
-## 學期凍結
+## 定版與開放關卡(關卡模式)
 
-`frozen: true` 代表學期版本不調整平衡公式。學期中只允許：
+專案採「關卡模式」,不綁學期。教師隨時用 `pnpm course:unlock`(`tools/set-course-unlocks.mjs`)手動指定任意關卡組合(含 `NONE`),並以 `--version` 填寫能區分本次開放組合的 `configVersion`(3–64 字元,英數、`.`、`_`、`-`)。
 
-- 手動變更 `unlockedWeekIds`
+`frozen: true` 代表「本 `releaseVersion` 的分數公式與任務條件已定版」。定版後只允許:
+
+- 手動變更 `unlockedWeekIds`／`configVersion`
 - 修正阻斷性 bug
 - 不改變分數或任務條件的 accessibility 修正
 
-數值平衡變更應另開下一個 release version，不能覆寫本學期 Course Record 的版本語意。
+要改分數或任務條件就 bump `releaseVersion`;Course Record 內含 `releaseVersion`,舊紀錄的語意不會被覆寫。
+
+`pnpm validate:course` 的檢查分級(實作於 `tools/lib/course-config-validator.mjs`,有單元測試):
+
+- **擋下(錯誤)**:schemaVersion、`releaseVersion` 與 package 不一致、`frozen` 非布林、`configVersion` 缺漏或格式不符、roster／assignment／mission／裝備／船舶參照錯誤、seed 重複、`unlockedWeekIds` 重複或不屬於已定義週次、禁止欄位(學生識別、日期式自動解鎖)。
+- **警告(不失敗)**:`frozen: false`(開發/預覽版)、`unlockedWeekIds` 為空(學生端將無可玩關卡)。
+- `term` 為選填顯示標籤,不再要求學期格式。
+
+數值平衡變更應另開下一個 release version。
 
 ## W09 至 W10 真人 pilot 就緒包
 

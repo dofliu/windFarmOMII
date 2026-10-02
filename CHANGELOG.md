@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-10-02 (關卡模式轉換 階段 1:validator 抽出、frozen/空解鎖改警告、configVersion 檢查)
+
+- 依 `LEVEL_MODE_DESIGN_2026-10-01.md` §3 實作:`tools/validate-course-config.mjs` 的檢查抽成純函式 `tools/lib/course-config-validator.mjs`(回傳 `errors`/`warnings`),CLI 僅負責 I/O。
+- `frozen` 由「必須 true」改為「必須是布林」,`false` 只警告;`unlockedWeekIds` 為空只警告;新增 `configVersion` 必填且格式檢查(與 `set-course-unlocks` 共用同一 regex);`term` 改為選填字串。18–24 人、15 關、禁止欄位等結構檢查不變。
+- 擁有者未回覆 §5,故採草案建議預設(保留 `frozen` 欄位並改語意)。尚未做 UI 文案(階段 2)與 schema 變更(階段 3)。
+- `COURSE_MODE_GUIDE.md`「學期凍結」改寫為「定版與開放關卡」。
+- 新增 `tools/lib/course-config-validator.test.mjs` 7 個測試(此前 validator 無單元測試);29 test files／195 tests。
+- 僅工具/文件變更:無分數、任務條件、存檔語意、平衡或版本變動。
+
 ## 3.62.0-course-content-integrity - 2026-10-01 (關卡模式轉換 階段 0:設計草案,僅文件)
 
 - 新增 `LEVEL_MODE_DESIGN_2026-10-01.md`:盤點 `frozen`／`term`／validator 的學期遺留語意並提議新語意與分階段計畫;查證 `unlockedWeekIds` 本就可任意子集。

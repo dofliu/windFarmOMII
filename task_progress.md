@@ -1,5 +1,10 @@
 # OWM 專案進度
 
+## Current increment - 2026-10-02 (關卡模式轉換 階段 1:validator)
+
+- validator 抽成 `tools/lib/course-config-validator.mjs`;`frozen:false`／空解鎖僅警告,`configVersion` 必填檢查,`term` 選填。新增 7 個測試(195 tests／29 files)。
+- 驗證:`pnpm validate:course`、`pnpm typecheck`、`pnpm test` ✅。無版本變動。交接檔:`NEXT_SESSION_HANDOFF_2026-10-02.md`。
+
 ## Current increment - 2026-10-01 (關卡模式轉換 階段 0:設計草案)
 
 - 新增 `LEVEL_MODE_DESIGN_2026-10-01.md`(`frozen` 重新定義為內容/計分鎖版、validator 調整提議、3 個待拍板問題、分階段計畫)。純文件,無版本變動。
