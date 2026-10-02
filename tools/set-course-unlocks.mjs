@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { CONFIG_VERSION_PATTERN } from './lib/course-config-validator.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const configPath = path.join(root, 'public', 'course', 'course-config.json');
@@ -28,7 +29,7 @@ if (unknownWeeks.length > 0) {
   console.error(`Unknown Course weeks: ${unknownWeeks.join(', ')}`);
   process.exit(2);
 }
-if (!/^[A-Z0-9._-]{3,64}$/i.test(version)) {
+if (!CONFIG_VERSION_PATTERN.test(version)) {
   console.error('Config version may contain letters, numbers, dot, underscore, and hyphen only.');
   process.exit(2);
 }
