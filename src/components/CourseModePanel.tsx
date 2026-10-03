@@ -110,7 +110,7 @@ export function CourseModePanel({
     >
       <header className="course-mode-heading">
         <div>
-          <span className="section-kicker">COURSE MODE · {config.term}</span>
+          <span className="section-kicker">COURSE MODE{config.term ? ` · ${config.term}` : ''}</span>
           <h2>{isZh ? '離岸風電運維課程模式' : 'Offshore wind O&M course mode'}</h2>
           <p>{isZh
             ? '練習導覽與 Assessment 完全分流；Assessment 不顯示 REC／GUIDE，且只保存匿名學習紀錄。'
@@ -118,7 +118,7 @@ export function CourseModePanel({
         </div>
         <div className="course-release-badge">
           <strong>{config.releaseVersion}</strong>
-          <span>{config.frozen ? (isZh ? '學期凍結版' : 'SEMESTER FREEZE') : (isZh ? '開發版' : 'DEVELOPMENT')}</span>
+          <span>{config.frozen ? (isZh ? '定版' : 'LOCKED RELEASE') : (isZh ? '開發版' : 'DEVELOPMENT')}</span>
           <small>{config.courseCode} · {config.configVersion}</small>
         </div>
       </header>

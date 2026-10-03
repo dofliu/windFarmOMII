@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-10-03 (關卡模式轉換 階段 2:UI 文案,in-place)
+
+- 徽章「學期凍結版 / SEMESTER FREEZE」→「定版 / LOCKED RELEASE」(`frozen:false` 仍為「開發版」);面板 kicker 在 `term` 缺省時不再顯示尾段。
+- `set-course-unlocks` 用法範例與 `COURSE_MODE_GUIDE.md` 範例改為 `level-YYYYMMDD-W01-W02` 命名,不含學期。
+- 僅顯示文案/工具說明:無分數、任務條件、存檔語意、平衡變動;`data-course-frozen` 屬性不變,smoke 無需調整;版本號不變(in-place 模式)。
+- 驗證:`pnpm typecheck` ✅、`pnpm test` 29 files／195 tests ✅、`pnpm validate:teaching-deployment` ✅。未跑瀏覽器 smoke。階段 3(schema/型別)仍待擁有者決定 §5。
+
 ## 3.62.0-course-content-integrity - 2026-10-02 (關卡模式轉換 階段 1:validator 抽出、frozen/空解鎖改警告、configVersion 檢查)
 
 - 依 `LEVEL_MODE_DESIGN_2026-10-01.md` §3 實作:`tools/validate-course-config.mjs` 的檢查抽成純函式 `tools/lib/course-config-validator.mjs`(回傳 `errors`/`warnings`),CLI 僅負責 I/O。

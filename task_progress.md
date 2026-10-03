@@ -1339,3 +1339,7 @@
 
 ## 2026-09-30
 - D7(LOTO_VERIFIED 語意文件)與 D8(codex 出處渲染)完成;typecheck、188 tests、validate:teaching-deployment 通過。
+
+## 2026-10-03 關卡模式轉換 階段 2(UI 文案)
+
+- 徽章/kicker/unlock 範例文案調整;typecheck、29 files／195 tests、validate:teaching-deployment 全綠;未跑 smoke。
