@@ -15,7 +15,7 @@ const weeksValue = valueFor('--weeks');
 const version = valueFor('--version');
 
 if (!weeksValue || !version) {
-  console.error('Usage: pnpm course:unlock -- --weeks W01,W02 --version 2026-FALL-W02');
+  console.error('Usage: pnpm course:unlock -- --weeks W01,W02 --version level-20261003-W01-W02');
   process.exit(2);
 }
 

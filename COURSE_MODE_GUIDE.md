@@ -16,14 +16,14 @@
 週次不會依日期或學生進度自動解鎖。教師明確指定目前可使用的週次：
 
 ```powershell
-pnpm course:unlock -- --weeks W01,W02 --version 2026-FALL-W02
+pnpm course:unlock -- --weeks W01,W02 --version level-20261003-W01-W02
 pnpm validate:course
 ```
 
 若要暫停全部 Assessment：
 
 ```powershell
-pnpm course:unlock -- --weeks NONE --version 2026-FALL-PAUSED
+pnpm course:unlock -- --weeks NONE --version level-20261003-PAUSED
 ```
 
 更新後提交並推送 `main`，GitHub Actions 會重新執行 validation、建立 GitHub Pages 與離線 ZIP。`smoke:course` 以部署站上的 `course-config.json` 為準做動態斷言，因此解鎖任何週次組合（含 `NONE` 暫停）都不會使 CI 失敗。
