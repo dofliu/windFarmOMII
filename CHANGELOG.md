@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-10-04 (D4 階段 0:設計草案,僅文件)
+
+- 新增 `PACK_SEED_DESIGN_2026-10-04.md`:查證資料包由 `weekId` 衍生的 `packIndex` 驅動(難度、KPI、時間戳),`randomSeed` 僅管雜訊;提案 tier 顯式化 + seed 雜訊分離,並建議先做輸出不變的守門階段。
+- 無程式、分數、任務條件、存檔語意或平衡變動;版本號不變。純文件,未跑測試;CI 配額考量,以人工審閱代替。
+
 ## 3.62.0-course-content-integrity - 2026-10-03 (關卡模式轉換 階段 2:UI 文案,in-place)
 
 - 徽章「學期凍結版 / SEMESTER FREEZE」→「定版 / LOCKED RELEASE」(`frozen:false` 仍為「開發版」);面板 kicker 在 `term` 缺省時不再顯示尾段。
