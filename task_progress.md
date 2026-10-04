@@ -1343,3 +1343,6 @@
 ## 2026-10-03 關卡模式轉換 階段 2(UI 文案)
 
 - 徽章/kicker/unlock 範例文案調整;typecheck、29 files／195 tests、validate:teaching-deployment 全綠;未跑 smoke。
+
+## 2026-10-04 D4 階段 0 設計草案
+- 新增 `PACK_SEED_DESIGN_2026-10-04.md`;review D4 標註設計草案。僅文件,無程式/測試變動。
