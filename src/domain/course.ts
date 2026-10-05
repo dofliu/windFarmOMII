@@ -42,6 +42,11 @@ export interface CourseAssignment {
    * in the first place.
    */
   randomSeed: number;
+  /**
+   * 資料包難度階層（整數 1–5），控制症狀升級速度。缺省時由週次位置推導
+   * （`floor(index/3)+1`），現行 15 週輸出因此不變。
+   */
+  packTier?: number;
 }
 
 export interface CourseConfig {

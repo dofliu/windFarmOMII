@@ -14,6 +14,8 @@
 >
 > **修復狀態(2026-09-27 更新)**:完成 **D6**(Availability/MTBF 口徑標示、`hysteresis=0` 抖動修復、Alarm tester 改用該週資料包推導訊號),對應 `3.61.0-course-content-integrity`;C 節 C4(WebGL 重建)、C5(CI 結構強化)同輪完成。
 >
+> **修復狀態(2026-10-05 更新)**:D4 階段 1 完成(`packTier` 顯式化、15 週輸出快照守門、validator 檢查;輸出不變)。階段 2(改 seed 派生)待擁有者回覆 `PACK_SEED_DESIGN_2026-10-04.md` §5。
+>
 > **修復狀態(2026-09-28 更新)**:完成 **D5**(`randomSeed` 的實際作用範圍加註 JSDoc、`FIXED SEED` 政策徽章改為 `DETERMINISTIC`、新增 `Math.random` mock 守門測試),對應 `3.62.0-course-content-integrity`。仍待辦:D4(資料包改 seed 派生,屬大型項目,建議先出設計草案)、D7-D9(文件性任務／內容缺口)、關卡模式下 `frozen` 語意轉換、C 節其餘項目(actions SHA pinning 仍受限於本 session 網路範圍)。
 
 ---

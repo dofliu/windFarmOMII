@@ -45,6 +45,9 @@ export const validateCourseConfig = (config, { packageVersion, missions, charact
     if (!equipmentIds.has(assignment.equipmentId) || !equipmentIds.has(assignment.spareId)) fail(`${assignment.id} references unknown equipment`);
     if (!vesselIds.has(assignment.vesselId)) fail(`${assignment.id} references an unknown vessel`);
     if (!Number.isSafeInteger(assignment.randomSeed)) fail(`${assignment.id} randomSeed must be an integer`);
+    if (assignment.packTier !== undefined && !(Number.isInteger(assignment.packTier) && assignment.packTier >= 1 && assignment.packTier <= 5)) {
+      fail(`${assignment.id} packTier must be an integer 1-5 when present`);
+    }
   }
 
   const weekIds = new Set(config.assignments.map((item) => item.weekId));
