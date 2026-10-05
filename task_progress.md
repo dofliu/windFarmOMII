@@ -1346,3 +1346,6 @@
 
 ## 2026-10-04 D4 階段 0 設計草案
 - 新增 `PACK_SEED_DESIGN_2026-10-04.md`;review D4 標註設計草案。僅文件,無程式/測試變動。
+
+## 2026-10-05 D4 階段 1
+- `packTier` 選填欄位 + 15 週輸出快照 + validator 範圍檢查;輸出不變;typecheck、29 files／198 tests、validate:teaching-deployment 全綠。

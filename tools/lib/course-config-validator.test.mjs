@@ -30,6 +30,13 @@ describe('validateCourseConfig (level mode)', () => {
     expect(result.warnings).toEqual([]);
   });
 
+  it('accepts packTier 1-5 and rejects out-of-range or non-integer values', () => {
+    expect(run((c) => { c.assignments[0].packTier = 5; }).errors).toEqual([]);
+    for (const bad of [0, 6, 1.5, '2']) {
+      expect(run((c) => { c.assignments[0].packTier = bad; }).errors.join(' ')).toMatch(/packTier must be an integer 1-5/);
+    }
+  });
+
   it('warns (does not fail) on an empty unlock list', () => {
     const result = run((c) => { c.unlockedWeekIds = []; });
     expect(result.errors).toEqual([]);

@@ -233,6 +233,9 @@ const round = (value: number, digits = 1): number => {
   return Math.round(value * factor) / factor;
 };
 
+/** 難度階層（1–5）：未指定 `packTier` 時由週次位置推導，與歷史公式 `floor(index/3)` 相同。 */
+export const defaultPackTier = (assignmentIndex: number): number => Math.floor(assignmentIndex / 3) + 1;
+
 /**
  * 每個 Assignment 以固定 seed 產生相同資料，讓不同學生面對可比較的工程證據。
  */
@@ -244,7 +247,8 @@ export function createMissionEngineeringPack(
   const baseTime = Date.UTC(2026, 0, 5 + assignmentIndex, 0, 0, 0);
   const sampleIntervalMinutes = 10;
   const phase = (assignment.randomSeed % 17) / 10;
-  const severity = 1 + Math.floor(assignmentIndex / 3) * 0.16;
+  const packTier = assignment.packTier ?? defaultPackTier(assignmentIndex);
+  const severity = 1 + (packTier - 1) * 0.16;
   const samples = Array.from({ length: 12 }, (_, index): ScadaCmsSample => {
     const escalation = index >= 5 ? (index - 4) * severity : 0;
     const loadKw = round(4_600 + Math.sin(index / 2 + phase) * 420 - escalation * 35, 0);

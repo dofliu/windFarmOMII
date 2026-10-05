@@ -46,5 +46,5 @@
 
 ## 6. 分階段
 
-- 階段 1:`packTier` + 快照測試 + validator 指紋(輸出不變,不 bump)。
+- 階段 1:`packTier` + 快照測試 + validator 指紋(輸出不變,不 bump)。**2026-10-05 已完成 packTier、快照測試、packTier 範圍檢查;config 內指紋雜湊未做(快照測試已覆蓋守門目的)。**
 - 階段 2:(依 §5 決定)改為 seed 派生並 bump 版本。

@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-10-05 (D4 階段 1:packTier 顯式化 + 15 週輸出快照,輸出不變)
+
+- `CourseAssignment` 新增選填 `packTier`(整數 1–5);缺省時以 `defaultPackTier(index)=floor(index/3)+1` 推導,`createMissionEngineeringPack` 的 severity 改讀 tier。**現行 15 週輸出完全不變**(先以舊程式產生快照,重構後仍通過)。
+- 新增 15 週資料包 inline snapshot 測試(首筆時間戳、溫度總和、`reliabilityInput`、Availability),重排/改號週次若改變 KPI 答案會被測試擋下;另測 tier 缺省值與顯式覆寫。
+- `validate-course-config` 檢查 `packTier` 為 1–5 整數(含測試)。未實作 KPI 指紋寫入 config 與 seed 派生(階段 2,待擁有者回覆草案 §5)。
+- 無分數、任務條件、存檔語意、平衡變動;版本號不變。
+- 驗證:`pnpm typecheck` ✅、`pnpm test` 29 files／198 tests ✅、`pnpm validate:teaching-deployment` ✅。未跑瀏覽器 smoke。
+
 ## 3.62.0-course-content-integrity - 2026-10-04 (D4 階段 0:設計草案,僅文件)
 
 - 新增 `PACK_SEED_DESIGN_2026-10-04.md`:查證資料包由 `weekId` 衍生的 `packIndex` 驅動(難度、KPI、時間戳),`randomSeed` 僅管雜訊;提案 tier 顯式化 + seed 雜訊分離,並建議先做輸出不變的守門階段。
