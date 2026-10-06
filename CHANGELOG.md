@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.62.0-course-content-integrity - 2026-10-06 (C6:validate:course 在乾淨 clone 自動同步資料)
+
+- `tools/validate-course-config.mjs`:`public/data/missions.json` 不存在時先自動執行 `tools/sync-data.mjs`,失敗則丟出明確錯誤;不再 ENOENT。教師指南的 `pnpm course:unlock` + `pnpm validate:course` 組合在乾淨 clone 可直接運作。
+- 僅工具變更:無分數、任務條件、存檔語意、平衡或版本變動。
+- 驗證:乾淨狀態實測 `pnpm validate:course` ✅、`pnpm typecheck` ✅、`pnpm test` 29 files／198 tests ✅。未跑瀏覽器 smoke、未跑完整 validate:teaching-deployment(僅動 validator CLI)。
+
 ## 3.62.0-course-content-integrity - 2026-10-05 (D4 階段 1:packTier 顯式化 + 15 週輸出快照,輸出不變)
 
 - `CourseAssignment` 新增選填 `packTier`(整數 1–5);缺省時以 `defaultPackTier(index)=floor(index/3)+1` 推導,`createMissionEngineeringPack` 的 severity 改讀 tier。**現行 15 週輸出完全不變**(先以舊程式產生快照,重構後仍通過)。

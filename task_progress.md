@@ -1349,3 +1349,7 @@
 
 ## 2026-10-05 D4 階段 1
 - `packTier` 選填欄位 + 15 週輸出快照 + validator 範圍檢查;輸出不變;typecheck、29 files／198 tests、validate:teaching-deployment 全綠。
+
+## 2026-10-06 — C6 validate:course 自動 sync-data
+
+- 乾淨狀態實測 validate:course、typecheck、test(198)通過;無版本/分數變動。
